@@ -99,7 +99,7 @@ Reference Manual (RM0008)
 
 ## Datasheet'in ilk sayfası
 
-![Datasheet İlk Sayfa](images/datasheet-first-page.png)
+![Datasheet İçindekiler](images/contents-page.png)
 
 Bu sayfa işlemcinin CV'si.
 

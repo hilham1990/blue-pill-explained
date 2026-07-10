@@ -6,7 +6,7 @@
 
 ## Pinout Kartı
 
-![Blue Pill Pinout](images/pinout.webp)
+![Blue Pill LQFP48 Pinout](images/lqfp48-pinout.png)
 
 Bu görsel Blue Pill'in tüm pinlerini gösteriyor.
 

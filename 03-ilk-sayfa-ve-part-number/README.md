@@ -6,7 +6,7 @@
 
 ## İlk Sayfayı Okumak
 
-![STM32F103 Özellikleri](images/features.png)
+![STM32F103 Özellikleri](images/datasheet-features.png)
 
 Datasheet'in ilk sayfası işlemcinin CV'si.
 

@@ -68,7 +68,7 @@ Yazılımda hangi modu seçersen pin o işlevi üstlenir.
 
 ## Blue Pill Pinout'ta Alternate Function'lar
 
-![Pinout](images/pinout.webp)
+![Pinout](../08-mpu-ve-pinout/images/lqfp48-pinout.png)
 
 Pinout kartında renkli kutular alternate function'ları gösteriyor:
 
