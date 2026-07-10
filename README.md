@@ -54,6 +54,13 @@ Bu seriyi tamamlayan biri:
 - Blue Pill Schematic — STM32 Min System Dev Board (Free Willy, açık kaynak)
 - STM32F103 Reference Manual — RM0008
 
+## Medya ve Üretim
+
+- Gerçek kart ve referans belgeleri: [`assets/source/`](assets/source/)
+- Gün 02 slaytları: [`02-datasheet-nasil-okunur/slides/`](02-datasheet-nasil-okunur/slides/)
+- Gün 02 video manifestleri, MP4 ve SRT çıktıları: [`02-datasheet-nasil-okunur/video/`](02-datasheet-nasil-okunur/video/)
+- Yerel Yelda + ffmpeg renderer: [`tools/render-lesson-video.mjs`](tools/render-lesson-video.mjs)
+
 ---
 
 ## Lisans

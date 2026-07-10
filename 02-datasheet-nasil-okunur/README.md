@@ -2,6 +2,8 @@
 
 > *Datasheet bir roman değil. Bir sözlük.*
 
+![Datasheet ve Reference Manual seçim ve okuma akışı](images/datasheet-reading-map.png)
+
 ---
 
 ## Datasheet nedir?
@@ -118,6 +120,30 @@ Bu sayfa işlemcinin CV'si.
 - **STM32F103x8 Datasheet:** [st.com](https://www.st.com/en/microcontrollers-microprocessors/stm32f103c8.html) → Resources → Datasheet
 - **RM0008 Reference Manual:** Aynı sayfada → Resources → Reference manual
 - Her ikisi de ücretsiz, kayıt gerektirmez.
+
+---
+
+## Slayt Serisi
+
+1. [Genel Bakış](slides/01-genel-bakis.png)
+2. [Datasheet Nedir?](slides/02-datasheet-nedir.png)
+3. [Datasheet ve Reference Manual](slides/03-datasheet-vs-reference-manual.png)
+4. [Doğru Okuma Yöntemi](slides/04-dogru-okuma-yontemi.png)
+5. [DS5319 İçindekiler Haritası](slides/05-ds5319-haritasi.png)
+6. [RM0008 İçindekiler Haritası](slides/06-rm0008-haritasi.png)
+7. [İlk Sayfayı Okuma](slides/07-ilk-sayfa-okuma.png)
+8. [Kaynak ve Kapanış](slides/08-kaynak-ve-kapanis.png)
+
+---
+
+## Video Çıktıları
+
+- [Uzun ders videosu — 16:9, yaklaşık 148 saniye](video/out-long/day02-datasheet-long.mp4)
+- [Uzun video altyazısı — SRT](video/out-long/day02-datasheet-long.srt)
+- [Kısa video — 9:16, yaklaşık 33 saniye](video/out-short/day02-datasheet-short.mp4)
+- [Kısa video altyazısı — SRT](video/out-short/day02-datasheet-short.srt)
+
+Ses: macOS yerel `Yelda` Türkçe sesi. Üretim: yerel ffmpeg + otomatik zamanlanmış SRT.
 
 ---
 
