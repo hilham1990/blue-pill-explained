@@ -14,6 +14,8 @@ Bu şema tek sayfa. İyi haber: az ama gerçek.
 
 ## Şemada Kaç Blok Var?
 
+![STM32F103 Block Diagram](images/block-diagram.png)
+
 Şemaya baktığımızda 6 ana blok görüyoruz. Her biri ayrı bir işlev üstleniyor.
 
 ```

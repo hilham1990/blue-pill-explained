@@ -108,6 +108,8 @@ Bölüm 11'de detaylı anlatılacak.
 
 ## Pin İsimlendirme Mantığı
 
+![Pin Definitions](images/pin-definitions.png)
+
 Bir pinin tam adı şöyle okunur:
 
 ```

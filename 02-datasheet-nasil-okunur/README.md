@@ -101,6 +101,8 @@ Reference Manual (RM0008)
 
 ![Datasheet İçindekiler](images/contents-page.png)
 
+![Datasheet Giriş](images/introduction.png)
+
 Bu sayfa işlemcinin CV'si.
 
 2 dakikada şunları öğreniyorsun:

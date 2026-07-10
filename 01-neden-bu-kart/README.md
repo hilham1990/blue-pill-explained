@@ -41,6 +41,8 @@ Ve bu soruları sadece STM32 için değil — Apple, Qualcomm, Intel, ESP32 içi
 
 ## Neden Blue Pill?
 
+![STM32F103 Ailesi](images/family-table.png)
+
 Blue Pill, STM32F103C8T6 işlemcisi üzerine kurulu minimal bir geliştirme kartıdır.
 
 ```

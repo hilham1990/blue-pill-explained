@@ -60,6 +60,12 @@ Blue Pill'de 64 KB Flash var (C**8** — bunu part number'dan okuyoruz).
 
 ---
 
+## Device Overview Tablosu
+
+![Device Overview](images/device-overview-table.png)
+
+---
+
 ## Part Number Nasıl Okunur?
 
 ```

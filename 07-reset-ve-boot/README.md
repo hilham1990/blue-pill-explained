@@ -90,6 +90,8 @@ R4 (100kΩ) ──── BOOT1 pini (PB2, pin 20)
 
 ## Boot Modları
 
+![Boot Modes](images/boot-modes.png)
+
 | BOOT0 | BOOT1 | Nereden Başlanır | Kullanım |
 |---|---|---|---|
 | 0 (GND) | x | Flash | Normal çalışma |
@@ -118,6 +120,14 @@ Firmware yükleme süreci:
 4. BOOT0 jumper'ını 1-2'ye al
 5. Kartı resetle — normal çalışma başlar
 ```
+
+---
+
+## Memory Map
+
+![Memory Map](images/memory-map.png)
+
+İşlemcinin bellek haritası (Memory Map), hangi donanımın hangi adreste olduğunu gösterir. Yazılım geliştirirken, özellikle register seviyesinde programlama yaparken bu harita çok kritiktir.
 
 ---
 

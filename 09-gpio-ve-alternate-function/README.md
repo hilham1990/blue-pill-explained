@@ -6,6 +6,8 @@
 
 ## GPIO Nedir?
 
+![GPIO Description](images/gpio-description.png)
+
 GPIO: General Purpose Input/Output — Genel Amaçlı Giriş/Çıkış.
 
 STM32F103'te 48 pinin büyük çoğunluğu GPIO olarak kullanılabilir.
