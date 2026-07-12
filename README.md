@@ -1,9 +1,16 @@
 # Blue Pill Explained
 
+[![Lisans: MIT](https://img.shields.io/badge/Lisans-MIT-green.svg)](LICENSE)
+[![Dil: Türkçe](https://img.shields.io/badge/Dil-T%C3%BCrk%C3%A7e-blue.svg)](#)
+[![Bölümler: 12](https://img.shields.io/badge/B%C3%B6l%C3%BCmler-12-orange.svg)](#bölümler)
+[![Akademi Usta](https://img.shields.io/badge/Akademi-Usta-red.svg)](https://akademiusta.com/tr)
+
 > **This project does not teach a specific microcontroller.**
 > **It teaches how to read hardware.**
 
 STM32F103C8T6 (Blue Pill) — datasheet'ten şemaya, şemadan gerçek karta.
+
+**[Amaç](#amaç) · [Bu Seri Neyi Cevaplıyor?](#bu-seri-neyi-cevaplıyor) · [Bölümler](#bölümler) · [Kaynaklar](#kullanılan-kaynaklar) · [Lisans](#lisans)**
 
 ---
 
@@ -41,6 +48,17 @@ Bu seri bu 6 soruyu **STM32F103C8T6 (Blue Pill)** üzerinden, gerçek bir şema 
 - Ucuz, yaygın, ulaşılabilir
 - Karmaşık değil ama gerçek bir sistem
 - STM32 ailesi endüstride yaygın kullanılıyor
+
+---
+
+## Nasıl Takip Edilir?
+
+Bölümler sırayla okunacak şekilde tasarlandı — her biri bir öncekinin üzerine inşa ediyor.
+
+1. Faz 1'den başla, sırayla ilerle.
+2. Her bölümdeki şema görsellerini gerçek Blue Pill şemasıyla yan yana aç.
+3. "Sahada Ne Anlama Gelir?" kısımlarını atlama — asıl beceri orada oturuyor.
+4. Elinde bir Blue Pill kartı varsa, okurken şemadaki noktaları multimetre ile ölç.
 
 ---
 
@@ -84,6 +102,8 @@ Bu seri bu 6 soruyu **STM32F103C8T6 (Blue Pill)** üzerinden, gerçek bir şema 
 - Blue Pill Schematic — STM32 Min System Dev Board (Free Willy, açık kaynak)
 - STM32F103 Reference Manual — RM0008
 
+---
+
 ## Medya ve Üretim
 
 - Gerçek kart ve referans belgeleri: [`assets/source/`](assets/source/)
@@ -91,8 +111,16 @@ Bu seri bu 6 soruyu **STM32F103C8T6 (Blue Pill)** üzerinden, gerçek bir şema 
 - Gün 02 video manifestleri, MP4 ve SRT çıktıları: [`02-datasheet-nasil-okunur/video/`](02-datasheet-nasil-okunur/video/)
 - Yerel Yelda + ffmpeg renderer: [`tools/render-lesson-video.mjs`](tools/render-lesson-video.mjs)
 
+> Video/slayt prodüksiyonu şu an sadece Faz 1'in ilk bölümlerinde tamamlandı, kalan bölümler yazı olarak tam, medya üretimi devam ediyor.
+
+---
+
+## Katkıda Bulunma
+
+Bu seri açık kaynak ve ücretsizdir. Hata bulursan, eksik bir açıklama görürsen veya bir bölümü genişletmek istersen issue açabilir ya da pull request gönderebilirsin.
+
 ---
 
 ## Lisans
 
-MIT — Kullanabilir, değiştirebilir, paylaşabilirsin.
+[MIT](LICENSE) © Akademi Usta — Kullanabilir, değiştirebilir, paylaşabilirsin.
