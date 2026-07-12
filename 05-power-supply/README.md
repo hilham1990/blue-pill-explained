@@ -4,6 +4,13 @@
 
 ---
 
+> **Bu bölümde öğrendiğin şey şurada da geçerli:**
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32
+> ✓ Hatta Apple Silicon / Qualcomm SoC'ler — hepsi harici gerilimi bir
+>   regülatörden geçirip çekirdeğe verir. Regülatör değişir, zincir değişmez.
+
+---
+
 ## Şemada Power Supply Bloğu
 
 Şemada sol alt köşe — **D1–D3 koordinatları**.

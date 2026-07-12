@@ -4,6 +4,14 @@
 
 ---
 
+> **Bu bölümde öğrendiğin şey şurada da geçerli:**
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32
+> ✓ Hatta Apple Silicon / Qualcomm SoC'ler — UART, SPI, I2C endüstri
+>   standardı protokollerdir; hangi işlemci olursa olsun aynı sinyal
+>   isimleriyle (TX/RX, MOSI/MISO/SCK/CS, SDA/SCL) çalışırlar.
+
+---
+
 ## Neden Birden Fazla Protokol Var?
 
 Farklı senaryolar farklı ihtiyaçlar doğurdu:
@@ -176,6 +184,24 @@ Dört hat: MOSI, MISO, SCK, CS → SPI
 ```
 
 Pin isimlerinden doğrudan anlıyorsun.
+
+---
+
+## Sahada Ne Anlama Gelir?
+
+Şemada tanımadığın bir modüle giden 2 kablolu bir hat görüyorsun. TX/RX mi, SDA/SCL mi olduğunu nasıl ayırt edersin?
+
+```
+Adım 1: Pin isimlerine bak. "TX"/"RX" yazıyorsa → UART.
+        "SDA"/"SCL" yazıyorsa → I2C.
+Adım 2: İsim yoksa, modülün adına bak. EEPROM, sıcaklık sensörü,
+        IMU gibi düşük hızlı çevre birimleri genelde I2C kullanır.
+        GPS, Bluetooth, GSM modülleri genelde UART kullanır.
+Adım 3: Hâlâ emin değilsen, hattın çektiği pull-up direncine bak —
+        I2C hatlarında SDA/SCL üzerinde pull-up dirençleri olması zorunludur.
+```
+
+4 kablolu bir hat görürsen (MOSI/MISO/SCK/CS) SPI'dır — bu üçü arasında en kolay ayırt edilenidir.
 
 ---
 

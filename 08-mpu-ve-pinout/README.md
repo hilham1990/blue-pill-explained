@@ -4,6 +4,15 @@
 
 ---
 
+> **Bu bölümde öğrendiğin şey şurada da geçerli:**
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — her mikrodenetleyicide pin sayısı sabit
+>   ama her pinin birden fazla görevi vardır, datasheet'teki pin tablosu
+>   hangi görevin nerede olduğunu söyler. (Apple/Qualcomm gibi büyük SoC'lerde
+>   pin sayısı binlerle ölçülür ve BGA paketlerde fiziksel erişim yoktur —
+>   mantık aynı ama ölçek çok farklıdır.)
+
+---
+
 ## Pinout Kartı
 
 ![Blue Pill LQFP48 Pinout](images/lqfp48-pinout.png)
@@ -75,8 +84,8 @@ VSS_3 (pin 47)  → GND
 Şemada U2'nin sol tarafında:
 
 ```
-USBDM (PA11, pin 33) ──── R11 (22Ω) ──── USB D-
-USBDP (PA12, pin 34) ──── R10 (22Ω) ──── USB D+
+USBDM (PA11, pin 32) ──── R11 (22Ω) ──── USB D-
+USBDP (PA12, pin 33) ──── R10 (22Ω) ──── USB D+
                                            │
                                       R9 (10kΩ) → +3.3V
 ```
@@ -97,8 +106,8 @@ USB hattındaki yansımaları azaltıyor. USB diferansiyel sinyal kullandığın
 JTMS/SWDIO (PA13, pin 34)  → SWD veri hattı
 JTCK/SWCLK (PA14, pin 37)  → SWD clock hattı
 JTDI        (PA15, pin 38)  → JTAG veri girişi
-JTDO        (PB4,  pin 40)  → JTAG veri çıkışı
-JNTRST      (PB4,  pin 41)  → JTAG reset
+JTDO        (PB3,  pin 39)  → JTAG veri çıkışı
+JNTRST      (PB4,  pin 40)  → JTAG reset
 ```
 
 Bu pinler **CN4 (SWD konnektörü)** üzerinden dışarıya çıkıyor.

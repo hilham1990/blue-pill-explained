@@ -4,6 +4,15 @@
 
 ---
 
+> **Bu bölümde öğrendiğin şey şurada da geçerli:**
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — ARM Cortex-M tabanlı her işlemci SWD
+>   veya JTAG üzerinden programlanır ve canlı debug edilir. (Apple/Qualcomm
+>   gibi büyük SoC'lerde debug erişimi üretici tarafından kilitlenir veya
+>   çok daha karmaşık bir güvenlik zincirinden geçer — bu basit 2-pin
+>   mantığıyla aynı değildir.)
+
+---
+
 ## SWD Nedir?
 
 SWD: Serial Wire Debug
@@ -36,8 +45,8 @@ Pin 4 → GND
 ## SWD Pinleri İşlemcide Nerede?
 
 ```
-PA13 → JTMS/SWDIO (pin 37)
-PA14 → JTCK/SWCLK (pin 38)
+PA13 → JTMS/SWDIO (pin 34)
+PA14 → JTCK/SWCLK (pin 37)
 ```
 
 Bu iki pin reset sonrasında otomatik olarak SWD modunda başlar.

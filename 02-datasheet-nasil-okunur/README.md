@@ -147,6 +147,22 @@ Ses: macOS yerel `Yelda` Türkçe sesi. Üretim: yerel ffmpeg + otomatik zamanla
 
 ---
 
+## Sahada Ne Anlama Gelir?
+
+Elinde tanımadığın bir kart var. Üzerinde sadece işlemcinin part number'ı yazıyor, başka hiçbir şey bilmiyorsun.
+
+```
+Soru: "Bu işlemci ne yapabilir?" mi soruyorsun,
+      "Bu peripheral'ı nasıl ayarlarım?" mı soruyorsun?
+
+"Ne yapabilir?" → Datasheet aç (özellikler, pin listesi, limitler)
+"Nasıl ayarlarım?" → Reference Manual aç (register detayları)
+```
+
+Yanlış belgede aramak zaman kaybettirir — 1000 sayfalık Reference Manual'da "kaç KB Flash var" aramak, ya da 30 sayfalık Datasheet'te "RCC register'ı nasıl set edilir" aramak gibi. Önce hangi soruyu sorduğunu netleştir, sonra doğru belgeyi aç.
+
+---
+
 ## Sonraki bölüm
 
 **[03 — İlk Sayfa ve Part Number](../03-ilk-sayfa-ve-part-number/README.md)**

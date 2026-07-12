@@ -127,6 +127,23 @@ Bazı bölümlerde bu koordinatlara atıfta bulunacağız.
 
 ---
 
+## Sahada Ne Anlama Gelir?
+
+Elinde hiç görmediğin bir şema var. İlk 30 saniyede ne yaparsın?
+
+```
+Adım 1: Kaç sayfa/blok var? Tek sayfa mı, çok sayfa mı?
+Adım 2: En büyük/merkezi sembolü bul — genelde işlemci veya ana çip odur.
+Adım 3: O sembole giren/çıkan hatları takip et: hangisi besleme,
+        hangisi clock, hangisi konnektör?
+Adım 4: Küçük periferik blokları (LED, buton, regülatör) kenarlarda ara —
+        genelde ana çipin etrafında dururlar.
+```
+
+Bu sırayla taranan bir şema artık kaotik bir çizim değil, tanıdık bir yapı. Blue Pill'de 6 blok bulduk; başka bir kartta blok sayısı değişir ama tarama mantığı aynı kalır.
+
+---
+
 ## Sonraki bölüm
 
 **[05 — Power Supply](../05-power-supply/README.md)**

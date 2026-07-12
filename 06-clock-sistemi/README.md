@@ -4,6 +4,14 @@
 
 ---
 
+> **Bu bölümde öğrendiğin şey şurada da geçerli:**
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32
+> ✓ Hatta Apple Silicon / Qualcomm SoC'ler — hepsinde bir kristal veya
+>   dahili osilatör önce ham bir frekans üretir, PLL onu katlar. Sayılar
+>   değişir, "kristal → PLL → sistem clock" zinciri değişmez.
+
+---
+
 ## Clock Nedir?
 
 İşlemci her işlemi bir clock darbesinde yapar.
@@ -27,7 +35,7 @@ Mpu bloğunun sağ tarafında — **B6 koordinatı**.
 
 ```
 X1 (8 MHz crystal)
-  OSC_IN  (PD0/PA15/B15 pini) ──── X1 ──── OSC_OUT (PD1 pini)
+  OSC_IN  (PD0 pini) ──── X1 ──── OSC_OUT (PD1 pini)
                                    │
                             C13(12p)  C14(12p)
                                    │

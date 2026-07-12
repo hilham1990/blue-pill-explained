@@ -4,6 +4,15 @@
 
 ---
 
+> **Bu bölümde öğrendiğin şey şurada da geçerli:**
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — ARM Cortex-M ailesindeki her işlemci
+>   reset sonrası "hangi bellekten başlayacağım?" sorusunu belirli pinlerin
+>   durumuna bakarak cevaplar. (Büyük uygulama işlemcileri — Apple, Qualcomm,
+>   Intel — çok katmanlı secure-boot zincirleri kullanır, bu basit BOOT
+>   pin mantığıyla birebir aynı değildir.)
+
+---
+
 ## Şemada Reset Bloğu
 
 Şemada sağ alt — **D6–E7 koordinatları**.

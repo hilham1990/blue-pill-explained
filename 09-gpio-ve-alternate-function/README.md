@@ -4,6 +4,13 @@
 
 ---
 
+> **Bu bölümde öğrendiğin şey şurada da geçerli:**
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — her ARM Cortex-M işlemcide GPIO pinleri
+>   yazılımla input/output/alternate function arasında yapılandırılır.
+>   Kayıt (register) isimleri değişir, kavram değişmez.
+
+---
+
 ## GPIO Nedir?
 
 ![GPIO Description](images/gpio-description.png)
