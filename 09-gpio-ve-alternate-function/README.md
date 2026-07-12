@@ -5,9 +5,11 @@
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
-> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — her ARM Cortex-M işlemcide GPIO pinleri
+> ✓ RP2040 ✓ nRF52 ✓ GD32 — her ARM Cortex-M işlemcide GPIO pinleri
 >   yazılımla input/output/alternate function arasında yapılandırılır.
->   Kayıt (register) isimleri değişir, kavram değişmez.
+> ✓ ESP32'de de (Xtensa/RISC-V çekirdek, Cortex-M değil) aynı kavram bir
+>   GPIO matrisi üzerinden çalışır. Kayıt isimleri ve mimari değişir,
+>   "pin çok görevli, modu yazılım seçer" kavramı değişmez.
 
 ---
 

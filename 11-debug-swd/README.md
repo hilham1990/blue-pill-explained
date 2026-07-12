@@ -4,12 +4,13 @@
 
 ---
 
-> **Bu bölümde öğrendiğin şey şurada da geçerli:**
-> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — ARM Cortex-M tabanlı her işlemci SWD
->   veya JTAG üzerinden programlanır ve canlı debug edilir. (Apple/Qualcomm
->   gibi büyük SoC'lerde debug erişimi üretici tarafından kilitlenir veya
->   çok daha karmaşık bir güvenlik zincirinden geçer — bu basit 2-pin
->   mantığıyla aynı değildir.)
+> **Bu bölümün kapsamı:**
+> SWD, ARM Cortex-M tabanlı işlemcilerde (✓ STM32 ✓ RP2040 ✓ nRF52 ✓ GD32)
+> kullanılan programlama/debug arayüzüdür. ✓ ESP32 gibi ARM dışı çekirdekler
+> (Xtensa/RISC-V) SWD değil JTAG kullanır — kavram benzer, arayüz farklı.
+> (Apple/Qualcomm gibi büyük SoC'lerde debug erişimi üretici tarafından
+> kilitlenir veya çok daha karmaşık bir güvenlik zincirinden geçer — bu
+> basit 2-pin mantığıyla aynı değildir.)
 
 ---
 

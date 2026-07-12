@@ -5,9 +5,12 @@
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
-> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32
-> ✓ Hatta Apple Silicon / Qualcomm SoC'ler — hepsi harici gerilimi bir
->   regülatörden geçirip çekirdeğe verir. Regülatör değişir, zincir değişmez.
+> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — hepsi harici gerilimi bir regülatörden
+>   geçirip çekirdeğe verir, tıpkı Blue Pill'deki RT8183-B gibi.
+> ✓ Apple Silicon / Qualcomm gibi büyük SoC'lerde bu zincir bir PMIC ve
+>   birden fazla regülatörle çoklu güç alanını (power domain) besler —
+>   yapı karmaşıklaşır ama temel takip aynı kalır: harici enerji hangi
+>   aşamalardan geçerek çekirdeğin çalışma gerilimine dönüşüyor?
 
 ---
 

@@ -5,8 +5,8 @@
 [![Bölümler: 12](https://img.shields.io/badge/B%C3%B6l%C3%BCmler-12-orange.svg)](#bölümler)
 [![Akademi Usta](https://img.shields.io/badge/Akademi-Usta-red.svg)](https://akademiusta.com/tr)
 
-> **This project does not teach a specific microcontroller.**
-> **It teaches how to read hardware.**
+> **Bu proje sana tek bir mikrodenetleyiciyi ezberletmez.**
+> **Donanımı nasıl okuyacağını öğretir.**
 
 STM32F103C8T6 (Blue Pill) — datasheet'ten şemaya, şemadan gerçek karta.
 
@@ -29,13 +29,13 @@ Bu seriyi tamamlayan biri:
 
 ## Bu Seri Neyi Cevaplıyor?
 
-Her işlemci, üretici ve mimari fark etmeksizin, aynı 6 soruya cevap vermek zorundadır:
+Bir işlemciyi veya işlemci tabanlı bir sistemi anlamaya başladığında, üretici ve mimariden bağımsız olarak çoğu durumda şu 6 temel sorunun cevabını ararsın:
 
 1. **Besleme nerede?** — Gerilim nereden geliyor, çekirdeğe nasıl ulaşıyor?
 2. **Clock nerede?** — İşlemcinin ritmini ne belirliyor?
 3. **Reset devresi nasıl?** — Sistem nasıl temiz başlıyor?
 4. **Boot modu ne?** — İşlemci ilk komutu nereden okuyor?
-5. **Peripheral'lar nereye bağlı?** — Dış dünyayla nasıl konuşuyor?
+5. **Çevre birimleri (peripheral'lar) nereye bağlı?** — Dış dünyayla nasıl konuşuyor?
 6. **Debug nasıl yapılıyor?** — Firmware nasıl yükleniyor, sorun nasıl teşhis ediliyor?
 
 Bu seri bu 6 soruyu **STM32F103C8T6 (Blue Pill)** üzerinden, gerçek bir şema okuyarak cevaplıyor. Kart örnek — sorular evrensel.
@@ -79,7 +79,7 @@ Bölümler sırayla okunacak şekilde tasarlandı — her biri bir öncekinin ü
 
 | # | Başlık | Konu |
 |---|---|---|
-| 05 | [Power Supply](05-power-supply/README.md) | RT8183-B, besleme devresi |
+| 05 | [Power Supply](05-power-supply/README.md) | 5V→3.3V regülasyon zinciri |
 | 06 | [Clock Sistemi](06-clock-sistemi/README.md) | Crystal, PLL, HSE, HSI |
 | 07 | [Reset ve Boot](07-reset-ve-boot/README.md) | Reset devresi, BOOT0/BOOT1 |
 | 08 | [MPU ve Pinout](08-mpu-ve-pinout/README.md) | İşlemci pinleri, port yapısı |
@@ -104,14 +104,7 @@ Bölümler sırayla okunacak şekilde tasarlandı — her biri bir öncekinin ü
 
 ---
 
-## Medya ve Üretim
-
-- Gerçek kart ve referans belgeleri: [`assets/source/`](assets/source/)
-- Gün 02 slaytları: [`02-datasheet-nasil-okunur/slides/`](02-datasheet-nasil-okunur/slides/)
-- Gün 02 video manifestleri, MP4 ve SRT çıktıları: [`02-datasheet-nasil-okunur/video/`](02-datasheet-nasil-okunur/video/)
-- Yerel Yelda + ffmpeg renderer: [`tools/render-lesson-video.mjs`](tools/render-lesson-video.mjs)
-
-> Video/slayt prodüksiyonu şu an sadece Faz 1'in ilk bölümlerinde tamamlandı, kalan bölümler yazı olarak tam, medya üretimi devam ediyor.
+Bazı bölümlerde slayt, uzun video, kısa video ve altyazı çıktıları bulunuyor; medya üretim durumu ve yaklaşımı için [`PRODUCTION.md`](PRODUCTION.md) dosyasına bakın.
 
 ---
 

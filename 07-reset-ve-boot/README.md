@@ -5,11 +5,14 @@
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
-> ✓ ESP32 ✓ RP2040 ✓ nRF52 ✓ GD32 — ARM Cortex-M ailesindeki her işlemci
->   reset sonrası "hangi bellekten başlayacağım?" sorusunu belirli pinlerin
->   durumuna bakarak cevaplar. (Büyük uygulama işlemcileri — Apple, Qualcomm,
->   Intel — çok katmanlı secure-boot zincirleri kullanır, bu basit BOOT
->   pin mantığıyla birebir aynı değildir.)
+> ✓ RP2040 ✓ nRF52 ✓ GD32 — ARM Cortex-M ailesindeki her işlemci reset
+>   sonrası "hangi bellekten başlayacağım?" sorusunu belirli pinlerin
+>   durumuna bakarak cevaplar.
+> ✓ ESP32 da aynı prensibi kullanır (strapping pinleriyle boot modu
+>   seçimi) ama farklı bir çekirdek mimarisine (Xtensa/RISC-V) sahiptir —
+>   kavram aynı, mimari farklı. (Büyük uygulama işlemcileri — Apple,
+>   Qualcomm, Intel — çok katmanlı secure-boot zincirleri kullanır, bu
+>   basit BOOT pin mantığıyla birebir aynı değildir.)
 
 ---
 
