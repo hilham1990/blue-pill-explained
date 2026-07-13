@@ -1,6 +1,6 @@
 {
   "day": 1,
-  "note": "Video render zamanlaması taslağıdır — sesler üretilince gerçek sahne süreleriyle güncellenir. render-lesson-video.mjs için nihai format ayrı bir video/day01-*.json dosyasında oluşturulur. scene-01 ve scene-04 2026-07-13'te kaldırıldı.",
+  "note": "Video render zamanlaması taslağıdır — sesler üretilince gerçek sahne süreleriyle güncellenir. render-lesson-video.mjs için nihai format ayrı bir video/day01-*.json dosyasında oluşturulur (bkz. 02-datasheet-nasil-okunur/video/ örneği). scene-01 2026-07-13'te kaldırıldı (hero ile içerik tekrarı).",
   "slides": [
     {
       "scene_id": "scene-00-hero",
@@ -27,10 +27,18 @@
       "zoom": "slow-in"
     },
     {
+      "scene_id": "scene-04",
+      "image": "slides/04-tek-sayfalik-acik-sema.png",
+      "start": 60,
+      "end": 78,
+      "transition": "fade",
+      "zoom": "slow-in"
+    },
+    {
       "scene_id": "scene-05",
       "image": "slides/05-serinin-kurali.png",
-      "start": 60,
-      "end": 80,
+      "start": 78,
+      "end": 98,
       "transition": "fade",
       "zoom": "slow-in"
     }

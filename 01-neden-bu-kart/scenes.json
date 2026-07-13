@@ -1,6 +1,6 @@
 {
   "day": 1,
-  "note": "scene-01 (Bu Seri Ne Öğretiyor?) 2026-07-13'te kaldırıldı — hero ile içerik olarak örtüşüyordu. scene-04 (Tek Sayfalık Açık Şema) da 2026-07-13'te kaldırıldı — kullanıcı isteğiyle. Gün 1 şu an 4 onaylı sahne: hero, scene-02, scene-03, scene-05 (Serinin Kuralı, order:4).",
+  "note": "scene-01 (Bu Seri Ne Öğretiyor?) 2026-07-13'te kaldırıldı — hero ile içerik olarak örtüşüyordu. scene-04 yanlışlıkla silinip geri getirildi (2026-07-13) — kullanıcının asıl kastettiği silme hedefi 01-neden-bu-kart/images/family-table.png idi (eski, stilize edilmemiş datasheet ekran görüntüsü), scene-04 değil; family-table.png silindi, scene-04 aynen korundu. Gün 1 şu an 5 onaylı sahne: hero, scene-02, scene-03, scene-04, scene-05.",
   "scenes": [
     {
       "id": "scene-00-hero",
@@ -50,8 +50,23 @@
       "asset": "slides/03-blue-pill-icinde-ne-var.png"
     },
     {
-      "id": "scene-05",
+      "id": "scene-04",
       "order": 4,
+      "title": "Tek Sayfalık Açık Şema",
+      "purpose": "Şemanın tek sayfa olduğunu ve karmaşık olmadan gerçek bir sistem sunduğunu göstermek; bir sonraki bölüme (Bölüm 02) köprü kurmak.",
+      "visual_focus": "Tam şema genel görünüm + power supply/reset blok yakın çekimleri + tasarımcı notu",
+      "screen_text": [
+        "TEK SAYFALIK AÇIK ŞEMA",
+        "Karmaşık değil, ama gerçek."
+      ],
+      "narration": "Bu şema tek sayfa. Karmaşık değil ama gerçek — power supply, reset, clock, MPU ve konnektörler hepsi bu tek sayfada okunabilir.",
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/04-tek-sayfalik-acik-sema.png"
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
       "title": "Serinin Kuralı",
       "purpose": "Her bölümde uygulanan 3 soru metodolojisini (Bu ne? / Neden burada? / Sahada ne anlama gelir?) gerçek bir örnekle göstermek.",
       "visual_focus": "Gerçek ST blok diyagramı (STM32F103X8-datasheet.pdf sayfa 19, Figure 1) merkezde, 3 numaralı panel metodolojiyi uyguluyor",
