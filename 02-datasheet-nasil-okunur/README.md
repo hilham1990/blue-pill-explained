@@ -2,7 +2,7 @@
 
 > *Datasheet bir roman değil. Bir sözlük.*
 
-![Datasheet ve Reference Manual seçim ve okuma akışı](images/datasheet-reading-map.png)
+*(Bu bölümün kapak görseli, Bölüm 01'de kurulan görsel standarda göre yeniden üretilecek.)*
 
 ---
 
@@ -64,38 +64,54 @@ Soru cevap bulur
 Bu serinin kullandığı bölümler:
 
 ```
-Datasheet (DS5319)
+Datasheet (Doc ID 13587)
 │
-├── Features (Sayfa 1-3)
+├── Features (kapak sayfası, 1-3)
 │   └── İşlemcinin özeti — BİZ BURADAN BAŞLIYORUZ
 │
-├── Ordering Information
-│   └── Part number tablosu — STM32F103C8T6 kodu
-│
-├── Pinouts
+├── Pinouts and Pin Description (Bölüm 3)
 │   └── 48-pin LQFP pinout — her pinin adı
 │
-├── Electrical Characteristics
+├── Memory Mapping (Bölüm 4)
+│   └── Bellek adres haritası
+│
+├── Electrical Characteristics (Bölüm 5)
 │   └── Voltaj limitleri, akım değerleri
 │
-└── Package Information
-    └── Fiziksel boyutlar
+├── Package Characteristics (Bölüm 6)
+│   └── Fiziksel boyutlar
+│
+└── Ordering Information Scheme (Bölüm 7 — belgenin sonunda, başında değil)
+    └── Part number tablosu — STM32F103C8T6 kodu
 ```
 
 ```
-Reference Manual (RM0008)
+Reference Manual (RM0008, Rev 20, 1134 sayfa)
 │
-├── Memory Map
-├── RCC — Clock Control (Bölüm 7)
-├── GPIO (Bölüm 9)
-├── DMA (Bölüm 13)
+├── Memory and Bus Architecture — Memory Map (Bölüm 3)
+├── RCC — Clock Control, medium-density (Bölüm 7)
+│   └── (Bölüm 8 farklı bir alt aile için — Connectivity line, bizim kartımız değil)
+├── GPIO ve AFIO (Bölüm 9)
 ├── ADC (Bölüm 11)
-├── TIM — Timers (Bölüm 15-18)
-├── USART (Bölüm 27)
+├── DMA (Bölüm 13)
+├── TIM — Timers (Bölüm 14 TIM1, Bölüm 15 TIM2-5, Bölüm 17 TIM6-7)
+│   └── (Bölüm 16 bizim yoğunluktaki çipte yok; Bölüm 18 aslında RTC'dir, timer değil)
+├── USB (Bölüm 23)
+├── CAN — bxCAN (Bölüm 24)
 ├── SPI (Bölüm 25)
 ├── I2C (Bölüm 26)
-└── USB (Bölüm 23)
+└── USART (Bölüm 27)
 ```
+
+Yukarıdaki harita `~/Downloads/RM0008.PDF` (Rev 20, 1134 sayfa) üzerinden 2026-07-13'te doğrulandı — gerçek İçindekiler sayfaları:
+
+![RM0008 İçindekiler — genel bakış (sayfa 2)](images/rm0008-toc-overview.png)
+
+![RM0008 İçindekiler — Bölüm 17 Basic timers vs Bölüm 18 Real-time clock (sayfa 14)](images/rm0008-toc-timers-vs-rtc.png)
+
+*Bu sayfa önceki hatayı ispatlıyor: Bölüm 18 "Real-time clock (RTC)" — timer değil.*
+
+![RM0008 İçindekiler — Bölüm 23 USB ve Bölüm 24 bxCAN (sayfa 18)](images/rm0008-toc-usb-can.png)
 
 ---
 
@@ -123,30 +139,6 @@ Bu sayfa işlemcinin CV'si.
 
 ---
 
-## Slayt Serisi
-
-1. [Genel Bakış](slides/01-genel-bakis.png)
-2. [Datasheet Nedir?](slides/02-datasheet-nedir.png)
-3. [Datasheet ve Reference Manual](slides/03-datasheet-vs-reference-manual.png)
-4. [Doğru Okuma Yöntemi](slides/04-dogru-okuma-yontemi.png)
-5. [DS5319 İçindekiler Haritası](slides/05-ds5319-haritasi.png)
-6. [RM0008 İçindekiler Haritası](slides/06-rm0008-haritasi.png)
-7. [İlk Sayfayı Okuma](slides/07-ilk-sayfa-okuma.png)
-8. [Kaynak ve Kapanış](slides/08-kaynak-ve-kapanis.png)
-
----
-
-## Video Çıktıları
-
-- [Uzun ders videosu — 16:9, yaklaşık 148 saniye](video/out-long/day02-datasheet-long.mp4)
-- [Uzun video altyazısı — SRT](video/out-long/day02-datasheet-long.srt)
-- [Kısa video — 9:16, yaklaşık 33 saniye](video/out-short/day02-datasheet-short.mp4)
-- [Kısa video altyazısı — SRT](video/out-short/day02-datasheet-short.srt)
-
-Ses: macOS yerel `Yelda` Türkçe sesi. Üretim: yerel ffmpeg + otomatik zamanlanmış SRT.
-
----
-
 ## Sahada Ne Anlama Gelir?
 
 Elinde tanımadığın bir kart var. Üzerinde sadece işlemcinin part number'ı yazıyor, başka hiçbir şey bilmiyorsun.
@@ -160,6 +152,10 @@ Soru: "Bu işlemci ne yapabilir?" mi soruyorsun,
 ```
 
 Yanlış belgede aramak zaman kaybettirir — 1000 sayfalık Reference Manual'da "kaç KB Flash var" aramak, ya da 30 sayfalık Datasheet'te "RCC register'ı nasıl set edilir" aramak gibi. Önce hangi soruyu sorduğunu netleştir, sonra doğru belgeyi aç.
+
+---
+
+*Bu bölümün slayt/video prodüksiyonu, Bölüm 01'de kurulan görsel standarda göre yeniden hazırlanıyor — bkz. [`PRODUCTION.md`](../PRODUCTION.md).*
 
 ---
 

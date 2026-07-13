@@ -1,0 +1,23 @@
+{
+  "day": 2,
+  "title": "Datasheet Nasıl Okunur?",
+  "lesson_goal": "Öğrenci, Datasheet ile Reference Manual arasındaki farkı ayırt edip doğru soruyu doğru belgeye yöneltebilecek; her iki belgenin gerçek İçindekiler haritasını kullanarak ilgili bölümü hızlıca bulabilecek.",
+  "core_message": "Datasheet bir roman değil bir sözlük: önce soru netleşir, sonra içindekiler haritasından doğru bölüm bulunur. Genel bilgi için Datasheet, yapılandırma detayı için Reference Manual (RM0008) açılır.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 110,
+  "recommended_scene_count": 6,
+  "must_show": [
+    "Datasheet vs Reference Manual karşılaştırma tablosu — hangi soruda hangisi açılır",
+    "Mühendisin okuma akışı: soru oluşur → içindekiler açılır → ilgili bölüm bulunur → o bölüm okunur → cevap bulunur",
+    "Gerçek Datasheet İçindekiler haritası, doğru bölüm sırasıyla (Features → Pinouts and Pin Description [Böl.3] → Memory Mapping [Böl.4] → Electrical Characteristics [Böl.5] → Package Characteristics [Böl.6] → Ordering Information Scheme [Böl.7, belgenin sonu])",
+    "Gerçek RM0008 İçindekiler haritası, peripheral bazlı",
+    "Sahada karar senaryosu: elinde sadece part number yazan bir kart var, hangi soru hangi belgeye yönlendirir"
+  ],
+  "technical_risks": [
+    "Datasheet'in gerçek doküman kimliğini yanlış yazdırmak — gerçek kimlik 'Doc ID 13587 Rev 11'dir, 'DS5319' DEĞİL (bu proje 2026-07-13'te bu hatayı yapmıştı, düzeltildi — assets/source/STM32F103X8-datasheet.pdf ile doğrulandı)",
+    "İçindekiler haritasında bölüm sırasını gerçek belgeyle uyuşmayacak şekilde vermek — özellikle 'Ordering Information'ı ilk sıralara koymak; gerçekte bu bölüm belgenin SONUNDA (Bölüm 7/8), başında değil",
+    "ÇÖZÜLDÜ (2026-07-13): RM0008 (Rev 20, 1134 sayfa, ~/Downloads/RM0008.PDF) İçindekiler'i ile doğrulandı. 'TIM Bölüm 15-18' hatalıydı (Bölüm 18 = Real-time clock, timer değil) — düzeltildi: 14 (TIM1), 15 (TIM2-5), 17 (TIM6-7). CAN — bxCAN (Bölüm 24) haritada eksikti, eklendi.",
+    "İki farklı belgenin (Datasheet/RM0008) haritalarını tek panelde karıştırıp hangi dalın hangi belgeye ait olduğunu belirsizleştirmek"
+  ],
+  "note": "RM0008 kullanıcının ~/Downloads klasöründe bulundu ve İçindekiler'i doğrulandı (2026-07-13) — proje içine (assets/source/) kopyalanmadı, 1134 sayfalık dosya git geçmişini şişirmesin diye sadece ihtiyaç duyulan bölüm numaraları metne aktarıldı. Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan hiçbir görsel üretilmeyecek (bkz. curriculum-slide-gen workflow adım 1-2)."
+}
