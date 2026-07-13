@@ -1,5 +1,6 @@
 {
   "day": 1,
+  "note": "scene-01 (Bu Seri Ne Öğretiyor?) 2026-07-13'te kaldırıldı — hero ile içerik olarak örtüşüyordu (aynı 4 kavram: besleme, clock, boot/reset, pinout). Hero artık günün tek 'genel bakış' sahnesi.",
   "scenes": [
     {
       "id": "scene-00-hero",
@@ -19,23 +20,8 @@
       "asset": "hero.png"
     },
     {
-      "id": "scene-01",
-      "order": 2,
-      "title": "Bu Seri Ne Öğretiyor?",
-      "purpose": "STM32 öğretmediğimizi, düşünme biçimi öğrettiğimizi kurmak.",
-      "visual_focus": "4 soru + karta karşılık gelen yakın çekimler (besleme girişi, kristal, reset, pinout)",
-      "screen_text": [
-        "BU SERİ NE ÖĞRETİYOR?",
-        "STM32 öğretmiyor. Düşünme biçimini öğretiyor."
-      ],
-      "narration": "Bu seri STM32 öğretmiyor, düşünme biçimini öğretiyor. Bir kartı gördüğünde nasıl beslendiğini, clock'un nereden geldiğini, açılınca ne yaptığını ve her pinin neden orada olduğunu sorabileceksin.",
-      "duration_seconds": 18,
-      "status": "approved",
-      "asset": "slides/01-bu-seri-ne-ogretiyor.png"
-    },
-    {
       "id": "scene-02",
-      "order": 3,
+      "order": 2,
       "title": "Neden STM32?",
       "purpose": "STM32'nin açık datasheet/şema ve erişilebilirlik avantajını göstermek.",
       "visual_focus": "Açık datasheet + device summary tablosu, breadboard üzerinde kart, farklı STM32 kartları yan yana",
@@ -50,7 +36,7 @@
     },
     {
       "id": "scene-03",
-      "order": 4,
+      "order": 3,
       "title": "Blue Pill'in İçinde Ne Var?",
       "purpose": "İşlemcinin temel donanım özelliklerini (çekirdek, bellek, iletişim, paket) tanıtmak.",
       "visual_focus": "Çip yakın çekim + ARM Cortex-M3/72MHz/64KB Flash/20KB SRAM/USB-CAN-SPI-I2C-USART/LQFP48 etiketleri",
@@ -65,7 +51,7 @@
     },
     {
       "id": "scene-04",
-      "order": 5,
+      "order": 4,
       "title": "Tek Sayfalık Açık Şema",
       "purpose": "Şemanın tek sayfa olduğunu ve karmaşık olmadan gerçek bir sistem sunduğunu göstermek; bir sonraki bölüme (Bölüm 02) köprü kurmak.",
       "visual_focus": "Tam şema genel görünüm + power supply/reset blok yakın çekimleri + tasarımcı notu",

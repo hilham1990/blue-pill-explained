@@ -22,3 +22,7 @@ Bottom band, full width: "BU SERİ HANGİ SORULARA CEVAP VERİYOR?" — 6 number
 
 Footer: "Blue Pill Explained – Donanımı Okumayı Öğren" (left) · Akademi Usta logo (center) · "Kart örnek — Sorular evrensel." (right)
 ```
+
+## Not (2026-07-13)
+
+Scene-01 ("Bu Seri Ne Öğretiyor?") bu hero ile içerik olarak fazla örtüştüğü (aynı 4 kavram: besleme, clock, boot/reset, pinout) için **kaldırıldı**. Hero artık Gün 1'in tek "genel bakış" görseli — Scene-02'den (Neden STM32?) itibaren her sahne gerçekten yeni bir açı ekliyor.

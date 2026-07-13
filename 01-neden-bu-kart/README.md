@@ -8,8 +8,6 @@
 
 ## Bu seri ne öğretiyor?
 
-![Bu seri ne öğretiyor? — 4 temel soru](slides/01-bu-seri-ne-ogretiyor.png)
-
 STM32 öğretmiyor.
 
 **Düşünme biçimini öğretiyor.**
@@ -46,8 +44,6 @@ Ve bu soruları sadece STM32 için değil — Apple, Qualcomm, Intel, ESP32 içi
 ---
 
 ## Neden Blue Pill?
-
-![Blue Pill kartının neden donanım öğrenmek için uygun olduğunu açıklayan infografik](images/why-blue-pill-explained.png)
 
 ![STM32F103 Ailesi](images/family-table.png)
 
