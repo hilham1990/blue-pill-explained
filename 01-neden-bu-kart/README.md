@@ -88,7 +88,9 @@ Tüm datasheet ve şema kaynakları README'de listelenmiştir.
 
 ## Serinin kuralı
 
-Gerçek datasheet sayfası — STM32F103xx blok diyagramı (kaynak: [`assets/source/stm32-block-diagram-source.png`](../assets/source/stm32-block-diagram-source.png)):
+![Serinin kuralı — gerçek bir blok diyagramı üzerinde 3 soru](slides/05-serinin-kurali.png)
+
+Gerçek datasheet sayfası — okunaklı, tam boyutlu hâli (kaynak: [`assets/source/stm32-block-diagram-source.png`](../assets/source/stm32-block-diagram-source.png)):
 
 ![STM32F103xx performance line block diagram — gerçek ST datasheet sayfası](../assets/source/stm32-block-diagram-source.png)
 
@@ -97,8 +99,6 @@ Her bölümde şu üç soruyu cevaplıyoruz:
 1. **Bu ne?** — Bir blok diyagramı. Çipin iç mimarisini gösterir: CPU, bus matrisi, bellek, GPIO portları ve çevre birimleri.
 2. **Neden burada?** — Her blok belirli bir bus'a bağlı. Örneğin GPIO portları APB2'ye, timer'lar APB1 veya APB2'ye bağlanır — bu bağlantı performansı belirler.
 3. **Sahada ne anlama gelir?** — Bir çipin blok diyagramına bakarak hangi çevre biriminin hangi clock hızında çalıştığını, performans sorunlarını teşhis ederken kullanabilirsin.
-
-<sub>Bu üç sorunun markalı/video versiyonu: [`slides/05-serinin-kurali.png`](slides/05-serinin-kurali.png)</sub>
 
 ---
 
