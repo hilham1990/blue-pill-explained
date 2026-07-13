@@ -9,7 +9,7 @@ Generates on-brand infographic slides for the `blue-pill-explained` STM32 curric
 
 System agreed with the user 2026-07-13: **lightweight**, no parallel `day-XX/` tree, no new build scripts, no HTML/Canvas text layer — until a specific escape-hatch threshold is hit (see below).
 
-**Bölüm 01 (`01-neden-bu-kart/`) is the first fully-completed chapter under this system — 4 approved images (hero + 3 scenes) — and is the reference implementation.** When starting a new chapter, look at its `brief.json`/`scenes.json`/`prompts/` as the concrete example, not just this document.
+**Bölüm 01 (`01-neden-bu-kart/`) is the first fully-completed chapter under this system — 5 approved scenes (hero, scene-02, scene-03, scene-04, scene-05) — and is the reference implementation.** When starting a new chapter, look at its `brief.json`/`scenes.json`/`prompts/` as the concrete example, not just this document.
 
 ## File layout (per chapter, inside the existing numbered chapter folder)
 
@@ -76,6 +76,7 @@ Body:
 5. Show the result to the user before moving to the next scene — do not batch-generate a whole chapter without a check-in.
 6. Every image must earn its place: it has to visually match and complete what that specific chapter's text teaches at that point in sequence — not generic decorative filler.
 7. Update `slides-manifest.json` timings once real narration audio durations are known (this file is a draft until then).
+8. **When a scene's whole subject is a real source document (a datasheet page, a schematic), embed that ORIGINAL document at full size in the README, right after the branded slide — don't rely on the branded slide alone.** The AI composite always shrinks the central document to fit next to the callout panels, which makes it too small to actually read for the teaching purpose it's there for. Both images stay in the README, in sequence, at normal size — the original is not a footnote/link, it's a full peer image (see scene-04 and scene-05 in Bölüm 01, both fixed this way 2026-07-13).
 
 ## Hard rules (from layout-rules.md / terminology.md — don't relitigate per-scene)
 
@@ -86,6 +87,8 @@ Body:
 - Use `terminology.md`'s exact wording for recurring concepts (Besleme, Clock, Reset, Boot, Peripheral'lar, Debug, Datasheet, Reference Manual) — don't let a later chapter silently switch to a different Turkish/English mix for the same concept.
 - **Never leave the bottom section/footer to the model's own judgment.** Always append the exact "BOTTOM LAYOUT (MANDATORY)" block from `master-style-prompt.md` at the end of every prompt: a full-width 4-card band (6 on hero), then **one single footer row, three parts, evenly balanced**: bottom-left "Akademi Usta", bottom-center "Önce anlamak, sonra ölçmek.", bottom-right "akademiusta.com/tr" — same bold navy font, same baseline. **Text only, no logo/emblem** (left unconstrained, the model invents a different Akademi Usta logo every time). This exact 3-part single-row footer is what's approved on all 4 of Bölüm 01's images (2026-07-13) — went through two earlier iterations (stacked two-line footer, then centered-only) before landing here; don't regress to those.
 - **Always reference `approved-day01.png` directly — never a previously-generated scene.** Chaining references (scene N+1 using scene N as its reference image) let a rendering defect compound across generations.
+- **Before deleting any image on a "delete image N" instruction, restate the exact file path back and get it confirmed if there's any ambiguity in what N refers to.** A numbered list you gave the user (or vice versa) can be re-numbered in their head differently than in scenes.json — deleting the wrong file (2026-07-13: deleted an approved AI scene when the user meant an old unstyled screenshot) means restoring from git history and redoing the surrounding edits.
+- **Don't shrink or demote an already-approved image out of its normal in-sequence display while fixing something else.** Adding a new full-size reference image next to an approved one doesn't mean the approved one becomes a footnote/link — it stays a normal peer image unless the user explicitly asks to de-emphasize it.
 
 ## Escape hatch — when to stop doing this by hand and build the two-layer (AI + HTML/Canvas text) system instead
 

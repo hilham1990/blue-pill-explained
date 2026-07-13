@@ -123,7 +123,7 @@ Never leave empty space.
 
 Bu blok tüm sahnelerde aynı kalır — sadece merkez içerik (kart, panel konuları) değişir. Hero'da 4 yerine 6 kart olması tek istisna (6 evrensel soru bandı zaten onaylı).
 
-**Not:** Bu kural 2026-07-13'te eklendi. Onaylı Scene-02 (`02-neden-stm32.png`) bu kuraldan ÖNCE üretildi ve eski 3 parçalı footer'ı (sol/logo/sağ) kullanıyor — yeniden üretilene kadar bu bir istisna olarak kalır, yeni sahneler bu güncellenmiş zorunlu bloğu kullanır.
+**Not:** Bu tek-satır-3-parça kural 2026-07-13'te, birkaç iterasyondan sonra kesinleşti. Onaylı Scene-02 (`02-neden-stm32.png`) bu kesin halden ÖNCE üretildi ve hâlâ ara-iterasyon footer'ını kullanıyor (iki satır, ortalanmış: "Akademi Usta" / "akademiusta.com/tr", logo yok ama tek satır/3-parça değil). Scene-03, 04 ve 05 zaten güncel standardı kullanıyor. Scene-02 yeniden üretilene kadar bu bir istisna olarak kalır.
 
 ## Tek satırlık sistem prensibi
 
