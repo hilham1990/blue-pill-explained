@@ -1,6 +1,6 @@
 {
   "day": 1,
-  "note": "scene-01 (Bu Seri Ne Öğretiyor?) 2026-07-13'te kaldırıldı — hero ile içerik olarak örtüşüyordu. scene-04 yanlışlıkla silinip geri getirildi (2026-07-13) — kullanıcının asıl kastettiği silme hedefi 01-neden-bu-kart/images/family-table.png idi (eski, stilize edilmemiş datasheet ekran görüntüsü), scene-04 değil; family-table.png silindi, scene-04 aynen korundu. Gün 1 şu an 5 onaylı sahne: hero, scene-02, scene-03, scene-04, scene-05.",
+  "note": "scene-01 (Bu Seri Ne Öğretiyor?) 2026-07-13'te kaldırıldı — hero ile içerik olarak örtüşüyordu. scene-04 yanlışlıkla silinip geri getirildi (2026-07-13) — kullanıcının asıl kastettiği silme hedefi 01-neden-bu-kart/images/family-table.png idi (eski, stilize edilmemiş datasheet ekran görüntüsü), scene-04 değil; family-table.png silindi, scene-04 aynen korundu. Gün 1 şu an 5 onaylı sahne: hero, scene-02, scene-03, scene-04, scene-05.\n\nMÜHÜRLENDİ (2026-07-14): Gün 1 kapatıldı. Yapısal son kontrol: scenes.json ↔ slides-manifest.json ↔ disk 1:1 eşleşiyor (5/5 sahne approved), README'deki 5 şema-koordinat hatası ve dil hataları düzeltildi (bkz. commit 65c661b), kullanılmayan images/ klasörü (3 orphan dosya, kaldırılmış scene-01'den kalma) silindi. Klasör yapısı curriculum-slide-gen'in referans implementasyonu olarak kalıyor — prompts/ ve slides/ silinmiyor, Gün 3+ üretilirken örnek olarak kullanılacak. Video render henüz yapılmadı (bkz. PRODUCTION.md).",
   "scenes": [
     {
       "id": "scene-00-hero",

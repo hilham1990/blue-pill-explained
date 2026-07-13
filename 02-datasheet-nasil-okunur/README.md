@@ -45,7 +45,7 @@ Bu seride ikisini de kullanacağız. Hangi soruyu hangi belgeden cevapladığım
 
 Okuma. Gerçekten.
 
-1000 sayfalık bir belgeyi baştan sona okumak ne işe yarar?
+92 sayfalık bir belgeyi bile baştan sona okumak ne işe yarar?
 
 Mühendis şöyle okur:
 
@@ -95,9 +95,7 @@ Datasheet (Doc ID 13587)
 
 ## Datasheet'in ilk sayfası
 
-![Datasheet İçindekiler](images/contents-page.png)
-
-![Datasheet Giriş](images/introduction.png)
+![Datasheet'in ilk sayfası — Features ve Table 1 Device Summary (gerçek sayfa 1)](images/features-page.png)
 
 Bu sayfa işlemcinin CV'si.
 
@@ -106,6 +104,13 @@ Bu sayfa işlemcinin CV'si.
 - Ne kadar Flash ve SRAM var
 - Hangi iletişim protokolleri destekleniyor
 - Hangi paket seçenekleri var
+
+**Şimdi sen dene:** Yukarıdaki gerçek sayfaya bak (veya `assets/source/STM32F103X8-datasheet.pdf`'i aç) ve şunları kendin bul:
+1. Flash miktarı kaç KB?
+2. Çalışma gerilimi aralığı ne (Volt cinsinden)?
+3. LQFP48 paketi kaç pinli ve hangi tabloda geçiyor?
+
+Cevapları ezberlemiyorsun — sayfada nereye bakacağını öğreniyorsun. Bu, bir sonraki bölümde tekrar kullanacağın bir beceri.
 
 ---
 
@@ -131,7 +136,7 @@ Soru: "Bu işlemci ne yapabilir?" mi soruyorsun,
 "Nasıl ayarlarım?" → Reference Manual aç (register detayları)
 ```
 
-Yanlış belgede aramak zaman kaybettirir — 1000 sayfalık Reference Manual'da "kaç KB Flash var" aramak, ya da 30 sayfalık Datasheet'te "RCC register'ı nasıl set edilir" aramak gibi. Önce hangi soruyu sorduğunu netleştir, sonra doğru belgeyi aç.
+Yanlış belgede aramak zaman kaybettirir — 1134 sayfalık Reference Manual'da "kaç KB Flash var" aramak, ya da 92 sayfalık Datasheet'te "RCC register'ı nasıl set edilir" aramak gibi. Önce hangi soruyu sorduğunu netleştir, sonra doğru belgeyi aç.
 
 ---
 
