@@ -9,6 +9,8 @@ Generates on-brand infographic slides for the `blue-pill-explained` STM32 curric
 
 System agreed with the user 2026-07-13: **lightweight**, no parallel `day-XX/` tree, no new build scripts, no HTML/Canvas text layer — until a specific escape-hatch threshold is hit (see below).
 
+**Bölüm 01 (`01-neden-bu-kart/`) is the first fully-completed chapter under this system — 4 approved images (hero + 3 scenes) — and is the reference implementation.** When starting a new chapter, look at its `brief.json`/`scenes.json`/`prompts/` as the concrete example, not just this document.
+
 ## File layout (per chapter, inside the existing numbered chapter folder)
 
 ```
@@ -31,14 +33,17 @@ visual-system/
 ├── layout-rules.md         (measurable layout/panel/color/timing rules)
 ├── terminology.md          (fixed Turkish/English term glossary — keep wording identical across all 12 days)
 └── references/
-    └── approved-day01.png  (attach this as the visual reference image on every generation call)
+    └── approved-day01.png  (attach this as the visual reference image on EVERY generation call —
+                             always this file, never a previously-generated scene. Chaining
+                             references caused a rendering defect to propagate across scenes on
+                             2026-07-13, see "Known failure modes" below.)
 ```
 
 ## Prerequisites
 
 - fal.ai API key in macOS Keychain: `security find-generic-password -s "FAL_KEY" -w`
 - Never echo the key to stdout/logs/files. Retrieve it inline in the same command that uses it, `unset` it after.
-- Base photo for anything showing the bare board: `STM serisi/blue-pill-card-crop-preview.png` (the real, unedited Blue Pill board photo — this is what makes pin labels/chip text trustworthy on hero-style shots). For scenes centered on something else (chip close-up, schematic, datasheet), the reference image is `visual-system/references/approved-day01.png` (style only, per the "do not copy content" rule in `master-style-prompt.md`).
+- Reference image for every generation call, no exceptions: `visual-system/references/approved-day01.png`. Never reference a previously-generated scene instead of this file — see "Known failure modes."
 
 ## Endpoint
 
@@ -79,7 +84,8 @@ Body:
 - Fixed color→function mapping: orange = belge/datasheet, blue = donanım bileşeni yakın çekim, yellow = kontrol/buton/jumper, teal = ölçüm/test.
 - Chip name is always `STM32F103C8T6` — verify it didn't get mangled (seen failure: "GTM32").
 - Use `terminology.md`'s exact wording for recurring concepts (Besleme, Clock, Reset, Boot, Peripheral'lar, Debug, Datasheet, Reference Manual) — don't let a later chapter silently switch to a different Turkish/English mix for the same concept.
-- **Never leave the bottom section/footer to the model's own judgment.** Always append the exact "BOTTOM LAYOUT (MANDATORY)" block from `master-style-prompt.md` at the end of every prompt: a full-width 4-card band (6 on hero), centered "Önce anlamak, sonra ölçmek.", and a **text-only** "Akademi Usta" footer. Explicitly forbid the model from drawing its own logo/emblem for Akademi Usta — left unconstrained, it invents a different one each time.
+- **Never leave the bottom section/footer to the model's own judgment.** Always append the exact "BOTTOM LAYOUT (MANDATORY)" block from `master-style-prompt.md` at the end of every prompt: a full-width 4-card band (6 on hero), then **one single footer row, three parts, evenly balanced**: bottom-left "Akademi Usta", bottom-center "Önce anlamak, sonra ölçmek.", bottom-right "akademiusta.com/tr" — same bold navy font, same baseline. **Text only, no logo/emblem** (left unconstrained, the model invents a different Akademi Usta logo every time). This exact 3-part single-row footer is what's approved on all 4 of Bölüm 01's images (2026-07-13) — went through two earlier iterations (stacked two-line footer, then centered-only) before landing here; don't regress to those.
+- **Always reference `approved-day01.png` directly — never a previously-generated scene.** Chaining references (scene N+1 using scene N as its reference image) let a rendering defect compound across generations.
 
 ## Escape hatch — when to stop doing this by hand and build the two-layer (AI + HTML/Canvas text) system instead
 
@@ -97,3 +103,4 @@ Until then, GPT Image 2 generates the text directly — it was accurate enough i
 
 - Pure text-to-image (no reference photo) → the model hallucinates fake pin labels and misspells the chip name. Always edit from a real photo.
 - fal.ai `gpt-image-1.5` (not `gpt-image-2`) and direct OpenAI `gpt-image-1` both produced visibly garbled Turkish captions/badges in side-by-side tests — confirmed worse than `gpt-image-2`. If the user names an exact model, use that literal name/search it first — don't substitute your own guess from training knowledge (this exact mistake cost several wasted paid generations on 2026-07-13; `gpt-image-2` postdates this assistant's training cutoff and was missed on the first few passes).
+- **Referencing a previously-generated scene instead of the original approved hero caused a defect to propagate.** Scene-02 referenced the hero, but its top-area voltage-regulator IC rendered as a flat dark blob instead of a legible component (compare hero's clearly-detailed regulator vs. scene-02's). Scene-03 then referenced scene-02 (not the hero) and inherited the same flattened-looking regulator. Both were deleted and regenerated — root-caused to reference chaining, so the rule is now: every scene references `approved-day01.png` directly, never another generated scene, so a single bad generation can't compound.

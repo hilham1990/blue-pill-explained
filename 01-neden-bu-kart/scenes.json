@@ -1,6 +1,6 @@
 {
   "day": 1,
-  "note": "scene-01 (Bu Seri Ne Öğretiyor?) 2026-07-13'te kaldırıldı — hero ile içerik olarak örtüşüyordu (aynı 4 kavram: besleme, clock, boot/reset, pinout). Hero artık günün tek 'genel bakış' sahnesi.",
+  "note": "scene-01 (Bu Seri Ne Öğretiyor?) 2026-07-13'te kaldırıldı — hero ile içerik olarak örtüşüyordu (aynı 4 kavram: besleme, clock, boot/reset, pinout). Hero artık günün tek 'genel bakış' sahnesi. Gün 1'in 4 görseli de 2026-07-13'te onaylandı — bkz. visual-system/master-style-prompt.md için nihai stil kuralları (numaralı panel 1-4, zorunlu tek satır footer, her sahne doğrudan hero.png referans alır).",
   "scenes": [
     {
       "id": "scene-00-hero",
@@ -46,8 +46,8 @@
       ],
       "narration": "Blue Pill'in kalbi STM32F103C8T6: 72 MHz'de çalışan bir ARM Cortex-M3 çekirdek, 64 KB Flash, 20 KB SRAM ve USB, CAN, SPI, I2C, USART gibi dokuz iletişim arayüzü, hepsi 48 pinlik LQFP pakette.",
       "duration_seconds": 18,
-      "status": "pending",
-      "asset": null
+      "status": "approved",
+      "asset": "slides/03-blue-pill-icinde-ne-var.png"
     },
     {
       "id": "scene-04",
@@ -61,8 +61,8 @@
       ],
       "narration": "Bu şema tek sayfa. Karmaşık değil ama gerçek — power supply, reset, clock, MPU ve konnektörler hepsi bu tek sayfada okunabilir.",
       "duration_seconds": 18,
-      "status": "pending",
-      "asset": null
+      "status": "approved",
+      "asset": "slides/04-tek-sayfalik-acik-sema.png"
     }
   ]
 }

@@ -2,9 +2,10 @@
 
 Bu dosya, 12 bölümün tamamında **değişmeyen** ana stil promptudur. Her sahne promptu bu bloğu aynen başında taşır, altına sadece o sahneye özel `SCENE:` bölümünü ekler. Bu blok değişirse tüm seri boyunca tasarım kayması olur — değiştirmeden önce burada güncelle, tek tek promptlarda değil.
 
-Onaylanmış referanslar:
-- [`references/approved-day01.png`](references/approved-day01.png) — Bölüm 01 Hero görseli (2026-07-13 onaylandı). Genel görsel kimlik + hero'ya özel 6-soru alt bandı için referans.
-- [`../01-neden-bu-kart/slides/02-neden-stm32.png`](../01-neden-bu-kart/slides/02-neden-stm32.png) — Numaralı panel (1-4) standardı için referans (hero DIŞINDAKİ tüm sahnelerde bu kullanılır). **Dikkat:** bu dosya, aşağıdaki "Alt Bölüm — Zorunlu" kuralından ÖNCE üretildi, eski 3 parçalı footer'ı kullanıyor — sadece panel/numara/bağlantı çizgisi stili için referans al, alt bölümü/footer'ı değil.
+Onaylanmış referans:
+- [`references/approved-day01.png`](references/approved-day01.png) — Bölüm 01 Hero görseli (2026-07-13 onaylandı). **Tek referans kaynağı budur.**
+
+**Önemli kural (2026-07-13'te eklendi):** Her sahne HER ZAMAN doğrudan Hero'yu (`approved-day01.png`) referans alır — bir önceki üretilen sahneyi değil. Scene-02 → Scene-03 zincirlemesi denendi ve küçük bir render kusuru (üstteki regülatör IC'si "yanmış" gibi göründü) bu şekilde sahneden sahneye taşındı, ikisi de silinip yeniden üretildi. Referans zinciri kurma — her zaman kaynağa dön.
 
 ```text
 Create a professional Turkish technical education infographic slide for the
@@ -101,17 +102,20 @@ Inside the band:
 - Cards must be perfectly aligned and evenly spaced.
 - Use the same layout style as the approved Day 01 slide.
 
-Below the cards:
-Center the text:
-"Önce anlamak, sonra ölçmek."
+Below the cards, ONE single footer row with three parts, evenly balanced left/center/right:
+- Bottom-left: "Akademi Usta"
+- Bottom-center: "Önce anlamak, sonra ölçmek."
+- Bottom-right: "akademiusta.com/tr"
 
-Footer:
-Bottom center:
-"Akademi Usta"
+All three in the same bold navy font, same baseline, clearly legible — this slide will be
+shared/copied widely, the link must always be readable. Balance the whole bottom section so the
+card row and this single footer row feel evenly spaced with matching left/right margins — no
+lopsided corners.
 
 TEXT ONLY.
 Do NOT generate any logo, icon, emblem, shield or symbol for Akademi Usta.
-Use only the words "Akademi Usta" in a clean bold font.
+Use only the words "Akademi Usta", "Önce anlamak, sonra ölçmek.", and "akademiusta.com/tr" in a
+clean bold font, all on one single row.
 
 The bottom section must always look balanced, complete and professional.
 Never leave empty space.

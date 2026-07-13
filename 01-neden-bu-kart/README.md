@@ -45,6 +45,8 @@ Ve bu soruları sadece STM32 için değil — Apple, Qualcomm, Intel, ESP32 içi
 
 ## Neden Blue Pill?
 
+![Blue Pill'in içinde ne var? — çekirdek, bellek, iletişim, paket](slides/03-blue-pill-icinde-ne-var.png)
+
 ![STM32F103 Ailesi](images/family-table.png)
 
 Blue Pill, STM32F103C8T6 işlemcisi üzerine kurulu minimal bir geliştirme kartıdır.
@@ -68,6 +70,8 @@ Bu kart neden ideal?
 ---
 
 ## Şema açık kaynak mu?
+
+![Tek sayfalık açık şema — power supply, reset ve tasarımcı notu](slides/04-tek-sayfalik-acik-sema.png)
 
 Evet.
 
