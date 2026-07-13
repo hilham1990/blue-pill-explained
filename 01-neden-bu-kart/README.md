@@ -71,6 +71,10 @@ Bu kart neden ideal?
 
 ![Tek sayfalık açık şema — power supply, reset ve tasarımcı notu](slides/04-tek-sayfalik-acik-sema.png)
 
+Gerçek şema — okunaklı, tam boyutlu hâli (kaynak: [`assets/source/blue-pill-schematic-source.webp`](../assets/source/blue-pill-schematic-source.webp)):
+
+![STM32 Min System Dev Board — gerçek Blue Pill şeması](../assets/source/blue-pill-schematic-source.webp)
+
 Evet.
 
 Bu repoda kullandığımız şema "STM32 Min System Dev Board" adıyla açık kaynak olarak yayınlanmış.
