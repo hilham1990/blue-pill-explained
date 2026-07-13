@@ -63,6 +63,22 @@
       "duration_seconds": 18,
       "status": "approved",
       "asset": "slides/04-tek-sayfalik-acik-sema.png"
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
+      "title": "Serinin Kuralı",
+      "purpose": "Her bölümde uygulanan 3 soru metodolojisini (Bu ne? / Neden burada? / Sahada ne anlama gelir?) gerçek bir örnekle göstermek.",
+      "visual_focus": "Gerçek ST blok diyagramı (STM32F103X8-datasheet.pdf sayfa 19, Figure 1) merkezde, 3 numaralı panel metodolojiyi uyguluyor",
+      "screen_text": [
+        "SERİNİN KURALI",
+        "Her bölümde üç soru soruyoruz."
+      ],
+      "narration": "Her bölümde üç soru soruyoruz: bu ne, neden burada, ve sahada ne anlama gelir. Bir blok diyagramına bu üç soruyla baktığında, sadece o çipi değil, herhangi bir işlemcinin mimarisini okuyabilirsin.",
+      "duration_seconds": 20,
+      "status": "approved",
+      "asset": "slides/05-serinin-kurali.png",
+      "source_note": "Merkez görsel AI üretimi değil — assets/source/stm32-block-diagram-source.png (gerçek ST datasheet sayfası) değiştirilmeden kullanıldı."
     }
   ]
 }

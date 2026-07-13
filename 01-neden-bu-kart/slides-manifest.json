@@ -33,6 +33,14 @@
       "end": 78,
       "transition": "fade",
       "zoom": "slow-in"
+    },
+    {
+      "scene_id": "scene-05",
+      "image": "slides/05-serinin-kurali.png",
+      "start": 78,
+      "end": 98,
+      "transition": "fade",
+      "zoom": "slow-in"
     }
   ]
 }

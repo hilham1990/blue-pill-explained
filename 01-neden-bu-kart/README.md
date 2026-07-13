@@ -90,6 +90,8 @@ Tüm datasheet ve şema kaynakları README'de listelenmiştir.
 
 ## Serinin kuralı
 
+![Serinin kuralı — gerçek bir blok diyagramı üzerinde 3 soru](slides/05-serinin-kurali.png)
+
 Her bölümde şu üç soruyu cevaplıyoruz:
 
 1. **Bu ne?** — Teknik açıklama
