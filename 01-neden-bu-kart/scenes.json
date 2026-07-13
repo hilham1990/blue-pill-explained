@@ -1,0 +1,82 @@
+{
+  "day": 1,
+  "scenes": [
+    {
+      "id": "scene-00-hero",
+      "order": 1,
+      "title": "Neden Blue Pill? (Hero)",
+      "purpose": "Dersin tamamını tek bir kapak sahnesinde özetlemek: kart, 4 temel blok ve 6 evrensel soru bandı.",
+      "visual_focus": "Kart merkezde, 4 renkli panel (datasheet, kristal, BOOT0/RESET, ölçüm) ve alt bantta 6 soru",
+      "screen_text": [
+        "GÜN 01",
+        "NEDEN BLUE PILL?",
+        "Küçük bir kart, eksiksiz bir donanım laboratuvarı.",
+        "BU SERİ HANGİ SORULARA CEVAP VERİYOR?"
+      ],
+      "narration": "Blue Pill, küçük ama eksiksiz bir donanım laboratuvarı. Datasheet'i, kristal osilatörü, boot ve reset devresini, ölçüm noktalarını aynı kart üzerinde görebiliyoruz. Bu seri boyunca altı evrensel soruyu bu kart üzerinden cevaplayacağız.",
+      "duration_seconds": 24,
+      "status": "approved",
+      "asset": "hero.png"
+    },
+    {
+      "id": "scene-01",
+      "order": 2,
+      "title": "Bu Seri Ne Öğretiyor?",
+      "purpose": "STM32 öğretmediğimizi, düşünme biçimi öğrettiğimizi kurmak.",
+      "visual_focus": "4 soru + karta karşılık gelen yakın çekimler (besleme girişi, kristal, reset, pinout)",
+      "screen_text": [
+        "BU SERİ NE ÖĞRETİYOR?",
+        "STM32 öğretmiyor. Düşünme biçimini öğretiyor."
+      ],
+      "narration": "Bu seri STM32 öğretmiyor, düşünme biçimini öğretiyor. Bir kartı gördüğünde nasıl beslendiğini, clock'un nereden geldiğini, açılınca ne yaptığını ve her pinin neden orada olduğunu sorabileceksin.",
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/01-bu-seri-ne-ogretiyor.png"
+    },
+    {
+      "id": "scene-02",
+      "order": 3,
+      "title": "Neden STM32?",
+      "purpose": "STM32'nin açık datasheet/şema ve erişilebilirlik avantajını göstermek.",
+      "visual_focus": "Açık datasheet + device summary tablosu, breadboard üzerinde kart, farklı STM32 kartları yan yana",
+      "screen_text": [
+        "NEDEN STM32?",
+        "Açık belgeler, açık şema ve erişilebilir gerçek donanım."
+      ],
+      "narration": "STM32'yi seçiyoruz çünkü datasheet'i tamamen açık, şeması açık kaynak, ucuz ve yaygın, ve endüstride gerçekten kullanılıyor.",
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/02-neden-stm32.png"
+    },
+    {
+      "id": "scene-03",
+      "order": 4,
+      "title": "Blue Pill'in İçinde Ne Var?",
+      "purpose": "İşlemcinin temel donanım özelliklerini (çekirdek, bellek, iletişim, paket) tanıtmak.",
+      "visual_focus": "Çip yakın çekim + ARM Cortex-M3/72MHz/64KB Flash/20KB SRAM/USB-CAN-SPI-I2C-USART/LQFP48 etiketleri",
+      "screen_text": [
+        "BLUE PILL'İN İÇİNDE NE VAR?",
+        "STM32F103C8T6 — ARM Cortex-M3, 72 MHz."
+      ],
+      "narration": "Blue Pill'in kalbi STM32F103C8T6: 72 MHz'de çalışan bir ARM Cortex-M3 çekirdek, 64 KB Flash, 20 KB SRAM ve USB, CAN, SPI, I2C, USART gibi dokuz iletişim arayüzü, hepsi 48 pinlik LQFP pakette.",
+      "duration_seconds": 18,
+      "status": "pending",
+      "asset": null
+    },
+    {
+      "id": "scene-04",
+      "order": 5,
+      "title": "Tek Sayfalık Açık Şema",
+      "purpose": "Şemanın tek sayfa olduğunu ve karmaşık olmadan gerçek bir sistem sunduğunu göstermek; bir sonraki bölüme (Bölüm 02) köprü kurmak.",
+      "visual_focus": "Tam şema genel görünüm + power supply/reset blok yakın çekimleri + tasarımcı notu",
+      "screen_text": [
+        "TEK SAYFALIK AÇIK ŞEMA",
+        "Karmaşık değil, ama gerçek."
+      ],
+      "narration": "Bu şema tek sayfa. Karmaşık değil ama gerçek — power supply, reset, clock, MPU ve konnektörler hepsi bu tek sayfada okunabilir.",
+      "duration_seconds": 18,
+      "status": "pending",
+      "asset": null
+    }
+  ]
+}

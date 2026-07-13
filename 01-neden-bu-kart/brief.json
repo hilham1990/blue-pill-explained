@@ -1,0 +1,23 @@
+{
+  "day": 1,
+  "title": "Neden Bu Kart?",
+  "lesson_goal": "Öğrenci, bu serinin STM32 değil 'donanım okuma' öğrettiğini ve Blue Pill'in bunun için neden ideal bir örnek olduğunu anlayacak.",
+  "core_message": "STM32 öğretmiyoruz, düşünme biçimini öğretiyoruz. Blue Pill sadece ucuz ve açık kaynaklı bir örnek — sorular her işlemci için evrensel.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 96,
+  "recommended_scene_count": 5,
+  "must_show": [
+    "STM32F103C8T6 Blue Pill kartının gerçek fotoğrafı",
+    "Datasheet ve pinout sayfası",
+    "8.000 MHz kristal osilatör",
+    "BOOT0/RESET donanımı",
+    "Ölçüm cihazları (osiloskop + multimetre, tek karede)",
+    "6 evrensel soru özeti (Besleme, Clock, Reset, Boot, Peripheral, Debug)"
+  ],
+  "technical_risks": [
+    "STM32F103C8T6 çip adını yanlış yazdırmak (bkz. geçmiş hata: 'GTM32')",
+    "Kart kenarındaki pin etiketlerini (A0-A15/B0-B15) bozuk üretmek",
+    "Kristal frekansını ters yazdırmak (8.000 yerine 000.8)",
+    "Bir panelde iki farklı görseli kolaj gibi birleştirmek (bkz. Test/Ölçüm paneli düzeltmesi)"
+  ]
+}

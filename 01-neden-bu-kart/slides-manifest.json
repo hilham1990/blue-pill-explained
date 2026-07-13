@@ -1,0 +1,46 @@
+{
+  "day": 1,
+  "note": "Video render zamanlaması taslağıdır — sesler üretilince gerçek sahne süreleriyle güncellenir. render-lesson-video.mjs için nihai format ayrı bir video/day01-*.json dosyasında oluşturulur (bkz. 02-datasheet-nasil-okunur/video/ örneği).",
+  "slides": [
+    {
+      "scene_id": "scene-00-hero",
+      "image": "hero.png",
+      "start": 0,
+      "end": 24,
+      "transition": "fade",
+      "zoom": "slow-in"
+    },
+    {
+      "scene_id": "scene-01",
+      "image": "slides/01-bu-seri-ne-ogretiyor.png",
+      "start": 24,
+      "end": 42,
+      "transition": "fade",
+      "zoom": "slow-in"
+    },
+    {
+      "scene_id": "scene-02",
+      "image": "slides/02-neden-stm32.png",
+      "start": 42,
+      "end": 60,
+      "transition": "fade",
+      "zoom": "slow-in"
+    },
+    {
+      "scene_id": "scene-03",
+      "image": "slides/03-blue-pill-icinde-ne-var.png",
+      "start": 60,
+      "end": 78,
+      "transition": "fade",
+      "zoom": "slow-in"
+    },
+    {
+      "scene_id": "scene-04",
+      "image": "slides/04-tek-sayfalik-acik-sema.png",
+      "start": 78,
+      "end": 96,
+      "transition": "fade",
+      "zoom": "slow-in"
+    }
+  ]
+}

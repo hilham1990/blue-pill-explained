@@ -1,0 +1,49 @@
+Create a professional Turkish technical education infographic slide for the "Blue Pill Explained" curriculum by Akademi Usta. This is Day 01, image 02, and must look like the immediately following page of the approved Day 01 slide.
+
+FORMAT AND VISUAL IDENTITY:
+- Wide 16:9, 1920x1080 presentation slide.
+- Clean white-to-light-blue background with very subtle PCB traces.
+- Deep navy typography; cyan, blue, yellow and orange only as functional grouping colors.
+- Rounded white information panels with colored borders and thin clean connector lines.
+- Bright, precise engineering-document appearance. No dark theme, cyberpunk, glow, holograms or clutter.
+- Strong margins and spacing matching a premium technical training PDF/video slide.
+
+HEADER:
+- Top-left navy rounded badge with exact text: "GÜN 01"
+- Large centered title with exact text: "BU SERİ NE ÖĞRETİYOR?"
+- One-line subtitle with exact text: "STM32 öğretmiyor. Düşünme biçimini öğretiyor."
+
+MAIN COMPOSITION:
+- Place one accurate, realistic STM32F103C8T6 Blue Pill development board vertically in the center. Blue PCB, micro-USB connector at bottom, yellow BOOT0 jumper and RESET button above USB, metal 8.000 MHz crystal above the MCU, black LQFP48 MCU in the middle. Keep board proportions and component placement realistic.
+- Do not render decorative pin labels on the long board edges; tiny uncertain labels should be omitted rather than invented.
+- Arrange exactly four large numbered panels around the board, numbered 1, 2, 3, 4 in natural reading order. Each panel contains one cohesive technical close-up and one exact short question. Thin colored connector lines point to the correct board area.
+
+PANEL 1, upper left, cyan/teal:
+- Exact text: "Bu kart nasıl besleniyor?"
+- Realistic close-up of the board's micro-USB power connector.
+
+PANEL 2, upper right, blue:
+- Exact text: "Clock nereden geliyor?"
+- Realistic close-up of the board's metal crystal marked exactly "8.000".
+
+PANEL 3, lower left, yellow:
+- Exact text: "İşlemci açılınca ne yapıyor?"
+- One cohesive close-up showing the yellow BOOT0 jumper and RESET pushbutton together.
+
+PANEL 4, lower right, orange:
+- Exact text: "Bu pin neden burada?"
+- Show a clean authentic-looking LQFP48 package pinout concept. Keep only large readable labels "STM32F103C8T6" and "LQFP48". Do not generate tiny fake pin names or illegible pseudo-text.
+
+FOOTER — REQUIRED, matching the approved Day 01 series identity:
+- Add a thin footer row below the four-panel content, separated with generous breathing room.
+- Bottom-left exact text: "Blue Pill Explained — Donanımı Okumayı Öğren"
+- Bottom-center: simple teal hexagonal Akademi Usta logo mark followed by exact text "Akademi Usta"
+- Bottom-right exact text: "Kart örnek — Sorular evrensel."
+- Do not add the six-question band used on the Day 01 hero. This slide uses the four numbered panels as its learning sequence, followed by the footer.
+
+TYPOGRAPHY AND ACCURACY:
+- All visible text must be exactly spelled with correct Turkish characters.
+- Use bold geometric sans-serif headings and highly readable short labels.
+- No extra paragraphs, no extra labels, no watermark, no random components.
+- Do not write a wrong MCU part number. Do not invent pins or measurement values.
+- If any small technical writing cannot be accurate, leave it blank instead of generating nonsense.
