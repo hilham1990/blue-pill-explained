@@ -2,7 +2,7 @@
 
 > *Datasheet bir roman değil. Bir sözlük.*
 
-*(Bu bölümün kapak görseli, Bölüm 01'de kurulan görsel standarda göre yeniden üretilecek.)*
+![Datasheet Nedir? — Gün 02 özet görseli](hero.png)
 
 ---
 
@@ -24,6 +24,8 @@ STM32F103 için iki ayrı belge var. Bu fark önemli.
 
 ## Datasheet mi, Reference Manual mı?
 
+![Datasheet mi, Reference Manual mı? — iki belgenin kimliği ve kullanım kuralı](slides/02-datasheet-vs-reference-manual.png)
+
 Bu iki belgeyi karıştırmak çok yaygın bir hata.
 
 | Belge | Ne içeriyor | Ne zaman açarsın |
@@ -38,6 +40,8 @@ Bu seride ikisini de kullanacağız. Hangi soruyu hangi belgeden cevapladığım
 ---
 
 ## Datasheet'i baştan sona okuma
+
+![Datasheet'i baştan sona okuma — mühendisin 5 adımlık okuma akışı](slides/03-bastan-sona-okuma.png)
 
 Okuma. Gerçekten.
 
@@ -60,6 +64,8 @@ Soru cevap bulur
 ---
 
 ## Datasheet İçindekiler Haritası
+
+![Datasheet İçindekiler Haritası — gerçek bölüm sırası](slides/04-datasheet-icindekiler-haritasi.png)
 
 Bu serinin kullandığı bölümler:
 
@@ -84,34 +90,6 @@ Datasheet (Doc ID 13587)
 └── Ordering Information Scheme (Bölüm 7 — son bölümlerden biri, başında değil; hemen ardından sadece Revision History gelir)
     └── Part number tablosu — STM32F103C8T6 kodu
 ```
-
----
-
-## RM0008 İçindekiler Haritası
-
-```
-Reference Manual (RM0008, Rev 20, 1134 sayfa)
-│
-├── Memory and Bus Architecture — Memory Map (Bölüm 3)
-├── RCC — Clock Control, medium-density (Bölüm 7)
-│   └── (Bölüm 8 farklı bir alt aile için — Connectivity line, bizim kartımız değil)
-├── GPIO ve AFIO (Bölüm 9)
-├── ADC (Bölüm 11)
-├── DMA (Bölüm 13)
-├── TIM — Timers (Bölüm 14 TIM1, Bölüm 15 TIM2-5, Bölüm 17 TIM6-7)
-│   └── (Bölüm 16 bizim yoğunluktaki çipte yok; Bölüm 18 aslında RTC'dir, timer değil)
-├── USB (Bölüm 23)
-├── CAN — bxCAN (Bölüm 24)
-├── SPI (Bölüm 25)
-├── I2C (Bölüm 26)
-└── USART (Bölüm 27)
-```
-
-Yukarıdaki harita `~/Downloads/RM0008.PDF` (Rev 20, 1134 sayfa) üzerinden 2026-07-13'te doğrulandı.
-
-![RM0008 İçindekiler — Bölüm 17 Basic timers vs Bölüm 18 Real-time clock (sayfa 14)](images/rm0008-toc-timers-vs-rtc.png)
-
-*Bu sayfa doğrulamanın kendisi kadar öğretici bir örnek: bölüm başlığına güvenmeden içindekiler sayfasını açıp kontrol etmezsen, "TIM Bölüm 15-18" gibi bir yanlışı fark edemezsin — Bölüm 18 aslında "Real-time clock (RTC)", timer değil.*
 
 ---
 
@@ -141,6 +119,8 @@ Bu sayfa işlemcinin CV'si.
 
 ## Sahada Ne Anlama Gelir?
 
+![Sahada ne anlama gelir? — kart üzerindeki part number'dan doğru belgeye karar](slides/05-sahada-ne-anlama-gelir.png)
+
 Elinde tanımadığın bir kart var. Üzerinde sadece işlemcinin part number'ı yazıyor, başka hiçbir şey bilmiyorsun.
 
 ```
@@ -155,7 +135,7 @@ Yanlış belgede aramak zaman kaybettirir — 1000 sayfalık Reference Manual'da
 
 ---
 
-*Bu bölümün slayt/video prodüksiyonu, Bölüm 01'de kurulan görsel standarda göre yeniden hazırlanıyor — bkz. [`PRODUCTION.md`](../PRODUCTION.md).*
+*Bu bölümün tüm slaytları (hero + 4 sahne) Bölüm 01'de kurulan görsel standarda göre üretildi ve onaylandı (2026-07-14); video henüz render edilmedi — bkz. [`PRODUCTION.md`](../PRODUCTION.md).*
 
 ---
 

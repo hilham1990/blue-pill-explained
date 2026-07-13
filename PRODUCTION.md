@@ -11,7 +11,7 @@ Bu dosya, seri için üretilen slayt/video/altyazı çıktılarını ve üretim 
 | Bölüm | Slayt | Video (uzun/kısa) | Altyazı |
 |---|---|---|---|
 | 01 — Neden Bu Kart? | Tamamlandı (5 sahne: hero + `slides/`) | — | — |
-| 02 — Datasheet Nasıl Okunur? | Devam ediyor — eski stil slayt/video 2026-07-13'te temizlendi, Bölüm 01 standardına göre yeniden planlanıyor (`brief.json`/`scenes.json`) | Temizlendi, yeniden üretilecek | Temizlendi, yeniden üretilecek |
+| 02 — Datasheet Nasıl Okunur? | Tamamlandı (5 sahne: hero + `slides/`, 2026-07-14) | Henüz render edilmedi | Henüz üretilmedi |
 | 03-12 | Henüz üretilmedi | Henüz üretilmedi | Henüz üretilmedi |
 
 ## Üretim Yaklaşımı

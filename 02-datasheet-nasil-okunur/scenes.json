@@ -1,6 +1,6 @@
 {
   "day": 2,
-  "note": "PLANLAMA AŞAMASI — henüz hiçbir görsel üretilmedi. 2026-07-14 düzeltmesi: sahne SIRASI, README'nin gerçek yukarıdan-aşağı bölüm sırasına göre yeniden dizildi (Gün 1'in kuralı: sahne sırası = README bölüm sırası). Önceki taslakta hero 'Baştan sona okuma'ydı ama o bölüm README'de 3. sırada — tutarsızdı. Şimdi hero, README'nin ilk bölümü olan 'Datasheet Nedir?'. Ayrıca 'İçindekiler Haritası' tek başlığı README'de ikiye bölündü (## Datasheet İçindekiler Haritası / ## RM0008 İçindekiler Haritası) — scene-04/05 artık kendi başlıklarına 1:1 karşılık geliyor. 'contents-page.png' ve 'introduction.png' gerçek datasheet sayfası olduğu için AI ile üretilmeyecek, README'de olduğu gibi kalıyor. Kullanıcı onayı olmadan curriculum-slide-gen ile üretime geçilmeyecek.",
+  "note": "2026-07-14: Kapsam daraltıldı. RM0008'in ayrıntılı bölüm haritası (eski scene-05) kaldırıldı — kullanıcı haklı olarak bunun Gün 2'nin amacı olmadığını, Blue Pill'de bulunmayan TIM6/TIM7 gibi çevre birimlerinin bölüm numaralarını yeni başlayan biri için gereksiz dağıtıcı detay olduğunu belirtti. Gün 2 artık sadece 'doğru belgeyi seçme ve Datasheet içinde bilgi bulma' ile sınırlı; RM0008 sadece scene-02'deki karşılaştırma tablosunda kavram olarak geçiyor. 'contents-page.png' ve 'introduction.png' gerçek datasheet sayfası olduğu için AI ile üretilmedi, README'de olduğu gibi kalıyor. TÜM 5 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-14) — scene-00-hero hariç (bilinen kusuruyla kabul edildi), scene-02/03/04/05 tek denemede sorunsuz çıktı, her biri zoom ile doğrulandı (özellikle scene-04'teki gerçek Doc ID/Bölüm numaraları). Gün 2'nin görsel üretimi tamamlandı.",
   "scenes": [
     {
       "id": "scene-00-hero",
@@ -16,15 +16,16 @@
       ],
       "narration": "Datasheet, üretici firmanın yazdığı resmi teknik belgedir. İçinde işlemcinin tüm özellikleri, her pinin ne iş yaptığı, elektriksel limitler, zamanlama diyagramları ve uygulama devreleri var. STM32F103 için iki ayrı belge var — bu fark önemli, bugün ikisini de öğreneceğiz.",
       "duration_seconds": 18,
-      "status": "planned",
-      "asset": "hero.png (henüz üretilmedi)",
-      "source_section": "README.md — \"Datasheet nedir?\" (satır 9-21)"
+      "status": "approved",
+      "asset": "hero.png",
+      "source_section": "README.md — \"Datasheet nedir?\" (satır 9-21)",
+      "known_issue": "Merkezdeki datasheet objesinde uydurma device-summary tablosu ve yanlış başlık (bkz. prompts/00-hero.md) — kullanıcı 2026-07-14'te 'olduğu gibi kabul et' dedi, büyük başlıklar doğru olduğu için."
     },
     {
       "id": "scene-02",
       "order": 2,
       "title": "Datasheet mi, Reference Manual mı?",
-      "purpose": "İki belge arasındaki temel farkı ve hangi soruda hangisinin açılacağı kuralını göstermek.",
+      "purpose": "İki belge arasındaki temel farkı ve hangi soruda hangisinin açılacağı kuralını göstermek. RM0008 burada sadece kavram olarak geçiyor (Clock/GPIO/UART gibi birimlerin nasıl yapılandırılacağını anlatan belge) — ayrıntılı iç yapısına girilmiyor.",
       "visual_focus": "Merkezi karşılaştırma tablosu (Datasheet: özet özellikler/pin listesi/elektriksel limitler — Reference Manual RM0008: register detayları/peripheral yapılandırma) + 'Ne zaman açarsın?' kuralı",
       "screen_text": [
         "DATASHEET Mİ, REFERENCE MANUAL MI?",
@@ -32,8 +33,8 @@
       ],
       "narration": "Bu iki belgeyi karıştırmak çok yaygın bir hata. Datasheet, 'bu işlemci ne yapabilir?' sorusunu cevaplar. Reference Manual, yani RM0008, 'nasıl yapılandırılır?' sorusunu cevaplar. Kural basit: genel bilgi için Datasheet, detay için Reference Manual.",
       "duration_seconds": 16,
-      "status": "planned",
-      "asset": "slides/02-datasheet-vs-reference-manual.png (henüz üretilmedi)",
+      "status": "approved",
+      "asset": "slides/02-datasheet-vs-reference-manual.png",
       "source_section": "README.md — \"Datasheet mi, Reference Manual mı?\" (satır 25-36)"
     },
     {
@@ -48,8 +49,8 @@
       ],
       "narration": "1000 sayfalık bir belgeyi baştan sona okumayız. Mühendis şöyle okur: önce bir soru oluşur, sonra içindekiler açılır, ilgili bölüm bulunur, o bölüm okunur ve soru cevabını bulur.",
       "duration_seconds": 18,
-      "status": "planned",
-      "asset": "slides/03-bastan-sona-okuma.png (henüz üretilmedi)",
+      "status": "approved",
+      "asset": "slides/03-bastan-sona-okuma.png",
       "source_section": "README.md — \"Datasheet'i baştan sona okuma\" (satır 40-58)"
     },
     {
@@ -64,30 +65,13 @@
       ],
       "narration": "STM32F103 datasheet'inin gerçek kimliği Doc ID 13587'dir. İçindekiler sırası: kapakta özellik özeti, sonra Pinouts, Memory Mapping, Electrical Characteristics, Package Characteristics — ve Ordering Information, belgenin son bölümlerinden biri, hemen ardından sadece Revision History gelir.",
       "duration_seconds": 20,
-      "status": "planned",
-      "asset": "slides/04-datasheet-icindekiler-haritasi.png (henüz üretilmedi)",
-      "source_section": "README.md — \"Datasheet İçindekiler Haritası\" (satır 62-86, artık kendi başlığında)"
+      "status": "approved",
+      "asset": "slides/04-datasheet-icindekiler-haritasi.png",
+      "source_section": "README.md — \"Datasheet İçindekiler Haritası\" (satır 62-86)"
     },
     {
       "id": "scene-05",
       "order": 5,
-      "title": "RM0008 İçindekiler Haritası",
-      "purpose": "Reference Manual'ın peripheral bazlı bölüm yapısını göstermek — farklı bir belge, farklı bir harita.",
-      "visual_focus": "Ağaç diyagramı: Memory Map(3), RCC(7), GPIO(9), ADC(11), DMA(13), TIM(14/15/17), USB(23), CAN(24), SPI(25), I2C(26), USART(27) dalları",
-      "screen_text": [
-        "REFERENCE MANUAL (RM0008) — İÇİNDEKİLER HARİTASI",
-        "Her peripheral kendi bölümünde"
-      ],
-      "narration": "RM0008, işlemcinin çevre birimlerini tek tek ayrıntılı anlatır: bellek haritası, RCC clock kontrolü, GPIO, ADC, DMA, timer'lar, USB, CAN, SPI, I2C ve USART — her biri kendi bölümünde.",
-      "duration_seconds": 18,
-      "status": "planned",
-      "asset": "slides/05-rm0008-icindekiler-haritasi.png (henüz üretilmedi)",
-      "source_section": "README.md — \"RM0008 İçindekiler Haritası\" (satır 90-108, artık kendi başlığında)",
-      "source_note": "DOĞRULANDI 2026-07-13: ~/Downloads/RM0008.PDF (Rev 20, 1134 sayfa) İçindekiler'i pdftotext ile çekildi. 8/9 önceki bölüm numarası doğru çıktı (RCC=7, GPIO=9, ADC=11, DMA=13, USART=27, SPI=25, I2C=26, USB=23). 1 hata düzeltildi: 'TIM Bölüm 15-18' yanlıştı — Bölüm 18 aslında Real-time clock (RTC), timer değil; medium-density çipte geçerli timer bölümleri 14 (TIM1), 15 (TIM2-5), 17 (TIM6-7); Bölüm 16 (TIM9-14) bu yoğunlukta yok. 1 eksik eklendi: CAN — bxCAN, Bölüm 24 (Blue Pill'de CAN arayüzü var ama haritada yoktu). 2026-07-14'te 3 kanıt sayfasından 2'si (overview, usb-can) kaldırıldı — bunlar öğrenciye değil doğrulamayı ispatlamaya hizmet ediyordu ve içerdikleri bilgi zaten README'nin metin ağacında var; sadece pedagojik olarak en anlamlı olan images/rm0008-toc-timers-vs-rtc.png (s.14, TIM/RTC kanıtı) tutuldu. 1134 sayfalık PDF'in tamamı repoya kopyalanmadı."
-    },
-    {
-      "id": "scene-06",
-      "order": 6,
       "title": "Sahada Ne Anlama Gelir?",
       "purpose": "Öğrenilen ayrımı gerçek bir sahne senaryosuyla pekiştirmek ve belgelerin nerede bulunduğunu göstermek; bir sonraki bölüme köprü kurmak.",
       "visual_focus": "Elde tanımadık bir kart, üzerinde sadece part number; 'Ne yapabilir?' → Datasheet / 'Nasıl ayarlarım?' → Reference Manual karar oku; st.com Resources sekmesi",
@@ -97,8 +81,8 @@
       ],
       "narration": "Elinde tanımadığın bir kart var, üzerinde sadece part number yazıyor. 'Ne yapabilir?' diye soruyorsan Datasheet'i aç. 'Nasıl ayarlarım?' diye soruyorsan Reference Manual'ı aç. İkisi de st.com'da, aynı ürün sayfasının Resources bölümünde, ücretsiz bulunur.",
       "duration_seconds": 20,
-      "status": "planned",
-      "asset": "slides/06-sahada-ne-anlama-gelir.png (henüz üretilmedi)",
+      "status": "approved",
+      "asset": "slides/05-sahada-ne-anlama-gelir.png",
       "source_section": "README.md — \"Sahada Ne Anlama Gelir?\" (satır 129-141) + \"Nerede bulunur?\" (satır 121-125, buraya katıldı)"
     }
   ]
