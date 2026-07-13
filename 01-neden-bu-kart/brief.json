@@ -4,8 +4,8 @@
   "lesson_goal": "Öğrenci, bu serinin STM32 değil 'donanım okuma' öğrettiğini ve Blue Pill'in bunun için neden ideal bir örnek olduğunu anlayacak.",
   "core_message": "STM32 öğretmiyoruz, düşünme biçimini öğretiyoruz. Blue Pill sadece ucuz ve açık kaynaklı bir örnek — sorular her işlemci için evrensel.",
   "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
-  "estimated_duration_seconds": 98,
-  "recommended_scene_count": 5,
+  "estimated_duration_seconds": 80,
+  "recommended_scene_count": 4,
   "must_show": [
     "STM32F103C8T6 Blue Pill kartının gerçek fotoğrafı",
     "Datasheet ve pinout sayfası",

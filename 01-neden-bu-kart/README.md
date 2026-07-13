@@ -71,8 +71,6 @@ Bu kart neden ideal?
 
 ## Şema açık kaynak mu?
 
-![Tek sayfalık açık şema — power supply, reset ve tasarımcı notu](slides/04-tek-sayfalik-acik-sema.png)
-
 Evet.
 
 Bu repoda kullandığımız şema "STM32 Min System Dev Board" adıyla açık kaynak olarak yayınlanmış.
