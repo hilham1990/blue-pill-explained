@@ -4,7 +4,7 @@ Bu dosya, 12 bölümün tamamında **değişmeyen** ana stil promptudur. Her sah
 
 Onaylanmış referanslar:
 - [`references/approved-day01.png`](references/approved-day01.png) — Bölüm 01 Hero görseli (2026-07-13 onaylandı). Genel görsel kimlik + hero'ya özel 6-soru alt bandı için referans.
-- [`../01-neden-bu-kart/slides/01-bu-seri-ne-ogretiyor.png`](../01-neden-bu-kart/slides/01-bu-seri-ne-ogretiyor.png) — Numaralı panel (1-4) + footer satırı standardı için referans (hero DIŞINDAKİ tüm sahnelerde bu kullanılır).
+- [`../01-neden-bu-kart/slides/02-neden-stm32.png`](../01-neden-bu-kart/slides/02-neden-stm32.png) — Numaralı panel (1-4) standardı için referans (hero DIŞINDAKİ tüm sahnelerde bu kullanılır). **Dikkat:** bu dosya, aşağıdaki "Alt Bölüm — Zorunlu" kuralından ÖNCE üretildi, eski 3 parçalı footer'ı kullanıyor — sadece panel/numara/bağlantı çizgisi stili için referans al, alt bölümü/footer'ı değil.
 
 ```text
 Create a professional Turkish technical education infographic slide for the
@@ -39,10 +39,8 @@ LAYOUT SYSTEM:
 - Side panels: maximum four supporting concepts, each with a large colored NUMBER BADGE (1,2,3,4)
   top-left of the panel, connected to a precise point on the central hardware with a thin
   matching-color line
-- Bottom area (hero slide only): lesson conclusion, process flow or key questions band
-- Footer row (every slide, below a subtle divider line): left = "Blue Pill Explained — Donanımı
-  Okumayı Öğren", center = Akademi Usta logo mark + "Akademi Usta", right = "Kart örnek — Sorular
-  evrensel."
+- Bottom section: see "Alt Bölüm (Bottom Layout) — Zorunlu" below. Mandatory on every slide,
+  not just the hero.
 
 TECHNICAL ACCURACY:
 - Use realistic STM32F103C8T6 Blue Pill hardware
@@ -86,6 +84,42 @@ Do not copy:
 Create a new layout appropriate for the new lesson while clearly belonging
 to the same curriculum series.
 ```
+
+## Alt Bölüm (Bottom Layout) — Zorunlu
+
+**Sorun:** GPT Image 2, alt bölümü kendi başına tasarlamaya bırakılınca her seferinde farklı bir şey üretiyor — bazen footer eksik kalıyor, bazen Akademi Usta için kendi uydurduğu bir logo/amblem çiziyor (istenmeyen, tutarsız). Çözüm: bu bölümü asla modele bırakma, her prompt'un **sonuna** aşağıdaki bloğu harfiyen ekle. Bu, referans görsel paragrafından SONRA, en son eklenir.
+
+```text
+BOTTOM LAYOUT (MANDATORY)
+
+Create a full-width bottom information band.
+
+Inside the band:
+- Four equally sized rounded cards (hero slide: six cards, one per universal question).
+- Numbered 1-4 (hero: 1-6).
+- Each card has one simple icon and one short Turkish title.
+- Cards must be perfectly aligned and evenly spaced.
+- Use the same layout style as the approved Day 01 slide.
+
+Below the cards:
+Center the text:
+"Önce anlamak, sonra ölçmek."
+
+Footer:
+Bottom center:
+"Akademi Usta"
+
+TEXT ONLY.
+Do NOT generate any logo, icon, emblem, shield or symbol for Akademi Usta.
+Use only the words "Akademi Usta" in a clean bold font.
+
+The bottom section must always look balanced, complete and professional.
+Never leave empty space.
+```
+
+Bu blok tüm sahnelerde aynı kalır — sadece merkez içerik (kart, panel konuları) değişir. Hero'da 4 yerine 6 kart olması tek istisna (6 evrensel soru bandı zaten onaylı).
+
+**Not:** Bu kural 2026-07-13'te eklendi. Onaylı Scene-02 (`02-neden-stm32.png`) bu kuraldan ÖNCE üretildi ve eski 3 parçalı footer'ı (sol/logo/sağ) kullanıyor — yeniden üretilene kadar bu bir istisna olarak kalır, yeni sahneler bu güncellenmiş zorunlu bloğu kullanır.
 
 ## Tek satırlık sistem prensibi
 

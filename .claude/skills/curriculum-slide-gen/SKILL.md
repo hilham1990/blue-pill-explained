@@ -51,7 +51,7 @@ Content-Type: application/json
 Body:
 ```json
 {
-  "prompt": "<master-style-prompt.md block> + <reference-image-usage paragraph> + <SCENE block from prompts/NN-slug.md>",
+  "prompt": "<master-style-prompt.md style block> + <reference-image-usage paragraph> + <SCENE block from prompts/NN-slug.md> + <BOTTOM LAYOUT (MANDATORY) block from master-style-prompt.md — always last, never left to the model>",
   "image_urls": ["data:image/png;base64,<reference image base64>"],
   "image_size": "landscape_16_9",
   "quality": "medium",
@@ -79,6 +79,7 @@ Body:
 - Fixed color→function mapping: orange = belge/datasheet, blue = donanım bileşeni yakın çekim, yellow = kontrol/buton/jumper, teal = ölçüm/test.
 - Chip name is always `STM32F103C8T6` — verify it didn't get mangled (seen failure: "GTM32").
 - Use `terminology.md`'s exact wording for recurring concepts (Besleme, Clock, Reset, Boot, Peripheral'lar, Debug, Datasheet, Reference Manual) — don't let a later chapter silently switch to a different Turkish/English mix for the same concept.
+- **Never leave the bottom section/footer to the model's own judgment.** Always append the exact "BOTTOM LAYOUT (MANDATORY)" block from `master-style-prompt.md` at the end of every prompt: a full-width 4-card band (6 on hero), centered "Önce anlamak, sonra ölçmek.", and a **text-only** "Akademi Usta" footer. Explicitly forbid the model from drawing its own logo/emblem for Akademi Usta — left unconstrained, it invents a different one each time.
 
 ## Escape hatch — when to stop doing this by hand and build the two-layer (AI + HTML/Canvas text) system instead
 
