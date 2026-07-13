@@ -59,7 +59,7 @@ Soru cevap bulur
 
 ---
 
-## STM32F103 Datasheet — İçindekiler Haritası
+## Datasheet İçindekiler Haritası
 
 Bu serinin kullandığı bölümler:
 
@@ -81,9 +81,13 @@ Datasheet (Doc ID 13587)
 ├── Package Characteristics (Bölüm 6)
 │   └── Fiziksel boyutlar
 │
-└── Ordering Information Scheme (Bölüm 7 — belgenin sonunda, başında değil)
+└── Ordering Information Scheme (Bölüm 7 — son bölümlerden biri, başında değil; hemen ardından sadece Revision History gelir)
     └── Part number tablosu — STM32F103C8T6 kodu
 ```
+
+---
+
+## RM0008 İçindekiler Haritası
 
 ```
 Reference Manual (RM0008, Rev 20, 1134 sayfa)
@@ -103,15 +107,11 @@ Reference Manual (RM0008, Rev 20, 1134 sayfa)
 └── USART (Bölüm 27)
 ```
 
-Yukarıdaki harita `~/Downloads/RM0008.PDF` (Rev 20, 1134 sayfa) üzerinden 2026-07-13'te doğrulandı — gerçek İçindekiler sayfaları:
-
-![RM0008 İçindekiler — genel bakış (sayfa 2)](images/rm0008-toc-overview.png)
+Yukarıdaki harita `~/Downloads/RM0008.PDF` (Rev 20, 1134 sayfa) üzerinden 2026-07-13'te doğrulandı.
 
 ![RM0008 İçindekiler — Bölüm 17 Basic timers vs Bölüm 18 Real-time clock (sayfa 14)](images/rm0008-toc-timers-vs-rtc.png)
 
-*Bu sayfa önceki hatayı ispatlıyor: Bölüm 18 "Real-time clock (RTC)" — timer değil.*
-
-![RM0008 İçindekiler — Bölüm 23 USB ve Bölüm 24 bxCAN (sayfa 18)](images/rm0008-toc-usb-can.png)
+*Bu sayfa doğrulamanın kendisi kadar öğretici bir örnek: bölüm başlığına güvenmeden içindekiler sayfasını açıp kontrol etmezsen, "TIM Bölüm 15-18" gibi bir yanlışı fark edemezsin — Bölüm 18 aslında "Real-time clock (RTC)", timer değil.*
 
 ---
 

@@ -7,6 +7,7 @@
   "estimated_duration_seconds": 110,
   "recommended_scene_count": 6,
   "must_show": [
+    "Datasheet'in tanımı ve içeriği (özellikler, pin görevleri, elektriksel limitler, zamanlama, uygulama devreleri) + STM32F103 için iki ayrı belge olduğu bilgisi",
     "Datasheet vs Reference Manual karşılaştırma tablosu — hangi soruda hangisi açılır",
     "Mühendisin okuma akışı: soru oluşur → içindekiler açılır → ilgili bölüm bulunur → o bölüm okunur → cevap bulunur",
     "Gerçek Datasheet İçindekiler haritası, doğru bölüm sırasıyla (Features → Pinouts and Pin Description [Böl.3] → Memory Mapping [Böl.4] → Electrical Characteristics [Böl.5] → Package Characteristics [Böl.6] → Ordering Information Scheme [Böl.7, belgenin sonu])",
