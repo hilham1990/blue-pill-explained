@@ -2,9 +2,13 @@
 
 > *Önce anlamak, sonra ölçmek.*
 
+![Neden Blue Pill? — Gün 01 özet görseli](hero.png)
+
 ---
 
 ## Bu seri ne öğretiyor?
+
+![Bu seri ne öğretiyor? — 4 temel soru](slides/01-bu-seri-ne-ogretiyor.png)
 
 STM32 öğretmiyor.
 
@@ -22,6 +26,8 @@ Ve bu soruları sadece STM32 için değil — Apple, Qualcomm, Intel, ESP32 içi
 ---
 
 ## Neden STM32?
+
+![Neden STM32? — açık belgeler, açık şema, erişilebilir donanım](slides/02-neden-stm32.png)
 
 ### Apple değil çünkü:
 - Apple'ın datasheet'i kamuya açık değil
