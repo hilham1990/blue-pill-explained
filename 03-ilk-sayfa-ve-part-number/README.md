@@ -55,7 +55,7 @@ Blue Pill'de 64 KB Flash var (C**8** — bunu part number'dan okuyoruz).
 2x 12-bit ADC (16 kanal)
 7x Timer
 7 kanallı DMA
-80 GPIO pini
+Ailenin en büyük paketinde (100 pin) 80'e kadar GPIO — Blue Pill'in LQFP48 paketinde bu sayı 37 (bkz. Device Overview tablosu)
 ```
 
 ---

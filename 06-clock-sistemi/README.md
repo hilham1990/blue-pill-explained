@@ -31,7 +31,7 @@ Clock durdu → işlemci durdu.
 
 ![HSE Oscillator Connection](images/oscillator-crystal.png)
 
-Mpu bloğunun sağ tarafında — **B6 koordinatı**.
+Mpu bloğunun sağ tarafında — **B7 koordinatı**.
 
 ```
 X1 (8 MHz crystal)

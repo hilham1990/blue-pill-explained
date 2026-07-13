@@ -12,7 +12,7 @@ STM32 öğretmiyor.
 
 **Düşünme biçimini öğretiyor.**
 
-Seriyi bitirdiğinde elimde bir devre kartı olduğunda şu soruları sorabileceksin:
+Seriyi bitirdiğinde elinde bir devre kartı olduğunda şu soruları sorabileceksin:
 
 - Bu kart nasıl besleniyor?
 - Clock nereden geliyor?
@@ -62,12 +62,12 @@ STM32F103C8T6
 Bu kart neden ideal?
 
 - Şeması tek sayfa — karmaşık değil ama gerçek
-- Her blok okunabilir: Power, Clock, Reset, MPU, LED, Connector
+- Her blok okunabilir: Power, Clock, Reset, MPU, LED, Connector *(şemada "MPU" yazsa da bu aslında bir MCU — çekirdek, Flash ve SRAM aynı çipte; seri şemadaki etikete sadık kalıyor)*
 - Aynı mimari daha büyük STM32 kartlarında da var
 
 ---
 
-## Şema açık kaynak mu?
+## Şema açık kaynak mı?
 
 ![Tek sayfalık açık şema — power supply, reset ve tasarımcı notu](slides/04-tek-sayfalik-acik-sema.png)
 

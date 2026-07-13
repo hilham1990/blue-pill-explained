@@ -16,6 +16,7 @@
 | Teknik özet belge | **Datasheet** | — |
 | İletişim hatları | **UART**, **SPI**, **I2C** | Kısaltmalar değişmez |
 | Programlama/debug arayüzü | **SWD** | JTAG ile karıştırılmaz |
+| İşlemci bloğu | **MPU** (şema etiketi) | Gerçek şema (`assets/source/blue-pill-schematic-source.webp`) bloğu "MPU" diye etiketliyor; teknik olarak doğrusu MCU'dur (çekirdek+Flash+SRAM tek çipte). Metin şemaya sadık kalıp "MPU" yazar ama ilk geçtiği yerde bu fark bir cümleyle belirtilir (bkz. Bölüm 01 README) — sessizce MCU'ya çevrilmez. |
 
 ## Sabit etiketler (her slaytta aynı yazılır)
 

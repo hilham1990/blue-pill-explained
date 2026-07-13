@@ -30,7 +30,7 @@ Sadece 2 sinyal pini ile:
 
 ## Şemada SWD — CN4
 
-Şemada sol üst — **A2–B2 koordinatları**.
+Şemada sol üst — **A2 koordinatı**.
 
 ```
 CN4 (SRP4 — 4 pinli konnektör)

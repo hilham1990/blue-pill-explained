@@ -21,7 +21,7 @@ Bu eşleme sabit tutulur — Bölüm 05'te "mavi = ölçüm" olup Bölüm 08'de 
 
 ## Yerleşim ızgarası
 
-- Sol üst köşe: `GÜN 0X` rozeti (lacivert çerçeve, dolgu yok)
+- Sol üst köşe: `GÜN 0X` rozeti (dolgulu lacivert kutu, beyaz metin — bkz. `references/approved-day01.png`; 2026-07-13 öncesi bu kuralda "dolgu yok" yazıyordu ama onaylanan tüm görseller dolgulu rozet kullanıyor, kural gerçek çıktıya göre güncellendi)
 - Üst orta: ana başlık (büyük, kalın, lacivert)
 - Başlığın hemen altı: tek satır alt mesaj (küçük, lacivert veya gri)
 - Merkez: ana teknik nesne (kart, belge, şema) — sayfanın ~%35-40'ı
@@ -53,3 +53,5 @@ Ortalama sahne süresi 12-25 saniye aralığında kalmalı:
 ```
 
 Görsel sayısı bölüm başlıklarının sayısına göre değil, bu mantığa göre belirlenir — model öneri sunar, son karar `brief.json`'da insan tarafından onaylanır.
+
+**Bir önceki günün sahne sayısına çapalanma.** Gün 2 planlaması 2026-07-13'te ilk taslakta 5 sahne önerdi — sebep gerçek metin analizi değil, Gün 1'in 5 sahnesiydi. README'nin `##` başlıkları bu tablonun kategorilerine göre tek tek ve bağımsız sayıldığında gerçek sayı 6 çıktı. Her yeni bölüm için sahne sayısını o bölümün kendi metninden yeniden türet — bir önceki günün sayısını referans alma, hatta aynı sayıya çıksa bile gerekçe metinden gelmeli.

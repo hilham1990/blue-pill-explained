@@ -44,7 +44,7 @@
         "BLUE PILL'İN İÇİNDE NE VAR?",
         "STM32F103C8T6 — ARM Cortex-M3, 72 MHz."
       ],
-      "narration": "Blue Pill'in kalbi STM32F103C8T6: 72 MHz'de çalışan bir ARM Cortex-M3 çekirdek, 64 KB Flash, 20 KB SRAM ve USB, CAN, SPI, I2C, USART gibi dokuz iletişim arayüzü, hepsi 48 pinlik LQFP pakette.",
+      "narration": "Blue Pill'in kalbi STM32F103C8T6: 72 MHz'de çalışan bir ARM Cortex-M3 çekirdek, 64 KB Flash, 20 KB SRAM ve USB, CAN, SPI, I2C, USART aileleri; bu ailelerin bazı örnekleri (2x I2C, 3x USART, 2x SPI) birden fazla olduğu için toplamda dokuz iletişim arayüzü sayılıyor, hepsi 48 pinlik LQFP pakette.",
       "duration_seconds": 18,
       "status": "approved",
       "asset": "slides/03-blue-pill-icinde-ne-var.png"

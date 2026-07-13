@@ -16,7 +16,7 @@
 
 ## Şemada Power Supply Bloğu
 
-Şemada sol alt köşe — **D1–D3 koordinatları**.
+Şemada sol alt köşe — **E1–E3 koordinatları**.
 
 ![Power Supply Scheme](images/power-supply-scheme.png)
 

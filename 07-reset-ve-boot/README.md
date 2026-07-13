@@ -18,7 +18,7 @@
 
 ## Şemada Reset Bloğu
 
-Şemada sağ alt — **D6–E7 koordinatları**.
+Şemada sağ alt — **E5 koordinatı**.
 
 ```
 +3.3V

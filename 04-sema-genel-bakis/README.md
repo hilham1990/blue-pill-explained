@@ -119,9 +119,9 @@ Bu şema bir koordinat sistemi kullanıyor.
 Yatayda 1–8, dikeyde A–E harfleri var.
 
 Şemada bir bileşeni belirtmek için:
-- Power Supply → **D1–D3**
-- MPU → **A4–C7**
-- Reset → **D6–E7**
+- Power Supply → **E1–E3**
+- MPU → **A4–D8**
+- Reset → **E5**
 
 Bazı bölümlerde bu koordinatlara atıfta bulunacağız.
 
