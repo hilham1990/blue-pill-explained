@@ -15,7 +15,7 @@
 
 ## Pinout Kartı
 
-![Blue Pill LQFP48 Pinout](images/lqfp48-pinout.png)
+![Blue Pill LQFP48 Pinout](../assets/source/day08-lqfp48-pinout.png)
 
 Bu görsel Blue Pill'in tüm pinlerini gösteriyor.
 
@@ -117,7 +117,7 @@ Bölüm 11'de detaylı anlatılacak.
 
 ## Pin İsimlendirme Mantığı
 
-![Pin Definitions](images/pin-definitions.png)
+![Pin Definitions](../assets/source/day08-pin-definitions.png)
 
 Bir pinin tam adı şöyle okunur:
 

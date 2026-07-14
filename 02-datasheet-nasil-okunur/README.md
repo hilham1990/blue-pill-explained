@@ -95,7 +95,7 @@ Datasheet (Doc ID 13587)
 
 ## Datasheet'in ilk sayfası
 
-![Datasheet'in ilk sayfası — Features ve Table 1 Device Summary (gerçek sayfa 1)](images/features-page.png)
+![Datasheet'in ilk sayfası — Features ve Table 1 Device Summary (gerçek sayfa 1)](../assets/source/day02-features-page.png)
 
 Bu sayfa işlemcinin CV'si.
 

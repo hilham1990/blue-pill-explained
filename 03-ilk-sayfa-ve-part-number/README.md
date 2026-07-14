@@ -6,7 +6,7 @@
 
 ## İlk Sayfayı Okumak
 
-![STM32F103 Özellikleri](images/datasheet-features.png)
+![STM32F103 Özellikleri](../assets/source/day03-datasheet-features.png)
 
 Datasheet'in ilk sayfası işlemcinin CV'si.
 
@@ -62,7 +62,7 @@ Ailenin en büyük paketinde (100 pin) 80'e kadar GPIO — Blue Pill'in LQFP48 p
 
 ## Device Overview Tablosu
 
-![Device Overview](images/device-overview-table.png)
+![Device Overview](../assets/source/day03-device-overview-table.png)
 
 ---
 

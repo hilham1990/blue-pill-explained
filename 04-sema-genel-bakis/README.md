@@ -6,7 +6,7 @@
 
 ## Blue Pill Şeması
 
-![Blue Pill Schematic](images/schematic.webp)
+![Blue Pill Schematic](../assets/source/blue-pill-schematic-source.webp)
 
 Bu şema tek sayfa. İyi haber: az ama gerçek.
 
@@ -14,7 +14,7 @@ Bu şema tek sayfa. İyi haber: az ama gerçek.
 
 ## Şemada Kaç Blok Var?
 
-![STM32F103 Block Diagram](images/block-diagram.png)
+![STM32F103 Block Diagram](../assets/source/day04-block-diagram.png)
 
 Şemaya baktığımızda 6 ana blok görüyoruz. Her biri ayrı bir işlev üstleniyor.
 

@@ -29,7 +29,7 @@ Clock durdu → işlemci durdu.
 
 ## Şemada Crystal Nerede?
 
-![HSE Oscillator Connection](images/oscillator-crystal.png)
+![HSE Oscillator Connection](../assets/source/day06-oscillator-crystal.png)
 
 Mpu bloğunun sağ tarafında — **B7 koordinatı**.
 
@@ -81,7 +81,7 @@ Bu Blue Pill'in bilinen bir kısıtı — kapasitör değerleri tam hesaplanmam�
 
 ## STM32 Clock Kaynakları
 
-![Clock Tree](images/clock-tree.png)
+![Clock Tree](../assets/source/day06-clock-tree.png)
 
 İşlemcide birden fazla clock kaynağı var:
 

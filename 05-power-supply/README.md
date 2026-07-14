@@ -18,7 +18,7 @@
 
 Şemada sol alt köşe — **E1–E3 koordinatları**.
 
-![Power Supply Scheme](images/power-supply-scheme.png)
+![Power Supply Scheme](../assets/source/day05-power-supply-scheme.png)
 
 ```
 +5V ──┬── C7(100n) ─── GND

@@ -15,7 +15,7 @@
 
 ## GPIO Nedir?
 
-![GPIO Description](images/gpio-description.png)
+![GPIO Description](../assets/source/day09-gpio-description.png)
 
 GPIO: General Purpose Input/Output — Genel Amaçlı Giriş/Çıkış.
 
@@ -79,7 +79,7 @@ Yazılımda hangi modu seçersen pin o işlevi üstlenir.
 
 ## Blue Pill Pinout'ta Alternate Function'lar
 
-![Pinout](../08-mpu-ve-pinout/images/lqfp48-pinout.png)
+![Pinout](../assets/source/day08-lqfp48-pinout.png)
 
 Pinout kartında renkli kutular alternate function'ları gösteriyor:
 

@@ -102,7 +102,7 @@ R4 (100kΩ) ──── BOOT1 pini (PB2, pin 20)
 
 ## Boot Modları
 
-![Boot Modes](images/boot-modes.png)
+![Boot Modes](../assets/source/day07-boot-modes.png)
 
 | BOOT0 | BOOT1 | Nereden Başlanır | Kullanım |
 |---|---|---|---|
@@ -137,7 +137,7 @@ Firmware yükleme süreci:
 
 ## Memory Map
 
-![Memory Map](images/memory-map.png)
+![Memory Map](../assets/source/day07-memory-map.png)
 
 İşlemcinin bellek haritası (Memory Map), hangi donanımın hangi adreste olduğunu gösterir. Yazılım geliştirirken, özellikle register seviyesinde programlama yaparken bu harita çok kritiktir.
 

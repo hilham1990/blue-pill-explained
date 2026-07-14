@@ -6,7 +6,7 @@
 
 ## Blue Pill Şeması
 
-![Blue Pill Schematic](../04-sema-genel-bakis/images/schematic.webp)
+![Blue Pill Schematic](../assets/source/blue-pill-schematic-source.webp)
 
 Bu şemayı ilk bölümde gördük.
 
