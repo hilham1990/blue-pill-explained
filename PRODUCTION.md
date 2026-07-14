@@ -25,5 +25,5 @@ Slaytlar her bölüm için elle tasarlanmıyor — o bölümün metni (README.md
 
 ## Notlar
 
-- Video/slayt prodüksiyonu şu an sadece Bölüm 01-02'de var, kalan bölümler yazı olarak tam ama medya üretimi devam ediyor.
+- Slayt prodüksiyonu şu an Bölüm 01-03'te tamamlandı, video render henüz hiçbirinde yapılmadı. Bölüm 04-12 yazı olarak tam ama medya üretimi henüz başlamadı.
 - Büyük medya dosyaları (MP4, kaynak PDF/webp) repo büyüdükçe Git geçmişini şişirebilir — ileride Git LFS veya harici depolama (Releases, YouTube) değerlendirilebilir.
