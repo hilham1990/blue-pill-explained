@@ -1,0 +1,21 @@
+{
+  "day": 3,
+  "title": "İlk Sayfa ve Part Number",
+  "lesson_goal": "Öğrenci, datasheet'in ilk sayfasını 2 dakikada okuyup temel özellikleri çıkarabilecek; bir part number'ı (STM32F103C8T6 gibi) harf harf değil, ST'nin resmi bloklarına göre (STM32-F-103-C-8-T-6) doğru şekilde decode edebilecek.",
+  "core_message": "Datasheet'in ilk sayfası işlemcinin CV'si. Part number ise kılavuzu — ama harf harf değil, 7 anlamlı blok halinde okunur: STM32 (aile) - F (tip) - 103 (alt aile) - C (pin) - 8 (flash) - T (paket) - 6 (sıcaklık).",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 72,
+  "recommended_scene_count": 4,
+  "must_show": [
+    "İlk sayfanın 4 ana bilgi kategorisi: Çekirdek (ARM Cortex-M3, 72MHz), Bellek (64KB Flash/20KB SRAM), İletişim (9 arayüz), Diğerleri (ADC/Timer/DMA/GPIO)",
+    "Gerçek part number decode şeması — STM32-F-103-C-8-T-6, 7 blok, ST'nin Table 57 (Ordering Information Scheme, sayfa 85) ile birebir",
+    "Paket seçenekleri karşılaştırması — 5 paket tipi, tamirde ölçüm kolaylığı açısından",
+    "Sahada karar senaryosu: STM32F103RBT6 part number'ını sıfırdan decode etme"
+  ],
+  "technical_risks": [
+    "\"F\" harfine \"Foundation\" gibi uydurma bir açılım yüklemek — gerçek ST belgesinde (Table 57) sadece \"general-purpose\" yazıyor, \"Foundation\" yok (bu proje 2026-07-14'te bu hatayı bulup düzeltti)",
+    "\"STM32\" önekini harf harf (S-T-M-3-2) bölüp her harfe ayrı anlam yüklemek — gerçek ST şeması STM32'yi TEK PARÇA bir aile kodu olarak tanımlıyor, harflere bölmüyor (aynı düzeltmede giderildi)",
+    "Bu bölümün Çekirdek/Bellek/İletişim özet panelini Gün 1 scene-03 ile birebir aynı şekilde (aynı çip görseli, aynı çerçeveleme) üretmek — konu örtüşse de bu bölümün açısı farklı (ürünü tanıtmak değil, bu bilgiyi datasheet sayfasından NASIL okuduğunu göstermek); görsellerde bu fark hissettirilmeli"
+  ],
+  "note": "Sahne sayısı (4) Gün 1/2'nin 5-6 sayısına çapalanmadan, bu bölümün kendi README içeriğinden türetildi — 'Device Overview Tablosu' bölümü zaten gerçek görsel (day03-device-overview-table.png) kullandığı için ayrı AI sahnesi almıyor. Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

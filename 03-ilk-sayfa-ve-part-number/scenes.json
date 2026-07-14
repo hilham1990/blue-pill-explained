@@ -1,0 +1,72 @@
+{
+  "day": 3,
+  "note": "TÜM 4 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-14) — sahne sırası README'nin gerçek bölüm sırasına göre: İlk Sayfayı Okumak (hero) → Part Number Nasıl Okunur → Paket Seçenekleri → Sahada Ne Anlama Gelir. Hepsi tek denemede sorunsuz çıktı, zoom ile doğrulandı (özellikle hero'nun arka planındaki belgenin bilerek bulanık/metinsiz bırakılması Gün 2 hero'sundaki uydurma tablo hatasını tekrarlamadı; Part Number sahnesinde 'F: Foundation' hatası tekrarlanmadı, 7 gerçek blok — STM32/F/103/C/8/T/6 — birebir doğru render edildi). 'Device Overview Tablosu' bölümü zaten gerçek görsel (assets/source/day03-device-overview-table.png) kullanıyor, ayrı AI sahnesi yok. Sahne sayısı (4) Gün 1/2'nin 5-6 sayısına çapalanmadan bu bölümün kendi içeriğinden türetildi. MÜHÜRLENDİ (2026-07-14).",
+  "scenes": [
+    {
+      "id": "scene-00-hero",
+      "order": 1,
+      "title": "İlk Sayfayı Okumak (Hero)",
+      "purpose": "README'nin ilk bölümünü kapak sahnesi olarak açmak: datasheet'in ilk sayfasından 2 dakikada çıkarılan 4 ana bilgi kategorisi.",
+      "visual_focus": "STM32F103C8T6 çip yakın çekim (Gün 1'in fotoğraf tarzıyla tutarlı) + arkada hafifçe odak dışı gerçek datasheet sayfası dokusu (okunaklı metin YOK) + 4 panel: Çekirdek, Bellek, İletişim, Diğerleri",
+      "screen_text": [
+        "GÜN 03",
+        "İLK SAYFAYI OKUMAK",
+        "Datasheet'in ilk sayfası işlemcinin CV'si.",
+        "2 dakikada 4 şeyi öğreniyorsun"
+      ],
+      "narration": "Datasheet'in ilk sayfası işlemcinin CV'si. İki dakikada dört şeyi öğreniyoruz: çekirdek, bellek, iletişim arayüzleri ve diğer özellikler.",
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "hero.png",
+      "source_section": "README.md — \"İlk Sayfayı Okumak\" (satır 7-59)"
+    },
+    {
+      "id": "scene-02",
+      "order": 2,
+      "title": "Part Number Nasıl Okunur?",
+      "purpose": "Gerçek ST part number şemasını (7 blok) göstermek — harf harf değil, blok blok okunduğunu vurgulamak.",
+      "visual_focus": "STM32F103C8T6 üzerinde 7 bloklu ayrıştırma: STM32(aile)-F(tip)-103(alt aile)-C(pin)-8(flash)-T(paket)-6(sıcaklık)",
+      "screen_text": [
+        "PART NUMBER NASIL OKUNUR?",
+        "Harf harf değil, blok blok."
+      ],
+      "narration": "Part number'ı harf harf değil, blok blok okuruz: STM32 bir aile kodu, F genel amaçlı ürün tipi, 103 alt aile, C pin sayısı, 8 flash boyutu, T paket tipi, 6 sıcaklık aralığı. Bu, ST'nin resmi ordering information şemasıdır.",
+      "duration_seconds": 20,
+      "status": "approved",
+      "asset": "slides/02-part-number-nasil-okunur.png",
+      "source_section": "README.md — \"Part Number Nasıl Okunur?\" (satır 69-94)"
+    },
+    {
+      "id": "scene-03",
+      "title": "Paket Seçenekleri",
+      "order": 3,
+      "purpose": "Aynı çipin farklı fiziksel paketlerde geldiğini ve tamirde ölçüm zorluğunu göstermek.",
+      "visual_focus": "5 paket tipi yan yana (LQFP48/64/100, VFQFPN36, BGA64/100), Blue Pill'in LQFP48 olduğu vurgulanmış",
+      "screen_text": [
+        "PAKET SEÇENEKLERİ",
+        "Blue Pill → LQFP48, ölçümü en kolay olan."
+      ],
+      "narration": "Aynı işlemci farklı paketlerde gelir. LQFP48, LQFP64, LQFP100 bacakları görünür olduğu için tamirde kolay ölçülür. VFQFPN36 ve BGA paketlerinde bacaklar altta gizlidir, ölçüm zordur. Blue Pill LQFP48 kullanır — en kolay ölçülen paket.",
+      "duration_seconds": 16,
+      "status": "approved",
+      "asset": "slides/03-paket-secenekleri.png",
+      "source_section": "README.md — \"Paket Seçenekleri\" (satır 98-110)"
+    },
+    {
+      "id": "scene-04",
+      "title": "Sahada Ne Anlama Gelir?",
+      "order": 4,
+      "purpose": "Öğrenilen part number decode becerisini yeni bir örnekle (STM32F103RBT6) pekiştirmek.",
+      "visual_focus": "Tanımadık bir kart, üzerinde STM32F103RBT6 yazıyor, decode adımları",
+      "screen_text": [
+        "SAHADA NE ANLAMA GELİR?",
+        "STM32F103RBT6 — kendin decode et."
+      ],
+      "narration": "Elinde tanımadığın bir kart var, üzerinde STM32F103RBT6 yazıyor. R, 64 pin demek. B, 128 KB Flash demek — C8'den iki kat büyük. T, LQFP paket. 6, standart sıcaklık aralığı. Artık bu kartın bellek kapasitesini, pin sayısını ve paket tipini biliyorsun — hiçbir şey bağlamadan.",
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/04-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\" (satır 114-128)"
+    }
+  ]
+}

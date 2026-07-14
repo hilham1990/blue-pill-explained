@@ -12,7 +12,8 @@ Bu dosya, seri için üretilen slayt/video/altyazı çıktılarını ve üretim 
 |---|---|---|---|
 | 01 — Neden Bu Kart? | Tamamlandı (5 sahne: hero + `slides/`) | — | — |
 | 02 — Datasheet Nasıl Okunur? | Tamamlandı (5 sahne: hero + `slides/`, 2026-07-14) | Henüz render edilmedi | Henüz üretilmedi |
-| 03-12 | Henüz üretilmedi | Henüz üretilmedi | Henüz üretilmedi |
+| 03 — İlk Sayfa ve Part Number | Tamamlandı (4 sahne: hero + `slides/`, 2026-07-14) | Henüz render edilmedi | Henüz üretilmedi |
+| 04-12 | Henüz üretilmedi | Henüz üretilmedi | Henüz üretilmedi |
 
 ## Üretim Yaklaşımı
 

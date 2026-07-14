@@ -2,6 +2,8 @@
 
 > *Part number bir kılavuz. Her harf sana bir şey söylüyor.*
 
+![İlk Sayfayı Okumak — Gün 03 özet görseli](hero.png)
+
 ---
 
 ## İlk Sayfayı Okumak
@@ -68,29 +70,28 @@ Ailenin en büyük paketinde (100 pin) 80'e kadar GPIO — Blue Pill'in LQFP48 p
 
 ## Part Number Nasıl Okunur?
 
+![Part Number Nasıl Okunur? — 7 gerçek blok](slides/02-part-number-nasil-okunur.png)
+
+Bu, ST'nin `Table 57. Ordering information scheme` (Datasheet, Bölüm 7, sayfa 85) adlı resmi şemasıdır — "STM32" tek parça bir aile kodudur, harf harf bölünmez:
+
 ```
-STM32F103C8T6
-│││││││││││└─ 6: Sıcaklık aralığı (-40°C / +85°C)
-││││││││││└── T: Paket tipi (LQFP)
-│││││││││└─── 8: Flash boyutu (64 KB)
-││││││││└──── C: Pin sayısı (48 pin)
-│││││││└───── 103: Ürün serisi
-││││││└────── F: Ürün ailesi (Foundation — genel amaçlı)
-│││││└─────── 32: 32-bit mimari
-││││└──────── M: Mikrodenetleyici
-│││└───────── T: Mikrodenetleyici (devam)
-││└────────── S: Üretici kodu
-│└─────────── T: Üretici kodu
-└──────────── S: ST Microelectronics
+STM32   F    103    C     8     T     6
+│       │    │      │     │     │     └─ Sıcaklık aralığı: -40°C / +85°C
+│       │    │      │     │     └─────── Paket: T = LQFP
+│       │    │      │     └───────────── Flash boyutu: 8 = 64 KB
+│       │    │      └─────────────────── Pin sayısı: C = 48 pin
+│       │    └────────────────────────── Ürün alt ailesi: 103 = performance line
+│       └─────────────────────────────── Ürün tipi: F = genel amaçlı
+└──────────────────────────────────────── Cihaz ailesi: STM32 = ARM tabanlı 32-bit mikrodenetleyici
 ```
 
 Daha sade haliyle:
 
 | Parça | Değer | Anlamı |
 |---|---|---|
-| STM32 | — | ST, 32-bit |
-| F | Foundation | Genel amaçlı seri |
-| 103 | — | Ürün serisi |
+| STM32 | — | ARM tabanlı 32-bit mikrodenetleyici (aile, tek parça) |
+| F | genel amaçlı | Ürün tipi |
+| 103 | performance line | Ürün alt ailesi |
 | C | 48 | Pin sayısı |
 | 8 | 64 KB | Flash boyutu |
 | T | LQFP | Paket tipi |
@@ -99,6 +100,8 @@ Daha sade haliyle:
 ---
 
 ## Paket Seçenekleri
+
+![Paket Seçenekleri — 5 paket, tamirde ölçüm kolaylığı](slides/03-paket-secenekleri.png)
 
 Aynı işlemci farklı paketlerde geliyor:
 
@@ -115,6 +118,8 @@ Blue Pill → **LQFP48** (7x7 mm, 48 bacaklı, ölçümü en kolay olanı).
 ---
 
 ## Sahada Ne Anlama Gelir?
+
+![Sahada ne anlama gelir? — STM32F103RBT6'yı kendin decode et](slides/04-sahada-ne-anlama-gelir.png)
 
 Elinde tanımadığın bir kart var. İşlemcinin üzerinde şunu görüyorsun:
 
