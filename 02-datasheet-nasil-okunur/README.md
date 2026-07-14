@@ -72,7 +72,7 @@ Bu serinin kullandığı bölümler:
 ```
 Datasheet (Doc ID 13587)
 │
-├── Features (kapak sayfası, 1-3)
+├── Features (kapak sayfası, sayfa 1)
 │   └── İşlemcinin özeti — BİZ BURADAN BAŞLIYORUZ
 │
 ├── Pinouts and Pin Description (Bölüm 3)
