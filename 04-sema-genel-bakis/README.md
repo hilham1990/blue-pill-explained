@@ -2,6 +2,8 @@
 
 > *Şema, kartın X-ray görüntüsü.*
 
+![Şema Genel Bakış — Gün 04 özet görseli](hero.png)
+
 ---
 
 ## Blue Pill Şeması
@@ -14,9 +16,7 @@ Bu şema tek sayfa. İyi haber: az ama gerçek.
 
 ## Şemada Kaç Blok Var?
 
-![STM32F103 Block Diagram](../assets/source/day04-block-diagram.png)
-
-Şemaya baktığımızda 6 ana blok görüyoruz. Her biri ayrı bir işlev üstleniyor.
+Yukarıdaki PCB şemasına baktığımızda 5 kutulanmış blok görüyoruz: Connectors, MPU, Power Supply, LEDs, Reset. Buna bir de kutusu olmayıp MPU'nun içinde duran Crystal'i (X1, X2) mantıksal bir 6. grup olarak eklersek, toplam 6 işlev grubu çıkar. Her biri ayrı bir işlev üstleniyor.
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -39,7 +39,21 @@ Bu şema tek sayfa. İyi haber: az ama gerçek.
 
 ---
 
+## Karşılaştırma: Çipin Kendi İç Mimarisi
+
+![STM32F103 Block Diagram](../assets/source/day04-block-diagram.png)
+
+Bu görsel PCB şeması değil — çipin datasheet'teki iç mimari blok diyagramı (Figure 1). Kartın üstündeki 6 fiziksel bloktan tamamen farklı bir şey gösteriyor: çipin **içinde** onlarca alt blok var (CPU, Flash, SRAM, GPIOA-E, TIM1-4, USART, SPI, I2C, ADC...).
+
+Dikkat: bu diyagram STM32F103**x8/xB** ailesinin genelini gösteriyor — üstünde yazan "Flash 128 KB" **xB** varyantına ait. Bizim karttaki C8T6'da bu **64 KB**'dir (Bölüm 03'te part number'dan okumuştuk). Datasheet'te tek bir diyagram tüm aileyi kapsadığı için böyle; kendi kartındaki gerçek değeri her zaman part number'dan okuyacağız, bu genel diyagramdan değil.
+
+---
+
 ## Her Bloğun Görevi
+
+![Beyni Besleyen ve Çalıştıran Bloklar — MPU, Power Supply, Crystal](slides/02-beyni-besleyen-bloklar.png)
+
+![Dışa Açılan ve Destek Blokları — Connectors, Reset, LEDs](slides/03-disa-acilan-bloklar.png)
 
 ### 1. MPU — U2 (STM32F103C8T6)
 Kartın beyni. İşlemcinin kendisi.
@@ -69,7 +83,7 @@ CN5: BOOT
 ---
 
 ### 4. Crystal — X1 ve X2
-X1: 8 MHz — işlemcinin ana clock'u
+X1: 8.000 MHz — işlemcinin ana clock'u
 X2: 32.768 kHz — RTC (gerçek zamanlı saat) için
 
 **Bölüm 06'da clock sistemini anlatırken bu iki kristali tam okuyacağız.**
@@ -78,8 +92,8 @@ X2: 32.768 kHz — RTC (gerçek zamanlı saat) için
 
 ### 5. Reset — S1 + R2 + C2
 S1: Reset butonu
-R2 (10kΩ): NRST pinini 3.3V'a bağlayan pull-up direnci
-C2 (100nF): Gürültü filtreleme kapasitörü
+R2 (10 kΩ): NRST pinini 3.3V'a bağlayan pull-up direnci
+C2 (100 nF): Gürültü filtreleme kapasitörü
 
 **Bölüm 07'de reset devresini okuyacağız.**
 
@@ -90,7 +104,7 @@ C2 (100nF): Gürültü filtreleme kapasitörü
 D1 (kırmızı): Power LED — kart beslendiğinde yanar
 D2 (mavi): PC13 pinine bağlı — yazılımdan kontrol edilebilir
 
-R1 ve R5 (510Ω): Akım sınırlama dirençleri.
+R1 ve R5 (510 Ω): Akım sınırlama dirençleri.
 
 ---
 
@@ -114,20 +128,24 @@ Bölüm 12 → Şema baştan sona (hepsi birlikte)
 
 ## Şema Koordinat Sistemi
 
+![Şema Koordinat Sistemi — Power Supply D1–E3, MPU A4–C8, Reset D5–E5](slides/04-sema-koordinat-sistemi.png)
+
 Bu şema bir koordinat sistemi kullanıyor.
 
 Yatayda 1–8, dikeyde A–E harfleri var.
 
 Şemada bir bileşeni belirtmek için:
-- Power Supply → **E1–E3**
-- MPU → **A4–D8**
-- Reset → **E5**
+- Power Supply → **D1–E3**
+- MPU → **A4–C8**
+- Reset → **D5–E5**
 
 Bazı bölümlerde bu koordinatlara atıfta bulunacağız.
 
 ---
 
 ## Sahada Ne Anlama Gelir?
+
+![Sahada Ne Anlama Gelir? — ilk 30 saniyede bir şemayı tarama](slides/05-sahada-ne-anlama-gelir.png)
 
 Elinde hiç görmediğin bir şema var. İlk 30 saniyede ne yaparsın?
 

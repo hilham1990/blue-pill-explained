@@ -1,0 +1,21 @@
+{
+  "day": 4,
+  "title": "Şema Genel Bakış",
+  "lesson_goal": "Öğrenci, küçük bir tek-sayfa şemaya ilk kez baktığında onu fonksiyonel bloklara ayırabilecek, her bloğun görevini bilecek, ve şemanın koordinat sistemini (harf-rakam) kullanarak belirli bir bileşeni kesin şekilde işaret edebilecek.",
+  "core_message": "Bir şema ilk bakışta kaotik görünür ama aslında birkaç fonksiyonel bloğa ayrılır. Blue Pill'de bu 6 blok var: Connectors, MPU, Power Supply, LEDs, Reset ve (MPU'nun içinde duran) Crystal. Her biri şemanın A-E/1-8 koordinat sistemiyle kesin olarak işaret edilebilir.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 85,
+  "recommended_scene_count": 5,
+  "must_show": [
+    "Şemanın 6 fonksiyonel bloğa ayrıldığı: Connectors, MPU, Power Supply, LEDs, Reset (kutulanmış) + Crystal (MPU içinde, mantıksal 6. grup)",
+    "Her bloğun görevi — layout-rules.md'nin 4-panel sınırı nedeniyle iki sahneye bölünmüş: (a) MPU + Power Supply + Crystal (kartı besleyen/çalıştıran çekirdek bloklar), (b) Connectors + Reset + LEDs (dışa açılan/destek blokları)",
+    "Şemanın A-E / 1-8 koordinat sistemi ve QA'de doğrulanmış gerçek referanslar (Power Supply D1–E3, MPU A4–C8, Reset D5–E5)",
+    "Sahada ilk kez görülen bir şemayı 30 saniyede tarama adımları (4 adım: blok sayısı → merkezi sembol → giriş/çıkış hatları → kenar periferikler)"
+  ],
+  "technical_risks": [
+    "6 bloğu tek bir sahnede/panelde göstermeye çalışmak layout-rules.md'nin 'en fazla 4 panel' kuralını ihlal eder — bu yüzden 'Her Bloğun Görevi' bilinçli olarak 2 sahneye bölündü (3+3), sahne sayısı bir önceki günün sayısına değil bu kısıta göre türetildi",
+    "Koordinat sahnesinde gösterilecek örnek hücreler (Power Supply D1–E3, MPU A4–C8, Reset D5–E5) bu turdaki QA düzeltmesiyle güncellenmiş DOĞRU değerler — sahne prompt'u yazılırken README'nin güncel haline bakılmalı, eski yanlış A4–D8/E1–E3/E5 değerlerine değil",
+    "day04-block-diagram.png (datasheet'in iç mimari diyagramı) ile PCB şemasının 6 bloğunu karıştırmamak — bu bölüm zaten gerçek görsel kullandığı için ayrı bir AI sahnesi almıyor (Bölüm 03'teki Device Overview Tablosu emsaliyle tutarlı)"
+  ],
+  "note": "Sahne sayısı (5) Bölüm 03'ün 4'üne çapalanmadan bu bölümün kendi içeriğinden türetildi: 'Her Bloğun Görevi' 6 blok içerdiği için layout-rules.md'nin 4-panel sınırını aşıyor ve 2 sahneye bölünmesi gerekti. 'Blue Pill Şeması' ve 'Karşılaştırma: Çipin Kendi İç Mimarisi' bölümleri zaten gerçek görsel kullanıyor (blue-pill-schematic-source.webp, day04-block-diagram.png), ayrı AI sahnesi almıyor. 'Şemayı Okuma Sırası' bir roadmap/önizleme, kendi başına görsel gerektirmiyor. Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

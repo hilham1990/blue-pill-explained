@@ -1,0 +1,83 @@
+{
+  "day": 4,
+  "note": "TÜM 5 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-15). Sahne sayısı (5) bu bölümün kendi içeriğinden türetildi, bkz. brief.json — 'Her Bloğun Görevi' 6 blok içerdiği için layout-rules.md'nin 4-panel sınırını aşıp 2 sahneye bölündü (scene-02, scene-03). BİLİNEN KÜÇÜK KUSUR (kabul edildi, yeniden üretilmedi): scene-02 ve scene-03'te 3 panel rozeti hepsi 'donanım yakın çekim' olduğu için mavi olmalıydı, ama model badge 2'yi teal, badge 3'ü turuncu render etti (renk-fonksiyon eşlemesi hafifçe bozuldu). Küçük bir görsel-stil sapması olduğu ve düzeltmek için görsel yeniden üretimi (maliyetli) gerektirdiği için kullanıcı talimatıyla olduğu gibi bırakıldı — ileride bu iki sahne başka bir sebeple yeniden üretilirse, prompt dosyalarına eklenen 'IMPORTANT — badge color' talimatıyla düzeltilmiş olacak. MÜHÜRLENDİ (2026-07-15).",
+  "scenes": [
+    {
+      "id": "scene-00-hero",
+      "order": 1,
+      "title": "Şema, Kartın X-ray Görüntüsü",
+      "purpose": "Bölümü açmak: şemanın tek sayfa olduğunu ve 6 fonksiyonel bloğa ayrıldığını göstermek.",
+      "visual_focus": "Blue Pill şemasının üstünde 6 bloğun (Connectors, MPU, Power Supply, LEDs, Reset + Crystal alt-notu) ince renkli çerçeveler/etiketlerle işaretlenmesi — sayı yok, sade konum vurgusu",
+      "screen_text": [
+        "GÜN 04",
+        "ŞEMA GENEL BAKIŞ",
+        "Şema, kartın X-ray görüntüsü.",
+        "6 blok, 6 görev"
+      ],
+      "duration_seconds": 15,
+      "status": "approved",
+      "asset": "hero.png",
+      "source_section": "README.md — \"Blue Pill Şeması\" + \"Şemada Kaç Blok Var?\" (satır 7-38)"
+    },
+    {
+      "id": "scene-02",
+      "order": 2,
+      "title": "Beyni Besleyen ve Çalıştıran Bloklar",
+      "purpose": "MPU, Power Supply ve Crystal bloklarının görevini göstermek (3 panel — 4-panel sınırı içinde).",
+      "visual_focus": "3 panel: MPU (STM32F103C8T6 yakın çekim), Power Supply (RT8183-B regülatör), Crystal (X1 8.000MHz + X2 32.768kHz) — mavi=donanım renk kodu",
+      "screen_text": [
+        "BEYNİ BESLEYEN VE ÇALIŞTIRAN BLOKLAR",
+        "MPU · Power Supply · Crystal"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/02-beyni-besleyen-bloklar.png",
+      "source_section": "README.md — \"Her Bloğun Görevi\" #1 MPU, #2 Power Supply, #4 Crystal (satır 52-56, 60-64, 79-83)"
+    },
+    {
+      "id": "scene-03",
+      "order": 3,
+      "title": "Dışa Açılan ve Destek Blokları",
+      "purpose": "Connectors, Reset ve LEDs bloklarının görevini göstermek (3 panel).",
+      "visual_focus": "3 panel: Connectors (CN1-CN5 pin header yakın çekim), Reset (S1 buton + R2 + C2), LEDs (D1 kırmızı + D2 mavi) — mavi=donanım renk kodu",
+      "screen_text": [
+        "DIŞA AÇILAN VE DESTEK BLOKLARI",
+        "Connectors · Reset · LEDs"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/03-disa-acilan-bloklar.png",
+      "source_section": "README.md — \"Her Bloğun Görevi\" #3 Connectors, #5 Reset, #6 LEDs (satır 68-73, 87-92, 96-101)"
+    },
+    {
+      "id": "scene-04",
+      "order": 4,
+      "title": "Şema Koordinat Sistemi",
+      "purpose": "A-E / 1-8 koordinat sistemini ve QA'de doğrulanmış gerçek referansları göstermek.",
+      "visual_focus": "Şema üzerinde ızgara çizgileri + 3 örnek highlight: Power Supply (D1–E3), MPU (A4–C8), Reset (D5–E5) — turuncu=belge/referans renk kodu",
+      "screen_text": [
+        "ŞEMA KOORDİNAT SİSTEMİ",
+        "Power Supply: D1–E3 · MPU: A4–C8 · Reset: D5–E5"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/04-sema-koordinat-sistemi.png",
+      "source_section": "README.md — \"Şema Koordinat Sistemi\" (satır 123-134, bu QA turunda düzeltilen değerlerle)"
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
+      "title": "Sahada Ne Anlama Gelir?",
+      "purpose": "İlk kez görülen bir şemayı 30 saniyede tarama adımlarını pekiştirmek.",
+      "visual_focus": "4 adımlı akış: Kaç blok var? → merkezi sembolü bul → giriş/çıkış hatlarını takip et → kenar periferikleri ara — teal=ölçüm/doğrulama renk kodu",
+      "screen_text": [
+        "SAHADA NE ANLAMA GELİR?",
+        "4 adımda tanıdık bir yapı"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/05-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\" (satır 138-151)"
+    }
+  ]
+}

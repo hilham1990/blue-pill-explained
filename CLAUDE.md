@@ -6,16 +6,17 @@ Bu dosya, yeni bir konuşma başladığında projenin nerede kaldığını hızl
 
 STM32F103C8T6 (Blue Pill) üzerinden "donanım okumayı" öğreten 12 bölümlük Türkçe müfredat. Her bölüm: `README.md` (kaynak metin) + isteğe bağlı AI-üretimi infografik slaytlar + gerçek datasheet/şema sayfaları.
 
-## Şu anki durum (2026-07-14)
+## Şu anki durum (2026-07-15)
 
 **Mühürlenmiş (metin + görsel tamamlandı, onaylandı, commit'lendi):**
 - Bölüm 01 — Neden Bu Kart? (5 sahne)
 - Bölüm 02 — Datasheet Nasıl Okunur? (5 sahne)
 - Bölüm 03 — İlk Sayfa ve Part Number (4 sahne)
+- Bölüm 04 — Şema Genel Bakış (5 sahne — `curriculum-qa` ile 3 gerçek koordinat hatası bulunup düzeltildikten sonra üretildi, bkz. aşağıdaki not)
 
-**Sırada:** Bölüm 04 — Şema Genel Bakış (henüz `brief.json`/`scenes.json` yok, sadece `README.md`).
+**Sırada:** Bölüm 05 — Power Supply (sadece `README.md` var, henüz `brief.json`/`scenes.json` yok).
 
-**Bölüm 05-12:** Sadece metin var, görsel üretimi hiç başlamadı.
+**Bölüm 06-12:** Sadece metin var, görsel üretimi hiç başlamadı.
 
 **Video render:** Hiçbir bölümde henüz yapılmadı (sadece slaytlar var).
 
@@ -34,6 +35,8 @@ STM32F103C8T6 (Blue Pill) üzerinden "donanım okumayı" öğreten 12 bölümlü
 - **Model, "açık bir belge" merkez nesne olarak istenince içini uydurma tablo/başlıkla dolduruyor.** Gün 2 hero'sunda gerçek olmayan bir device-summary tablosu ve yanlış aile başlığı (STM32F103xC/D/E — bize ait olmayan başka bir datasheet'in başlığı) üretti. Çözüm: merkeze ya kapalı kitap kapağı (sadece başlık) ya da gerçek çipin kendisi (verilmiş kesin metinle) konur; belge sayfası varsa arka planda **odak dışı, metinsiz doku** olarak kalır. Gün 3'ün 4 sahnesi bu yöntemle tek denemede sorunsuz çıktı.
 - Referans görsel her zaman `visual-system/references/approved-day01.png` — bir önceki üretilen sahne değil (zincirleme, kusur birikmesine yol açıyor).
 - Bölüm 01 hero'su tek istisna: pipeline üzerinden değil, kullanıcı tarafından doğrudan ChatGPT'den üretildi, sonra referans olarak kaydedildi.
+- **Panel rozet renklerini "blue = donanım" gibi tek kelimeyle belirtmek yetmiyor, model panel başına farklı renk (teal/turuncu) seçebiliyor.** Bölüm 04 scene-02/scene-03'te yaşandı, küçük bir sapma olduğu için yeniden üretilmedi ama sonraki bölümlerde aynı hatayı önlemek için prompt'a artık şu satır ekleniyor: "all badges/borders MUST be the exact same solid color, do NOT vary per panel" (bkz. `04-sema-genel-bakis/prompts/02-*.md` ve `03-*.md`).
+- **Şema koordinat iddiaları (`A-E`/`1-8` gibi) metne "mantıklı görünüyor" diye yazılabiliyor ama gerçek şemaya piksel-seviyesinde bakılmadan güvenilmemeli.** Bölüm 04'ün kendi README'sinde MPU/Power Supply/Reset koordinatları yanlıştı (curriculum-qa ile piksel-grid analiziyle bulunup düzeltildi — bkz. Bölüm 04 scenes.json/PRODUCTION.md). Bölüm 05-07 ve 11 hâlâ aynı riski taşıyor, her birinde bu adım tekrarlanmalı.
 
 ## Gerçek görsellerin organizasyonu
 
@@ -48,4 +51,4 @@ Yeni bir gerçek kırpma eklenecekse: `assets/source/dayNN-slug.png` olarak kayd
 
 ## Sonraki adım
 
-Bölüm 04 — Şema Genel Bakış: önce `curriculum-qa` ile metni gerçek şemaya (`assets/source/blue-pill-schematic-source.webp`) karşı doğrula (özellikle şema koordinat sistemi — Bölüm 04-07, 11'de daha önce ciddi koordinat hataları bulunmuştu, bu bölümün kendisi de aynı riski taşıyor), sonra içerikten sahne sayısını türet, onay al, üret.
+Bölüm 05 — Power Supply: önce `curriculum-qa` ile metni gerçek şemaya (`assets/source/blue-pill-schematic-source.webp`, özellikle RT8183-B güç devresi) ve datasheet'e karşı doğrula, sonra içerikten sahne sayısını türet, onay al, üret. Bölüm 06, 07, 11'de de şema-koordinat riski hâlâ kontrol edilmemiş durumda.
