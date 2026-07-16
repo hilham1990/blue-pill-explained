@@ -22,7 +22,7 @@ Baştan sona geçelim.
 USB micro-B veya 5V pin → +5V
 ```
 
-Şemada CN3 (SRP5, USB konnektörü) veya CN1'in 5V pini.
+Şemada CN3 (SRP5, USB konnektörü) veya CN2'nin 5V pini.
 
 5V hattı:
 ```
@@ -102,11 +102,14 @@ S1'e basınca NRST = LOW → reset.
 
 ```
 BOOT0 (pin 44):
-  R3 (100kΩ) → GND (varsayılan: Flash'tan başla)
-  CN5 jumper ile BOOT0 = +3.3V yapılabilir (Bootloader)
+  R3 (100kΩ) üzerinden CN5 jumper'ın ortak ucuna bağlı — R3 sabit bir pull-down DEĞİL.
+  GND ve +3.3V, jumper'a doğrudan bağlı (jumper'ın 2 seçilebilir tarafı).
+  Jumper GND tarafındaysa → Flash'tan başla (varsayılan).
+  Jumper 3.3V tarafındaysa → Bootloader.
 
 BOOT1 (PB2, pin 20):
-  R4 (100kΩ) → GND (sabit: System Memory veya SRAM dışında)
+  Aynı mantık — R4 (100kΩ) üzerinden CN5'in kendi ortak ucuna bağlı, sabit bir
+  pull-down DEĞİL. Jumper GND tarafında kalırsa System Memory/SRAM dışında kalınır.
 ```
 
 ---
@@ -120,13 +123,13 @@ Reset açılır. Boot modu okunur. Flash'tan kod çalışır.
 ## 8. USB Aktif Olur
 
 ```
-USBDM (PA11) ── R11(22Ω) ── USB D-
-USBDP (PA12) ── R10(22Ω) ── USB D+
+USBDM (PA11) ── R9(22Ω)  ── USB D-
+USBDP (PA12) ── R11(22Ω) ── USB D+
                               │
-                         R9(10kΩ) → +3.3V
+                        R10(10kΩ) → +3.3V
 ```
 
-R9 pull-up → Host "Full Speed USB cihazı var" algılar.
+R10 pull-up → Host "Full Speed USB cihazı var" algılar.
 
 ---
 
@@ -134,11 +137,11 @@ R9 pull-up → Host "Full Speed USB cihazı var" algılar.
 
 ```
 Power LED (D1, kırmızı):
-+3.3V → R1(510Ω) → D1 → GND
++3.3V → D1 → R1(510Ω) → GND
 Kart beslendiği sürece yanar.
 
 Kullanıcı LED'i (D2, mavi):
-+3.3V → R5(510Ω) → D2 → PC13
++3.3V → D2 → R5(510Ω) → PC13
 PC13 = LOW → LED yanar
 PC13 = HIGH → LED söner
 ```
@@ -148,9 +151,13 @@ PC13 = HIGH → LED söner
 ## 10. GPIO Pinleri Dışarıya Çıkar
 
 ```
-CN1 (SRP20): PA0–PA15, PB0–PB1, +3.3V, GND, +5V
-CN2 (SRP20): PB3–PB15, GND
+CN1 (SRP20): PA0-PA7, PB0/PB1/PB10/PB11, PC13-PC15, 3VB, +3.3V, GND
+CN2 (SRP20): PA8-PA12/PA15, PB3-PB9/PB12-PB15, +3.3V, +5V, GND
 ```
+
+(PA13/PA14 ve PB2 bu iki konnektörde YOK — PA13/PA14 CN4'te (SWD), PB2 CN5'in BOOT1 ucunda
+ayrı çıkıyor. Bu yüzden pin aralıkları düzgün 0-15 sırasıyla gitmiyor, CN1/CN2 arasında
+bölünmüş durumda.)
 
 Bu konnektörler üzerinden:
 - Sensör bağlanabilir
@@ -164,8 +171,8 @@ Bu konnektörler üzerinden:
 ```
 CN4 (SRP4):
 Pin 1 → +3.3V
-Pin 2 → DCLK (PA14/SWCLK)
-Pin 3 → DIO  (PA13/SWDIO)
+Pin 2 → DIO  (PA13/SWDIO)
+Pin 3 → DCLK (PA14/SWCLK)
 Pin 4 → GND
 ```
 
@@ -229,7 +236,7 @@ Bu noktaya gelen biri artık:
 
 İşlemci değişir. Sorular değişmez.
 
-> *Önce anlamak, sonra ölçmek.*
+> *Usta tahmin etmez, ölçer.*
 
 ---
 
