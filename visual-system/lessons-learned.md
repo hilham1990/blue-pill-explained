@@ -146,6 +146,15 @@ düşünülebilir (bkz. `curriculum-slide-gen/SKILL.md` escape-hatch madde 5).
 
 ---
 
+### [Bölüm 08 / scene-04] Yeni bulunan bir kural, ondan ÖNCE üretilmiş bir sahneye hiç uygulanmamıştı (2026-07-16)
+
+**Ne oldu:** scene-05'in 2. üretiminde "merkez içerik asla renkli çerçeve içine alınmaz" kuralı bulunup `layout-rules.md`'ye eklenmişti. Ama scene-04, scene-05'ten ÖNCE (aynı gün, kural yazılmadan önce) üretilmişti ve merkez USB şemasının etrafında tam da bu türden istenmeyen bir turuncu çerçeve vardı — kural yazıldıktan sonra scene-04 hiç geriye dönüp kontrol edilmedi, kullanıcı bir sonraki oturumda fark edip sordu.
+**Neden oldu:** Yeni bir görsel-üretim kuralı bulunduğunda iş akışı sadece "bundan sonraki sahnelere uygula" diyordu — aynı bölümün, kuraldan ÖNCE zaten üretilmiş sahnelerini o yeni kurala karşı geriye dönük kontrol etme adımı yoktu. Bu, "Bölüm 01-05 footer/numaralandırma" gibi BİLİNÇLİ "ileriye dönük standart" kararlarından farklı — o kararlar kullanıcının kasıtlı seçimiydi (eski görselleri değiştirmeye değmez), bu ise fark edilmeden atlanmış gerçek bir kusurdu.
+**Önleme kuralı:** Bir bölüm içinde (henüz mühürlenmemiş/aktif üretimdeyken) yeni bir görsel-üretim kusuru bulunup `layout-rules.md`'ye kural olarak eklendiğinde, AYNI bölümün o kuraldan önce üretilmiş TÜM sahneleri de o kurala karşı tek tek gözden geçirilir — sadece "bundan sonra" değil, "bu bölümde geriye dönük de" kontrol edilir. Bölüm mühürlendikten (MÜHÜRLENDİ notu düşüldükten) sonra bulunan kurallar için bu geriye dönük kontrol kullanıcıya sorulur (bkz. Bölüm 01-05 footer örneği), ama bölüm hâlâ aktif üretimdeyken atlanmaz.
+**Durum:** çözüldü — scene-04, "merkez içerik çerçevesiz" satırı prompt'a eklenerek 2. kez üretildi, tek denemede düzeldi.
+
+---
+
 ### [Bölüm 01/04/05] Dekoratif ikincil metin/kod (bilinçli kabul edilen risk)
 
 **Ne oldu:** Model, çip fotoğraflarının üzerine gerçek olmayan ama "gerçekçi görünen" ikincil satırlar (örn. "GJ7E7P1", "GQW 8G6NZ" gibi uydurma lot/batch kodları) veya kenarlarda dekoratif pin etiketleri ekliyor.

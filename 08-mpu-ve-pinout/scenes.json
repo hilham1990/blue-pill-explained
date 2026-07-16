@@ -1,6 +1,6 @@
 {
   "day": 8,
-  "note": "TÜM 7 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (7) bu bölümün kendi 7 içerik başlığından türetildi, bkz. brief.json. curriculum-qa 'Şemada MPU Bloğu — U2' bölümünün Sol/Sağ/Üst şema-yerleşim iddiasının yanlış olduğunu buldu (Port B'yi sağa, beslemeyi olmayan bir 'üst' gruba koyuyordu; gerçekte Port A+B+C13-15 hepsi sol sütunda, özel pinler+besleme sağda, üst yok) — README+brief.json+scenes.json+scene-03 görseli düzeltildi. scene-03, 3 denemede (v1=eski yanlış panel yapısı, v2/v3=düzeltilmiş) üretildi; v2/v3'te panel metinleri doğru çıktı ama merkez ~48 satırlık pin-listesinde her ikisinde de farklı küçük rakam/etiket bozukluğu çıktı (pin 20/PB2 satırı kayboldu, bir etiket tekrarlandı) — kullanıcı kararıyla v3 kabul edildi, bu teaching-critical olmayan dekoratif gürültü sayıldı (bkz. lessons-learned.md). scene-06 (Pin İsimlendirme Mantığı) ve scene-07 (Sahada Ne Anlama Gelir, gerçek reset/BOOT jumper fotoğrafı real-reset-boot-jumper-crop.png referans alınarak) ilk denemede temiz çıktı. README.md'ye tüm 7 görsel (hero + slides/02-07) ilgili bölüm başlıklarının hemen altına gömüldü — önceki taslakta hiç gömülü değildi, diğer bölümlerin (01-07) standardına uyduruldu. Video render henüz yapılmadı. MÜHÜRLENDİ (2026-07-16).",
+  "note": "TÜM 7 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16, scene-04 mühürlendikten sonra bulunan çerçeve kusuruyla 2. kez üretilip düzeltildi — bkz. lessons-learned.md). Sahne sayısı (7) bu bölümün kendi 7 içerik başlığından türetildi, bkz. brief.json. curriculum-qa 'Şemada MPU Bloğu — U2' bölümünün Sol/Sağ/Üst şema-yerleşim iddiasının yanlış olduğunu buldu (Port B'yi sağa, beslemeyi olmayan bir 'üst' gruba koyuyordu; gerçekte Port A+B+C13-15 hepsi sol sütunda, özel pinler+besleme sağda, üst yok) — README+brief.json+scenes.json+scene-03 görseli düzeltildi. scene-03, 3 denemede (v1=eski yanlış panel yapısı, v2/v3=düzeltilmiş) üretildi; v2/v3'te panel metinleri doğru çıktı ama merkez ~48 satırlık pin-listesinde her ikisinde de farklı küçük rakam/etiket bozukluğu çıktı (pin 20/PB2 satırı kayboldu, bir etiket tekrarlandı) — kullanıcı kararıyla v3 kabul edildi, bu teaching-critical olmayan dekoratif gürültü sayıldı (bkz. lessons-learned.md). scene-06 (Pin İsimlendirme Mantığı) ve scene-07 (Sahada Ne Anlama Gelir, gerçek reset/BOOT jumper fotoğrafı real-reset-boot-jumper-crop.png referans alınarak) ilk denemede temiz çıktı. README.md'ye tüm 7 görsel (hero + slides/02-07) ilgili bölüm başlıklarının hemen altına gömüldü — önceki taslakta hiç gömülü değildi, diğer bölümlerin (01-07) standardına uyduruldu. Video render henüz yapılmadı. MÜHÜRLENDİ (2026-07-16).",
   "scenes": [
     {
       "id": "scene-01-hero",
@@ -61,7 +61,7 @@
       "duration_seconds": 16,
       "status": "approved",
       "asset": "slides/04-usb-pinleri.png",
-      "source_section": "README.md — \"USB Pinleri\" (satır 82-97, QA'de R-etiketleri düzeltildikten sonra)"
+      "source_section": "README.md — \"USB Pinleri\" (satır 82-97, QA'de R-etiketleri düzeltildikten sonra); görsel 2026-07-16'da 2. kez üretildi — ilk üretim scene-05'in daha sonra bulduğu 'merkez içerik çerçevesiz olmalı' kuralından ÖNCE yapılmıştı, kural geriye dönük uygulanıp tek denemede düzeltildi"
     },
     {
       "id": "scene-05",

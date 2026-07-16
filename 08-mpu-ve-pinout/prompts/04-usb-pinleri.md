@@ -1,6 +1,10 @@
 # Scene: scene-04 — USB Pinleri
 
-**Durum:** Üretiliyor (2026-07-16).
+**Durum:** Yeniden üretiliyor (2026-07-16, curriculum-qa düzeltmesi — ilk üretimde merkez
+şemanın etrafına istenmeyen turuncu bir çerçeve/kutu çizilmişti, `layout-rules.md`'nin "merkez
+içerik asla renkli çerçeve içine alınmaz" kuralını ihlal ediyordu. Bu kural scene-05'in 2.
+üretiminde bulunup yazılmıştı ama scene-04 ondan önce üretildiği için kurala tabi olmamıştı —
+şimdi uygulanıyor.)
 
 **Gerçek görsel analizi (madde 4c):** Gerçek şemadan (`assets/source/blue-pill-schematic-source.webp`)
 USB direnç ağı sıkı crop'landı: `visual-system/references/real-usb-crop.png` — USBDM → R9
@@ -26,7 +30,10 @@ through a resistor labeled "R11 22r" to a node labeled "A12" (pin 33), with a th
 labeled "R10 10k" branching upward from the A12/USBDP node to a "+3.3V" rail marker. Thin
 black schematic lines, monospace-style labels, white background. This must look like a real
 schematic drawing, NOT a photograph. Copy the exact resistor positions and labels from the
-attached reference — do not swap which resistor connects to which line.
+attached reference — do not swap which resistor connects to which line. The central content
+must NOT have any colored border, box, or frame around it — it sits directly on the plain
+background, exactly like the side panels' connector lines terminate on empty space, not on a
+drawn boundary line.
 
 Four NUMBERED panels (large colored number badge 1,2,3,4 top-left of each panel), each
 connected with a thin matching-color line to the schematic, each panel exactly one cohesive
