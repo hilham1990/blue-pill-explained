@@ -20,6 +20,8 @@
 | Gerilim regülatörü | **LDO** (Low Dropout Regulator, parantez içinde açık hali) | Bölüm 05'te RT8183-B için kullanıldı |
 | Clock kaynakları | **HSE**, **HSI**, **PLL**, **LSE**, **LSI** | Kısaltmalar değişmez, Bölüm 06'da tanımlandı |
 | Gerçek zamanlı saat | **RTC** (Real-Time Clock) | Türkçeye çevrilmiyor |
+| Reset kaynakları | **POR**, **PDR**, **NRST**, **IWDG**, **WWDG** | Bölüm 07'de tanımlandı. **"BOR" (Brown-out Reset) KULLANILMAZ** — gerçek STM32F103 datasheet'inde bu terim hiç geçmiyor (tam metin taraması ile doğrulandı), gerilim düşüşü PDR tarafından karşılanıyor |
+| Gerilim izleyici | **PVD** (Programmable Voltage Detector) | Bir reset kaynağı DEĞİL — yazılıma interrupt üretir, otomatik reset yapmaz. Bu ayrım her geçtiği yerde netleştirilir |
 
 ## Sabit etiketler (her slaytta aynı yazılır)
 

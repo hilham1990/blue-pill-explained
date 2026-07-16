@@ -41,7 +41,7 @@ STM32F103C8T6 (Blue Pill) üzerinden "donanım okumayı" öğreten 12 bölümlü
 
 **Tek doğruluk kaynağı: [`visual-system/lessons-learned.md`](visual-system/lessons-learned.md).** Yeni bir bölümün sahne prompt'larını yazmadan önce o dosyayı baştan sona oku, ilgili her önleme kuralını uygula. Yeni bir gerçek kusur bulursan oraya (buraya değil) ekle.
 
-Metin/koordinat tarafındaki (görsel-üretim dışı) risk: **şema koordinat iddiaları (`A-E`/`1-8` gibi) metne "mantıklı görünüyor" diye yazılabiliyor ama gerçek şemaya piksel-seviyesinde bakılmadan güvenilmemeli.** Bölüm 04 ve Bölüm 05'in kendi README'lerinde bağımsız olarak aynı Power Supply koordinat hatası (E1-E3 yerine D1-E3) bulundu — curriculum-qa ile piksel-grid analiziyle düzeltildi. Bölüm 06, 07, 11 hâlâ kontrol edilmedi, aynı riski taşıyor.
+Metin/koordinat tarafındaki (görsel-üretim dışı) risk: **şema koordinat iddiaları (`A-E`/`1-8` gibi) metne "mantıklı görünüyor" diye yazılabiliyor ama gerçek şemaya piksel-seviyesinde bakılmadan güvenilmemeli.** Bölüm 04 ve Bölüm 05'in kendi README'lerinde bağımsız olarak aynı Power Supply koordinat hatası (E1-E3 yerine D1-E3) bulundu; Bölüm 07'de de Reset koordinatı (E5 yerine D5-E5) aynı şekilde yanlıştı — hepsi curriculum-qa ile piksel-grid analiziyle düzeltildi. Bölüm 06'nın kendi koordinatı (X1 → B7) ise ilk kez doğru çıktı. Bölüm 11 hâlâ kontrol edilmedi, aynı riski taşıyor.
 
 ## Gerçek görsellerin organizasyonu
 
