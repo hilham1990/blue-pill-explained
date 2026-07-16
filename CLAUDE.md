@@ -6,17 +6,18 @@ Bu dosya, yeni bir konuşma başladığında projenin nerede kaldığını hızl
 
 STM32F103C8T6 (Blue Pill) üzerinden "donanım okumayı" öğreten 12 bölümlük Türkçe müfredat. Her bölüm: `README.md` (kaynak metin) + isteğe bağlı AI-üretimi infografik slaytlar + gerçek datasheet/şema sayfaları.
 
-## Şu anki durum (2026-07-15)
+## Şu anki durum (2026-07-16)
 
 **Mühürlenmiş (metin + görsel tamamlandı, onaylandı, commit'lendi):**
 - Bölüm 01 — Neden Bu Kart? (5 sahne)
 - Bölüm 02 — Datasheet Nasıl Okunur? (5 sahne)
 - Bölüm 03 — İlk Sayfa ve Part Number (4 sahne)
 - Bölüm 04 — Şema Genel Bakış (5 sahne — `curriculum-qa` ile 3 gerçek koordinat hatası bulunup düzeltildikten sonra üretildi, bkz. aşağıdaki not)
+- Bölüm 05 — Power Supply (6 sahne — `curriculum-qa` ile 3 gerçek hata bulundu (koordinat + iki yanlış pull-up direnç iddiası), ve ilk kez "gerçek görsel analizi + bileşen-tutarlılığı referansı" mekanizması kullanıldı, bkz. madde 4c/aşağıdaki not)
 
-**Sırada:** Bölüm 05 — Power Supply (sadece `README.md` var, henüz `brief.json`/`scenes.json` yok).
+**Sırada:** Bölüm 06 — Clock Sistemi (sadece `README.md` var, henüz `brief.json`/`scenes.json` yok).
 
-**Bölüm 06-12:** Sadece metin var, görsel üretimi hiç başlamadı.
+**Bölüm 07-12:** Sadece metin var, görsel üretimi hiç başlamadı.
 
 **Video render:** Hiçbir bölümde henüz yapılmadı (sadece slaytlar var).
 
@@ -26,17 +27,18 @@ STM32F103C8T6 (Blue Pill) üzerinden "donanım okumayı" öğreten 12 bölümlü
 2. **Sahne sayısını o bölümün kendi metninden türet**, bir önceki günün sayısına çapalanma. `visual-system/layout-rules.md`'deki kategorilere (1 ana fikir / 1 teknik karşılaştırma / 1 sonuç-sentez) göre `##` başlıklarını tek tek say. Gün 1 ve 2'nin 5-6 sahnesi, Gün 3'ün 4 sahnesi — sayı içerikten çıktı, kopyalanmadı.
 3. **Sahne sırası = README'nin yukarıdan-aşağı bölüm sırası.** Hero, README'nin ilk bölümünü açar. Bunu bir kez ihlal edip (Gün 2'de hero'yu "baştan sona okuma" yapıp) düzeltmek zorunda kaldık.
 4. **Plan onaylanmadan görsel üretilmez.** `brief.json` + `scenes.json` yazılır, kullanıcıya sahne sayısı/içeriği gösterilir, "evet" denmeden `curriculum-slide-gen` çalıştırılmaz.
-5. Görsel üretimi `.claude/skills/curriculum-slide-gen/SKILL.md`'deki akışla yapılır (fal.ai `openai/gpt-image-2/edit`, her zaman `visual-system/references/approved-day01.png` referans alınır, asla önceki bir sahne değil).
+4b. **Herhangi bir `prompts/NN-slug.md` yazmadan önce `visual-system/lessons-learned.md`'yi baştan sona oku** ve ilgili her önleme kuralını o sahnenin prompt'una işle — reaktif değil, proaktif.
+4c. **Gerçek görsel analizi (prompt yazmadan önce, her sahnenin merkez donanımı için).** O sahnenin merkezinde gösterilecek gerçek bileşen için `assets/source/`'da (gerçek kart fotoğrafı `blue-pill-card-exact-cutout.png`, gerçek şema `blue-pill-schematic-source.webp`, pinout `blue-pill-pinout-source.webp`, ST'nin resmi `stm32f-overview.png`'si) bir görsel var mı diye bak. Varsa zoom'la incele, paket tipini/pin sayısını/rengini/gerçek yerleşimini not al ve bu somut bilgileri prompt'a yaz — "muhtemelen SOT-23" gibi doğrulanmamış bir varsayımla yazma. **Yoksa** (ör. RT8183-B'nin fiziksel paketi hiçbir gerçek fotoğrafımızda görünmüyor, muhtemelen kartın alt yüzünde — bkz. Bölüm 05 lessons-learned girdisi), bunu prompt'ta açıkça "gerçek kaynağı doğrulanmamış, tutarlılık için ilk üretilen sahneye sabitlenmiş" diye not et ve o bölümün İLK sahnesinde neye karar verildiyse (paket/pin sayısı) sonraki tüm sahnelerde birebir aynısını tekrar yaz — sahneler arasında sessizce değişmesin.
+5. Görsel üretimi `.claude/skills/curriculum-slide-gen/SKILL.md`'deki akışla yapılır (`tools/generate-slide.py <prompt.md> <output.png> [--ref EK_GÖRSEL...]`, fal.ai `openai/gpt-image-2/edit`). Birincil stil referansı HER ZAMAN `visual-system/references/approved-day01.png` (asla önceki bir sahne değil). Bir bileşenin gerçek fiziksel görünümünü kilitlemek için `--ref` ile İKİNCİL bir görsel de eklenebilir — ya gerçek bir kaynak fotoğrafı (`assets/source/...`) ya da AYNI bölümün daha önce onaylanmış bir sahnesinden kırpılmış bir bileşen crop'u (bu, "önceki sahneyi referans alma" kuralının ihlali değil — o kural birincil stil referansı için, bu ise dar kapsamlı, tek bir bileşenin fiziksel tutarlılığı için).
 6. **Her üretilen görsel zoom ile piksel seviyesinde kontrol edilir**, uzaktan bakıp onaylanmaz — özellikle sayılar/rakamlar (Gün 2 hero'sunda uydurma bir device-summary tablosu çıkmıştı, bundan sonra "merkeze açık bir belge koyma, tabloyu modele yazdırma" kuralı yerleşti; bkz. aşağıdaki "Bilinen görsel-üretim riskleri").
 7. Bölüm bitince `scenes.json`'a "MÜHÜRLENDİ" notu eklenir, `PRODUCTION.md` güncellenir, commit + push (kullanıcı onayıyla).
+8. **Sahne numaralandırması `scene-01-hero`'dan başlayıp sırayla devam eder (01,02,03...), boşluk bırakılmaz.** Bölüm 01'de bir sahne (`scene-01`, "Bu Seri Ne Öğretiyor?") hero ile içerik tekrarı yüzünden silinmiş ve numaralar kaydırılmadan `scene-00-hero, scene-02, scene-03...` şeklinde bırakılmıştı; Bölüm 02-04 bu boşluklu diziyi (hiç scene-01 olmadığı halde) düşünmeden kopyaladı. Bölüm 05'te kullanıcı bunu fark edip düzeltti — **Bölüm 05'ten itibaren** numaralandırma `scene-01-hero, scene-02, scene-03...` şeklinde boşluksuz. Bölüm 01-04'ün kendi dosyaları (mühürlenmiş, commit'lenmiş) geriye dönük değiştirilmedi.
 
 ## Bilinen görsel-üretim riskleri (tekrarlama)
 
-- **Model, "açık bir belge" merkez nesne olarak istenince içini uydurma tablo/başlıkla dolduruyor.** Gün 2 hero'sunda gerçek olmayan bir device-summary tablosu ve yanlış aile başlığı (STM32F103xC/D/E — bize ait olmayan başka bir datasheet'in başlığı) üretti. Çözüm: merkeze ya kapalı kitap kapağı (sadece başlık) ya da gerçek çipin kendisi (verilmiş kesin metinle) konur; belge sayfası varsa arka planda **odak dışı, metinsiz doku** olarak kalır. Gün 3'ün 4 sahnesi bu yöntemle tek denemede sorunsuz çıktı.
-- Referans görsel her zaman `visual-system/references/approved-day01.png` — bir önceki üretilen sahne değil (zincirleme, kusur birikmesine yol açıyor).
-- Bölüm 01 hero'su tek istisna: pipeline üzerinden değil, kullanıcı tarafından doğrudan ChatGPT'den üretildi, sonra referans olarak kaydedildi.
-- **Panel rozet renklerini "blue = donanım" gibi tek kelimeyle belirtmek yetmiyor, model panel başına farklı renk (teal/turuncu) seçebiliyor.** Bölüm 04 scene-02/scene-03'te yaşandı, küçük bir sapma olduğu için yeniden üretilmedi ama sonraki bölümlerde aynı hatayı önlemek için prompt'a artık şu satır ekleniyor: "all badges/borders MUST be the exact same solid color, do NOT vary per panel" (bkz. `04-sema-genel-bakis/prompts/02-*.md` ve `03-*.md`).
-- **Şema koordinat iddiaları (`A-E`/`1-8` gibi) metne "mantıklı görünüyor" diye yazılabiliyor ama gerçek şemaya piksel-seviyesinde bakılmadan güvenilmemeli.** Bölüm 04'ün kendi README'sinde MPU/Power Supply/Reset koordinatları yanlıştı (curriculum-qa ile piksel-grid analiziyle bulunup düzeltildi — bkz. Bölüm 04 scenes.json/PRODUCTION.md). Bölüm 05-07 ve 11 hâlâ aynı riski taşıyor, her birinde bu adım tekrarlanmalı.
+**Tek doğruluk kaynağı: [`visual-system/lessons-learned.md`](visual-system/lessons-learned.md).** Yeni bir bölümün sahne prompt'larını yazmadan önce o dosyayı baştan sona oku, ilgili her önleme kuralını uygula. Yeni bir gerçek kusur bulursan oraya (buraya değil) ekle.
+
+Metin/koordinat tarafındaki (görsel-üretim dışı) risk: **şema koordinat iddiaları (`A-E`/`1-8` gibi) metne "mantıklı görünüyor" diye yazılabiliyor ama gerçek şemaya piksel-seviyesinde bakılmadan güvenilmemeli.** Bölüm 04 ve Bölüm 05'in kendi README'lerinde bağımsız olarak aynı Power Supply koordinat hatası (E1-E3 yerine D1-E3) bulundu — curriculum-qa ile piksel-grid analiziyle düzeltildi. Bölüm 06, 07, 11 hâlâ kontrol edilmedi, aynı riski taşıyor.
 
 ## Gerçek görsellerin organizasyonu
 
@@ -46,9 +48,13 @@ Yeni bir gerçek kırpma eklenecekse: `assets/source/dayNN-slug.png` olarak kayd
 
 ## Kalıcı skill'ler (`.claude/skills/`)
 
-- **`curriculum-slide-gen`** — bir bölümün görsellerini üretme akışı (prompt yazımı, fal.ai çağrısı, dosya yerleşimi, sert kurallar).
+- **`curriculum-slide-gen`** — bir bölümün görsellerini üretme akışı (prompt yazımı, fal.ai çağrısı, dosya yerleşimi, sert kurallar). Prompt yazmadan önce `visual-system/lessons-learned.md`'yi okumayı zorunlu koşar.
 - **`curriculum-qa`** — bir bölümü son kez gözden geçirme akışı (yapısal çapraz kontrol → gerçek kaynak doğrulama → görsel inceleme → dil taraması). Pedagojik/faktüel hatalar her zaman görsel/stil bulgularından önce raporlanır.
+
+## Görsel-üretim hata kaydı
+
+**[`visual-system/lessons-learned.md`](visual-system/lessons-learned.md)** — geçmiş bölümlerde bulunan her gerçek görsel-üretim kusurunun (ne oldu / neden oldu / önleme kuralı) kalıcı, büyüyen kaydı. Yeni bir bölümün prompt'larını yazmadan önce bu dosya baştan sona okunur; yeni bir kusur bulunduğunda buraya (CLAUDE.md'ye değil) yeni bir madde eklenir.
 
 ## Sonraki adım
 
-Bölüm 05 — Power Supply: önce `curriculum-qa` ile metni gerçek şemaya (`assets/source/blue-pill-schematic-source.webp`, özellikle RT8183-B güç devresi) ve datasheet'e karşı doğrula, sonra içerikten sahne sayısını türet, onay al, üret. Bölüm 06, 07, 11'de de şema-koordinat riski hâlâ kontrol edilmemiş durumda.
+Bölüm 06 — Clock Sistemi: önce `curriculum-qa` ile metni gerçek şemaya (`assets/source/blue-pill-schematic-source.webp`, özellikle X1/X2 kristalleri ve PLL) ve datasheet'e karşı doğrula, sonra içerikten sahne sayısını türet, onay al, üret. Bu bölüm X1/X2'yi görsel olarak da içerecek — `assets/source/blue-pill-card-exact-cutout.png` gerçek fotoğrafında X1 (8.000 MHz, oval metal-kan paket) ve X2 (32.768K, 4 pinli SMD paket) net görünüyor, madde 4c'deki gerçek-görsel-analizi adımını burada mutlaka real-photo crop'uyla uygula (Bölüm 05'teki RT8183-B gibi tahmine dayanma). Bölüm 07, 11'de de şema-koordinat riski hâlâ kontrol edilmemiş durumda.

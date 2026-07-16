@@ -1,0 +1,98 @@
+{
+  "day": 5,
+  "note": "TÜM 6 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (6) bu bölümün kendi içeriğinden türetildi, bkz. brief.json — '3.3V Nereye Gidiyor?'ın 6 dallı listesi 3 mantıksal gruba toplanarak tek sahnede kaldı (Bölüm 04'teki gibi 2 sahneye bölünmesi gerekmedi). Sahne numaralandırması bu bölümden itibaren scene-01-hero'dan başlayıp boşluksuz devam ediyor (bkz. CLAUDE.md). scene-03'te (Kapasitörler) ilk üretimde RT8183-B yanlış pakette (10 pinli) çıktı; hero'nun regülatör crop'u `tools/generate-slide.py --ref` ile ikincil referans verilerek doğru SOT-23-5 pakette yeniden üretildi — bu, kalıcı 'gerçek görsel analizi + bileşen-tutarlılığı referansı' mekanizmasının ilk uygulaması oldu (bkz. visual-system/lessons-learned.md ve CLAUDE.md madde 4c). MÜHÜRLENDİ (2026-07-16).",
+  "scenes": [
+    {
+      "id": "scene-01-hero",
+      "order": 1,
+      "title": "İşlemci Beslenmeden Çalışmaz",
+      "purpose": "Bölümü açmak: RT8183-B'nin 5V→3.3V görevini ve bu desenin diğer MCU ailelerinde de aynı olduğunu göstermek.",
+      "visual_focus": "RT8183-B regülatör IC yakın çekim, girişte 5V etiketi, çıkışta 3.3V etiketi, akış oku ile; yan panelde 'Bu desen evrensel' rozetiyle ESP32/RP2040/nRF52/GD32 isimleri",
+      "screen_text": [
+        "GÜN 05",
+        "POWER SUPPLY",
+        "İşlemci beslenmeden çalışmaz.",
+        "Ama her şey aynı gerilimde çalışmaz."
+      ],
+      "duration_seconds": 16,
+      "status": "approved",
+      "asset": "hero.png",
+      "source_section": "README.md — \"Şemada Power Supply Bloğu\" + \"RT8183-B Nedir?\" + genellenebilirlik notu (satır 7-50)"
+    },
+    {
+      "id": "scene-02",
+      "order": 2,
+      "title": "Pinlerin Görevi",
+      "purpose": "RT8183-B'nin 5 pininin görevini göstermek (4 panel — VIN, VOUT, EN, ve BP+GND birleşik).",
+      "visual_focus": "RT8183-B IC yakın çekim, 4 panel: VIN (+5V giriş), VOUT (+3.3V çıkış), EN (+5V düğümüne bağlı, aktif), BP+GND (C15 bypass + toprak referansı birlikte)",
+      "screen_text": [
+        "PİNLERİN GÖREVİ",
+        "5 pin, 5 görev"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/02-pinlerin-gorevi.png",
+      "source_section": "README.md — \"Pinlerin Görevi\" (satır 54-62, QA'de doğrulanmış EN/BP bağlantılarıyla)"
+    },
+    {
+      "id": "scene-03",
+      "order": 3,
+      "title": "Kapasitörler Neden Var?",
+      "purpose": "5 kapasitörün 3 fonksiyonel grubunu göstermek.",
+      "visual_focus": "3 panel: Giriş tarafı (C7 100n + C5 10u), Çıkış tarafı (C6 10u + C10 100n), Bypass (C15 100n)",
+      "screen_text": [
+        "KAPASİTÖRLER NEDEN VAR?",
+        "Giriş · Çıkış · Bypass"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/03-kapasitorler.png",
+      "source_section": "README.md — \"Kapasitörler Neden Var?\" (satır 66-79)"
+    },
+    {
+      "id": "scene-04",
+      "order": 4,
+      "title": "3.3V Nereye Gidiyor?",
+      "purpose": "3.3V hattının 3 ana varış noktasını göstermek (6 dallı liste 3 mantıksal gruba toplandı).",
+      "visual_focus": "3 panel — akış/ok takibi görseli (dağılım odaklı, besleme-pinleri sahnesinden görsel olarak farklılaştırılmış): MPU Beslemesi (VDD_1-3 + VDDA), Pull-up Dirençleri (R10 USB D+ — R9/R11 DEĞİL, R3 BOOT0), Dışa Açılan Noktalar (CN1/CN2 + LED devresi)",
+      "screen_text": [
+        "3.3V NEREYE GİDİYOR?",
+        "MPU · Pull-up'lar · Dış Bağlantılar"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/04-3v3-nereye-gidiyor.png",
+      "source_section": "README.md — \"3.3V Nereye Gidiyor?\" (satır 83-96, R9/R3 düzeltmeleriyle)"
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
+      "title": "STM32'nin Besleme Pinleri",
+      "purpose": "Dijital/analog besleme ayrımının nedenini göstermek (besleme-pinleri odaklı görsel, dağılım değil ayrım vurgusu).",
+      "visual_focus": "3 panel — dijital/analog ayrım şeması görseli (scene-04'ten görsel olarak farklı, bir 'bölünmüş devre' çizimi): Dijital (VDD_1-3 + VSS_1-3), Analog (VDDA + VSSA + C4/C8 filtre), VBAT (RTC + yedek bellek)",
+      "screen_text": [
+        "STM32'NİN BESLEME PİNLERİ",
+        "Dijital · Analog · VBAT"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/05-besleme-pinleri.png",
+      "source_section": "README.md — \"STM32'nin Besleme Pinleri\" (satır 100-114)"
+    },
+    {
+      "id": "scene-06",
+      "order": 6,
+      "title": "Sahada Ne Anlama Gelir?",
+      "purpose": "Kart açılmadığında 3 ölçümlü teşhis sırasını pekiştirmek.",
+      "visual_focus": "3 adımlı akış: +5V girişi var mı (CN1) → VOUT 3.3V mi (RT8183-B) → MPU'nun VDD_1 pini 3.3V görüyor mu — teal=ölçüm/doğrulama renk kodu",
+      "screen_text": [
+        "SAHADA NE ANLAMA GELİR?",
+        "3 ölçüm, besleme zinciri"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/06-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\" (satır 118-133)"
+    }
+  ]
+}

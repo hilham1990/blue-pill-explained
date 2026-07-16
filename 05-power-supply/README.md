@@ -2,6 +2,8 @@
 
 > *İşlemci beslenmeden çalışmaz. Ama her şey aynı gerilimde çalışmaz.*
 
+![Power Supply — Gün 05 özet görseli](hero.png)
+
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
@@ -16,7 +18,7 @@
 
 ## Şemada Power Supply Bloğu
 
-Şemada sol alt köşe — **E1–E3 koordinatları**.
+Şemada sol alt köşe — **D1–E3 koordinatları**.
 
 ![Power Supply Scheme](../assets/source/day05-power-supply-scheme.png)
 
@@ -53,6 +55,8 @@ RT8183-B bu dönüşümü yapıyor.
 
 ## Pinlerin Görevi
 
+![Pinlerin Görevi — VIN, VOUT, EN, GND+BP](slides/02-pinlerin-gorevi.png)
+
 | Pin | Bağlantı | Görevi |
 |---|---|---|
 | VIN | +5V | Giriş gerilimi |
@@ -64,6 +68,8 @@ RT8183-B bu dönüşümü yapıyor.
 ---
 
 ## Kapasitörler Neden Var?
+
+![Kapasitörler Neden Var? — Giriş, Çıkış, Bypass](slides/03-kapasitorler.png)
 
 Şemada 5 kapasitör görüyoruz. Neden bu kadar?
 
@@ -82,6 +88,8 @@ RT8183-B'nin dahili referans devresini gürültüden koruyor.
 
 ## 3.3V Nereye Gidiyor?
 
+![3.3V Nereye Gidiyor? — MPU, Pull-up Dirençleri, Dış Bağlantılar](slides/04-3v3-nereye-gidiyor.png)
+
 Şemada 3.3V çıkışını takip edersek:
 
 ```
@@ -89,8 +97,8 @@ RT8183-B VOUT (+3.3V)
 │
 ├── U2 VDD_1, VDD_2, VDD_3 pinleri (MPU dijital besleme)
 ├── U2 VDDA pini (MPU analog besleme — ADC için)
-├── R9, R10 (USB pull-up dirençleri)
-├── R3 (BOOT0 pull-up)
+├── R10 (USB D+ pull-up direnci, 10 kΩ — R9/R11 sadece USBDM/USBDP hattında 22 Ω'luk seri dirençler, 3.3V'a bağlı değiller)
+├── R3 (100 kΩ — BOOT0 pinini CN5 jumper'ının ortak ucuna bağlayan seri direnç; jumper +3.3V tarafına takılırsa BOOT0 çekilir)
 ├── CN1/CN2 +3.3V pinleri (dışarıya çıkış)
 └── LED devresi
 ```
@@ -98,6 +106,8 @@ RT8183-B VOUT (+3.3V)
 ---
 
 ## STM32'nin Besleme Pinleri
+
+![STM32'nin Besleme Pinleri — Dijital, Analog, VBAT](slides/05-besleme-pinleri.png)
 
 İşlemcide tek bir besleme pini yok. Birden fazla:
 
@@ -116,6 +126,8 @@ Neden ayrı besleme? Analog devreler dijital gürültüye duyarlı. ADC'nin doğ
 ---
 
 ## Sahada Ne Anlama Gelir?
+
+![Sahada Ne Anlama Gelir? — 3 ölçüm, besleme zinciri](slides/06-sahada-ne-anlama-gelir.png)
 
 Kart açılmıyor. Nereden başlarsın?
 

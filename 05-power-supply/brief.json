@@ -1,0 +1,24 @@
+{
+  "day": 5,
+  "title": "Power Supply",
+  "lesson_goal": "Öğrenci, Blue Pill'in 5V girişini 3.3V'a çeviren RT8183-B LDO regülatör devresini pin pin okuyabilecek, etraftaki kapasitörlerin neden var olduğunu açıklayabilecek, 3.3V hattının kart üzerinde nereye dağıldığını izleyebilecek, ve kart açılmadığında 3 ölçümle besleme zincirini teşhis edebilecek.",
+  "core_message": "İşlemci beslenmeden çalışmaz, ama her şey aynı gerilimde çalışmaz: RT8183-B, 5V'u 3.3V'a çeviren bir LDO regülatör. Bu desen (harici gerilim → regülatör → çekirdek gerilimi) ESP32'den Apple Silicon'a kadar her mikrodenetleyicide aynı temel mantıkla tekrar eder.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 100,
+  "recommended_scene_count": 6,
+  "must_show": [
+    "RT8183-B'nin görevi: 5V giriş → 3.3V çıkış, ve bu desenin ESP32/RP2040/nRF52/GD32 gibi diğer MCU'larda da aynı şekilde çalıştığı",
+    "5 pinin görevi: VIN, GND, EN, BP, VOUT — QA'de doğrulanmış gerçek bağlantılarla (EN +5V'a çekili, BP→C15→GND)",
+    "5 kapasitörün rolü: giriş tarafı (C7, C5), çıkış tarafı (C6, C10), bypass (C15)",
+    "3.3V hattının 3 ana varış noktası: MPU beslemesi (VDD+VDDA), pull-up dirençleri (R10 USB — R9/R11 değil, R3 BOOT0), dışa açılan noktalar (CN1/CN2 + LED)",
+    "STM32'nin neden tek değil çoklu besleme pini olduğu: dijital (VDD_1-3/VSS_1-3) vs analog (VDDA/VSSA) ayrımı, VBAT'ın RTC/yedek bellek görevi",
+    "Kart açılmadığında 3 ölçümlü teşhis sırası: +5V girişi → VOUT 3.3V → MPU'nun VDD pini"
+  ],
+  "technical_risks": [
+    "\"3.3V Nereye Gidiyor?\" ve \"STM32'nin Besleme Pinleri\" sahneleri aynı VDD/VDDA konusuna değiyor ama farklı sorulara cevap veriyor (nereye dağılıyor vs. neden ayrı pin var) — görsellerin birbirinin tekrarı gibi görünmemesi için biri 'dağılım/ok takibi' görseli, diğeri 'dijital/analog ayrımı' görseli olarak açıkça farklılaştırılmalı",
+    "\"3.3V Nereye Gidiyor?\" listesi 6 madde içeriyor (VDD, VDDA, R10, R3, CN1/CN2, LED) — layout-rules.md'nin 4-panel sınırına takılmaması için 3 mantıksal gruba (MPU beslemesi / pull-up dirençleri / dışa açılan noktalar) toplanarak tek sahnede 3 panele indirildi",
+    "R9'un pull-up OLMADIĞI, sadece R10'un pull-up olduğu (bu turda README'de düzeltildi) sahne prompt'unda da doğru yansıtılmalı — R9/R11'i pull-up gibi göstermek eski hatayı görsele taşır",
+    "EN pini \"Açık (pulled high)\" olarak tanımlanıyor — gerçek şemada EN, VIN düğümüne (yani +5V'a) doğrudan bağlı; sahne prompt'unda EN'i 'floating/boş' gibi göstermemeli, +5V'a bağlı olarak göstermeli"
+  ],
+  "note": "Sahne sayısı (6) bu bölümün kendi 7 alt-başlığından türetildi: 'Şemada Power Supply Bloğu' + 'RT8183-B Nedir?' hero'da birleşti, '3.3V Nereye Gidiyor?' 6 dallı listesi 3 mantıksal gruba toplanarak tek sahnede kaldı (Bölüm 04'teki gibi 2 sahneye bölünmesi gerekmedi çünkü gruplama 4-panel sınırının altında kaldı). Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

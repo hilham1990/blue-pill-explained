@@ -42,41 +42,34 @@ visual-system/
 ## Prerequisites
 
 - fal.ai API key in macOS Keychain: `security find-generic-password -s "FAL_KEY" -w`
-- Never echo the key to stdout/logs/files. Retrieve it inline in the same command that uses it, `unset` it after.
-- Reference image for every generation call, no exceptions: `visual-system/references/approved-day01.png`. Never reference a previously-generated scene instead of this file — see "Known failure modes."
+- Never echo the key to stdout/logs/files — `tools/generate-slide.py` retrieves it inline and never prints it.
+- Reference image for every generation call, no exceptions: `visual-system/references/approved-day01.png` (sent automatically as the primary reference by the script). Never reference a previously-generated scene as the PRIMARY reference instead of this file — see `visual-system/lessons-learned.md`.
 
-## Endpoint
+## Generation tool
+
+Use `tools/generate-slide.py` (repo root) rather than hand-rolling the fal.ai call:
 
 ```
-POST https://queue.fal.run/openai/gpt-image-2/edit
-Authorization: Key <FAL_KEY>
-Content-Type: application/json
+python3 tools/generate-slide.py 0X-chapter/prompts/NN-slug.md 0X-chapter/slides/NN-slug.png [--ref EXTRA_IMAGE]...
 ```
 
-Body:
-```json
-{
-  "prompt": "<master-style-prompt.md style block> + <reference-image-usage paragraph> + <SCENE block from prompts/NN-slug.md> + <BOTTOM LAYOUT (MANDATORY) block from master-style-prompt.md — always last, never left to the model>",
-  "image_urls": ["data:image/png;base64,<reference image base64>"],
-  "image_size": "landscape_16_9",
-  "quality": "medium",
-  "num_images": 1
-}
-```
-
-- `quality: medium` costs ~$0.03–0.04/image and was sufficient in testing. Only go to `high` if a specific slide's text still comes out garbled at medium after one retry.
-- Poll `GET https://queue.fal.run/openai/gpt-image-2/requests/{request_id}/status` every ~3s until `COMPLETED`, then `GET .../requests/{request_id}` for the `images[0].url`, then `curl` that URL to save the PNG.
+- Always sends `visual-system/references/approved-day01.png` as the primary (style/layout) reference.
+- Every `--ref PATH` given is an ADDITIONAL image for component physical-accuracy (a real photo/schematic crop from `assets/source/`, or a crop of an already-approved scene in the SAME chapter showing the same real-world component) — see `CLAUDE.md`'s "Gerçek görsel analizi" step for when to use this.
+- `quality: medium` (hardcoded) costs ~$0.03–0.04/image and was sufficient in testing. Only bump to `high` in the script if a specific slide's text still comes out garbled after one retry.
+- Polls the fal.ai queue automatically and saves the final PNG to the given output path.
 
 ## Per-chapter workflow
 
 1. Read the chapter's `README.md`. If `brief.json` doesn't exist yet, write it first (goal, core message, audience, must_show, technical_risks) — don't jump straight to images.
-2. Write `scenes.json`: use the visual-count formula in `layout-rules.md` (12–25s per scene; 1 main idea = 1 scene). Get the scene breakdown right before generating anything. **If the chapter has a hero slide, check every scene's `visual_focus` against the hero's own panel/band content before approving the scene list — a scene that just re-asks the same sub-topics the hero already covered (same hardware close-ups, same concepts, just phrased as questions) is redundant and should be cut, not generated.** (Caught 2026-07-13 on Bölüm 01: a "Bu Seri Ne Öğretiyor?" scene re-covered besleme/clock/BOOT0-RESET, all already shown in the hero's own panels — deleted after already being generated and embedded, wasting a paid generation.)
-3. Write one `prompts/NN-slug.md` per scene: `master-style-prompt.md`'s fixed block + the reference-image paragraph + a SCENE block specific to that scene (title, subtitle, panel contents, captions).
-4. Generate one slide at a time, save to `slides/NN-slug.png`, mark `scenes.json`'s `status` field `"approved"` once the user confirms it.
-5. Show the result to the user before moving to the next scene — do not batch-generate a whole chapter without a check-in.
-6. Every image must earn its place: it has to visually match and complete what that specific chapter's text teaches at that point in sequence — not generic decorative filler.
-7. Update `slides-manifest.json` timings once real narration audio durations are known (this file is a draft until then).
-8. **When a scene's whole subject is a real source document (a datasheet page, a schematic), embed that ORIGINAL document at full size in the README, right after the branded slide — don't rely on the branded slide alone.** The AI composite always shrinks the central document to fit next to the callout panels, which makes it too small to actually read for the teaching purpose it's there for. Both images stay in the README, in sequence, at normal size — the original is not a footnote/link, it's a full peer image (see scene-04 and scene-05 in Bölüm 01, both fixed this way 2026-07-13).
+2. Write `scenes.json`: use the visual-count formula in `layout-rules.md` (12–25s per scene; 1 main idea = 1 scene). Get the scene breakdown right before generating anything. Scene ids number sequentially starting at `scene-01-hero`, no gaps (see `CLAUDE.md` for why earlier chapters have a `scene-00`/missing-`scene-01` gap — don't copy that). **If the chapter has a hero slide, check every scene's `visual_focus` against the hero's own panel/band content before approving the scene list — a scene that just re-asks the same sub-topics the hero already covered (same hardware close-ups, same concepts, just phrased as questions) is redundant and should be cut, not generated.** (Caught 2026-07-13 on Bölüm 01: a "Bu Seri Ne Öğretiyor?" scene re-covered besleme/clock/BOOT0-RESET, all already shown in the hero's own panels — deleted after already being generated and embedded, wasting a paid generation.)
+3. **Before writing any `prompts/NN-slug.md`, read [`visual-system/lessons-learned.md`](../../../visual-system/lessons-learned.md) in full and apply every relevant prevention rule to the prompt you're about to write.** This is the single running log of every real defect found in past generations (badge-color drift, chip package inconsistency, fabricated document tables, etc.) — check reactively-found defects here don't recur, don't wait to rediscover them.
+3b. **Real-image audit, per scene, before writing that scene's prompt.** For the specific real-world component/hardware this scene's central image will depict, check `assets/source/` (real board photo `blue-pill-card-exact-cutout.png`, real schematic `blue-pill-schematic-source.webp`, pinout `blue-pill-pinout-source.webp`, ST's own `stm32f-overview.png`) for an actual photo/crop of it. If one exists: zoom in, extract concrete facts (package type, pin count, color, exact markings), write those into the prompt instead of a generic guess, and pass the crop as a secondary `--ref` image to `generate-slide.py` so the model copies the real appearance. If no real photo exists for that component (e.g. RT8183-B's physical package is never visible in our source photos, likely mounted on the board's underside — see `lessons-learned.md`): pin down ONE depiction in the chapter's first scene that needs it, then pass a crop of THAT already-approved scene as the `--ref` for every later scene in the same chapter needing the same component, so it never silently drifts.
+4. Write one `prompts/NN-slug.md` per scene: `master-style-prompt.md`'s fixed block + the reference-image paragraph + a SCENE block specific to that scene (title, subtitle, panel contents, captions).
+5. Generate one slide at a time, save to `slides/NN-slug.png`, mark `scenes.json`'s `status` field `"approved"` once the user confirms it.
+6. Show the result to the user before moving to the next scene — do not batch-generate a whole chapter without a check-in.
+7. Every image must earn its place: it has to visually match and complete what that specific chapter's text teaches at that point in sequence — not generic decorative filler.
+8. Update `slides-manifest.json` timings once real narration audio durations are known (this file is a draft until then).
+9. **When a scene's whole subject is a real source document (a datasheet page, a schematic), embed that ORIGINAL document at full size in the README, right after the branded slide — don't rely on the branded slide alone.** The AI composite always shrinks the central document to fit next to the callout panels, which makes it too small to actually read for the teaching purpose it's there for. Both images stay in the README, in sequence, at normal size — the original is not a footnote/link, it's a full peer image (see scene-04 and scene-05 in Bölüm 01, both fixed this way 2026-07-13).
 
 ## Hard rules (from layout-rules.md / terminology.md — don't relitigate per-scene)
 
@@ -104,6 +97,6 @@ Until then, GPT Image 2 generates the text directly — it was accurate enough i
 
 ## Known failure modes (don't repeat these)
 
-- Pure text-to-image (no reference photo) → the model hallucinates fake pin labels and misspells the chip name. Always edit from a real photo.
-- fal.ai `gpt-image-1.5` (not `gpt-image-2`) and direct OpenAI `gpt-image-1` both produced visibly garbled Turkish captions/badges in side-by-side tests — confirmed worse than `gpt-image-2`. If the user names an exact model, use that literal name/search it first — don't substitute your own guess from training knowledge (this exact mistake cost several wasted paid generations on 2026-07-13; `gpt-image-2` postdates this assistant's training cutoff and was missed on the first few passes).
-- **Referencing a previously-generated scene instead of the original approved hero caused a defect to propagate.** Scene-02 referenced the hero, but its top-area voltage-regulator IC rendered as a flat dark blob instead of a legible component (compare hero's clearly-detailed regulator vs. scene-02's). Scene-03 then referenced scene-02 (not the hero) and inherited the same flattened-looking regulator. Both were deleted and regenerated — root-caused to reference chaining, so the rule is now: every scene references `approved-day01.png` directly, never another generated scene, so a single bad generation can't compound.
+**Every image-composition defect (reference chaining, fabricated tables, badge-color drift, chip-package inconsistency, etc.) is tracked in [`visual-system/lessons-learned.md`](../../../visual-system/lessons-learned.md), not here — read it before writing prompts, and add new entries there when you find a new defect.**
+
+One non-composition lesson that stays here because it's about tool/model selection, not image content: fal.ai `gpt-image-1.5` (not `gpt-image-2`) and direct OpenAI `gpt-image-1` both produced visibly garbled Turkish captions/badges in side-by-side tests — confirmed worse than `gpt-image-2`. If the user names an exact model, use that literal name/search it first — don't substitute your own guess from training knowledge (this exact mistake cost several wasted paid generations on 2026-07-13; `gpt-image-2` postdates this assistant's training cutoff and was missed on the first few passes).
