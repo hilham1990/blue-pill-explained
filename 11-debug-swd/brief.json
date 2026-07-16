@@ -1,0 +1,23 @@
+{
+  "day": 11,
+  "title": "Debug — SWD",
+  "lesson_goal": "Öğrenci, SWD'nin ne olduğunu, CN4 konnektörünün şemadaki yerini ve gerçek pin bağlantısını, PA13/PA14'ün SWD göreviyle bağlantısını, SWD ile JTAG arasındaki farkı, ST-Link ile firmware yükleme sürecini (SWD ve USB/bootloader yöntemleriyle), canlı debug'ın ne sağladığını; ve yaygın SWD bağlantı sorunlarını (cihaz tanınmıyor, target not found, debug kurulamıyor) sahada teşhis edebilecek.",
+  "core_message": "SWD, sadece 2 sinyal pini (SWDIO+SWCLK) ile firmware yükleme ve canlı debug sağlayan ARM Cortex-M standardı bir arayüzdür — STM32/RP2040/nRF52/GD32'de aynı kavram, ESP32 gibi ARM-dışı çekirdekler JTAG kullanır.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 127,
+  "recommended_scene_count": 7,
+  "must_show": [
+    "CN4'ün şemadaki gerçek konumu: A2 koordinatı — curriculum-qa'da piksel-grid analiziyle doğrulandı (bu bölümde YANLIŞ ÇIKMAYAN nadir bir koordinat iddiası, bkz. Bölüm 06 X1→B7 emsali)",
+    "CN4'ün gerçek pin bağlantısı: Pin1=+3.3V, Pin2=DIO(SWDIO), Pin3=DCLK(SWCLK), Pin4=GND — QA'de düzeltildi (önceki taslakta Pin2/Pin3 ters yazılmıştı, Bölüm 08'in kendi doğru açıklamasıyla çelişiyordu)",
+    "PA13=pin34=JTMS/SWDIO, PA14=pin37=JTCK/SWCLK — datasheet ile doğrulanmış, reset sonrası otomatik SWD modunda başlarlar",
+    "SWD vs JTAG: 2 sinyal vs 4-5 sinyal, STM32'nin SWJ-DP arayüzü ikisini de destekliyor (Bölüm 09'da okunan gerçek datasheet metniyle doğrulanmış)",
+    "ST-Link bağlantısı: 3.3V→Pin1, SWDIO→Pin2, SWCLK→Pin3, GND→Pin4",
+    "BOOT0 jumper konumu 'taraf' diliyle anlatılır (3.3V tarafı / GND tarafı), SAYISAL pozisyon (1-2/3-4 gibi) İDDİA EDİLMEZ — QA'de düzeltildi, Bölüm 07'nin kendi açık notuyla (bu numaraların doğrulanamadığı) tutarlı hale getirildi"
+  ],
+  "technical_risks": [
+    "scene-04 (Programlama Aracı — ST-Link), ST-Link Blue Pill kartının bir parçası değil, harici bir cihaz — assets/source'da gerçek bir ST-Link fotoğrafı YOK. Sahne bunu gerçek bir cihaz fotoğrafı gibi sunmaya çalışmamalı, jenerik/ikonik bir 'debug probe' temsili kullanılacak, spesifik bir ST-Link model görünümü uydurulmayacak.",
+    "scene-02 (Şemada SWD Nerede?), CN4 için Bölüm 08'de zaten doğrulanmış gerçek şema crop'u var: `visual-system/references/real-cn4-connector-crop.png` — bu sahne ve muhtemelen scene-05'te (Firmware Yükleme, CN4 bağlantısı tekrar geçiyor) aynı crop referans verilecek, sahneler arasında atlanmayacak.",
+    "scene-03 (JTAG ile Farkı), Bölüm 08 scene-05'in (Debug Pinleri) JTAG/SWD ayrımıyla aynı konuya değiniyor ama farklı açıdan (Bölüm 08 = hangi pinler fiziksel olarak çıkıyor, Bölüm 11 = SWD/JTAG protokol karşılaştırması) — içerik çakışması değil, tamamlayıcı, ama görsel olarak Bölüm 08 scene-05'in birebir tekrarı gibi hissettirmemeli."
+  ],
+  "note": "Sahne sayısı (7: hero + 6) bu bölümün kendi 6 kavramsal başlığından türetildi (CN4+PA13/PA14 konumu tek sahnede birleştirildi çünkü ikisi de 'SWD nerede' sorusuna cevap veriyor; Firmware Yükleme Süreci'nin 2 alt-yöntemi tek sahnede kaldı). Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

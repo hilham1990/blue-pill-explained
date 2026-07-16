@@ -36,8 +36,8 @@ Sadece 2 sinyal pini ile:
 CN4 (SRP4 — 4 pinli konnektör)
 
 Pin 1 → +3.3V (opsiyonel besleme)
-Pin 2 → DCLK (SWCLK — PA14)
-Pin 3 → DIO  (SWDIO — PA13)
+Pin 2 → DIO  (SWDIO — PA13)
+Pin 3 → DCLK (SWCLK — PA14)
 Pin 4 → GND
 ```
 
@@ -77,8 +77,8 @@ Bağlantı şöyle kurulur:
 ```
 ST-Link       ←→     CN4 (Blue Pill)
 3.3V  ────────────── Pin 1 (opsiyonel)
-SWCLK ────────────── Pin 2 (DCLK)
-SWDIO ────────────── Pin 3 (DIO)
+SWDIO ────────────── Pin 2 (DIO)
+SWCLK ────────────── Pin 3 (DCLK)
 GND   ────────────── Pin 4 (GND)
 ```
 
@@ -100,13 +100,17 @@ Alternatif: J-Link, OpenOCD destekli adaptörler.
 
 ### USB üzerinden (Bootloader ile):
 ```
-1. BOOT0 jumper'ı 3-4 pozisyonuna al (3.3V)
+1. BOOT0 jumper'ını 3.3V tarafına al
 2. Kartı resetle
 3. STM32CubeProgrammer → USB portunu seç
 4. Firmware yükle
-5. BOOT0 jumper'ı 1-2'ye al (GND)
+5. BOOT0 jumper'ını GND tarafına al
 6. Kartı resetle — normal çalışma
 ```
+
+**Not:** Jumper'ın fiziksel silkscreen pin numaraları (Bölüm 07'de de belirtildiği gibi)
+elimizdeki şema/fotoğraflarda doğrulanamadı — "3.3V tarafı" / "GND tarafı" diye anılıyor,
+kesin pozisyon için kartındaki BOOT0 yazısının yanındaki pinlere multimetreyle bak.
 
 ---
 
