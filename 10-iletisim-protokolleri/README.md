@@ -155,7 +155,7 @@ PB11 → I2C2_SDA
 
 | ✅ | ❌ |
 |---|---|
-| Sadece 2 kablo | Yavaş (400 kHz standart, 1 MHz fast mode) |
+| Sadece 2 kablo | Yavaş (100 kHz Standard mode, 400 kHz Fast mode — STM32F103'ün I2C birimi Fast-mode Plus/1 MHz desteklemez) |
 | Çok sayıda slave | Half duplex |
 | Adres sistemi | Pull-up dirençleri gerekli |
 
@@ -166,7 +166,7 @@ PB11 → I2C2_SDA
 | Özellik | UART | SPI | I2C |
 |---|---|---|---|
 | Kablo sayısı | 2 | 4+ | 2 |
-| Hız | ~1 Mbps | ~50 Mbps | ~1 Mbps |
+| Hız | ~1 Mbps | ~50 Mbps | 400 kbps (Fast mode) |
 | Slave sayısı | 1 | Sınırsız (her biri için CS) | 127 (adres ile) |
 | Senkronizasyon | Asenkron | Senkron | Senkron |
 | Kullanım kolaylığı | En kolay | Orta | Orta |
