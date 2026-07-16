@@ -104,8 +104,8 @@ Inside the band:
 
 Below the cards, ONE single footer row with three parts, evenly balanced left/center/right:
 - Bottom-left: "Akademi Usta"
-- Bottom-center: "Önce anlamak, sonra ölçmek."
-- Bottom-right: "akademiusta.com/tr"
+- Bottom-center: "Usta tahmin etmez, ölçer."
+- Bottom-right: "akademiusta.com"
 
 All three in the same bold navy font, same baseline, clearly legible — this slide will be
 shared/copied widely, the link must always be readable. Balance the whole bottom section so the
@@ -114,7 +114,7 @@ lopsided corners.
 
 TEXT ONLY.
 Do NOT generate any logo, icon, emblem, shield or symbol for Akademi Usta.
-Use only the words "Akademi Usta", "Önce anlamak, sonra ölçmek.", and "akademiusta.com/tr" in a
+Use only the words "Akademi Usta", "Usta tahmin etmez, ölçer.", and "akademiusta.com" in a
 clean bold font, all on one single row.
 
 The bottom section must always look balanced, complete and professional.
@@ -124,6 +124,10 @@ Never leave empty space.
 Bu blok tüm sahnelerde aynı kalır — sadece merkez içerik (kart, panel konuları) değişir. Hero'da 4 yerine 6 kart olması tek istisna (6 evrensel soru bandı zaten onaylı).
 
 **Not:** Bu tek-satır-3-parça kural 2026-07-13'te, birkaç iterasyondan sonra kesinleşti. Onaylı Scene-02 (`02-neden-stm32.png`) bu kesin halden ÖNCE üretildi ve hâlâ ara-iterasyon footer'ını kullanıyor (iki satır, ortalanmış: "Akademi Usta" / "akademiusta.com/tr", logo yok ama tek satır/3-parça değil). Scene-03, 04 ve 05 zaten güncel standardı kullanıyor. Scene-02 yeniden üretilene kadar bu bir istisna olarak kalır.
+
+**Not (2026-07-16):** İki değişiklik yapıldı, **sadece Bölüm 06'dan itibaren geçerli** — Bölüm 01-05'in 25 onaylı görseli eski haliyle kaldı, geriye dönük yeniden üretilmedi (sahne-numaralandırma değişikliğinde izlenen aynı yaklaşım, bkz. `CLAUDE.md`):
+1. Orta slogan "Önce anlamak, sonra ölçmek."'ten "Usta tahmin etmez, ölçer."'e değiştirildi — daha kısa, markayı ("Usta") doğrudan taşıyan ve projenin kendi "kaynakta doğrula, tahmin etme" ilkesiyle örtüşen bir cümle.
+2. Sağdaki URL "akademiusta.com/tr"'den "akademiusta.com"'a değiştirildi — gerçek site adresi `https://akademiusta.com/` olduğu için (URL'de "https://" gösterilmez, sadece temiz alan adı metni).
 
 ## Tek satırlık sistem prensibi
 

@@ -1,0 +1,98 @@
+{
+  "day": 6,
+  "note": "TÜM 6 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (6) bu bölümün kendi içeriğinden türetildi, bkz. brief.json. Yeni footer standardı uygulandı: 'Usta tahmin etmez, ölçer.' / 'akademiusta.com'. Gerçek kart fotoğrafından crop'lanan X1/X2 referansları (visual-system/references/real-x1-crystal-crop.png, real-x2-crystal-crop.png) kullanıldı — scene-02/03'te ilk denemede doğru çıktı, scene-06'nın ilk denemesinde X2 yanlışlıkla X1'in oval metal-kan paketiyle çizildi (bu sahneye referans crop verilmemişti), --ref eklenerek düzeltildi. Ders: bir bileşen bölümdeki HER sahnede görünüyorsa, referans crop'u o sahnelerin HEPSİNE ayrı ayrı verilmeli, sadece 'ana' sahnelere değil (bkz. lessons-learned.md). scene-03'te kullanıcı önerisiyle kapasitör fotoğrafının yanına küçük önce/sonra dalga-formu inseti eklendi (component-tanıma + işlev açıklaması bir arada). scene-04'ün katalog kart başlıkları (mavi/teal/turuncu) modelin kendi inisiyatifiyle renklendi — layout-rules'ın sabit renk-fonksiyon eşlemesiyle tam örtüşmüyor ama rozetler/bağlantı çizgileri doğru mavi, küçük bir stil notu olarak kaydedildi, yeniden üretilmedi. MÜHÜRLENDİ (2026-07-16).",
+  "scenes": [
+    {
+      "id": "scene-01-hero",
+      "order": 1,
+      "title": "Clock Olmadan İşlemci Çalışmaz",
+      "purpose": "Bölümü açmak: clock kavramını ve bu desenin diğer MCU ailelerinde de aynı olduğunu göstermek.",
+      "visual_focus": "STM32F103C8T6 çipi + yanında X1 kristali yakın çekim, darbe/nabız görselleştirmesi (basit bir kare dalga ikonu); yan panelde 'Bu desen evrensel' rozetiyle ESP32/RP2040/nRF52/GD32 isimleri",
+      "screen_text": [
+        "GÜN 06",
+        "CLOCK SİSTEMİ",
+        "Clock olmadan işlemci çalışmaz.",
+        "Her şeyin ritmi buradan geliyor."
+      ],
+      "duration_seconds": 16,
+      "status": "approved",
+      "asset": "hero.png",
+      "source_section": "README.md — \"Clock Nedir?\" + genellenebilirlik notu (satır 7-27)"
+    },
+    {
+      "id": "scene-02",
+      "order": 2,
+      "title": "İki Kristal, İki Farklı Amaç",
+      "purpose": "X1 ve X2'nin şemadaki yerini, pin bağlantılarını ve farklı görevlerini göstermek (2 panel).",
+      "visual_focus": "2 panel — gerçek kart fotoğrafındaki fiziksel paketlerle (visual-system/references/real-x1-crystal-crop.png ve real-x2-crystal-crop.png ikincil referans olarak verilecek): X1 (oval metal-kan paket, 8 MHz, B7 koordinatı, OSC_IN/PD0-OSC_OUT/PD1), X2 (küçük 4-pinli SMD paket, 32.768 kHz, OSC32_IN/PC14-OSC32_OUT/PC15)",
+      "screen_text": [
+        "İKİ KRİSTAL, İKİ FARKLI AMAÇ",
+        "X1: Ana Clock · X2: RTC"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/02-iki-kristal.png",
+      "source_section": "README.md — \"Şemada Crystal Nerede?\" + \"İki Crystal, İki Farklı Amaç\" (satır 30-62)"
+    },
+    {
+      "id": "scene-03",
+      "order": 3,
+      "title": "Yük Kapasitörleri Neden Var?",
+      "purpose": "X1 ve X2'nin yük kapasitörlerinin rolünü göstermek.",
+      "visual_focus": "2 panel: X1 + C13/C14 (12 pF), X2 + C9/C12 (100 pF) — gerçek kristal paketleriyle tutarlı (aynı --ref crop'ları), 'yanlış kapasitör = yanlış frekans' vurgusu",
+      "screen_text": [
+        "YÜK KAPASİTÖRLERİ NEDEN VAR?",
+        "Doğru frekans için doğru kapasitör"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/03-yuk-kapasitorleri.png",
+      "source_section": "README.md — \"Yük Kapasitörleri Neden Var?\" (satır 65-78)"
+    },
+    {
+      "id": "scene-04",
+      "order": 4,
+      "title": "STM32 Clock Kaynakları",
+      "purpose": "5 clock kaynağını 3 mantıksal gruba toplayıp göstermek (katalog görseli, akış değil).",
+      "visual_focus": "3 panel — katalog/kart tarzı görsel (scene-05'in akış-diyagramından görsel olarak farklı): Yüksek Hızlı (HSE 4-16MHz + HSI dahili 8MHz), PLL (çarpan), Düşük Hızlı (LSE 32.768kHz + LSI dahili 40kHz)",
+      "screen_text": [
+        "STM32 CLOCK KAYNAKLARI",
+        "Yüksek Hızlı · PLL · Düşük Hızlı"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/04-clock-kaynaklari.png",
+      "source_section": "README.md — \"STM32 Clock Kaynakları\" (satır 82-110)"
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
+      "title": "Blue Pill'de Clock Nasıl Akıyor?",
+      "purpose": "X1'den APB1/APB2'ye kadar giden gerçek akış zincirini göstermek (yukarıdan aşağı ok diyagramı, scene-04'ten farklı stil).",
+      "visual_focus": "Dikey akış diyagramı: X1(8MHz) → HSE → PLL×9 → 72MHz SYSCLK → AHB(72MHz) → APB1(36MHz)/APB2(72MHz), her adım bir ok ve etiketle",
+      "screen_text": [
+        "BLUE PILL'DE CLOCK NASIL AKIYOR?",
+        "8 MHz'den 72 MHz'e"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/05-clock-akisi.png",
+      "source_section": "README.md — \"Blue Pill'de Clock Nasıl Akıyor?\" (satır 114-129)"
+    },
+    {
+      "id": "scene-06",
+      "order": 6,
+      "title": "Sahada Ne Anlama Gelir?",
+      "purpose": "2 teşhis senaryosunu pekiştirmek: kart açılmıyor / RTC kayıyor.",
+      "visual_focus": "2 panel, teal=ölçüm/doğrulama renk kodu: Durum 1 (kart açılmıyor → X1 ve kapasitörleri kontrol, osiloskopla dalga ara), Durum 2 (RTC kayıyor → X2 ve C9/C12 kontrol)",
+      "screen_text": [
+        "SAHADA NE ANLAMA GELİR?",
+        "Kart Açılmıyor · RTC Kayıyor"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/06-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\" (satır 133-151)"
+    }
+  ]
+}

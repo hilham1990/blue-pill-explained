@@ -1,0 +1,24 @@
+{
+  "day": 6,
+  "title": "Clock Sistemi",
+  "lesson_goal": "Öğrenci, Blue Pill'in iki kristalinin (X1 ana clock, X2 RTC) şemadaki yerini ve pin bağlantılarını okuyabilecek, yük kapasitörlerinin neden gerekli olduğunu açıklayabilecek, STM32'nin 5 clock kaynağını (HSE/HSI/PLL/LSE/LSI) ve gerçek bus hızlarına (AHB/APB1/APB2) kadar giden akışı takip edebilecek, ve clock kaynaklı arızaları (kart açılmıyor / RTC kayıyor) ayırt edebilecek.",
+  "core_message": "Clock olmadan işlemci çalışmaz — her şeyin ritmi X1'den (8 MHz) gelir, PLL bunu 9 katına çıkarıp 72 MHz'e taşır. Bu 'kristal → PLL → sistem clock' zinciri ESP32'den Apple Silicon'a kadar her MCU'da aynı temel mantıkla tekrar eder.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 100,
+  "recommended_scene_count": 6,
+  "must_show": [
+    "Clock kavramı ve evrensel desen (ESP32/RP2040/nRF52/GD32, büyük SoC'lerde de aynı kristal→PLL zinciri)",
+    "X1 (8 MHz, B7 koordinatı, OSC_IN/PD0-OSC_OUT/PD1) ve X2 (32.768 kHz, OSC32_IN/PC14-OSC32_OUT/PC15) — QA'de doğrulanmış gerçek pin bağlantılarıyla, GERÇEK FARKLI FİZİKSEL PAKETLERİYLE (X1: oval metal-kan, X2: küçük 4-pinli SMD — bkz. assets/source/blue-pill-card-exact-cutout.png)",
+    "Yük kapasitörlerinin rolü: C13/C14 (12 pF, X1 için) ve C9/C12 (100 pF, X2 için), 'yanlış kapasitör = yanlış frekans' kuralı",
+    "5 clock kaynağı: HSE (4-16 MHz), HSI (8 MHz dahili), PLL (çarpan), LSE (32.768 kHz), LSI (40 kHz dahili) — gerçek datasheet Clock Tree figürüyle tutarlı",
+    "Blue Pill'in gerçek clock akışı: X1(8MHz) → HSE → PLL×9 → 72MHz SYSCLK → AHB(72MHz) → APB1(36MHz)/APB2(72MHz)",
+    "Sahada 2 teşhis senaryosu: kart açılmıyor (X1/kapasitör kontrolü) ve RTC kayıyor (X2/kapasitör kontrolü)"
+  ],
+  "technical_risks": [
+    "X1 ve X2 GERÇEKTE FARKLI FİZİKSEL PAKETLERDE — X1 oval metal-kan (through-hole tarzı, üstünde '8.000' yazan), X2 küçük siyah 4-pinli SMD dikdörtgen (üstünde '32.768K' yazan). Gerçek kart fotoğrafından (assets/source/blue-pill-card-exact-cutout.png) crop'lanıp visual-system/references/real-x1-crystal-crop.png ve real-x2-crystal-crop.png olarak kaydedildi — her sahnede bu ikisi ayrı ayrı --ref olarak verilmeli, ikisini aynı/benzer şekilde çizmemeli (RT8183-B'nin Bölüm 05'teki paket hatasına benzer bir hataya açık alan)",
+    "'STM32 Clock Kaynakları' bölümü 5 kaynak içeriyor (HSE, HSI, PLL, LSE, LSI) — layout-rules.md'nin 4-panel sınırına takılmaması için Yüksek Hızlı (HSE+HSI) ve Düşük Hızlı (LSE+LSI) ikişerli gruplanıp PLL ayrı panel olarak 3 panele indirildi",
+    "'STM32 Clock Kaynakları' (kaynaklar ne) ile 'Blue Pill'de Clock Nasıl Akıyor?' (gerçek sayılarla akış zinciri) sahneleri aynı konuya değiniyor ama farklı açıdan — biri kaynak listesi, diğeri X1'den APB1/APB2'ye kadar giden gerçek zincir; görsellerin birbirinin tekrarı olmaması için biri 'kaynak kataloğu' görseli, diğeri 'akış diyagramı' (yukarıdan aşağı ok zinciri) olarak farklılaştırılmalı",
+    "B7 koordinatı bu turda QA ile doğrulandı (Bölüm 04/05'in aksine bu sefer doğruydu) — yine de sahne prompt'unda bu koordinat aynen (B7) korunmalı, farklı bir hücre uydurulmamalı"
+  ],
+  "note": "Sahne sayısı (6) bu bölümün kendi 7 alt-başlığından türetildi: 'Clock Nedir?' + evrensel-desen notu hero'da birleşti. 'Şemada Crystal Nerede?' + 'İki Crystal, İki Farklı Amaç' tek karşılaştırma sahnesinde birleşti (X1 vs X2). 'STM32 Clock Kaynakları' ve 'Blue Pill'de Clock Nasıl Akıyor?' ayrı sahneler kaldı çünkü biri katalog biri akış-zinciri. Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

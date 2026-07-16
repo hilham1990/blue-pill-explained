@@ -75,6 +75,15 @@ Bu dosya, `curriculum-slide-gen` ile üretilen görsellerde bulunan **her gerçe
 
 ---
 
+### [Bölüm 06 / scene-06] --ref sadece "ana" sahnelere verilince aynı hata başka bir sahnede tekrarlandı (2026-07-16)
+
+**Ne oldu:** Bölüm 06'da X1/X2 kristallerinin gerçek fotoğraf crop'ları (`real-x1-crystal-crop.png`, `real-x2-crystal-crop.png`) scene-02 ve scene-03'e (bu iki kristalin "ana" konusu olduğu sahneler) verildi ve ikisi de tek denemede doğru çıktı. Ama scene-06 ("Sahada Ne Anlama Gelir?") X1/X2'yi tekrar gösterdiği halde bu sahneye referans crop verilmemişti — sonuç: X2, X1 ile aynı oval metal-kan pakette çizildi (yanlış).
+**Neden oldu:** "Bu bileşenin ana sahnesi hangisi" diye düşünüp referansı sadece oraya vermek yeterli sanıldı — ama bir bileşen bölüm içinde kaç farklı sahnede görünüyorsa, HER birinde aynı referans olmadan model paketi yeniden (ve tutarsız) icat edebiliyor.
+**Önleme kuralı:** Bir bileşenin gerçek fotoğraf referansı varsa, o bileşen o bölümdeki HANGİ sahnelerde görünüyorsa hepsinde `--ref` olarak verilir — "zaten bir yerde doğru çıktı" diye sonraki sahnelerde atlanmaz. Prompt yazarken CLAUDE.md madde 4c'nin "gerçek görsel analizi" adımını her sahne için TEKRAR uygula, bir önceki sahnede uygulamış olmak yetmez.
+**Durum:** çözüldü — scene-06, X1/X2 crop'ları `--ref` olarak eklenerek yeniden üretildi.
+
+---
+
 ### [Bölüm 01/04/05] Dekoratif ikincil metin/kod (bilinçli kabul edilen risk)
 
 **Ne oldu:** Model, çip fotoğraflarının üzerine gerçek olmayan ama "gerçekçi görünen" ikincil satırlar (örn. "GJ7E7P1", "GQW 8G6NZ" gibi uydurma lot/batch kodları) veya kenarlarda dekoratif pin etiketleri ekliyor.
