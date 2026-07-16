@@ -2,6 +2,8 @@
 
 > *İşlemci her açılışta iki şeye bakar: Nereden başlayacağım? Temiz başlıyor muyum?*
 
+![Reset ve Boot — Gün 07 özet görseli](hero.png)
+
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
@@ -18,7 +20,7 @@
 
 ## Şemada Reset Bloğu
 
-Şemada sağ alt — **E5 koordinatı**.
+Şemada sağ alt — **D5–E5 koordinatı**.
 
 ```
 +3.3V
@@ -53,16 +55,19 @@ Buton mekanik titreme (bounce) yapar. Bir kez basıldığında elektriksel olara
 
 ## Reset Türleri
 
+![Reset Türleri — Güç, Buton, Watchdog, Yazılım](slides/02-reset-turleri.png)
+
 Sadece buton değil — STM32'de birden fazla reset kaynağı var:
 
 | Reset Türü | Kısaltma | Neden Oluşur |
 |---|---|---|
 | Power-On Reset | POR | Kart ilk beslendiğinde |
-| Power-Down Reset | PDR | Gerilim çok düştüğünde |
+| Power-Down Reset | PDR | Gerilim belirli bir eşiğin altına düştüğünde |
 | External Reset | NRST | Butona basıldığında |
-| Brown-out Reset | BOR | Besleme ani dalgalandığında |
 | Watchdog Reset | IWDG/WWDG | Yazılım kilitlendiğinde |
 | Software Reset | — | Yazılım kendi kendini resetlediğinde |
+
+**Not:** Datasheet'te ayrı bir "Brown-out Reset (BOR)" tanımı yok (bazı diğer MCU ailelerinde bu isimle geçer). STM32F103'te gerilim düşüşü PDR tarafından karşılanır. Ayrıca bir de **PVD** (Programmable Voltage Detector) var — ama bu otomatik bir reset ÜRETMEZ, gerilim ayarlanan bir eşiğin altına/üstüne çıktığında yazılıma bir interrupt gönderir; reset yapıp yapmamaya yazılım kendisi karar verir.
 
 Sahada "cihaz kendiliğinden resetleniyor" şikayeti geldiğinde bu liste akılda olmalı.
 
@@ -80,27 +85,31 @@ Bu sorunun cevabı BOOT0 ve BOOT1 pinlerinin durumuna göre belirlenir.
 
 ## Şemada BOOT Pinleri
 
+![BOOT0 ve BOOT1 Nasıl Bağlı?](slides/03-boot0-boot1.png)
+
 Şemada iki ayrı yerde:
 
 **BOOT0:**
 ```
-+3.3V
-  │
-  R3 (100kΩ) ──── BOOT0 pini (U2, pin 44)
-                  │
-                  CN5 (jumper — BOOT0 seçimi)
+BOOT0 pini (U2, pin 44) ──── R3 (100kΩ) ──── CN5 jumper (ortak uç)
+                                              │         │
+                                          +3.3V (pin 1)  GND (pin 5)
 ```
+R3, +3.3V'a sabit bağlı bir pull-up DEĞİL — pin 44 ile jumper'ın ortak ucu arasında bir seri direnç. +3.3V ve GND, jumper'ın kendisine (R3'süz) doğrudan bağlı; jumper hangi tarafa takılıysa BOOT0 o gerilimi görür.
 
 **BOOT1:**
 ```
-R4 (100kΩ) ──── BOOT1 pini (PB2, pin 20)
-  │
- GND
+BOOT1 pini (PB2, pin 20) ──── R4 (100kΩ) ──── CN5 jumper (ortak uç)
+                                              │         │
+                                          +3.3V (pin 2)  GND (pin 6)
 ```
+Aynı mantık: R4 de sabit bir pull-down değil, pin 20 ile jumper'ın ortak ucu arasında seri bir direnç.
 
 ---
 
 ## Boot Modları
+
+![Boot Modları — Flash, System Memory, SRAM](slides/04-boot-modlari.png)
 
 ![Boot Modes](../assets/source/day07-boot-modes.png)
 
@@ -117,19 +126,23 @@ STM32'nin içinde fabrikadan gelen bir bootloader var. Bu mod seçildiğinde iş
 
 ## Blue Pill'de Boot Jumper'ı
 
+![Blue Pill'de Boot Jumper'ı — Firmware yükleme adımları](slides/05-boot-jumper.png)
+
 CN5 konnektörü BOOT0 seçimi için:
 
 ```
-Jumper 1-2 pozisyonu → BOOT0 = GND → Flash'tan başla (normal)
-Jumper 3-4 pozisyonu → BOOT0 = 3.3V → Bootloader'a gir
+Jumper GND tarafına takılıysa → BOOT0 = GND → Flash'tan başla (normal)
+Jumper 3.3V tarafına takılıysa → BOOT0 = 3.3V → Bootloader'a gir
 ```
+
+**Not:** Kartın üzerindeki jumper'ın fiziksel silkscreen pin numaraları (1-2 / 2-3 gibi) elimizdeki şema veya fotoğraflarda doğrulanamadı — kesin pozisyon için kartındaki "BOOT0" yazısının yanındaki 3 pinlik başlığa bak, hangi ucun "GND" hangi ucun "3.3V" tarafında olduğunu multimetreyle doğrula.
 
 Firmware yükleme süreci:
 ```
-1. BOOT0 jumper'ını 3-4 pozisyonuna al
+1. BOOT0 jumper'ını 3.3V tarafına al
 2. Kartı resetle veya yeniden besle
 3. Firmware yükle (USB veya USART üzerinden)
-4. BOOT0 jumper'ını 1-2'ye al
+4. BOOT0 jumper'ını GND tarafına al
 5. Kartı resetle — normal çalışma başlar
 ```
 
@@ -144,6 +157,8 @@ Firmware yükleme süreci:
 ---
 
 ## Sahada Ne Anlama Gelir?
+
+![Sahada Ne Anlama Gelir? — 3 senaryo, 3 teşhis](slides/06-sahada-ne-anlama-gelir.png)
 
 **Durum 1:** Firmware yüklenemiyor.
 
@@ -160,7 +175,7 @@ Kontrol:
 **Durum 3:** Kart ara ara kendiliğinden resetleniyor.
 
 Kontrol:
-- Besleme 3.3V stabil mi? (BOR olabilir)
+- Besleme 3.3V stabil mi? (PDR tetikleniyor olabilir)
 - NRST hattında parazit var mı?
 
 ---

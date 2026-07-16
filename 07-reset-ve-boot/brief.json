@@ -1,0 +1,23 @@
+{
+  "day": 7,
+  "title": "Reset ve Boot",
+  "lesson_goal": "Öğrenci, Blue Pill'in reset devresini (S1/R2/C2) ve BOOT0/BOOT1 pinlerinin çalışma mantığını okuyabilecek, STM32'nin farklı reset kaynaklarını ve 3 boot modunu ayırt edebilecek, firmware yükleme prosedürünü uygulayabilecek, ve reset/boot kaynaklı arızaları (firmware yüklenemiyor, sürekli bootloader'a giriyor, kendiliğinden resetleniyor) teşhis edebilecek.",
+  "core_message": "İşlemci her açılışta iki soruya cevap arar: 'Nereden başlayacağım?' (BOOT0/BOOT1 pinleri) ve 'Temiz başlıyor muyum?' (reset devresi). Bu iki mekanizma ARM Cortex-M ailesindeki her işlemcide (RP2040, nRF52, GD32) aynı temel mantıkla çalışır.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 100,
+  "recommended_scene_count": 6,
+  "must_show": [
+    "Reset devresi: R2 (10 kΩ pull-up) + C2 (100 nF debounce) + S1 (buton), D5-E5 koordinatı — QA'de düzeltilmiş",
+    "6 reset türü (POR/PDR/NRST/IWDG/WWDG/Software), 4 panele gruplanmış — 'Brown-out Reset (BOR)' gerçek datasheet'te olmadığı için çıkarıldı, PVD'nin bir interrupt kaynağı olduğu (otomatik reset değil) netleştirildi",
+    "BOOT0/BOOT1'in gerçek bağlantısı: R3/R4 birer SERİ direnç, CN5 jumper'ının ortak ucuna bağlı — +3.3V ve GND jumper'a doğrudan bağlı (QA'de düzeltilmiş, Bölüm 05'teki aynı hatanın tekrarı)",
+    "3 boot modu (Flash/System Memory/SRAM) ve BOOT0+BOOT1 kombinasyonları",
+    "Firmware yükleme prosedürü: jumper'ı 3.3V tarafına al → resetle → yükle → jumper'ı GND'ye al → resetle",
+    "3 teşhis senaryosu: firmware yüklenemiyor / sürekli bootloader'a giriyor / kendiliğinden resetleniyor"
+  ],
+  "technical_risks": [
+    "Reset Türleri listesi 6 madde (POR, PDR, NRST, IWDG, WWDG, Software) — layout-rules.md'nin 4-panel sınırı için POR+PDR ('Güç Kaynaklı'), NRST ('Buton'), IWDG+WWDG ('Watchdog'), Software ('Yazılım') olarak 4 panele gruplandı",
+    "Gerçek kart fotoğrafında (assets/source/blue-pill-card-exact-cutout.png) reset butonunun yanında sadece 2 PİNLİ, sarı, kilitli (shrouded) bir jumper konnektörü görünüyor — şemanın CN5 DRP6 (6 pin) footprint'i ile birebir aynı görünmüyor. Gerçek kartta muhtemelen sadece BOOT0 sütunu (ya da onun bir kısmı) fiziksel olarak popüle edilmiş; bu crop (visual-system/references/real-reset-boot-jumper-crop.png) reset butonu VE bu 2-pinli jumper'ın gerçek görünümü için kullanılacak, ama '6 pinli DRP6'nın tamamı bu fotoğrafta görünmüyor' diye prompt'ta not düşülecek — fotoğrafta görünmeyen detayı icat etmeyeceğiz",
+    "R3/R4'ün CN5 jumper'ına seri bağlı olduğu (sabit pull-up/pull-down OLMADIĞI) sahne prompt'larında da doğru yansıtılmalı — Bölüm 05'teki R9/R3 hatasının görsele taşınmaması için"
+  ],
+  "note": "Sahne sayısı (6) bu bölümün kendi 9 alt-başlığından türetildi: 'Şemada Reset Bloğu' + 'Reset Devresi Nasıl Çalışıyor?' hero'da birleşti; 'Boot Sistemi' + 'Şemada BOOT Pinleri' tek sahnede birleşti; 'Memory Map' gerçek datasheet figürü olarak kaldı, ayrı AI sahnesi almadı (Bölüm 06'daki clock-tree emsaliyle tutarlı). Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

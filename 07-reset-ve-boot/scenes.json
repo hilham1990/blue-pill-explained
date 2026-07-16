@@ -1,0 +1,98 @@
+{
+  "day": 7,
+  "note": "TÜM 6 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (6) bu bölümün kendi içeriğinden türetildi, bkz. brief.json. curriculum-qa 5 gerçek hata buldu (D5-E5 koordinatı, BOOT0/R3 ve BOOT1/R4 diyagramlarının ters topolojisi, gerçek datasheet'te olmayan 'BOR' terimi, doğrulanamayan jumper pin numaraları) — hepsi görsel üretimden önce metinde düzeltildi. Gerçek kart fotoğrafından crop'lanan reset butonu + BOOT jumper'ı (visual-system/references/real-reset-boot-jumper-crop.png) hero ve scene-05'te kullanıldı, ikisi de tek denemede fotoğrafla birebir tutarlı çıktı. scene-03'te R3/R4'ün CN5 jumper'ına SERİ bağlı olduğu (sabit pull-up/pull-down değil) doğru şekilde çizildi — Bölüm 05'teki aynı kavramsal hatanın görsele taşınması önlendi. MÜHÜRLENDİ (2026-07-16).",
+  "scenes": [
+    {
+      "id": "scene-01-hero",
+      "order": 1,
+      "title": "Temiz Başlıyor Muyum?",
+      "purpose": "Bölümü açmak: reset devresinin görevini ve bu desenin diğer MCU ailelerinde de aynı olduğunu göstermek.",
+      "visual_focus": "Reset butonu (S1) yakın çekim + R2/C2 — gerçek kart fotoğrafındaki buton görünümüyle tutarlı (visual-system/references/real-reset-boot-jumper-crop.png ikincil referans); yan panelde 'Bu desen evrensel' rozetiyle RP2040/nRF52/GD32/ESP32 isimleri",
+      "screen_text": [
+        "GÜN 07",
+        "RESET VE BOOT",
+        "Nereden başlayacağım?",
+        "Temiz başlıyor muyum?"
+      ],
+      "duration_seconds": 16,
+      "status": "approved",
+      "asset": "hero.png",
+      "source_section": "README.md — \"Şemada Reset Bloğu\" + \"Reset Devresi Nasıl Çalışıyor?\" + genellenebilirlik notu (satır 7-50)"
+    },
+    {
+      "id": "scene-02",
+      "order": 2,
+      "title": "Reset Türleri",
+      "purpose": "6 reset kaynağını 4 mantıksal gruba toplayıp göstermek (BOR çıkarıldı, gerçek datasheet'te yok).",
+      "visual_focus": "4 panel: Güç Kaynaklı (POR+PDR), Buton (NRST), Watchdog (IWDG+WWDG), Yazılım (Software Reset)",
+      "screen_text": [
+        "RESET TÜRLERİ",
+        "Güç · Buton · Watchdog · Yazılım"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/02-reset-turleri.png",
+      "source_section": "README.md — \"Reset Türleri\" (satır 54-68, QA'de BOR çıkarılıp PVD netleştirildikten sonra)"
+    },
+    {
+      "id": "scene-03",
+      "order": 3,
+      "title": "BOOT0 ve BOOT1 Nasıl Bağlı?",
+      "purpose": "BOOT0/BOOT1'in CN5 jumper'ına gerçek seri-direnç bağlantısını göstermek (2 panel).",
+      "visual_focus": "2 panel — R3/R4'ün sabit pull-up/pull-down OLMADIĞI, CN5 jumper'ının ortak ucuna seri bağlı olduğu netçe gösterilecek: BOOT0 (pin 44, R3 100kΩ, CN5), BOOT1 (PB2/pin 20, R4 100kΩ, CN5)",
+      "screen_text": [
+        "BOOT0 VE BOOT1 NASIL BAĞLI?",
+        "Sabit değil, jumper'a bağlı"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/03-boot0-boot1.png",
+      "source_section": "README.md — \"Boot Sistemi\" + \"Şemada BOOT Pinleri\" (satır 72-100, QA'de düzeltilmiş bağlantı topolojisiyle)"
+    },
+    {
+      "id": "scene-04",
+      "order": 4,
+      "title": "Boot Modları",
+      "purpose": "3 boot modunu ve BOOT0/BOOT1 kombinasyonlarını göstermek.",
+      "visual_focus": "3 panel: Flash (BOOT0=0, normal çalışma), System Memory (BOOT0=1/BOOT1=0, bootloader), SRAM (BOOT0=1/BOOT1=1, test/geliştirme)",
+      "screen_text": [
+        "BOOT MODLARI",
+        "Flash · System Memory · SRAM"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/04-boot-modlari.png",
+      "source_section": "README.md — \"Boot Modları\" (satır 104-115)"
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
+      "title": "Blue Pill'de Boot Jumper'ı",
+      "purpose": "Firmware yükleme prosedürünü adım adım göstermek.",
+      "visual_focus": "Gerçek jumper fotoğrafı (visual-system/references/real-reset-boot-jumper-crop.png ikincil referans) + 4 adımlı prosedür: jumper 3.3V'a al → resetle/besle → yükle → jumper GND'ye al",
+      "screen_text": [
+        "BLUE PILL'DE BOOT JUMPER'I",
+        "Firmware yükleme adımları"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/05-boot-jumper.png",
+      "source_section": "README.md — \"Blue Pill'de Boot Jumper'ı\" (satır 119-137, QA'de doğrulanamayan pin numaraları çıkarıldıktan sonra)"
+    },
+    {
+      "id": "scene-06",
+      "order": 6,
+      "title": "Sahada Ne Anlama Gelir?",
+      "purpose": "3 teşhis senaryosunu pekiştirmek.",
+      "visual_focus": "3 panel, teal=ölçüm/doğrulama renk kodu: Durum 1 (firmware yüklenemiyor), Durum 2 (sürekli bootloader'a giriyor), Durum 3 (kendiliğinden resetleniyor)",
+      "screen_text": [
+        "SAHADA NE ANLAMA GELİR?",
+        "3 senaryo, 3 teşhis"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/06-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\" (satır 149-167)"
+    }
+  ]
+}
