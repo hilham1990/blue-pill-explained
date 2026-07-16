@@ -17,6 +17,9 @@
 | İletişim hatları | **UART**, **SPI**, **I2C** | Kısaltmalar değişmez |
 | Programlama/debug arayüzü | **SWD** | JTAG ile karıştırılmaz |
 | İşlemci bloğu | **MPU** (şema etiketi) | Gerçek şema (`assets/source/blue-pill-schematic-source.webp`) bloğu "MPU" diye etiketliyor; teknik olarak doğrusu MCU'dur (çekirdek+Flash+SRAM tek çipte). Metin şemaya sadık kalıp "MPU" yazar ama ilk geçtiği yerde bu fark bir cümleyle belirtilir (bkz. Bölüm 01 README) — sessizce MCU'ya çevrilmez. |
+| Gerilim regülatörü | **LDO** (Low Dropout Regulator, parantez içinde açık hali) | Bölüm 05'te RT8183-B için kullanıldı |
+| Clock kaynakları | **HSE**, **HSI**, **PLL**, **LSE**, **LSI** | Kısaltmalar değişmez, Bölüm 06'da tanımlandı |
+| Gerçek zamanlı saat | **RTC** (Real-Time Clock) | Türkçeye çevrilmiyor |
 
 ## Sabit etiketler (her slaytta aynı yazılır)
 
@@ -24,6 +27,8 @@
 - Proje adı: `Blue Pill Explained`
 - Kurum: `Akademi Usta`
 - Kart adı: `STM32F103C8T6` (Blue Pill) — asla kısaltılmış/yanlış yazılmaz (bkz. gpt-image-1.5 testinde "GTM32" hatası)
+- Footer sloganı (orta): **Bölüm 06'dan itibaren** `Usta tahmin etmez, ölçer.` — Bölüm 01-05'in 25 onaylı görseli eski `Önce anlamak, sonra ölçmek.` sloganını taşıyor, geriye dönük değiştirilmedi (bkz. `master-style-prompt.md`)
+- Footer URL'si (sağ): **Bölüm 06'dan itibaren** `akademiusta.com` — Bölüm 01-05'te `akademiusta.com/tr` (gerçek site adresi `https://akademiusta.com/`, "https://" hiçbir zaman gösterilmez)
 
 ## Kaçınılacak tutarsızlıklar
 
