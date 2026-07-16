@@ -16,8 +16,9 @@ STM32F103C8T6 (Blue Pill) üzerinden "donanım okumayı" öğreten 12 bölümlü
 - Bölüm 05 — Power Supply (6 sahne — `curriculum-qa` ile 3 gerçek hata bulundu (koordinat + iki yanlış pull-up direnç iddiası), ve ilk kez "gerçek görsel analizi + bileşen-tutarlılığı referansı" mekanizması kullanıldı, bkz. madde 4c/aşağıdaki not)
 - Bölüm 06 — Clock Sistemi (6 sahne — `curriculum-qa` hiçbir metin hatası bulamadı, ilk kez; X1/X2 kristalleri için gerçek kart fotoğrafından crop alınıp kullanıldı, scene-06'da aynı crop'un unutulması yüzünden X2 paket hatası bir kez daha yaşandı ve düzeltildi — bkz. madde 4c/lessons-learned.md)
 - Bölüm 07 — Reset ve Boot (6 sahne — `curriculum-qa` 5 gerçek hata buldu: D5-E5 koordinatı, BOOT0/BOOT1'in R3/R4 seri-direnç topolojisinin README'de ters çizilmesi — Bölüm 05'teki aynı kavramsal hatanın metinde tekrarı —, gerçek datasheet'te olmayan "BOR" terimi, doğrulanamayan jumper pin numaraları. Gerçek kart fotoğrafından crop'lanan reset butonu + BOOT jumper'ı hero ve scene-05'te kullanıldı, ikisi de tek denemede fotoğrafla birebir çıktı)
+- Bölüm 08 — MPU ve Pinout (7 sahne — `curriculum-qa` "Şemada MPU Bloğu — U2" bölümünün Sol/Sağ/Üst pin yerleşimini yanlış tarif ettiğini buldu: gerçek şemada Port A+B+C13-15'in TAMAMI sol sütunda, özel pinler+besleme sağda, "üst" diye bir grup yok — önceki taslak Port B'yi sağa, beslemeyi olmayan üst gruba koyuyordu. README+brief.json+scenes.json+scene-03 görseli düzeltildi; scene-03 3 kez üretildi, panel metinleri 2. ve 3. denemede doğru çıktı, merkez pin-listesindeki küçük rakam kaymaları teaching-critical olmayan gürültü sayılıp kabul edildi. scene-06/07 ilk denemede temiz çıktı)
 
-**Sırada:** Bölüm 08 — MPU ve Pinout (sadece `README.md` var, henüz `brief.json`/`scenes.json` yok).
+**Sırada:** Bölüm 09 — GPIO ve Alternate Function (sadece `README.md` var, henüz `brief.json`/`scenes.json` yok).
 
 **Bölüm 09-12:** Sadece metin var, görsel üretimi hiç başlamadı.
 
@@ -60,4 +61,4 @@ Yeni bir gerçek kırpma eklenecekse: `assets/source/dayNN-slug.png` olarak kayd
 
 ## Sonraki adım
 
-Bölüm 08 — MPU ve Pinout: önce `curriculum-qa` ile metni gerçek şemaya (`assets/source/blue-pill-schematic-source.webp`, özellikle MPU'nun A4-C8 koordinatı — Bölüm 04'te zaten doğrulanmış — ve tüm pin adları/numaraları) ve datasheet'e karşı doğrula, sonra içerikten sahne sayısını türet, onay al, üret. Bölüm 11'de şema-koordinat riski hâlâ kontrol edilmemiş durumda. Bu bölüm muhtemelen çok sayıda pin adı/numarası içerecek — her birini gerçek şemaya karşı tek tek doğrulamak özellikle önemli (curriculum-qa Step 2).
+Bölüm 09 — GPIO ve Alternate Function: önce `curriculum-qa` ile metni gerçek şemaya ve datasheet'e karşı doğrula, sonra içerikten sahne sayısını türet, onay al, üret. Bölüm 11'de şema-koordinat riski hâlâ kontrol edilmemiş durumda.

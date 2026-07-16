@@ -1,0 +1,112 @@
+{
+  "day": 8,
+  "note": "TÜM 7 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (7) bu bölümün kendi 7 içerik başlığından türetildi, bkz. brief.json. curriculum-qa 'Şemada MPU Bloğu — U2' bölümünün Sol/Sağ/Üst şema-yerleşim iddiasının yanlış olduğunu buldu (Port B'yi sağa, beslemeyi olmayan bir 'üst' gruba koyuyordu; gerçekte Port A+B+C13-15 hepsi sol sütunda, özel pinler+besleme sağda, üst yok) — README+brief.json+scenes.json+scene-03 görseli düzeltildi. scene-03, 3 denemede (v1=eski yanlış panel yapısı, v2/v3=düzeltilmiş) üretildi; v2/v3'te panel metinleri doğru çıktı ama merkez ~48 satırlık pin-listesinde her ikisinde de farklı küçük rakam/etiket bozukluğu çıktı (pin 20/PB2 satırı kayboldu, bir etiket tekrarlandı) — kullanıcı kararıyla v3 kabul edildi, bu teaching-critical olmayan dekoratif gürültü sayıldı (bkz. lessons-learned.md). scene-06 (Pin İsimlendirme Mantığı) ve scene-07 (Sahada Ne Anlama Gelir, gerçek reset/BOOT jumper fotoğrafı real-reset-boot-jumper-crop.png referans alınarak) ilk denemede temiz çıktı. README.md'ye tüm 7 görsel (hero + slides/02-07) ilgili bölüm başlıklarının hemen altına gömüldü — önceki taslakta hiç gömülü değildi, diğer bölümlerin (01-07) standardına uyduruldu. Video render henüz yapılmadı. MÜHÜRLENDİ (2026-07-16).",
+  "scenes": [
+    {
+      "id": "scene-01-hero",
+      "order": 1,
+      "title": "İşlemcinin Her Pini Bir Soru İşareti",
+      "purpose": "Bölümü açmak: 48 pinin çok-görevli doğasını ve bu mantığın diğer MCU/SoC ailelerinde de geçerli olduğunu göstermek.",
+      "visual_focus": "LQFP48 paket genel görünümü (day08-lqfp48-pinout.png ground-truth referans) + yan panelde 'Bu mantık evrensel' rozetiyle ESP32/RP2040/nRF52/GD32 isimleri, küçük notla Apple/Qualcomm BGA ölçek farkı",
+      "screen_text": [
+        "GÜN 08",
+        "MPU VE PINOUT",
+        "48 pin, sonsuz görev"
+      ],
+      "duration_seconds": 16,
+      "status": "approved",
+      "asset": "hero.png",
+      "source_section": "README.md — üst bilgi kutusu + \"Pinout Kartı\" (satır 1-24)"
+    },
+    {
+      "id": "scene-02",
+      "order": 2,
+      "title": "48 Pin Nasıl Gruplanır?",
+      "purpose": "Port A/B/C/D dağılımını ve özel pinleri 4 mantıksal gruba toplayıp göstermek.",
+      "visual_focus": "4 panel: Port A+B (32 GPIO), Port C+D (5 sınırlı GPIO), Reset-Boot (NRST+BOOT0), Güç-Toprak (VBAT+VDDx3+VDDA+VSSx3+VSSA)",
+      "screen_text": [
+        "48 PİN NASIL GRUPLANIR?",
+        "4 port, 2 özel grup"
+      ],
+      "duration_seconds": 20,
+      "status": "approved",
+      "asset": "slides/02-48-pin-gruplama.png",
+      "source_section": "README.md — \"STM32F103C8T6 — 48 Pin\" (satır 28-48)"
+    },
+    {
+      "id": "scene-03",
+      "order": 3,
+      "title": "Şemada MPU Bloğu — U2",
+      "purpose": "Gerçek şema sembolü üzerinden sol/sağ pin yerleşimini göstermek (scene-02'den kasıtlı olarak farklı stilde: kart-genel-görünüm değil, şema-sembolü görünümü).",
+      "visual_focus": "4 panel (2026-07-16 QA'de düzeltildi — real-u2-schematic-crop.png yeniden incelendi, önceki taslak Sol/Sağ/Üst yerleşimini yanlış tarif ediyordu): 1) Sol Taraf — TÜM GPIO (Port A pin 10-17/29-38 ADC/Timer/USART2/USART1/Debug + Port B I2C/SPI/Timer/USART3 + PC13-15 RTC/kristal, hepsi aynı sütunda), 2) Sağ Taraf — Reset & Boot (NRST pin7, BOOT0 pin44), 3) Sağ Taraf — Besleme (VDD/VSS x3 dijital + VDDA/VSSA analog + VBAT, 9 pin), 4) USB+Debug'ın şemada hep SOL sütunda olduğu (scene-04/05'e ileri referans) — 'Üst' diye ayrı bir grup YOK",
+      "screen_text": [
+        "ŞEMADA MPU BLOĞU — U2",
+        "Sol · Sağ — her pinin bir yeri var"
+      ],
+      "duration_seconds": 18,
+      "status": "approved",
+      "asset": "slides/03-sema-mpu-blogu.png",
+      "source_section": "README.md — \"Şemada MPU Bloğu — U2\" (satır 52-83, 2026-07-16 QA'de Sol/Sağ yerleşimi düzeltildi, 3. üretimde (v3) onaylandı — panel metinleri doğru, merkez pin-listesindeki küçük rakam bozuklukları (pin 20/B2 eksik, B6 etiketi tekrarı) kullanıcı kararıyla dekoratif/teaching-critical-olmayan gürültü sayıldı, bkz. lessons-learned.md)"
+    },
+    {
+      "id": "scene-04",
+      "order": 4,
+      "title": "USB Pinleri",
+      "purpose": "USBDM/USBDP'nin gerçek R9/R10/R11 bağlantısını ve pull-up mantığını göstermek.",
+      "visual_focus": "USBDM (PA11, pin32) → R9 (22Ω), USBDP (PA12, pin33) → R11 (22Ω), R10 (10kΩ) pull-up → +3.3V — QA'de düzeltilen doğru etiketlerle",
+      "screen_text": [
+        "USB PİNLERİ",
+        "R9 · R10 · R11"
+      ],
+      "duration_seconds": 16,
+      "status": "approved",
+      "asset": "slides/04-usb-pinleri.png",
+      "source_section": "README.md — \"USB Pinleri\" (satır 82-97, QA'de R-etiketleri düzeltildikten sonra)"
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
+      "title": "Debug Pinleri",
+      "purpose": "SWD/JTAG pinlerini göstermek ve Bölüm 11'e ileri referans vermek.",
+      "visual_focus": "5 pin listesi: JTMS/SWDIO (PA13,34), JTCK/SWCLK (PA14,37), JTDI (PA15,38), JTDO (PB3,39), JNTRST (PB4,40), CN4 konnektörüne çıkış",
+      "screen_text": [
+        "DEBUG PİNLERİ",
+        "SWD / JTAG — CN4'e çıkar"
+      ],
+      "duration_seconds": 15,
+      "status": "approved",
+      "asset": "slides/05-debug-pinleri.png",
+      "source_section": "README.md — \"Debug Pinleri\" (satır 101-114)"
+    },
+    {
+      "id": "scene-06",
+      "order": 6,
+      "title": "Pin İsimlendirme Mantığı",
+      "purpose": "Bir pinin tam adının nasıl okunduğunu, alternate function kavramını göstermek.",
+      "visual_focus": "PA0 örneği: PA0/WKUP/USART2_CTS/ADC12_IN0/TIM2_CH1_ETR parçalanması (QA'de yanlışlıkla eklenmiş '/NRST' çıkarıldı)",
+      "screen_text": [
+        "PİN İSİMLENDİRME MANTIĞI",
+        "Aynı pin, farklı işlev"
+      ],
+      "duration_seconds": 17,
+      "status": "approved",
+      "asset": "slides/06-pin-isimlendirme.png",
+      "source_section": "README.md — \"Pin İsimlendirme Mantığı\" (satır 118-137, QA'de düzeltilen PA0 örneğiyle)"
+    },
+    {
+      "id": "scene-07",
+      "order": 7,
+      "title": "Sahada Ne Anlama Gelir?",
+      "purpose": "Şemadan datasheet'e pin doğrulama yöntemini worked-example ile pekiştirmek.",
+      "visual_focus": "BOOT0 (pin 44) örneği, 4 adımlı yöntem: pin no → datasheet → bağlı devre → sonuç. R3'ün CN5 jumper'ına SERİ bağlı olduğu, GND'ye sabit olmadığı doğru gösterilecek (QA'de düzeltilen topoloji)",
+      "screen_text": [
+        "SAHADA NE ANLAMA GELİR?",
+        "Pin no → datasheet → devre"
+      ],
+      "duration_seconds": 16,
+      "status": "approved",
+      "asset": "slides/07-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\" (satır 141-156, QA'de düzeltilen BOOT0/R3 topolojisiyle)"
+    }
+  ]
+}

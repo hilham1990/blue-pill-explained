@@ -7,6 +7,7 @@
 - Bir slaytta **en fazla 4** yan panel (callout box).
 - Panel sayısı 4'ten azsa (2-3), kalan alan büyütülmüş panellerle doldurulur — boş alan bırakılmaz.
 - Her panel **tek bir bütünleşik görsel** içerir. İki alt-kareyi yan yana koyup tek panele sıkıştırmak yok (2026-07-13'te "Test ve Ölçüm" panelinde osiloskop+multimetre ayrı karelerdeydi, düzeltildi — bkz. `references/approved-day01.png`).
+- **Panel ikonundaki öğe sayısı, panelin başlığında/caption'ında iddia edilen sayıyla birebir eşleşir.** Başlık "(4 Pin)" diyorsa ikon TAM 4 pin gösterir, 5 veya 3 değil (2026-07-16, Bölüm 08 scene-05'te "SWD — CN4'e Çıkar (4 Pin)" başlıklı panelin ikonu 5 pinli çıktı, kullanıcı fark etti). Prompt'ta her ikon için sayıyı açıkça belirt (örn. "an icon showing EXACTLY 4 pins, not 5, not 3").
 
 ## Renk kodu — işlevsel gruplama
 
@@ -24,7 +25,7 @@ Bu eşleme sabit tutulur — Bölüm 05'te "mavi = ölçüm" olup Bölüm 08'de 
 - Sol üst köşe: `GÜN 0X` rozeti (dolgulu lacivert kutu, beyaz metin — bkz. `references/approved-day01.png`; 2026-07-13 öncesi bu kuralda "dolgu yok" yazıyordu ama onaylanan tüm görseller dolgulu rozet kullanıyor, kural gerçek çıktıya göre güncellendi)
 - Üst orta: ana başlık (büyük, kalın, lacivert)
 - Başlığın hemen altı: tek satır alt mesaj (küçük, lacivert veya gri)
-- Merkez: ana teknik nesne (kart, belge, şema) — sayfanın ~%35-40'ı
+- Merkez: ana teknik nesne (kart, belge, şema) — sayfanın ~%35-40'ı. **Merkez içerik ASLA renkli bir çerçeve/kutu/panel sınırı içine alınmaz** — sadece arka plan üzerinde serbestçe durur, tıpkı yan panellerin etrafındaki kenarlık gibi bir sınır çizilmez (2026-07-16, Bölüm 08 scene-05'te merkez şemanın etrafına istenmeyen mavi bir kutu çizildi, kullanıcı fark etti — prompt'a "the central content must NOT have any colored border, box, or frame around it, it sits directly on the plain background" satırı eklenir)
 - Sol/sağ paneller: kalan alanı simetrik paylaşır
 - Alt bant (varsa): tam genişlik, sonuç/akış/temel sorular
 - Footer (her sahnede zorunlu, `master-style-prompt.md`'nin BOTTOM LAYOUT bloğu): sol="Akademi Usta", orta=slogan, sağ=URL — logo/amblem YOK, sadece metin. Sol/orta/sağ içeriğin kendisi zamanla değişebilir (bkz. Bölüm 06'daki slogan/URL güncellemesi), ama 3-kolonlu tek-satır YAPISI değişmez.

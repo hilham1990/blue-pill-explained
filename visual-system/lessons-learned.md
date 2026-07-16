@@ -84,6 +84,68 @@ Bu dosya, `curriculum-slide-gen` ile üretilen görsellerde bulunan **her gerçe
 
 ---
 
+### [Bölüm 08 / scene-02] Panel içerikleri fazla kuru/genel kaldı, ikonlar tekrarlı (kullanıcı geri bildirimi, 2026-07-16)
+
+**Ne oldu:** Scene-02'nin 4 panelinin caption'ları tek bir kısa/genel satırdan ibaretti (örn. "Port A + Port B" → "32 GPIO pini (16 + 16)") ve 4 panelin de aynı jenerik çip ikonunu kullandı. Kullanıcı bunu "kuru" ve "çağırıcı olmayan" (ilgi çekici değil) olarak nitelendirdi, daha fazla somut/açıklayıcı bilgi ve panel başına anlamlı/farklı ikon istedi.
+**Neden oldu:** Prompt panel başına sadece TEK kısa sayısal özet istiyordu (sadece pin sayısı, o pin grubunun gerçekte hangi işlevlerle/periferallerle bağlantılı olduğunu belirtmiyordu) ve ikon seçimini modele bırakıyordu ("a chip icon" gibi jenerik) — model de her panelde aynı ikonu tekrarladı.
+**Önleme kuralı:** Her panelin caption'ı en az 2 somut/farklı bilgi satırı içerir (sadece sayı değil, o grubun gerçek işlevi/periferalleri — örn. "PA0-7: ADC, Timer, USART2" gibi), VE her panel için prompt'ta AÇIKÇA farklı ve anlamlı bir ikon belirtilir (örn. "a waveform/signal icon" vs "a plug/connector icon" vs "a battery icon") — "pick an appropriate icon" gibi modele bırakılan genel bir ifade kullanılmaz.
+**Durum:** Bölüm 08 scene-03'ten itibaren uygulandı.
+
+---
+
+### [Bölüm 08 / scene-05] Pin numaraları doğrulandı ama üzerine kurulu konnektör-bağlantı iddiası doğrulanmadı (2026-07-16)
+
+**Ne oldu:** README'nin "Debug Pinleri" bölümü "Bu pinler CN4 (SWD konnektörü) üzerinden dışarıya çıkıyor" diyordu — 5 pinin (JTMS/SWDIO, JTCK/SWCLK, JTDI, JTDO, JNTRST) hepsinin CN4'e çıktığı izlenimini veriyordu. Gerçek şemada CN4 (SRP4) sadece 4 pinli: +3.3V/DIO(SWDIO)/DCLK(SWCLK)/GND — yani sadece 2 gerçek sinyal (SWDIO+SWCLK) CN4'e çıkıyor. JTDI/JTDO/JNTRST için kartta ayrı bir JTAG konnektörü yok, bu 3 pin sadece genel GPIO header'da duruyor. scene-05 bu yanlış iddiayı görsele taşıdı ("Bu 5 pin CN4 üzerinden dışarı çıkar"), kullanıcı fark etti.
+**Neden oldu:** curriculum-qa Adım 2'de pin NUMARALARI/İSİMLERİ datasheet'e karşı tek tek doğrulanmıştı ama bu numaraların üzerine kurulu ikinci-derece bir iddia ("bu pinler X konnektörüne çıkıyor") ayrıca gerçek şemanın Connectors bloğuna karşı doğrulanmamıştı — doğru bir pin numarasının doğru olması, o pin hakkındaki her ek iddiayı otomatik doğru yapmıyor.
+**Önleme kuralı:** Bir pin/sinyal için "X konnektörüne/başlığına çıkıyor" gibi bir FİZİKSEL BAĞLANTI iddiası varsa, sadece pinin kendi numarasını değil, o konnektörün şemadaki gerçek tanımını (kaç pinli, hangi sinyaller) da ayrıca doğrula — pin doğru diye bağlandığı iddia edilen konnektör claim'i otomatik doğru sayılmaz.
+**Durum:** çözüldü — README ve scene-05 düzeltildi. Bölüm 11 (Debug/SWD) yazılırken bu ayrım (CN4 sadece SWD, JTAG için ayrı konnektör yok) baştan doğru kurulmalı.
+
+---
+
+### [Bölüm 08 / scene-05, 2. üretim] Merkez içerik istenmeyen çerçeve aldı, panel ikonu kendi başlığıyla çelişti (2026-07-16)
+
+**Ne oldu:** CN4 düzeltmesinden sonraki üretimde iki yeni kusur çıktı: (1) merkezdeki şema, prompt'ta hiç istenmediği halde ince mavi renkli bir kutu/çerçeve içine alınmış (sahnenin geri kalanı tamamen turuncu temalıyken tutarsız bir renk), (2) Panel 1'in başlığı "SWD — CN4'e Çıkar (4 Pin)" derken ikonu 5 pinli bir header gösterdi — panelin kendi metniyle çelişen bir görsel. Ayrıca panel 2'nin "JTDI" yazısında fazladan bir çizgi (hafif bozuk karakter) vardı.
+**Neden oldu:** Prompt, merkez içeriğin görünümünü (renk/çerçeve olup olmayacağını) hiç belirtmiyordu — model boş bırakılan her alanı "dekore etmeye" çalışıyor (bkz. footer/logo dersi, aynı kalıp). Panel ikonlarının pin SAYISI da prompt'ta "a small N-pin header icon" gibi genel geçirilmişti, tam sayı her ikon için ayrıca yazılmamıştı.
+**Önleme kuralı:** (1) Prompt'a her zaman "the central content must NOT have any colored border, box, or frame around it" satırı eklenir (bkz. layout-rules.md). (2) Her panel ikonunun göstereceği öğe sayısı (pin, bileşen vb.) panelin caption'ındaki sayıyla aynı olacak şekilde EXPLICIT yazılır ("EXACTLY N, not N±1").
+**Durum:** çözüldü — scene-05 3. kez, bu iki düzeltmeyle yeniden üretildi.
+
+---
+
+### [Bölüm 08 / scene-03] Doğru referans görsel vardı ama prompt'taki YAZILI özeti yanlıştı (2026-07-16)
+
+**Ne oldu:** `real-u2-schematic-crop.png` (gerçek şemadan doğru crop) zaten çekilmiş ve `--ref`
+olarak veriliyordu — ama prompt dosyasındaki "Gerçek görsel analizi" notu bu görseli YANLIŞ
+özetlemişti: "sol=Port A, sağ=Port B+C, üst=besleme" diye yazılmıştı, oysa görselin kendisi
+"sol=Port A+Port B+C13-15 (tek sütun), sağ=NRST/BOOT0/kristal/besleme, üst=yok" gösteriyordu.
+Model, doğru referans görseli önünde dururken bile, prompt METNİNDEKİ bu yanlış özete sadık
+kalarak (metin görseli domine etti) yanlış Sol/Sağ/Üst panel etiketleriyle bir görsel üretti —
+hem README hem brief.json hem scenes.json aynı yanlış özeti taşıyordu, curriculum-qa'da
+bulundu.
+**Neden oldu:** Bir referans görseli "--ref olarak eklendi" ile "doğru okundu" aynı şey değil.
+Görseli ilk kez incelerken çıkarılan yazılı özet (sol/sağ/üst gibi konumsal bir iddia) tek
+seferlik göz atmayla değil, PİKSEL SEVİYESİNDE (crop+zoom) doğrulanmadan prompt'a yazılmış.
+**Önleme kuralı:** Bir referans görselden konumsal/sayısal bir iddia (örn. "sol sütunda X var,
+sağda Y var") çıkarılıp prompt'a yazılacaksa, bu iddia yazılmadan ÖNCE görsel crop+zoom ile
+piksel seviyesinde tekrar kontrol edilir — "referansı ekledim" konumsal iddianın doğru
+okunduğu anlamına gelmez, okumanın kendisi ayrıca doğrulanır.
+**Durum:** çözüldü — README, brief.json, scenes.json ve prompt dosyası düzeltildi, scene-03
+düzeltilmiş panel yapısıyla (Sol=tüm GPIO, Sağ=Reset/Boot/Kristal + Sağ=Besleme, USB+Debug) 3
+kez üretildi (v1=eski yanlış panel yapısı, v2 ve v3=düzeltilmiş panel yapısı). v2 ve v3'ün
+İKİSİNDE de panel metinleri (asıl pedagojik hata) doğru çıktı, ama merkezdeki yoğun ~48 satırlık
+pin-listesi çiziminde HER İKİSİNDE de farklı küçük rakam/etiket bozukluğu çıktı (v2: pin 20/PB2
+satırı tamamen kayboldu, sonraki tüm Port B numaraları bir satır kaydı; v3: pin 20/PB2 yine
+kayboldu, ayrıca "B6" etiketi iki kez tekrarlandı/B7-B8 sırası karıştı). Kullanıcı kararıyla v3
+kabul edildi — panel metinleri doğru olduğu için ana hata çözülmüş sayıldı, merkez çizimdeki bu
+küçük rakam kaymaları "Bölüm 01/04/05 dekoratif ikincil metin" maddesindeki gibi
+teaching-critical-olmayan gürültü olarak kabul edildi (3. bir ücretli üretim denenmedi).
+**Ek gözlem:** ~15+ satırlık yoğun bir pin-numarası sütunu (özellikle art arda gelen ardışık
+sayılar: 18,19,20,39,40...) medium kalitede tutarlı biçimde doğru kopyalanamıyor gibi görünüyor
+— bu chapter'da 2/2 denemede aynı bölgede (Port B'nin başı) hata çıktı. İleride benzer yoğun pin-
+listesi sahneleri gerekirse, "quality: high" ile başlamak veya listeyi 2 sahneye bölmek
+düşünülebilir (bkz. `curriculum-slide-gen/SKILL.md` escape-hatch madde 5).
+
+---
+
 ### [Bölüm 01/04/05] Dekoratif ikincil metin/kod (bilinçli kabul edilen risk)
 
 **Ne oldu:** Model, çip fotoğraflarının üzerine gerçek olmayan ama "gerçekçi görünen" ikincil satırlar (örn. "GJ7E7P1", "GQW 8G6NZ" gibi uydurma lot/batch kodları) veya kenarlarda dekoratif pin etiketleri ekliyor.

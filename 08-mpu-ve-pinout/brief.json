@@ -1,0 +1,24 @@
+{
+  "day": 8,
+  "title": "MPU ve Pinout",
+  "lesson_goal": "Öğrenci, STM32F103C8T6'nın 48 pininin Port A/B/C/D arasında nasıl dağıldığını, gerçek şemadaki U2 sembolünün sol/sağ/üst pin yerleşimini, USB ve debug (SWD/JTAG) pinlerinin bağlantısını okuyabilecek; bir pinin tam adındaki 'alternate function' mantığını çözebilecek; ve şemadaki bir pini datasheet'e bakarak doğrulama yöntemini sahada uygulayabilecek.",
+  "core_message": "İşlemcinin 48 pini var ama hepsi çok görevli — datasheet'teki pin tablosu hangi görevin hangi pinde olduğunu söyler. Bu mantık ESP32/RP2040/nRF52/GD32'de de aynı, sadece ölçek (BGA'da binlerce pin) değişir.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 118,
+  "recommended_scene_count": 7,
+  "must_show": [
+    "48 pin gruplaması: Port A (16) + Port B (16, TAMAMI mevcut — QA'de düzeltilen 'bazı pinler yok' hatası) + Port C (3, PC13-15) + Port D (2, PD0-1/OSC) + özel pinler (NRST, BOOT0, VBAT, VDD x3, VDDA, VSS x3, VSSA)",
+    "Şemadaki U2 sembolü: Sol taraf TÜM GPIO (Port A + Port B + PC13-15, tek sütun), Sağ taraf özel pinler + besleme (NRST, BOOT0, kristal PD0/PD1, VBAT/VDDA/VSSA/VDD×3/VSS×3) — 'Üst' diye ayrı bir grup YOK (QA'de düzeltildi, önceki taslak yanlışlıkla Port B+C'yi sağa, beslemeyi üste koyuyordu)",
+    "USB pinleri: USBDM (PA11, pin 32) → R9 (22Ω), USBDP (PA12, pin 33) → R11 (22Ω), pull-up R10 (10kΩ) — QA'de düzeltilen doğru R-etiketleri (README'de R9/R10/R11 birbirine karışmıştı)",
+    "Debug pinleri: JTMS/SWDIO (PA13, pin 34), JTCK/SWCLK (PA14, pin 37), JTDI (PA15, pin 38), JTDO (PB3, pin 39), JNTRST (PB4, pin 40) — SADECE SWDIO+SWCLK gerçekten CN4'e (4 pin: +3.3V/DIO/DCLK/GND) çıkıyor; JTDI/JTDO/JNTRST için kartta ayrı bir JTAG konnektörü YOK, bu 3 pin sadece genel GPIO header'da durur (QA sonrası scene-05 üretiminde bulunan hata, README ve scene-05 düzeltildi)",
+    "Pin isimlendirme mantığı: PA0 örneği üzerinden alternate function kavramı (QA'de PA0'a yanlışlıkla eklenmiş '/NRST' çıkarıldı — NRST ayrı bir pin, pin 7)",
+    "Sahada uygulama: BOOT0 (pin 44) örneği üzerinden 4 adımlı pin-okuma yöntemi — R3 (100kΩ) CN5 jumper'ına SERİ bağlı, GND'ye sabit DEĞİL (QA'de düzeltilen, Bölüm 05/07'deki aynı hatanın 3. tekrarıydı)"
+  ],
+  "technical_risks": [
+    "Scene-02'nin 7 özel pin + 4 port grubu listesi 4-panel sınırını aşıyor — mantıksal gruplama: 'Port A+B (32 GPIO)' / 'Port C+D (5 sınırlı GPIO)' / 'Reset-Boot (NRST+BOOT0)' / 'Güç-Toprak (VBAT+VDDx3+VDDA+VSSx3+VSSA)' olarak 4 panele indirildi",
+    "Scene-03'ün besleme paneli 9 pin içeriyor (VBAT, VDDA, VSSA, VDD_1-3, VSS_1-3) — bunlar gerçek şemada SAĞ tarafta, NRST/BOOT0/kristal ile birlikte (Analog/Dijital/Toprak/VBAT alt-gruplu TEK panel), 'Üst' diye ayrı bir panel/taraf YOK (2026-07-16 QA'de düzeltildi, real-u2-schematic-crop.png yeniden incelendi)",
+    "'Pinout Kartı' bölümündeki gerçek görsel (day08-lqfp48-pinout.png, resmi ST Figure 7 — çıplak LQFP48 çip diyagramı) ile metnin tarif ettiği şey ('Üstte SWD pinleri, Ortada kartın kendisi') tam örtüşmüyor; QA sırasında fark edildi ama kullanıcı talebiyle DEĞİŞTİRİLMEDİ, olduğu gibi bırakıldı — sahne üretiminde bu görsel 'çıplak IC pinout' olarak ele alınacak, board fotoğrafı gibi davranılmayacak",
+    "R9/R10/R11 (USB) ve R3 (BOOT0) gibi gerçek şema designator'ları hero ve ilgili sahnelerde QA'de düzeltilen haliyle tutarlı verilmeli — Bölüm 05/07'deki aynı tip hatanın burada tekrarlanmaması için"
+  ],
+  "note": "Sahne sayısı (7) bu bölümün kendi 7 içerik başlığından (Pinout Kartı, 48 Pin, Şemada MPU Bloğu, USB Pinleri, Debug Pinleri, Pin İsimlendirme Mantığı, Sahada Ne Anlama Gelir) türetildi, bir önceki günün sayısına çapalanmadan. 'Şemada MPU Bloğu' sahnesi, 'STM32F103C8T6 — 48 Pin' sahnesiyle aynı port-dağılımı konusuna değiniyor ama layout-rules.md'nin 'kasıtlı görsel farklılaştırma' kuralı gereği FARKLI stilde çizilecek (biri kart/genel-bakış kategorisi, diğeri gerçek şema-sembolü görünümü). Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

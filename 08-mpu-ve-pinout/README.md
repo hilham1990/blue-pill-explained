@@ -2,6 +2,8 @@
 
 > *İşlemcinin her pini bir soru işareti. Datasheet cevap veriyor.*
 
+![MPU ve Pinout — Gün 08 özet görseli](hero.png)
+
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
@@ -27,13 +29,15 @@ Ortada: Kartın kendisi.
 
 ## STM32F103C8T6 — 48 Pin
 
+![48 Pin Nasıl Gruplanır? — 4 port, 2 özel grup](slides/02-48-pin-gruplama.png)
+
 İşlemcinin 48 pini var. Ama hepsi farklı işler yapabiliyor.
 
 Pin grupları:
 
 ```
 Port A (PA0–PA15)   → 16 pin
-Port B (PB0–PB15)   → 16 pin (bazı pinler yok)
+Port B (PB0–PB15)   → 16 pin
 Port C (PC13–PC15)  → 3 pin
 Port D (PD0–PD1)    → 2 pin (crystal pinleri)
 
@@ -51,21 +55,23 @@ VSSA    → Analog toprak
 
 ## Şemada MPU Bloğu — U2
 
+![Şemada MPU Bloğu — U2 — Sol · Sağ, her pinin bir yeri var](slides/03-sema-mpu-blogu.png)
+
 Şemada U2 sembolü işlemciyi temsil ediyor.
 
-Sol taraf pinleri (Port A):
+Sol taraf pinleri (tüm GPIO — Port A + Port B + PC13-15, tek sütun):
 ```
 A0–A15: PA0 – PA15 pinleri
-```
-
-Sağ taraf pinleri (Port B ve C):
-```
 B0–B15: PB0 – PB15 pinleri
 C13–C15: PC13 – PC15 pinleri
 ```
 
-Üst taraf (besleme):
+Sağ taraf pinleri (özel pinler + besleme):
 ```
+NRST (pin 7)    → Reset
+BOOT0 (pin 44)  → Boot modu seçimi
+PD1 (pin 6)     → OSC_OUT (kristal)
+PD0 (pin 5)     → OSC_IN (kristal)
 VBAT (pin 1)    → 3VB hattı
 VDDA (pin 9)    → +3.3V (analog)
 VSSA (pin 8)    → GND (analog)
@@ -77,28 +83,36 @@ VSS_2 (pin 35)  → GND
 VSS_3 (pin 47)  → GND
 ```
 
+Yani Port A ve Port B'nin TAMAMI (32 GPIO) aynı sol sütunda çıkıyor — sağ tarafta GPIO yok,
+sadece özel pinler (reset, boot, kristal) ve besleme var. "Üst" diye ayrı bir grup yok, sembolün
+sadece sol ve sağ kenarından pin çıkıyor.
+
 ---
 
 ## USB Pinleri
 
+![USB Pinleri — R9 · R10 · R11, üç direnç tek görev](slides/04-usb-pinleri.png)
+
 Şemada U2'nin sol tarafında:
 
 ```
-USBDM (PA11, pin 32) ──── R11 (22Ω) ──── USB D-
-USBDP (PA12, pin 33) ──── R10 (22Ω) ──── USB D+
+USBDM (PA11, pin 32) ──── R9 (22Ω) ──── USB D-
+USBDP (PA12, pin 33) ──── R11 (22Ω) ──── USB D+
                                            │
-                                      R9 (10kΩ) → +3.3V
+                                      R10 (10kΩ) → +3.3V
 ```
 
-**R9 (10kΩ) pull-up direnci neden var?**
+**R10 (10kΩ) pull-up direnci neden var?**
 USB host'a (bilgisayar) "ben buradayım, Full Speed cihazıyım" sinyali veriyor. Bu direnç olmadan USB cihazı algılanmaz.
 
-**R10 ve R11 (22Ω) neden var?**
+**R9 ve R11 (22Ω) neden var?**
 USB hattındaki yansımaları azaltıyor. USB diferansiyel sinyal kullandığından hat empedansı önemli.
 
 ---
 
 ## Debug Pinleri
+
+![Debug Pinleri — Sadece SWD çıkar, JTAG'ın ayrı konnektörü yok](slides/05-debug-pinleri.png)
 
 Şemada U2'nin sol tarafında:
 
@@ -110,19 +124,36 @@ JTDO        (PB3,  pin 39)  → JTAG veri çıkışı
 JNTRST      (PB4,  pin 40)  → JTAG reset
 ```
 
-Bu pinler **CN4 (SWD konnektörü)** üzerinden dışarıya çıkıyor.
+Bunların hepsi CN4'e çıkmıyor. Kartta sadece **JTMS/SWDIO ve JTCK/SWCLK** için ayrılmış,
+4 pinli bir SWD konnektörü var:
+
+```
+CN4 (SRP4, 4 pin):
+Pin 1 → +3.3V
+Pin 2 → DIO  (JTMS/SWDIO)
+Pin 3 → DCLK (JTCK/SWCLK)
+Pin 4 → GND
+```
+
+**JTDI, JTDO ve JNTRST için kartta ayrı bir JTAG konnektörü YOK.** Bu 3 pin sadece genel GPIO
+header sıralarında (PA15/PB3/PB4 olarak) duruyor — JTAG kullanmak isteyen biri bu pinlere
+kendi bağlantısını yapar. Blue Pill'de günlük kullanımda pratikte sadece 4 pinli SWD (CN4)
+kullanılır; tam JTAG için ek kablolama gerekir.
+
 Bölüm 11'de detaylı anlatılacak.
 
 ---
 
 ## Pin İsimlendirme Mantığı
 
+![Pin İsimlendirme Mantığı — Aynı pin, farklı işlev](slides/06-pin-isimlendirme.png)
+
 ![Pin Definitions](../assets/source/day08-pin-definitions.png)
 
 Bir pinin tam adı şöyle okunur:
 
 ```
-PA0/WKUP/USART2_CTS/ADC12_IN0/TIM2_CH1_ETR/NRST
+PA0/WKUP/USART2_CTS/ADC12_IN0/TIM2_CH1_ETR
 ```
 
 Bu tek pinin yapabileceği şeyler:
@@ -140,6 +171,8 @@ Bunu bir sonraki bölümde "Alternate Function" olarak inceleyeceğiz.
 
 ## Sahada Ne Anlama Gelir?
 
+![Sahada Ne Anlama Gelir? — Pin no → datasheet → devre](slides/07-sahada-ne-anlama-gelir.png)
+
 Şemada bir pini tanımlamak:
 
 1. Pin numarasına bak (U2 üzerinde yazıyor)
@@ -151,8 +184,8 @@ Bunu bir sonraki bölümde "Alternate Function" olarak inceleyeceğiz.
 ```
 Şemada pin 44 → BOOT0
 Datasheet → Pin 44 = BOOT0 (özel pin, GPIO değil)
-Bağlı olan → R3 (100kΩ, GND'ye) ve CN5 jumper
-Sonuç → Normal çalışmada BOOT0 = GND (Flash'tan başla)
+Bağlı olan → R3 (100kΩ) üzerinden CN5 jumper'ın ortak ucuna; GND ve 3.3V doğrudan jumper'a bağlı
+Sonuç → Jumper GND tarafındaysa BOOT0 = GND (Flash'tan başla)
 ```
 
 ---
