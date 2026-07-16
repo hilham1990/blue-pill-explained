@@ -1,0 +1,127 @@
+{
+  "day": 9,
+  "note": "PLAN ONAYLANDI, PROMPT'LAR YAZILDI (2026-07-16). 8/8 prompt dosyası (prompts/01-08) hazır, real-image analizi (madde 4c) her sahne için ayrı ayrı yapıldı (real-mpu-chip-crop.png, real-u2-schematic-crop.png, blue-pill-pinout-source.webp, yeni oluşturulan real-led-pc13-crop.png). Henüz HİÇBİR görsel üretilmedi — kullanıcı sırayla üretime geçmeyi onaylayınca curriculum-slide-gen çalıştırılacak.",
+  "scenes": [
+    {
+      "id": "scene-01-hero",
+      "order": 1,
+      "title": "Her Pin Her An Aynı Şeyi Yapmıyor",
+      "purpose": "Bölümü açmak: GPIO kavramını ve 'modu sen belirlersin' fikrini, bu mantığın diğer MCU ailelerinde de geçerli olduğunu göstermek.",
+      "visual_focus": "Blue Pill/STM32 çip yakın çekimi (day01 stiliyle) + yan panelde 'Bu mantık evrensel' rozetiyle RP2040/nRF52/GD32/ESP32 isimleri",
+      "screen_text": [
+        "GÜN 09",
+        "GPIO VE ALTERNATE FUNCTION",
+        "Modu sen belirlersin"
+      ],
+      "duration_seconds": 16,
+      "status": "planned",
+      "asset": "hero.png",
+      "source_section": "README.md — üst bilgi kutusu + \"GPIO Nedir?\""
+    },
+    {
+      "id": "scene-02",
+      "order": 2,
+      "title": "GPIO'nun 4 Modu",
+      "purpose": "Input/Output/Alternate Function/Analog'u ve kısaca alt-modlarını göstermek.",
+      "visual_focus": "4 panel: Input (Floating/Pull-up/Pull-down/Analog), Output (Push-Pull/Open-Drain), Alternate Function (AF Push-Pull/AF Open-Drain), Analog (ADC/DAC, dijital tampon devre dışı)",
+      "screen_text": [
+        "GPIO'NUN 4 MODU",
+        "Input · Output · Alternate Function · Analog"
+      ],
+      "duration_seconds": 20,
+      "status": "planned",
+      "asset": "slides/02-gpionun-4-modu.png",
+      "source_section": "README.md — \"GPIO Modları\""
+    },
+    {
+      "id": "scene-03",
+      "order": 3,
+      "title": "Alternate Function Nedir?",
+      "purpose": "Aynı pinin birden fazla görev üstlenebildiğini ama aynı anda sadece birinin aktif olduğunu, yazılımın seçtiğini PA9 örneğiyle göstermek (Bölüm 08 scene-06'dan kasıtlı olarak farklı stilde: statik isim listesi değil, seçim/switch metaforu).",
+      "visual_focus": "PA9 pini merkezde, bir seçici anahtar/switch görseliyle 3 pozisyona işaret ediyor: GPIO (varsayılan) / USART1_TX / TIM1_CH2 — aynı anda sadece biri seçili",
+      "screen_text": [
+        "ALTERNATE FUNCTION NEDİR?",
+        "Aynı anda sadece biri aktif"
+      ],
+      "duration_seconds": 17,
+      "status": "planned",
+      "asset": "slides/03-alternate-function-nedir.png",
+      "source_section": "README.md — \"Alternate Function Nedir?\""
+    },
+    {
+      "id": "scene-04",
+      "order": 4,
+      "title": "Pinout'ta Renkler Ne Anlatıyor?",
+      "purpose": "Gerçek renkli pinout kartının (README'de zaten tam boyutta gösterilen) renk lejantını sadeleştirilmiş biçimde özetlemek — kartın tamamını yeniden çizmeye çalışmadan.",
+      "visual_focus": "4 panel, her biri bir renk örneği + o rengin fonksiyonu: Sarı=Serial, Açık yeşil=SPI, Turuncu=I2C(+USB), Mor=PWM — Pembe/CAN ve Bej/Analog alt bantta kısaca eklenir. Merkezde kartın TAMAMI değil, sadece birkaç örnek renkli kutu (temsili, gerçek kart README'de ayrı gösteriliyor)",
+      "screen_text": [
+        "PINOUT'TA RENKLER NE ANLATIYOR?",
+        "Her renk bir çevre birimi"
+      ],
+      "duration_seconds": 18,
+      "status": "planned",
+      "asset": "slides/04-pinoutta-renkler.png",
+      "source_section": "README.md — \"Blue Pill Pinout'ta Alternate Function'lar\""
+    },
+    {
+      "id": "scene-05",
+      "order": 5,
+      "title": "Şemada Alternate Function Okumak",
+      "purpose": "Şemada bir pinin yanına yazılan tam ismi okumayı, PB6'nın neden 2 isim taşıdığını göstermek.",
+      "visual_focus": "Şema kesiti (real-u2-schematic-crop.png referanslı): PA11→USBDM, PA12→USBDP, PA13→JTMS/SWDIO, PA14→JTCK/SWCLK, PB6→I2C1_SCL/USART1_TX, PB7→I2C1_SDA/USART1_RX",
+      "screen_text": [
+        "ŞEMADA ALTERNATE FUNCTION OKUMAK",
+        "PB6 neden 2 isim taşıyor?"
+      ],
+      "duration_seconds": 17,
+      "status": "planned",
+      "asset": "slides/05-semada-af-okumak.png",
+      "source_section": "README.md — \"Şemada Alternate Function Okumak\""
+    },
+    {
+      "id": "scene-06",
+      "order": 6,
+      "title": "Remapping — Yeniden Haritalama",
+      "purpose": "USART1'in varsayılan ve remap pinlerini karşılaştırmalı göstermek (bu bölümün 'teknik karşılaştırma' sahnesi, farklı stil: iki-kolonlu karşılaştırma).",
+      "visual_focus": "2 kolonlu karşılaştırma: Varsayılan (TX→PA9, RX→PA10) vs Remap (TX→PB6, RX→PB7), ortada 'neden' — şema tasarımında esneklik",
+      "screen_text": [
+        "REMAPPING — YENİDEN HARİTALAMA",
+        "Varsayılan · Remap"
+      ],
+      "duration_seconds": 16,
+      "status": "planned",
+      "asset": "slides/06-remapping.png",
+      "source_section": "README.md — \"Remapping (Yeniden Haritalama)\""
+    },
+    {
+      "id": "scene-07",
+      "order": 7,
+      "title": "LED Örneği — PC13",
+      "purpose": "PC13'ün hem GPIO/LED sürücü hem TAMPER-RTC olabildiğini, gerçek LED devresi üzerinden göstermek.",
+      "visual_focus": "Gerçek devre (QA'de düzeltilen sırayla): +3.3V → D2 (mavi LED) → R5 (510Ω) → PC13; PC13=LOW→LED yanar, PC13=HIGH→LED söner. 4c'de gerçek LED fotoğrafı var mı kontrol edilecek (blue-pill-card-exact-cutout.png)",
+      "screen_text": [
+        "LED ÖRNEĞİ — PC13",
+        "LOW = yanar, HIGH = söner"
+      ],
+      "duration_seconds": 15,
+      "status": "planned",
+      "asset": "slides/07-led-ornegi-pc13.png",
+      "source_section": "README.md — \"LED Örneği — PC13\""
+    },
+    {
+      "id": "scene-08",
+      "order": 8,
+      "title": "Sahada Ne Anlama Gelir?",
+      "purpose": "Bağlı devreden yazılımı okumadan hangi alternate function'ın kullanıldığını çıkarma yöntemini pekiştirmek (Bölüm 08 scene-07 ile tutarlı teal/doğrulama stili — seri içi bu bölüm türü için sabit convention).",
+      "visual_focus": "PB6/I2C1_SCL/USART1_TX örneği: EEPROM bağlıysa→I2C, seri modül bağlıysa→USART. Bağlı devreye bakarak modu çıkarma mantığı",
+      "screen_text": [
+        "SAHADA NE ANLAMA GELİR?",
+        "Devreye bak, modu çıkar"
+      ],
+      "duration_seconds": 15,
+      "status": "planned",
+      "asset": "slides/08-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\""
+    }
+  ]
+}

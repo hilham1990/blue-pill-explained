@@ -1,0 +1,24 @@
+{
+  "day": 9,
+  "title": "GPIO ve Alternate Function",
+  "lesson_goal": "Öğrenci, bir GPIO pininin 4 temel modunu (Input/Output/Alternate Function/Analog) ve alt-modlarını ayırt edebilecek; 'alternate function' kavramını (aynı pinin birden fazla göreve atanabilmesi, ama aynı anda sadece birinin aktif olabilmesi) PA9 örneği üzerinden çözebilecek; gerçek Blue Pill pinout kartındaki renk kodlamasını doğru okuyabilecek; şemada bir pinin tam adını (örn. PB6/I2C1_SCL/USART1_TX) yorumlayabilecek; remapping kavramını (bir fonksiyonun 2. bir pine taşınabilmesi) USART1 örneğiyle anlayabilecek; ve PC13 üzerindeki mavi LED örneğiyle bunu sahada uygulayabilecek.",
+  "core_message": "Her GPIO pini çok görevli ama tek seferde tek görevli — yazılım hangi modu/fonksiyonu seçerse pin o an onu yapar. Bu, ESP32/RP2040/nRF52/GD32'de de aynı kavram, sadece kayıt isimleri ve mimari değişir.",
+  "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
+  "estimated_duration_seconds": 134,
+  "recommended_scene_count": 8,
+  "must_show": [
+    "GPIO'nun 4 modu: Input (Floating/Pull-up/Pull-down/Analog alt-modlarıyla), Output (Push-Pull/Open-Drain), Alternate Function (AF Push-Pull/AF Open-Drain), Analog — datasheet 2.3.21 ile doğrulanmış",
+    "PA9 örneği: aynı pin GPIO / USART1_TX / TIM1_CH2 arasında seçilebilir, aynı anda sadece biri aktif (datasheet Table 5 ile doğrulanmış)",
+    "Blue Pill'in gerçek renkli pinout kartı (assets/source/blue-pill-pinout-source.webp) ve QA'de düzeltilen DOĞRU renk lejantı: Sarı=Serial, Açık yeşil=SPI, Turuncu=I2C (+USB), Mor=PWM, Pembe=CAN, Bej=Analog — önceki taslakta 4/6 renk yanlıştı, düzeltildi",
+    "Şemada PA11-14/PB6-7'nin gerçek alternate function isimleri: USBDM(PA11)/USBDP(PA12)/JTMS-SWDIO(PA13)/JTCK-SWCLK(PA14)/I2C1_SCL+USART1_TX(PB6)/I2C1_SDA+USART1_RX(PB7)",
+    "USART1 remap tablosu: Varsayılan TX=PA9/RX=PA10, Remap TX=PB6/RX=PB7 — datasheet ile doğrulanmış",
+    "LED PC13 örneği: gerçek devre sırası 3.3V→D2(mavi LED)→R5(510Ω)→PC13 (QA'de düzeltilen sıra, önceki taslakta R5/D2 ters yazılmıştı), PC13=LOW'da LED yanar"
+  ],
+  "technical_risks": [
+    "scene-03 (PA9 alternate function örneği), Bölüm 08 scene-06'nın (PA0 pin-adı parçalanması) aynı 'label decoder / fan-out' görsel stiline düşmemeli — layout-rules.md'nin 'kasıtlı görsel farklılaştırma' kuralı gereği: Bölüm 08 scene-06 'aynı pinin birden fazla İSMİ var' vurgusuydu (statik liste), Bölüm 09 scene-03 'aynı anda sadece BİRİ aktif, yazılım SEÇER' vurgusu olmalı (bir seçici anahtar/switch/dial metaforu gibi farklı bir görsel dil).",
+    "scene-04 (Pinout'ta renkler), gerçek referans görsel (blue-pill-pinout-source.webp, 20+ renkli kutu) zaten README'de tam boyutta gösteriliyor — AI sahnesi bu yoğun görseli birebir yeniden çizmeye ÇALIŞMAMALI (yüksek metin/renk yoğunluğu = yüksek bozulma riski, bkz. Bölüm 08 scene-03'ün 3 denemesi). Bunun yerine sahne, sadeleştirilmiş bir 'renk lejantı nasıl okunur' özeti olmalı — birkaç örnek kutu + doğru renk-fonksiyon eşlemesi, TÜM pinleri değil.",
+    "scene-07 (LED PC13) için gerçek LED'in fiziksel görünümü (`assets/source/blue-pill-card-exact-cutout.png`'de mavi LED var mı, net görünüyor mu) 4c adımında (prompt yazmadan önce) kontrol edilecek — yoksa şematik/soyut bir LED sembolüyle devam edilecek, uydurma bir fotoğraf-stili LED çizilmeyecek.",
+    "scene-02 (GPIO Modları) 4 ana mod (Input/Output/AF/Analog) tam olarak 4 panele oturuyor, ama Input'un kendi 4 alt-modu (Floating/Pull-up/Pull-down/Analog) var — panel başına 'en az 2 somut bilgi satırı' kuralı uygulanırken alt-mod sayısının taşırılmamasına dikkat edilecek (Input paneli 4 alt-modu tek satırda özetleyecek, ayrı ayrı listelemeyecek)."
+  ],
+  "note": "Sahne sayısı (8: hero + 7) bu bölümün kendi 7 içerik başlığından (GPIO Modları, Alternate Function Nedir, Pinout'ta Renkler, Şemada AF Okuma, Remapping, LED PC13, Sahada Ne Anlama Gelir) + hero'nun kapsadığı 'GPIO Nedir?' açılış bölümünden türetildi — Bölüm 08'in 7 sayısına çapalanmadan. Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+}

@@ -79,18 +79,22 @@ Yazılımda hangi modu seçersen pin o işlevi üstlenir.
 
 ## Blue Pill Pinout'ta Alternate Function'lar
 
-![Pinout](../assets/source/day08-lqfp48-pinout.png)
+![Blue Pill Renkli Pinout](../assets/source/blue-pill-pinout-source.webp)
 
 Pinout kartında renkli kutular alternate function'ları gösteriyor:
 
 | Renk | Fonksiyon |
 |---|---|
 | Sarı | Serial (USART) |
-| Mor | SPI |
-| Açık yeşil | I2C |
+| Açık yeşil | SPI |
+| Turuncu | I2C (aynı renk USB DP/DM için de kullanılıyor — Bölüm 08'de işlendi) |
+| Mor | PWM (Timer) |
 | Pembe | CAN |
-| Turuncu | PWM (Timer) |
-| Kırmızı | Analog giriş |
+| Bej | Analog giriş |
+
+(Koyu yeşil kutular — A0-A3, D0-D15 — alternate function değil; bu kartın Arduino IDE ile
+kullanımı için eklenmiş ek takma isimlerdir. Kırmızı/yeşil "3"/"5" rozetleri de alternate
+function değil, ayrı bir lejant: pinin 3.3V-standart mı yoksa 5V-tolerant mı olduğunu gösterir.)
 
 ---
 
@@ -135,9 +139,9 @@ Neden? Şema tasarımında esneklik. Başka bir çevresel birim PA9'u kullanıyo
 ```
 +3.3V
   │
-  R5 (510Ω)
-  │
   D2 (LED, mavi)
+  │
+  R5 (510Ω)
   │
   PC13 pini
 ```
@@ -148,7 +152,7 @@ Bu pin OUTPUT modunda yapılandırıldığında:
 - PC13 = LOW → LED yanar (akım akar)
 - PC13 = HIGH → LED söner
 
-Şemada "PC13/TAMPER_RTC" yazıyor. Yani bu pin aynı zamanda RTC tamper girişi olarak da kullanılabilir.
+Datasheet'te bu pinin tam adı "PC13-TAMPER-RTC". Yani bu pin aynı zamanda RTC tamper girişi olarak da kullanılabilir.
 
 ---
 
