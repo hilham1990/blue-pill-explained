@@ -18,8 +18,8 @@ Farklı senaryolar farklı ihtiyaçlar doğurdu:
 
 - **Kablo sayısı** az olsun mu? → I2C
 - **Hız** önemli mi? → SPI
-- **Mesafe** uzun mu? → UART
-- **Basitlik** mi? → UART
+- **Basit iki cihaz bağlantısı** mı? → UART
+- **Aynı iki hat üzerinde çok cihaz** mı? → I2C
 
 Her protokolün bir avantajı, bir kısıtı var.
 
@@ -33,8 +33,11 @@ Her protokolün bir avantajı, bir kısıtı var.
 İşlemci RX ←────────────────── Karşı taraf TX
 ```
 
-İki kablo. Asenkron — ortak clock yok.
+İki sinyal hattı (TX/RX) ve ortak GND. Asenkron — ortak clock yok.
 İki taraf aynı baud rate'i (hızı) bilmek zorunda: 9600, 115200, vb.
+
+STM32F103x8 datasheet'ine göre USART1 4.5 Mbit/s'ye, diğer USART arayüzleri
+2.25 Mbit/s'ye kadar çalışabilir.
 
 ### Şemada nerede?
 
@@ -63,9 +66,9 @@ PB11 → USART3_RX
 
 | ✅ | ❌ |
 |---|---|
-| En basit protokol | Yavaş (genellikle max 1 Mbps) |
+| En basit protokol | Clock olmadığı için baud rate uyumu gerekir |
 | Sadece 2 kablo | Sadece 2 cihaz arası |
-| Uzun mesafede çalışır | Ortak clock yok → hız hassas olmalı |
+| Debug/modül bağlantısı için yaygın | Uzun mesafe için RS-232/RS-485 gibi uygun bir hat sürücüsü gerekir |
 
 ---
 
@@ -79,8 +82,10 @@ Master SCK  ──→ Slave SCK   (clock)
 Master CS   ──→ Slave CS    (chip select — kimi seçiyorum?)
 ```
 
-4 kablo. Senkron — master clock üretiyor.
+4 temel sinyal hattı (MOSI/MISO/SCK/CS) ve ortak GND. Senkron — master clock üretiyor.
 Birden fazla slave olabilir — her biri için ayrı CS pini.
+
+STM32F103x8 datasheet'ine göre SPI arayüzleri 18 Mbit/s'ye kadar çalışabilir.
 
 ### Şemada nerede?
 
@@ -103,14 +108,14 @@ PB15 → SPI2_MOSI
 | Flash bellek | W25Q64 (BIOS chip) |
 | SD kart | — |
 | OLED ekran | SSD1306 |
-| IMU sensör | MPU6050 (bazı versiyonlar) |
+| IMU sensör | MPU-6000 (SPI destekli model) |
 | ADC/DAC entegre | MCP3204 |
 
 ### Avantaj / Kısıt
 
 | ✅ | ❌ |
 |---|---|
-| Hızlı (10–50 Mbps) | 4 kablo (her slave için +1 CS) |
+| Hızlı (STM32F103'te 18 Mbit/s'ye kadar) | 4 temel sinyal hattı (her slave için +1 CS) |
 | Full duplex | Uzun mesafede gürültüye hassas |
 | Basit donanım | |
 
@@ -124,8 +129,8 @@ Master SDA ←──→ Slave 1 SDA ←──→ Slave 2 SDA ...
 Master SCL ──→  Slave 1 SCL ──→  Slave 2 SCL ...
 ```
 
-2 kablo. Senkron.
-Her slave'in benzersiz bir **adresi** var (7-bit).
+2 sinyal hattı (SDA/SCL) ve ortak GND. Senkron.
+Aynı bus üzerindeki aktif cihazlar çakışmayan **7-bit adreslerle** seçilir.
 Master kime konuşacağını adresle belirtiyor.
 
 ### Şemada nerede?
@@ -156,7 +161,7 @@ PB11 → I2C2_SDA
 | ✅ | ❌ |
 |---|---|
 | Sadece 2 kablo | Yavaş (100 kHz Standard mode, 400 kHz Fast mode — STM32F103'ün I2C birimi Fast-mode Plus/1 MHz desteklemez) |
-| Çok sayıda slave | Half duplex |
+| Aynı bus üzerinde çok sayıda cihaz | Half duplex |
 | Adres sistemi | Pull-up dirençleri gerekli |
 
 ---
@@ -165,9 +170,9 @@ PB11 → I2C2_SDA
 
 | Özellik | UART | SPI | I2C |
 |---|---|---|---|
-| Kablo sayısı | 2 | 4+ | 2 |
-| Hız | ~1 Mbps | ~50 Mbps | 400 kbps (Fast mode) |
-| Slave sayısı | 1 | Sınırsız (her biri için CS) | 127 (adres ile) |
+| Temel sinyal hattı | 2 | 4+ | 2 |
+| STM32F103 üst hız sınırı | USART1: 4.5 Mbit/s; diğerleri: 2.25 Mbit/s | 18 Mbit/s | 400 kbit/s (Fast mode) |
+| Cihaz yapısı | Tipik olarak iki cihaz arası | Birden fazla cihaz; çoğunlukla her biri için CS | Adres alanı üzerinden çok sayıda cihaz |
 | Senkronizasyon | Asenkron | Senkron | Senkron |
 | Kullanım kolaylığı | En kolay | Orta | Orta |
 
@@ -183,7 +188,7 @@ Dört hat: MOSI, MISO, SCK, CS → SPI
 İki hat: SDA ve SCL → I2C
 ```
 
-Pin isimlerinden doğrudan anlıyorsun.
+Asıl kanıt pin isimleridir; hat sayısı yalnızca destekleyici bir ipucudur.
 
 ---
 
@@ -196,12 +201,15 @@ Adım 1: Pin isimlerine bak. "TX"/"RX" yazıyorsa → UART.
         "SDA"/"SCL" yazıyorsa → I2C.
 Adım 2: İsim yoksa, modülün adına bak. EEPROM, sıcaklık sensörü,
         IMU gibi düşük hızlı çevre birimleri genelde I2C kullanır.
-        GPS, Bluetooth, GSM modülleri genelde UART kullanır.
+        GPS, Bluetooth, GSM modülleri genelde UART kullanır. Bu yalnızca ipucudur.
 Adım 3: Hâlâ emin değilsen, hattın çektiği pull-up direncine bak —
-        I2C hatlarında SDA/SCL üzerinde pull-up dirençleri olması zorunludur.
+        I2C hatlarında SDA/SCL üzerinde pull-up dirençleri gerekir. Dirençler
+        kartın başka bir bölümünde veya modül üzerinde de olabilir.
 ```
 
-4 kablolu bir hat görürsen (MOSI/MISO/SCK/CS) SPI'dır — bu üçü arasında en kolay ayırt edilenidir.
+MOSI/MISO/SCK/CS isimlerini birlikte görürsen SPI olduğunu anlarsın. Dört hat görmek tek
+başına kanıt değildir. Kesin doğrulama için modül datasheet'ini, yazılım yapılandırmasını veya
+ölçümü kontrol et.
 
 ---
 

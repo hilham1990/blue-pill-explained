@@ -1,24 +1,24 @@
 {
   "day": 10,
   "title": "İletişim Protokolleri",
-  "lesson_goal": "Öğrenci, UART/SPI/I2C protokollerinin nasıl çalıştığını (kaç kablo, senkron mu asenkron mu, kaç cihaz), Blue Pill şemasında bu protokollerin hangi pinlerde olduğunu, her protokolün ne zaman tercih edildiğini ve avantaj/kısıtlarını; ve bilinmeyen bir modüle giden bir hattın pin isimlerinden (veya isim yoksa modül tipinden/pull-up direncinden) hangi protokolü kullandığını sahada çıkarabilecek.",
-  "core_message": "UART, SPI, I2C üçü de veri taşır ama üç farklı ödünleşim sunar: kablo sayısı, hız, mesafe, basitlik. Hangi protokolün kullanıldığını pin isimlerinden (TX/RX, MOSI/MISO/SCK/CS, SDA/SCL) doğrudan anlarsın — bu, ESP32/RP2040/nRF52/GD32'de, hatta Apple/Qualcomm SoC'lerde bile aynı sinyal isimleriyle geçerli endüstri standardı.",
+  "lesson_goal": "Öğrenci, UART/SPI/I2C protokollerinin nasıl çalıştığını (temel sinyal hatları, senkron mu asenkron mu, cihaz topolojisi), Blue Pill şemasında bu protokollerin hangi pinlerde olduğunu, STM32F103'e özgü hız sınırlarını ve tercih nedenlerini ayırt edebilecek; bilinmeyen bir hattın protokolünü önce sinyal adlarından, sonra modül tipi ve pull-up gibi ipuçlarından çıkarıp datasheet/yazılım/ölçümle doğrulayabilecek.",
+  "core_message": "UART, SPI ve I2C üç farklı ödünleşim sunar: hat sayısı, hız, clock yapısı ve cihaz topolojisi. En güçlü ilk kanıt sinyal isimleridir (TX/RX, MOSI/MISO/SCK/CS, SDA/SCL); hat sayısı ve modül tipi yalnızca ipucudur, kesin sonuç datasheet/yazılım/ölçümle doğrulanır.",
   "target_audience": "Elektroniğe yeni başlayan teknisyen / tamirci",
   "estimated_duration_seconds": 148,
   "recommended_scene_count": 7,
   "must_show": [
-    "UART: 2 kablo (TX/RX), asenkron, ortak baud rate gerekir. Şemada PA9/PA10 (USART1), PA2/PA3 (USART2), PB10/PB11 (USART3) — datasheet Table 5 ile doğrulanmış",
-    "SPI: 4 kablo (MOSI/MISO/SCK/CS), senkron, master clock üretir. Şemada PA4-7 (SPI1), PB12-15 (SPI2) — datasheet ile doğrulanmış",
-    "I2C: 2 kablo (SDA/SCL), senkron, 7-bit adresleme, pull-up dirençleri zorunlu. Şemada PB6/PB7 (I2C1), PB10/PB11 (I2C2, USART3 ile paylaşımlı) — datasheet ile doğrulanmış",
+    "UART: 2 sinyal hattı (TX/RX) + ortak GND, asenkron, ortak baud rate gerekir. USART1 en fazla 4.5 Mbit/s, diğer USART arayüzleri en fazla 2.25 Mbit/s — STM32F103x8 datasheet ile doğrulanmış",
+    "SPI: 4 temel sinyal hattı (MOSI/MISO/SCK/CS) + ortak GND, senkron, master clock üretir; STM32F103'te en fazla 18 Mbit/s. Şemada PA4-7 (SPI1), PB12-15 (SPI2) — datasheet ile doğrulanmış",
+    "I2C: 2 sinyal hattı (SDA/SCL) + ortak GND, senkron, 7-bit adresleme, pull-up dirençleri gerekli. Şemada PB6/PB7 (I2C1), PB10/PB11 (I2C2, USART3 ile paylaşımlı) — datasheet ile doğrulanmış",
     "I2C hızı: 100 kHz Standard mode / 400 kHz Fast mode — QA'de düzeltildi (önceki taslak '400 kHz standart, 1 MHz fast mode' diyordu; STM32F103'ün I2C birimi Fast-mode Plus/1 MHz desteklemiyor, ayrıca I2C-bus terminolojisinde 'Standard mode' zaten 100 kHz demek, 400 kHz değil)",
-    "Karşılaştırma tablosu: kablo sayısı, hız, slave sayısı, senkronizasyon — üç protokol yan yana",
-    "Protokol tespiti: 2 hat TX/RX→UART, 4 hat MOSI/MISO/SCK/CS→SPI, 2 hat SDA/SCL→I2C; isim yoksa modül tipine veya pull-up direncine bak"
+    "Karşılaştırma: temel sinyal hattı, STM32F103 üst hız sınırı, clock ve cihaz topolojisi — üç protokol yan yana; 'SPI sınırsız' veya 'I2C 127 cihaz' gibi kesin olmayan sayımlar kullanılmaz",
+    "Protokol tespiti: TX/RX→UART, MOSI/MISO/SCK/CS→SPI, SDA/SCL→I2C; sinyal adları güçlü kanıt, hat sayısı/modül tipi/pull-up ipucu, datasheet-yazılım-ölçüm kesin doğrulamadır"
   ],
   "technical_risks": [
-    "scene-02/03/04 (UART/SPI/I2C), her biri kendi 4 alt-başlığına (Nasıl Çalışır/Şemada Nerede/Ne Zaman Kullanılır/Avantaj-Kısıt) sahip — bu doğal olarak 4 panele oturuyor, taşırılmayacak şekilde her panelin ÖZETİ verilecek (örn. 'Ne zaman kullanılır' panelinde README'deki 5-6 örnek IC'nin hepsi değil, en tanıdık 2-3'ü).",
-    "scene-02/03/04 arasında GÖRSEL FARKLILAŞTIRMA gerekli (üçü de aynı 'protokol nasıl çalışır' kalıbını paylaşıyor) — layout-rules.md kuralı gereği: UART turuncu+basit iki-ok diyagramı, SPI mavi+master-slave çoklu-hat diyagramı, I2C mor+ortak-veriyolu(bus) diyagramı gibi hem renk hem görsel metafor bazında birbirinden ayrılacak.",
-    "scene-02/03/04'ün 'Şemada nerede' panelleri gerçek U2 şema sembolünden (Bölüm 08/09'da zaten doğrulanmış `real-u2-schematic-crop.png`) pin numaralarını kullanmalı — aynı bileşen tekrar göründüğü için referans crop bu 3 sahnenin hepsine ayrı ayrı verilecek.",
-    "scene-05 (Karşılaştırma Tablosu) gerçek bir tablo görseli değil, 3 sütunlu bir infografik karşılaştırma olacak — README'deki ham tabloyu birebir kopyalamaya çalışmak yerine (küçük tablo hücresi metni yüksek bozulma riski taşır) sadece en çarpıcı 3-4 karşılaştırma satırı (kablo sayısı, hız, senkronizasyon) görsel olarak vurgulanacak."
+    "scene-02/03/04 aynı dört numaralı panel şablonuna zorlanmayacak: UART çapraz TX/RX zamanlama diyagramı, SPI bir master + iki slave ve ayrı CS yolları, I2C ortak open-drain bus + iki pull-up direnciyle görsel olarak ayrıştırılacak.",
+    "Alt bantlar üst içeriği tekrar etmeyecek; UART'ta bağlantı kontrolü, SPI'da cihaz seçimi, I2C'de adres/pull-up kontrolü gibi yeni ve sahneye özgü bilgi taşıyacak.",
+    "scene-02/03/04 kavramsal protokol diyagramları olduğu için saf --mode generate kullanılacak; doğrulanmış pin eşleşmeleri düz metin/pin panelinde verilecek. Gerçek U2 şema fotoğrafı merkez donanım olmadığı için real-u2-schematic-crop.png referansı bu sahnelere eklenmeyecek.",
+    "scene-05 üç sütunlu infografik olacak; UART 4.5/2.25 Mbit/s, SPI 18 Mbit/s ve I2C 400 kbit/s değerleri karıştırılmayacak. 'UART uzun mesafe', 'SPI sınırsız slave', 'I2C 127 slave' yazılmayacak."
   ],
-  "note": "Sahne sayısı (7: hero + 6) bu bölümün kendi 6 içerik başlığından (UART, SPI, I2C, Karşılaştırma Tablosu, Şemada Protokol Tespiti, Sahada Ne Anlama Gelir — 'Neden Birden Fazla Protokol Var' hero'ya dahil) türetildi, önceki günlerin sayısına çapalanmadan. Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
+  "note": "Sahne sayısı 7 olarak korundu. Kaynak ve plan 2026-07-17'de STM32F103 datasheet'ine göre düzeltildi: USART1 4.5 Mbit/s, diğer USART'lar 2.25 Mbit/s, SPI 18 Mbit/s; uzun mesafe/sınırsız slave/127 cihaz ve hat sayısını kesin kanıt sayan ifadeler kaldırıldı. Görsel üretimi ayrıca kullanıcı onayıyla yapılacak."
 }

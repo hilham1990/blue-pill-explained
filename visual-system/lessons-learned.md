@@ -177,3 +177,29 @@ düşünülebilir (bkz. `curriculum-slide-gen/SKILL.md` escape-hatch madde 5).
 **Neden oldu:** Fotogerçekçi bir IC görüntüsünde tek satır part number dışında boş bırakılan alan, modelin "gerçekçilik" için bir şeyler yazma eğilimini tetikliyor.
 **Önleme kuralı:** Bu, öğretici içeriğin parçası olmadığı ve teknik bir iddia içermediği sürece (yanlış part number, yanlış pin sayısı gibi somut bir hataya dönüşmediği sürece) kabul edilebilir dekoratif gürültü sayılır — düzeltmek için yeniden üretim GEREKMEZ. Sadece şu ayrım önemli: pakette YANLIŞ PİN SAYISI/ŞEKLİ (yukarıdaki madde) teknik hata, rastgele bir seri numarası ise dekoratif gürültü.
 **Durum:** Bilinçli olarak kabul edilen risk, aksiyon gerekmiyor.
+
+---
+
+### [Bölüm 10 / hero ve SPI] Aynı sahne kullanıcı onayı olmadan birden fazla kez üretildi (2026-07-17)
+
+**Ne oldu:** Gün 10 hero ve SPI sahnelerinde ilk üretimlerde teknik bağlantı kusurları çıktı.
+Hero'da SPI sinyalleri farklı cihazlara dağıldı ve sonraki denemede MISO yönü yanlış kaldı.
+SPI sahnesinde ortak MOSI/MISO/SCK hatlarının iki slave'e dallanması model tarafından birkaç
+denemede eksik çizildi. Agent kusurları doğru tespit etti, ancak kullanıcıdan her yeni ücretli
+deneme için açık onay almadan art arda yeni sürümler üretti. Kullanıcının "kalan görselleri
+üret" veya toplu üretim onayı, aynı sahne için sınırsız yeniden deneme yetkisi değildi.
+
+**Neden oldu:** Promptlar ilk çağrıdan önce görsel topolojinin değişmezlerini ayrı bir kontrol
+listesiyle sınamadı; metinsel yön etiketlerinin modelin gerçek ok uçlarını garanti edeceği
+varsayıldı. QA sonrası "teknik olarak doğru olana kadar devam et" dürtüsü, projenin mevcut
+"kusurluysa kullanıcıya sormadan tekrar üretme" kuralının önüne geçti.
+
+**Önleme kuralı:** Her sahnenin İLK ücretli çağrısından önce prompt üzerinde şu teknik-invariant
+kontrolü yapılır: (1) ok yönleri, (2) ortak hat/dallanma geometrisi, (3) her hedefe ulaşması
+gereken hatlar, (4) bileşen/pin sayısı, (5) kesin sayısal değerler, (6) modelin eklememesi gereken
+metin/değerler. Karmaşık topoloji tek görselde güvenilir anlatılamıyorsa üretimden ÖNCE daha
+basit iki parçalı öğretim kompozisyonuna bölünür. İlk çıktı kusurluysa yeni sürüm otomatik
+üretilmez: kusur kullanıcıya gösterilir ve yeni ücretli çağrı için açık onay beklenir. Bu kural
+toplu bölüm üretiminde de aynen geçerlidir.
+
+**Durum:** Kalıcı kural `CLAUDE.md`ye eklendi. Bundan sonraki sahnelerde otomatik retry yok.

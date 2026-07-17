@@ -1,49 +1,44 @@
-# Scene: scene-01-hero — Üçü de Veri Taşır, Ama Çok Farklı Çalışır
+# Scene: scene-01-hero — İletişim Protokolleri
 
-**Durum:** Planlanıyor (2026-07-16) — görsel HENÜZ ÜRETİLMEDİ, sadece prompt yazıldı.
+**Durum:** v2 — Gün 10 açılışı, yeni ayrıntılı görsel standardı.
 
-**Gerçek görsel analizi (madde 4c):** Bu sahne fiziksel bir bileşen değil, 3 protokolü
-kavramsal olarak tanıtan bir açılış. Merkez görsel için gerçek bir fotoğraf/şema gerekmiyor —
-sembolik hat-sayısı ikonları yeterli.
-
-Üretim (henüz ÇALIŞTIRILMADI): `tools/generate-slide.py 10-iletisim-protokolleri/prompts/01-hero.md 10-iletisim-protokolleri/hero.png`
+Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/01-hero.md 10-iletisim-protokolleri/hero-v4.png --mode generate`
 
 ```text
 SCENE:
-Day label: "GÜN 10" — render with correct Turkish characters.
+Day label: "GÜN 10"
 Main title: "İLETİŞİM PROTOKOLLERİ"
-Subtitle: "Üçü de veri taşır, ama çok farklı çalışır"
+Subtitle: "Aynı veri, üç farklı bağlantı mantığı"
 
-Central graphic: three simple symbolic wire-count icons side by side, NOT a schematic, NOT a
-photo — just three minimal line-diagrams: a 2-wire icon labeled "UART", a 4-wire icon labeled
-"SPI", a 2-wire bus icon (with small branch dots suggesting multiple devices) labeled "I2C".
-Plain background, no colored border/frame.
+Use case: scientific-educational. Asset type: 16:9 curriculum hero for video and presentation.
 
-Four NUMBERED panels (large colored number badge 1,2,3,4 top-left of each panel), each
-connected with a thin matching-color line to the relevant icon, each panel exactly one
-cohesive icon plus a caption of AT LEAST TWO concrete information lines. Use ONLY the exact
-values given here:
+Create one dominant three-way decision map. Start with a center box "Veri Aktarmam Gerekiyor"
+and branch into exactly three large protocol destinations:
+- "UART" — icon of two devices with crossed TX/RX arrows — caption "Basit, iki cihaz arası"
+- "SPI" — draw exactly TWO boxes, one "MASTER" and one "SLAVE". Connect the SAME master and
+  the SAME slave with exactly four parallel labeled lines. Their arrow directions are strict:
+  "SCK: MASTER → SLAVE", "MOSI: MASTER → SLAVE", "MISO: SLAVE → MASTER", and
+  "CS: MASTER → SLAVE". MISO must be the ONLY left-pointing arrow; the other three must point
+  right. All four lines terminate at that single slave box; never draw one different device
+  per signal line. Caption "Yüksek hız, ayrı CS".
+- "I2C" — draw exactly two continuous horizontal shared bus lines, SCL and SDA, plus one
+  master and exactly three device boxes. Every device must connect to BOTH the SCL line and the
+  SDA line using two clearly visible branch connections/dots; never connect a device to only
+  one of the two lines. Caption "Az hatla çok cihaz".
 
-IMPORTANT — badge color: all four number badges (1,2,3,4) and all four connector lines and
-all four panel borders MUST be the exact same solid navy/dark-blue color. Do NOT vary the
-badge color per panel.
+Under the three destinations show one compact difference strip:
+"UART: ortak clock yok" / "SPI: SCK master'dan" / "I2C: ortak SCL + adres".
 
-IMPORTANT — each panel MUST use a clearly DIFFERENT icon matching its own content:
-1 (blue, icon: a small wire-count icon with a padlock/minimal symbol): "Kablo Sayısı Az Olsun
-Mu?" — "I2C — sadece 2 kablo, çok cihaz" / "Adres sistemiyle ayırt edilir"
-2 (blue, icon: a speedometer/gauge icon): "Hız Önemli Mi?" — "SPI — en hızlı seçenek" / "4
-kablo, tam çift yönlü (full duplex)"
-3 (blue, icon: a long dashed-line/distance icon): "Mesafe Uzun Mu?" — "UART — asenkron, basit"
-/ "İki taraf aynı hızı (baud rate) bilmeli"
-4 (blue, icon: a simple checkmark-on-wire icon): "Basitlik Mi?" — "UART — en kolay kurulum" /
-"Sadece TX/RX, ortak clock gerekmez"
+Add one small clarification panel titled "Hat Sayısı Ne Demek?":
+"UART: 2 temel sinyal" / "SPI: 4 temel sinyal" / "I2C: 2 temel sinyal" /
+"Üçünde de ortak GND gerekir."
 
-Do not render any pin number or specific IC part name — this is a conceptual opening scene,
-details come in later scenes.
+Add one small rule panel titled "Doğru Protokolü Seç":
+"Basit nokta–nokta → UART" / "Hız → SPI" / "İki hatla çok cihaz → I2C".
+Do not say UART is inherently long-distance. Do not show speed numbers or pin names in this
+opening scene.
 
-Bottom section: use the mandatory bottom layout — 4 cards mirroring the panels: "Az Kablo →
-I2C", "Hız → SPI", "Mesafe → UART", "Basitlik → UART", each with a simple icon and short
-Turkish title. Then the same single mandatory footer row: bottom-left "Akademi Usta",
-bottom-center "Usta tahmin etmez, ölçer.", bottom-right "akademiusta.com" — same bold navy
-font, same baseline, text only, no logo/emblem.
+Bottom band content: exactly three unnumbered learning-goal cards:
+"Sinyal Adlarını Tanı" / "Bağlantı Mantığını Ayır" / "Şemadan Protokolü Bul".
+No repeated protocol cards, no numbered callout badges, no decorative modules.
 ```
