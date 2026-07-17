@@ -1,21 +1,21 @@
 {
   "day": 11,
-  "note": "PLAN ONAYLANDI, PROMPT'LAR YAZILDI (2026-07-16). 7/7 prompt dosyası hazır. curriculum-qa'da 2 gerçek hata bulundu ve düzeltildi: (1) CN4 Pin2/Pin3 (DIO/DCLK) ters yazılmıştı — gerçek şema piksel-grid analiziyle ve real-cn4-connector-crop.png ile doğrulanıp düzeltildi, ayrıca Bölüm 08'in kendi doğru açıklamasıyla tutarlı hale getirildi; (2) BOOT0 jumper için sayısal pozisyon (1-2/3-4) iddia ediliyordu, Bölüm 07'nin 'bu numaralar doğrulanamadı' notuyla çelişiyordu — 'taraf' diline çevrildi. CN4'ün 'A2' koordinat iddiası ise piksel-grid overlay ile DOĞRU çıktı (nadir bir doğru koordinat vakası). Henüz HİÇBİR görsel üretilmedi.",
+  "note": "Kaynak, plan ve 7/7 prompt 2026-07-17'de yeniden denetlendi. CN4 doğru sırası korundu. İki kritik hata düzeltildi: STM32F103x8 dahili bootloader yolu USB DFU değil USART1'dir; BOOT0=GND SWD erişiminin zorunlu koşulu değildir. Eski numaralı-panel/tekrar-bandı şablonu kaldırıldı. Yedi görselin tamamı v2 olarak üretildi ve teknik QA'dan geçti.",
   "scenes": [
     {
       "id": "scene-01-hero",
       "order": 1,
       "title": "Firmware Bu Pinlerden Giriyor",
       "purpose": "Bölümü açmak: SWD kavramını ve ARM Cortex-M ailesinde evrenselliğini göstermek.",
-      "visual_focus": "4 panel: SWD Nedir (2 pinli protokol), Firmware Yükleme, Canlı Debug, Evrensel Desen (RP2040/nRF52/GD32 SWD, ESP32 JTAG farkı)",
+      "visual_focus": "PC→debug probe→CN4→PA13/PA14→CPU zinciri; SWDIO çift yönlü veri, SWCLK probe'dan clock; firmware ve canlı debug sonuçları",
       "screen_text": [
         "GÜN 11",
         "DEBUG — SWD",
         "Firmware bu pinlerden giriyor"
       ],
       "duration_seconds": 17,
-      "status": "planned",
-      "asset": "hero.png",
+      "status": "v2 üretildi, onay bekliyor",
+      "asset": "hero-v2.png",
       "source_section": "README.md — üst bilgi kutusu + \"SWD Nedir?\""
     },
     {
@@ -23,14 +23,14 @@
       "order": 2,
       "title": "Şemada SWD Nerede?",
       "purpose": "CN4'ün şemadaki gerçek konumunu (A2), gerçek pin bağlantısını ve PA13/PA14'ün datasheet pin numaralarını göstermek.",
-      "visual_focus": "4 panel: CN4 Konumu (şemada A2 koordinatı), CN4 Pinout (1=+3.3V, 2=DIO, 3=DCLK, 4=GND — QA'de düzeltilen doğru sırayla), PA13 (pin 34, JTMS/SWDIO), PA14 (pin 37, JTCK/SWCLK)",
+      "visual_focus": "Gerçek CN4 crop + pin pin iz sürme: 1=3.3V, 2=DIO→PA13/pin34, 3=DCLK→PA14/pin37, 4=GND; A2 koordinatı",
       "screen_text": [
         "ŞEMADA SWD NEREDE?",
         "CN4 — şemada A2"
       ],
       "duration_seconds": 19,
-      "status": "planned",
-      "asset": "slides/02-semada-swd-nerede.png",
+      "status": "v2 üretildi, onay bekliyor",
+      "asset": "slides/02-semada-swd-nerede-v2.png",
       "source_section": "README.md — \"Şemada SWD — CN4\" + \"SWD Pinleri İşlemcide Nerede?\""
     },
     {
@@ -38,14 +38,14 @@
       "order": 3,
       "title": "JTAG ile Farkı Nedir?",
       "purpose": "SWD ve JTAG'ı pin sayısı, zincir ve yaygınlık açısından karşılaştırmak.",
-      "visual_focus": "2 kolonlu karşılaştırma: SWD (2 sinyal, tek işlemci, modern ARM standardı) vs JTAG (4-5 sinyal, birden fazla çip zinciri, eski/çok-çipli sistemler)",
+      "visual_focus": "SWD iki-sinyalli tek hedef topolojisi ile JTAG TMS/TCK/TDI/TDO zincir topolojisini yan yana gerçek ok yönleriyle karşılaştırma",
       "screen_text": [
         "JTAG İLE FARKI NEDİR?",
         "2 sinyal · 4-5 sinyal"
       ],
       "duration_seconds": 16,
-      "status": "planned",
-      "asset": "slides/03-jtag-ile-farki.png",
+      "status": "v2 üretildi, teknik QA tamamlandı",
+      "asset": "slides/03-jtag-ile-farki-v2.png",
       "source_section": "README.md — \"JTAG ile Farkı Nedir?\""
     },
     {
@@ -53,14 +53,14 @@
       "order": 4,
       "title": "Programlama Aracı — ST-Link",
       "purpose": "ST-Link ile CN4 arasındaki gerçek bağlantıyı göstermek.",
-      "visual_focus": "ST-Link↔CN4 bağlantı şeması: 3.3V→Pin1, SWDIO→Pin2, SWCLK→Pin3, GND→Pin4. ST-Link jenerik/ikonik temsil edilir (gerçek fotoğraf referansı yok)",
+      "visual_focus": "Jenerik debug probe↔CN4 dört hat; Pin1 target/reference gerilimi, SWDIO çift yönlü, SWCLK probe→target, GND ortak; probe besleme davranışı modele göre değişir",
       "screen_text": [
         "PROGRAMLAMA ARACI — ST-LINK",
         "4 kablo, CN4'e bağlanır"
       ],
       "duration_seconds": 17,
-      "status": "planned",
-      "asset": "slides/04-st-link.png",
+      "status": "v2 üretildi, onay bekliyor",
+      "asset": "slides/04-st-link-v2.png",
       "source_section": "README.md — \"Programlama Aracı — ST-Link\""
     },
     {
@@ -68,14 +68,14 @@
       "order": 5,
       "title": "Firmware Yükleme Süreci",
       "purpose": "SWD (ST-Link) ve USB (Bootloader) yöntemlerini karşılaştırmalı adım adım göstermek.",
-      "visual_focus": "2 kolonlu süreç: SWD ile (ST-Link'i bağla → BOOT0 normal → Flash) vs USB ile (BOOT0'ı 3.3V tarafına al → Flash → BOOT0'ı GND tarafına geri al) — sayısal jumper pozisyonu iddia edilmez",
+      "visual_focus": "2 kolonlu süreç: SWD ile CN4 üzerinden yükleme vs USART1 system bootloader ile BOOT0 3.3V tarafı + PA9/PA10 çapraz USB-UART; USB DFU iddiası yok",
       "screen_text": [
         "FIRMWARE YÜKLEME SÜRECİ",
-        "SWD ile · USB ile"
+        "SWD ile · USART1 bootloader ile"
       ],
       "duration_seconds": 20,
-      "status": "planned",
-      "asset": "slides/05-firmware-yukleme.png",
+      "status": "v2 üretildi, onay bekliyor",
+      "asset": "slides/05-firmware-yukleme-v2.png",
       "source_section": "README.md — \"Firmware Yükleme Süreci\""
     },
     {
@@ -83,14 +83,14 @@
       "order": 6,
       "title": "Canlı Debug Nedir?",
       "purpose": "Canlı debug'ın sağladığı yetenekleri göstermek.",
-      "visual_focus": "4 panel: Durdurma (istediğin satırda), Değişken Okuma (anlık değer), Register Okuma, Adım Adım İlerleme",
+      "visual_focus": "Gerçek debug döngüsü: breakpoint→CPU halt→PC/code line→variables/registers→single step→continue; kod, kart ve probe birlikte",
       "screen_text": [
         "CANLI DEBUG NEDİR?",
         "SWD üzerinden gerçek zamanlı"
       ],
       "duration_seconds": 16,
-      "status": "planned",
-      "asset": "slides/06-canli-debug.png",
+      "status": "v2 üretildi, onay bekliyor",
+      "asset": "slides/06-canli-debug-v2.png",
       "source_section": "README.md — \"Canlı Debug Nedir?\""
     },
     {
@@ -98,14 +98,14 @@
       "order": 7,
       "title": "Sahada Ne Anlama Gelir?",
       "purpose": "3 yaygın SWD bağlantı sorununu teşhis etme yöntemini pekiştirmek (Bölüm 08/09/10 ile tutarlı teal/doğrulama stili).",
-      "visual_focus": "3 durum: Cihaz tanınmıyor (CN4/GND/besleme/PA13-14 kontrolü), Target not found (BOOT0/reset/sürücü kontrolü), Debug kurulamıyor (PA13/PA14 GPIO olarak yapılandırılmış olabilir)",
+      "visual_focus": "Kanıt sıralı teşhis: güç/target voltage+GND→SWDIO/SWCLK→düşük frekans/connect-under-reset→PA13/PA14 firmware yapılandırması; BOOT0 SWD zorunluluğu değil",
       "screen_text": [
         "SAHADA NE ANLAMA GELİR?",
         "3 yaygın sorun, 3 teşhis"
       ],
       "duration_seconds": 17,
-      "status": "planned",
-      "asset": "slides/07-sahada-ne-anlama-gelir.png",
+      "status": "v2 üretildi, onay bekliyor",
+      "asset": "slides/07-sahada-ne-anlama-gelir-v2.png",
       "source_section": "README.md — \"Sahada Ne Anlama Gelir?\""
     }
   ]

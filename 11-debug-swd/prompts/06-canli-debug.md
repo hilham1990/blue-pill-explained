@@ -1,49 +1,32 @@
-# Scene: scene-06 — Canlı Debug Nedir?
+# Scene: scene-06 — Canlı Debug
 
-**Durum:** Planlanıyor (2026-07-16) — görsel HENÜZ ÜRETİLMEDİ, sadece prompt yazıldı.
+**Durum:** v2 — breakpoint'ten single-step'e gerçek debug döngüsü.
 
-**Gerçek görsel analizi (madde 4c):** Kavramsal yetenek listesi, fiziksel bileşen fotoğrafı
-gerekmiyor.
-
-Üretim (henüz ÇALIŞTIRILMADI): `tools/generate-slide.py 11-debug-swd/prompts/06-canli-debug.md 11-debug-swd/slides/06-canli-debug.png`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/06-canli-debug.md 11-debug-swd/slides/06-canli-debug-v2.png --mode generate`
 
 ```text
 SCENE:
-Day label: "GÜN 11" — render with correct Turkish characters.
-Main title: "CANLI DEBUG NEDİR?"
-Subtitle: "SWD üzerinden gerçek zamanlı"
+Day label: "GÜN 11"
+Main title: "CANLI DEBUG NASIL ÇALIŞIR?"
+Subtitle: "Kod satırı ile çalışan donanım arasında doğrudan bağ"
 
-Central graphic: a simple icon of a code editor window with a highlighted line and a small
-pause/breakpoint marker, connected by a thin line to a small chip icon — suggesting a live
-connection between code and running hardware. No colored border/frame around this central
-content.
+Use case: scientific-educational. Create one rich debugging workbench composition: laptop IDE
+on the left, generic SWD probe in the middle, Blue Pill on the right. Connect them with a thin
+SWD line. Do not render readable fake source code; show only a few abstract code lines.
 
-Four NUMBERED panels (large colored number badge 1,2,3,4 top-left of each panel), each
-connected with a thin matching-color line to the central icon, each panel exactly one cohesive
-icon plus a caption of AT LEAST TWO concrete information lines. Use ONLY the exact values
-given here:
+Overlay one five-step debug loop with distinct literal visuals:
+"1 · Breakpoint" — red dot beside highlighted code line
+"2 · CPU Halt" — pause icon over the MCU
+"3 · İncele" — variable panel "counter = 42" and small register grid
+"4 · Single Step" — one-line step arrow and program-counter marker
+"5 · Continue" — green play icon and running waveform.
 
-IMPORTANT — badge color: all four number badges (1,2,3,4) and all four connector lines and
-all four panel borders MUST be the exact same solid navy/dark-blue color (the "donanım/canlı
-bağlantı" function color for this scene, distinct from the orange used in this chapter's
-schematic-reading scenes). Do NOT vary the badge color per panel.
+Add exact explanation:
+"Breakpoint geldiğinde CPU durur; SRAM, register ve değişkenler SWD üzerinden okunur."
+Add caution:
+"CPU durdurulduğunda gerçek-zamanlı çevre birimlerinin davranışı etkilenebilir."
 
-IMPORTANT — each panel MUST use a clearly DIFFERENT icon matching its own content:
-1 (blue, icon: a pause/breakpoint symbol on a code line): "Durdurma" — "İşlemciyi istediğin
-satırda durdurursun" / "Breakpoint koyarak"
-2 (blue, icon: a variable/value-inspector icon): "Değişken Okuma" — "O andaki değerleri
-görürsün" / "Kod çalışmaya devam etmeden"
-3 (blue, icon: a small register-grid icon): "Register Okuma" — "Donanım register'larının
-durumunu okursun" / "Ham seviyede teşhis"
-4 (blue, icon: a step-forward/footprint icon): "Adım Adım İlerleme" — "Satır satır ilerlersin"
-/ "Her adımda durumu kontrol edersin"
-
-Do not render any pin number or connector detail — this scene is purely about debug
-capabilities, not physical wiring (already covered in scene-02/04).
-
-Bottom section: use the mandatory bottom layout — 4 cards mirroring the panels: "Durdurma",
-"Değişken Okuma", "Register Okuma", "Adım Adım İlerleme", each with a simple icon and short
-Turkish title. Then the same single mandatory footer row: bottom-left "Akademi Usta",
-bottom-center "Usta tahmin etmez, ölçer.", bottom-right "akademiusta.com" — same bold navy
-font, same baseline, text only, no logo/emblem.
+Bottom band content: exactly five compact control cards:
+"Breakpoint" / "Halt" / "İncele" / "Step" / "Continue".
+Do not add CN4 pin numbers, BOOT0, firmware-loading steps or long readable code.
 ```

@@ -35,7 +35,7 @@ Sadece 2 sinyal pini ile:
 ```
 CN4 (SRP4 — 4 pinli konnektör)
 
-Pin 1 → +3.3V (opsiyonel besleme)
+Pin 1 → +3.3V (hedef gerilim referansı; kullanılan probe'a göre besleme amacıyla da kullanılabilir)
 Pin 2 → DIO  (SWDIO — PA13)
 Pin 3 → DCLK (SWCLK — PA14)
 Pin 4 → GND
@@ -98,15 +98,19 @@ Alternatif: J-Link, OpenOCD destekli adaptörler.
 6. Kart otomatik çalışmaya başlar
 ```
 
-### USB üzerinden (Bootloader ile):
+### USART1 üzerinden (System Memory Bootloader ile):
 ```
 1. BOOT0 jumper'ını 3.3V tarafına al
 2. Kartı resetle
-3. STM32CubeProgrammer → USB portunu seç
-4. Firmware yükle
+3. USB-UART dönüştürücüyü PA9 (TX) / PA10 (RX) ve GND'ye çapraz bağla
+4. STM32CubeProgrammer → UART portunu seç ve firmware yükle
 5. BOOT0 jumper'ını GND tarafına al
 6. Kartı resetle — normal çalışma
 ```
+
+STM32F103x8'in dahili system-memory bootloader'ı USART1 kullanır. Kart yalnız BOOT0'ı
+3.3V tarafına almakla USB DFU cihazına dönüşmez. USB'den doğrudan yükleme ancak karta daha
+önce ayrıca uygun bir USB bootloader kurulmuşsa mümkündür.
 
 **Not:** Jumper'ın fiziksel silkscreen pin numaraları (Bölüm 07'de de belirtildiği gibi)
 elimizdeki şema/fotoğraflarda doğrulanamadı — "3.3V tarafı" / "GND tarafı" diye anılıyor,
@@ -143,10 +147,14 @@ Kontrol:
 
 Kontrol:
 ```
-1. BOOT0 doğru mu? (SWD için BOOT0=GND)
-2. İşlemci çalışıyor mu? (Reset pinini kontrol et)
-3. ST-Link sürücüsü güncel mi?
+1. İşlemci besleniyor mu ve GND ortak mı?
+2. SWDIO/SWCLK sırası doğru mu?
+3. SWD bağlantı frekansını düşürmeyi dene
+4. Gerekirse "connect under reset" ile bağlanmayı dene
 ```
+
+BOOT0=GND, kullanıcı firmware'inin normal olarak Flash'tan başlaması içindir; SWD erişiminin
+zorunlu koşulu değildir.
 
 **Durum 3:** Kart çalışıyor ama debug bağlantısı kurulamıyor.
 
