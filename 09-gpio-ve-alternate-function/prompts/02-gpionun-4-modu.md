@@ -1,52 +1,92 @@
-# Scene: scene-02 — GPIO'nun 4 Modu
+# Scene: scene-02 — GPIO'nun 4 Pratik Kullanım Biçimi
 
-**Durum:** Planlanıyor (2026-07-16) — görsel HENÜZ ÜRETİLMEDİ, sadece prompt yazıldı.
+**Durum:** v3 üretim promptu (2026-07-17) — video ve slayt anlatımında Gün 09 içeriğini
+hero'dan bir adım daha ayrıntılı açmak için yeniden yazıldı. v1'de Analog hem Input altında
+hem ayrı ana mod olarak gösterilmiş ve aynı yapılandırma iki kez sayılarak "9 olası
+yapılandırma" sonucu çıkarılmıştı. Bu sürüm o sayımı kaldırır ve STM32F103 register mantığını
+başlangıç seviyesinde doğru biçimde açıklar.
 
-**Gerçek görsel analizi (madde 4c):** Bu sahne fiziksel bir bileşeni değil, README'nin "GPIO
-Modları" bölümündeki 4 kavramsal modu gösteriyor — datasheet bölüm 2.3.21 ile doğrulanmış
-("configured by software as output (push-pull or open-drain), as input (with or without
-pull-up or pull-down) or as peripheral alternate function"). Merkezde yine gerçek çip fotoğrafı
-kullanılacak (aynı `real-mpu-chip-crop.png`), 4 mod onun etrafında gösterilecek — Bölüm 08
-scene-02'nin "kavramsal grup + gerçek çip fotoğrafı" formatıyla tutarlı.
+**Teknik çerçeve:** STM32F103'te GPIO yapılandırması `MODE` ve `CNF` bitleriyle yapılır.
+Analog, donanım açısından giriş yapılandırmalarından biridir; fakat öğrencinin kullanım
+amacını kolay ayırt etmesi için bu derste ayrı bir pratik kullanım başlığı olarak gösterilir.
+STM32F103C8'de ADC vardır, DAC yoktur; bu nedenle görselde yalnızca ADC/analog giriş anlatılır.
+Alternate Function tarafı da F1 ailesine uygun biçimde çıkış sürüşü üzerinden gösterilir:
+AF Push-Pull ve AF Open-Drain.
 
-Üretim (henüz ÇALIŞTIRILMADI): `tools/generate-slide.py 09-gpio-ve-alternate-function/prompts/02-gpionun-4-modu.md 09-gpio-ve-alternate-function/slides/02-gpionun-4-modu.png --ref visual-system/references/real-mpu-chip-crop.png`
+Üretim: `tools/generate-slide.py 09-gpio-ve-alternate-function/prompts/02-gpionun-4-modu.md 09-gpio-ve-alternate-function/slides/02-gpionun-4-modu.png --mode generate`
 
 ```text
 SCENE:
 Day label: "GÜN 09" — render with correct Turkish characters.
-Main title: "GPIO'NUN 4 MODU"
-Subtitle: "Input · Output · Alternate Function · Analog"
+Main title: "GPIO'NUN 4 KULLANIM BİÇİMİ"
+Subtitle: "Oku · Sür · Çevre birimine devret · Analog ölç"
 
-Central hardware: the same close-up photo of the real STM32F103C8T6 chip as the attached
-reference image — black LQFP48 package, silver gull-wing leads, "STM32F103C8T6" silkscreen
-text, blue PCB fragment. Copy the real physical package exactly.
+Teaching purpose: this is the detailed explanatory slide that follows the chapter hero. It
+must help a beginner answer two questions: "Pin hangi yönde çalışıyor?" and "Sinyali kim
+kontrol ediyor?" The image must read clearly both as a 16:9 presentation slide and as a video
+frame. Prefer diagrams and short labels over paragraphs.
 
-Four NUMBERED panels (large colored number badge 1,2,3,4 top-left of each panel), each
-connected with a thin matching-color line to the chip photo, each panel exactly one cohesive
-icon plus a caption of AT LEAST TWO concrete information lines. Use ONLY the exact values
-given here, do not invent any additional mode or sub-mode:
+Central area: create one large, clean, left-to-right decision diagram titled "Bir GPIO pini
+nasıl kullanılır?" Start with a single box "GPIO Pini", then branch into exactly FOUR practical
+usage cards. The four cards are not an arithmetic count and must not be added together.
 
-IMPORTANT — badge color: all four number badges (1,2,3,4) and all four connector lines and
-all four panel borders MUST be the exact same solid navy/dark-blue color. Do NOT vary the
-badge color per panel.
+Card 1 — header "1 · DIGITAL INPUT" in navy:
+- Main signal diagram: a small switch or sensor on the left sends a signal arrow INTO the MCU
+  pin on the right.
+- Exact labels: "Pin dışarıdan seviye okur" and "0 veya 1"
+- Under it, show exactly THREE compact configuration chips: "Floating", "Pull-up",
+  "Pull-down".
+- Tiny warning label: "Floating giriş bağlantısızsa belirsiz kalabilir."
 
-IMPORTANT — each panel MUST use a clearly DIFFERENT icon matching its own content:
-1 (blue, icon: an arrow pointing INTO a pin, signal entering): "Input (Giriş)" — "Dışarıdan
-sinyal okur" / "Alt modlar: Floating, Pull-up, Pull-down, Analog"
-2 (blue, icon: an arrow pointing OUT of a pin, signal leaving): "Output (Çıkış)" — "Dışarıya
-sinyal gönderir" / "Push-Pull (HIGH+LOW) veya Open-Drain (sadece LOW)"
-3 (blue, icon: a pin connecting into a small peripheral-block icon): "Alternate Function" —
-"Pin bir çevre birimine devredilir" / "USART, SPI, I2C, Timer, USB..."
-4 (blue, icon: a small ADC waveform-to-digital-steps icon): "Analog" — "ADC/DAC için ham
-sinyal" / "Dijital giriş tamponu devre dışı"
+Card 2 — header "2 · DIGITAL OUTPUT" in navy:
+- Main signal diagram: the MCU pin on the left sends a signal arrow OUT toward a small LED on
+  the right.
+- Exact labels: "Pin dış devreyi sürer" and "LOW veya HIGH"
+- Under it, show exactly TWO compact mini-circuits:
+  "Push-Pull — HIGH ve LOW sürer"
+  "Open-Drain — yalnız LOW sürer; HIGH için pull-up gerekir"
+- The Open-Drain mini-circuit must visibly include one external pull-up resistor to a positive
+  supply rail. Do not show a pull-up resistor in the Push-Pull mini-circuit.
 
-Do not render any specific pin number, port letter, or peripheral register name beyond what is
-listed above — this is a conceptual mode overview, not a specific-pin example (that comes in
-scene-03).
+Card 3 — header "3 · ALTERNATE FUNCTION" in navy:
+- Main signal diagram: an internal peripheral box labeled "USART / SPI / I2C / TIMER" controls
+  the physical pin through a small routing arrow.
+- Exact labels: "Pini GPIO yazılımı değil, seçilen çevre birimi kullanır" and "Aynı anda
+  yalnızca seçilen görev aktiftir"
+- Under it, show exactly TWO compact configuration chips: "AF Push-Pull" and
+  "AF Open-Drain".
+- Do not use numbered AF slots such as AF1, AF4 or AF7; STM32F103 does not use that
+  terminology.
 
-Bottom section: use the mandatory bottom layout — 4 cards mirroring the panels: "Input
-(Giriş)", "Output (Çıkış)", "Alternate Function", "Analog", each with a simple icon and short
-Turkish title. Then the same single mandatory footer row: bottom-left "Akademi Usta",
-bottom-center "Usta tahmin etmez, ölçer.", bottom-right "akademiusta.com" — same bold navy
-font, same baseline, text only, no logo/emblem.
+Card 4 — header "4 · ANALOG INPUT" in orange:
+- Main signal diagram: a potentiometer produces a smooth analog waveform, the waveform enters
+  the MCU pin, then a small box labeled "ADC" converts it into a stepped numeric-level icon.
+- Exact labels: "Gerilim seviyesi ADC tarafından ölçülür" and
+  "Dijital giriş tamponu devre dışı"
+- Add one small clarification badge: "STM32F103'te analog, bir giriş yapılandırmasıdır."
+- Do not mention or draw a DAC anywhere.
+
+Place the four cards in a balanced 2-by-2 grid around the central "GPIO Pini" origin, with
+clear arrows showing signal direction. Each card must use a different literal diagram matching
+its function; do not reuse the same generic chip icon four times. Keep all text large enough
+for mobile/video viewing. No long datasheet quotation and no decorative component photography.
+
+Directly below the four-card diagram, add one narrow synthesis strip with exactly this text:
+"Önce kullanım amacını seç: oku, sür, çevre birimine devret veya analog ölç."
+Add a smaller second line:
+"Not: Analog ayrı bir kullanım amacı olarak gösterilir; STM32F103 donanımında giriş
+yapılandırmasıdır."
+
+Do not show "4 + 2 + 2 + 1 = 9", "9 olası yapılandırma", "ADC/DAC", output-speed values,
+register bit values, a second procedure band, or any specific pin number. Do not invent extra
+steps, cards, modes, peripherals, technical values or captions.
+
+Bottom band content: render exactly FOUR compact real-world example cards, evenly spaced and
+not numbered:
+- "Buton → Digital Input" with a push-button icon
+- "LED → Digital Output" with an LED icon
+- "USART TX → Alternate Function" with a serial waveform icon
+- "Potansiyometre → Analog Input" with a potentiometer and ADC icon
+These examples must be the ONLY content inside the bottom information band. Do not add a
+second selection procedure, arithmetic summary, or any additional card row.
 ```

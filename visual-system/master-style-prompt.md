@@ -32,14 +32,34 @@ VISUAL IDENTITY:
 - No clutter
 - No random electronic components
 
+CONTENT PRINCIPLE (2026-07-17, applies to every slide going forward):
+Every visual element must depict something real and specific from this chapter's own content —
+no empty/generic signage, no decorative icon that doesn't carry real information. Read and
+understand the scene's actual teaching content before drawing anything; the image must tell
+that specific story, not a generic "tech infographic" filler scene.
+
 LAYOUT SYSTEM:
 - Top-left: day label such as "GÜN 0X"
 - Top-center: large lesson title
 - Directly below: one short educational subtitle
-- Central area: primary hardware, document or technical diagram
-- Side panels: maximum four supporting concepts, each with a large colored NUMBER BADGE (1,2,3,4)
-  top-left of the panel, connected to a precise point on the central hardware with a thin
-  matching-color line
+- Central area: the clearest possible depiction of this scene's core concept. Use a real
+  hardware/document close-up when the topic is physical (a chip, a connector, a schematic
+  region). Use a literal technical block/flow diagram (multiplexer, signal path, decision
+  tree, side-by-side comparison) when the topic is logical/procedural (a mode, a protocol, a
+  configuration choice) — most GPIO/software/protocol topics are this second kind. Pick
+  whichever actually explains the concept; never a generic decorative illustration.
+- Side panels: maximum four supporting concepts. Each panel has a solid navy (or the panel's
+  functional accent color) header bar across the top with a short bold white title — no
+  numbered badge required. Panel body below the header holds whatever depicts that panel's
+  real content best: bullet text, a small literal icon, a compact mini-diagram, or (when the
+  chapter has real concrete example data, e.g. real pin/function pairings) an actual small
+  data table with a header row and real values — never invented placeholder values. Where a
+  central diagram exists, connect each panel to the relevant point on it with a thin
+  matching-color line.
+- Optional synthesis band: when this chapter's content states a principle that spans multiple
+  real examples (e.g. the same concept holding across several named chip families), a single
+  full-width band beneath the central area may show those real named items connected under one
+  short caption stating the shared principle in the chapter's own words — not invented.
 - Bottom section: see "Alt Bölüm (Bottom Layout) — Zorunlu" below. Mandatory on every slide,
   not just the hero.
 
@@ -58,7 +78,21 @@ TYPOGRAPHY:
 - Every visible word must be spelled correctly
 ```
 
-## Referans görsel kullanım kuralı
+## Üretim modu (2026-07-17'den itibaren)
+
+**`--mode generate` (varsayılan artık bu, `tools/generate-slide.py`):** Referans görsel YOK,
+saf metinden görsel üretimi (`openai/gpt-image-2`, edit değil). Kullanıcının 2026-07-16 tarihli
+geri bildirimi üzerine benimsendi: sabit `approved-day01.png` referansına `/edit` ile bağlı
+kalmak, 8 bölüm sonra "her şey aynı iskelet, sadece yazı değişiyor" hissi yaratan bir şablona
+dönüştü. Bu modda stil sadece yukarıdaki VISUAL IDENTITY bloğunun kelimeleriyle taşınır —
+"Referans görsel kullanım kuralı" paragrafı bu modda eklenmez (aşağıda, sadece edit modu için
+geçerli).
+
+**`--mode edit`:** Eski davranış, hâlâ kullanılabilir — bir bileşenin gerçek fiziksel görünümünü
+(çip paketi, konnektör, kristal) birebir korumak gerektiğinde, `--ref` ile gerçek bir fotoğraf/
+şema kırpması verilerek. Bu durumda aşağıdaki referans paragrafı otomatik eklenir.
+
+## Referans görsel kullanım kuralı (sadece `--mode edit`)
 
 Her sahne promptuna, onaylı Bölüm 01 görseli referans olarak eklenirken şu paragraf da eklenir:
 
@@ -95,14 +129,23 @@ BOTTOM LAYOUT (MANDATORY)
 
 Create a full-width bottom information band.
 
-Inside the band:
-- Four equally sized rounded cards (hero slide: six cards, one per universal question).
-- Numbered 1-4 (hero: 1-6).
-- Each card has one simple icon and one short Turkish title.
-- Cards must be perfectly aligned and evenly spaced.
-- Use the same layout style as the approved Day 01 slide.
+If the SCENE block above already specifies exact bottom band content, render ONLY that
+content — do not add any further card, step, or procedure of your own invention alongside it,
+even if it seems like a reasonable addition. One bottom band, one piece of content, exactly as
+specified.
 
-Below the cards, ONE single footer row with three parts, evenly balanced left/center/right:
+If the SCENE block does NOT specify bottom band content, pick whichever of these actually fits
+this scene's real content, and render exactly one of them (never more than one):
+- A short numbered procedure/flow (2-4 steps, connected by simple ">" arrows), when the
+  chapter describes a real sequence of actions or decisions.
+- A compact real comparison or reference detail (e.g. real named values placed side by side)
+  that the panels above didn't have room for.
+- If genuinely nothing new is left to add, a simple restatement is acceptable, but this should
+  be the exception, not the default.
+Cards/steps must be perfectly aligned, evenly spaced, and each carry one simple icon plus a
+short Turkish label.
+
+Below the band, ONE single footer row with three parts, evenly balanced left/center/right:
 - Bottom-left: "Akademi Usta"
 - Bottom-center: "Usta tahmin etmez, ölçer."
 - Bottom-right: "akademiusta.com"
@@ -132,6 +175,8 @@ Bu blok tüm sahnelerde aynı kalır — sadece merkez içerik (kart, panel konu
 ## Tek satırlık sistem prensibi
 
 > Her gün bağımsız bir görsel üretme; aynı teknik eğitim kitabının bir sonraki sayfasını üret. İçerik değişsin, görsel kimlik değişmesin.
+
+**Not (2026-07-17):** Bu prensip 13 Temmuz'da "her sahnenin `approved-day01.png`'ye `/edit` ile bağlı kalması" olarak uygulanmıştı — 8 bölüm sonra bu, kullanıcının deyimiyle "şablon" haline geldi: sadece yazı değişiyor, geri kalan her şey birebir aynı kalıyordu. Bölüm 09'dan itibaren "görsel kimlik" artık tek bir sabit referans görselin birebir kopyası değil, yukarıdaki VISUAL IDENTITY bloğunun (renkler, tipografi, genel düzen mantığı) kelimelerle taşınması anlamına geliyor — merkez kompozisyon (fotoğraf mı, diyagram mı, tablo mu) ve panel sayısı/şekli artık o bölümün gerçek içeriğine göre serbestçe belirleniyor. Bkz. yukarıdaki "CONTENT PRINCIPLE" ve "Üretim modu" bölümleri.
 
 ## Metin üretimi — mevcut plan
 

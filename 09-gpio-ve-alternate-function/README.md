@@ -2,6 +2,8 @@
 
 > *Her pin her an aynı şeyi yapmıyor. Modu sen belirlersin.*
 
+![GPIO ve Alternate Function — Gün 09 özet görseli](hero.png)
+
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
@@ -55,6 +57,8 @@ Alt modlar:
 ### 4. Analog
 ADC veya DAC için kullanılırken dijital giriş tampon devre dışı bırakılır.
 
+![GPIO'nun 4 Kullanım Biçimi — Oku, sür, çevre birimine devret, analog ölç](slides/02-gpionun-4-modu.png)
+
 ---
 
 ## Alternate Function Nedir?
@@ -74,6 +78,8 @@ PA9/TIM1_CH2 (Timer1 kanal 2)
 ```
 
 Yazılımda hangi modu seçersen pin o işlevi üstlenir.
+
+![Alternate Function Nedir? — PA9 için üç olasılık, aynı anda tek seçim](slides/03-alternate-function-nedir.png)
 
 ---
 
@@ -96,6 +102,8 @@ Pinout kartında renkli kutular alternate function'ları gösteriyor:
 kullanımı için eklenmiş ek takma isimlerdir. Kırmızı/yeşil "3"/"5" rozetleri de alternate
 function değil, ayrı bir lejant: pinin 3.3V-standart mı yoksa 5V-tolerant mı olduğunu gösterir.)
 
+![Pinout'ta Renkleri Okumak — Renk, pinin olası çevre birimi görevini gösterir](slides/04-pinoutta-renkler.png)
+
 ---
 
 ## Şemada Alternate Function Okumak
@@ -115,6 +123,8 @@ PB6 neden iki isim taşıyor?
 Çünkü aynı pin hem I2C SCL hem USART TX olabilir.
 İkisi aynı anda kullanılamaz — yazılımda biri seçilir.
 
+![Şemada Pin İsmini Çözmek — GPIO adı solda, bağlı devre görevi sağda](slides/05-semada-af-okumak.png)
+
 ---
 
 ## Remapping (Yeniden Haritalama)
@@ -129,6 +139,8 @@ Bazı fonksiyonlar iki farklı pine atanabiliyor.
 | RX → PA10 | RX → PB7 |
 
 Neden? Şema tasarımında esneklik. Başka bir çevresel birim PA9'u kullanıyorsa USART PB6'ya taşınabilir.
+
+![Remapping — Yeniden Haritalama — Aynı USART1, iki olası pin çifti](slides/06-remapping.png)
 
 ---
 
@@ -154,6 +166,8 @@ Bu pin OUTPUT modunda yapılandırıldığında:
 
 Datasheet'te bu pinin tam adı "PC13-TAMPER-RTC". Yani bu pin aynı zamanda RTC tamper girişi olarak da kullanılabilir.
 
+![PC13 LED Neden LOW'da Yanar? — Akımı pin sağlamaz, LOW olduğunda toprağa çeker](slides/07-led-ornegi-pc13.png)
+
 ---
 
 ## Sahada Ne Anlama Gelir?
@@ -169,6 +183,8 @@ Bu pine bağlı devreye bakıyorsun:
 - Bir modüle seri bağlıysa → USART modu kullanılıyor
 
 Yazılımı okumadan bile bağlı devreden hangi modun kullanıldığını anlayabilirsin.
+
+![Sahada Aktif Fonksiyonu Bul — Pin adını, bağlı devreyi ve yazılımı birlikte oku](slides/08-sahada-ne-anlama-gelir.png)
 
 ---
 

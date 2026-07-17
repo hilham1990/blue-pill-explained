@@ -18,7 +18,7 @@ Bu dosya, seri için üretilen slayt/video/altyazı çıktılarını ve üretim 
 | 06 — Clock Sistemi | Tamamlandı (6 sahne: hero + `slides/`, 2026-07-16) | Henüz render edilmedi | Henüz üretilmedi |
 | 07 — Reset ve Boot | Tamamlandı (6 sahne: hero + `slides/`, 2026-07-16) | Henüz render edilmedi | Henüz üretilmedi |
 | 08 — MPU ve Pinout | Tamamlandı (7 sahne: hero + `slides/`, 2026-07-16) | Henüz render edilmedi | Henüz üretilmedi |
-| 09 — GPIO ve Alternate Function | Metin+plan+prompt hazır (8 sahne), görsel HENÜZ ÜRETİLMEDİ (2026-07-16) | Henüz render edilmedi | Henüz üretilmedi |
+| 09 — GPIO ve Alternate Function | Tamamlandı (8 sahne: hero + `slides/`, 2026-07-17) | Henüz render edilmedi | Henüz üretilmedi |
 | 10 — İletişim Protokolleri | Metin+plan+prompt hazır (7 sahne), görsel HENÜZ ÜRETİLMEDİ (2026-07-16) | Henüz render edilmedi | Henüz üretilmedi |
 | 11 — Debug SWD | Metin+plan+prompt hazır (7 sahne), görsel HENÜZ ÜRETİLMEDİ (2026-07-16) | Henüz render edilmedi | Henüz üretilmedi |
 | 12 — Şema Baştan Sona | Metin+plan+prompt hazır (8 sahne), görsel HENÜZ ÜRETİLMEDİ (2026-07-16) | Henüz render edilmedi | Henüz üretilmedi |
@@ -33,7 +33,8 @@ Slaytlar her bölüm için elle tasarlanmıyor — o bölümün metni (README.md
 
 ## Notlar
 
-- Slayt prodüksiyonu Bölüm 01-08'de tamamlandı, video render henüz hiçbirinde yapılmadı. Bölüm 09-12'nin metni QA'lanmış, planı onaylanmış ve tüm sahne prompt'ları yazılmış (2026-07-16) ama GÖRSEL henüz üretilmedi — sıradaki iş bu 4 bölümün 30 sahnesini sırayla (09→10→11→12) üretmek, bkz. `CLAUDE.md`'nin "Sıradaki iş" notu.
+- Slayt prodüksiyonu Bölüm 01-09'da tamamlandı, video render henüz hiçbirinde yapılmadı. Bölüm 10-12'nin metni QA'lanmış, planı onaylanmış ve tüm sahne prompt'ları yazılmış (2026-07-16) ama GÖRSEL henüz üretilmedi — sıradaki iş bu 3 bölümün 22 sahnesini sırayla (10→11→12) üretmek, bkz. `CLAUDE.md`'nin "Sıradaki iş" notu.
+- Bölüm 09'da görsel-üretim sistemi köklü biçimde değişti (2026-07-17): sabit "gerçek çip fotoğrafı + numaralı panel + alt bantta panelleri tekrarla" şablonu (`--mode edit`, tek referans `approved-day01.png`) kullanıcı tarafından "şablonlaşmış, ruhu yok" bulunup terk edildi. Yeni standart: mantıksal/prosedürel konularda `--mode generate` (referanssız, saf metinden üretim, merkezde gerçek blok/akış/ağaç diyagramı, başlık-çubuklu paneller, gerçek veri tabloları), fiziksel bileşen gerektiren sahnelerde hâlâ `--mode edit` + gerçek kaynak referansı. Bkz. `visual-system/master-style-prompt.md`'nin 2026-07-17 notları ve `visual-system/lessons-learned.md`. Bölüm 01-08 geriye dönük değiştirilmedi (aynı "ileriye dönük standart" yaklaşımı, footer/numaralandırma değişiklikleri gibi).
 - Bölüm 07'de curriculum-qa 5 metin hatası buldu (koordinat, BOOT0/BOOT1'in R3/R4 seri direnç topolojisinin ters çizilmiş olması, gerçek datasheet'te olmayan "BOR" terimi, doğrulanamayan jumper pin numaraları) — hepsi görsel üretimden önce düzeltildi. Gerçek kart fotoğrafından crop'lanan reset butonu + BOOT jumper'ı ilk denemede birebir doğru çıktı.
 - Bölüm 04 scene-02/scene-03'te panel rozet renkleri (1,2,3) hepsi mavi olması gerekirken model teal/turuncu karıştırdı — küçük bir stil sapması, bilinçli olarak yeniden üretilmedi (bkz. `04-sema-genel-bakis/scenes.json` notu).
 - Bölüm 05'ten itibaren görsel üretim süreci `tools/generate-slide.py` scripti ve `visual-system/lessons-learned.md` (büyüyen hata kaydı) ile standartlaştırıldı — bkz. `CLAUDE.md`. Bölüm 05 scene-03'te (Kapasitörler) RT8183-B ilk denemede yanlış pakette çıktı, hero'nun crop'u ikincil referans verilerek düzeltildi.

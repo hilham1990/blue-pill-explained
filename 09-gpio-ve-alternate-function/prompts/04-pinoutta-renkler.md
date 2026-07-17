@@ -1,64 +1,44 @@
-# Scene: scene-04 — Pinout'ta Renkler Ne Anlatıyor?
+# Scene: scene-04 — Pinout'ta Renkler
 
-**Durum:** Planlanıyor (2026-07-16) — görsel HENÜZ ÜRETİLMEDİ, sadece prompt yazıldı.
+**Durum:** v2 — gerçek Blue Pill pinout referansını okuma becerisine odaklanan yeni prompt.
 
-**Gerçek görsel analizi (madde 4c):** Gerçek renkli pinout kartı `assets/source/blue-pill-pinout-source.webp`
-piksel piksel incelenip renkler doğrulandı (curriculum-qa, 2026-07-16): Sarı=Serial, Açık
-yeşil=SPI, Turuncu=I2C(+USB), Mor=PWM, Pembe=CAN, Bej=Analog. Bu görsel zaten README'de TAM
-BOYUTTA gösteriliyor (SKILL.md madde 9 — gerçek kaynak belge her zaman ayrıca tam boyutta
-kalır). **Bu AI sahnesi kartın TAMAMINI (20+ renkli kutu) yeniden çizmeye ÇALIŞMAMALI** —
-teknik risk olarak brief.json'da not edildi, yoğun/küçük metin+renk kombinasyonu yüksek
-bozulma riski taşır (bkz. Bölüm 08 scene-03'ün 3 denemesi). Bunun yerine sahne SADECE birkaç
-temsili örnek kutu + doğru renk-fonksiyon eşlemesini gösterir.
-
-Üretim (henüz ÇALIŞTIRILMADI): `tools/generate-slide.py 09-gpio-ve-alternate-function/prompts/04-pinoutta-renkler.md 09-gpio-ve-alternate-function/slides/04-pinoutta-renkler.png --ref assets/source/blue-pill-pinout-source.webp`
+Üretim: `tools/generate-slide.py 09-gpio-ve-alternate-function/prompts/04-pinoutta-renkler.md 09-gpio-ve-alternate-function/slides/04-pinoutta-renkler.png --mode edit --ref assets/source/blue-pill-pinout-source.webp`
 
 ```text
 SCENE:
-Day label: "GÜN 09" — render with correct Turkish characters.
-Main title: "PINOUT'TA RENKLER NE ANLATIYOR?"
-Subtitle: "Her renk bir çevre birimi"
+Day label: "GÜN 09"
+Main title: "PINOUT'TA RENKLERİ OKUMAK"
+Subtitle: "Renk, pinin olası çevre birimi görevini gösterir"
 
-Central graphic: NOT a full pinout board redraw. Instead, a simple vertical stack of exactly
-SIX small labeled color-swatch rows (like a legend key), each row showing a solid color
-rectangle next to its function name, in this EXACT order and EXACT colors (match the attached
-reference image's actual colors, do not invent different shades):
+Use case: scientific-educational. Input image: the attached Blue Pill pinout is the factual
+color reference. Do not redraw its full dense pin list and do not invent pin labels.
+
+Create a focused teaching composition. On the left, show a simplified crop-like fragment of
+exactly four generic pin rows using no specific PA/PB number. Each row begins with the exact
+label "GPIO" and ends with exactly one of these four colored tags, in this order:
+"USART TX" in yellow / "SPI SCK" in light green / "I2C SDA" in orange /
+"TIMER PWM" in purple. Use these labels verbatim. Do not write Serial1, SPI1, I2C1, PWM1/2,
+channel numbers, peripheral instance numbers or any other invented tag.
+
+On the right, create exactly six large, highly legible legend rows using colors matched to the
+attached real pinout:
 "Sarı → Serial (USART)"
 "Açık yeşil → SPI"
 "Turuncu → I2C (+ USB)"
 "Mor → PWM (Timer)"
 "Pembe → CAN"
 "Bej → Analog giriş"
-This legend key sits on a plain background, no colored border/frame around it, no attempt to
-draw the full board or all 40+ pins — just this simple 6-row color key.
 
-Four NUMBERED panels (large colored number badge 1,2,3,4 top-left of each panel), each
-connected with a thin matching-color line to the legend key, each panel exactly one cohesive
-icon plus a caption of AT LEAST TWO concrete information lines. Use ONLY the exact values
-given here:
+Below the legend, add a separate caution panel titled "Bunlarla Karıştırma":
+"Koyu yeşil A0–A3 / D0–D15 → Arduino takma adları"
+"3 / 5 rozetleri → 3.3 V standart / 5 V tolerans bilgisi"
+State clearly: "Bunlar Alternate Function renkleri değildir."
 
-IMPORTANT — badge color: all four number badges (1,2,3,4) and all four connector lines and
-all four panel borders MUST be the exact same solid orange color (the "belge/kaynak" function
-color, matching this chapter's other schematic/reference-reading scenes). Do NOT vary the
-badge color per panel.
+Add one small reading example without a real pin number:
+"GPIO adı + renkli etiket = aynı pinin olası ikinci görevi".
 
-IMPORTANT — each panel MUST use a clearly DIFFERENT icon matching its own content:
-1 (orange, icon: a small serial-signal arrows icon in yellow accent): "Sarı = Serial" —
-"USART TX/RX hatları" / "Seri haberleşme için kullanılır"
-2 (orange, icon: a small SPI clock+data icon in light-green accent): "Açık Yeşil = SPI" —
-"SCK/MISO/MOSI/NSS hatları" / "Yüksek hızlı senkron haberleşme"
-3 (orange, icon: a small two-wire bus icon in orange accent): "Turuncu = I2C" — "SDA/SCL
-hatları" / "Aynı renk USB DP/DM için de kullanılır"
-4 (orange, icon: a small waveform-pulse icon in purple accent): "Mor = PWM (Timer)" — "Motor
-kontrolü, LED parlaklığı" / "Timer kanallarına bağlı"
-
-Do not render any specific pin name (PA_x, PB_x) or the full board photo — this scene is only
-about the color legend itself, the real full pinout card is already shown separately in the
-lesson text.
-
-Bottom section: use the mandatory bottom layout — 4 cards mirroring the panels: "Sarı =
-Serial", "Açık Yeşil = SPI", "Turuncu = I2C", "Mor = PWM", each with a simple icon and short
-Turkish title. Then the same single mandatory footer row: bottom-left "Akademi Usta",
-bottom-center "Usta tahmin etmez, ölçer.", bottom-right "akademiusta.com" — same bold navy
-font, same baseline, text only, no logo/emblem.
+Bottom band content: exactly three unnumbered reading steps:
+"GPIO Adını Bul" / "Renkli Etiketi Oku" / "Lejanttan Görevi Eşleştir".
+No complete board redraw, no 40-pin microtext, no invented color, no duplicated four-panel
+layout, no decorative photo.
 ```

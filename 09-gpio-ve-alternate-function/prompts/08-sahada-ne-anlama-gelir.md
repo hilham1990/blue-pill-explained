@@ -1,61 +1,41 @@
 # Scene: scene-08 — Sahada Ne Anlama Gelir?
 
-**Durum:** Planlanıyor (2026-07-16) — görsel HENÜZ ÜRETİLMEDİ, sadece prompt yazıldı.
+**Durum:** v2 — bağlı devreden aktif fonksiyonu çıkarma kapanış sahnesi.
 
-**Gerçek görsel analizi (madde 4c):** Kavramsal bir akıl yürütme örneği (PB6/I2C1_SCL/USART1_TX),
-fiziksel bir bileşen fotoğrafı gerekmiyor. PB6'nın iki gerçek fonksiyonu zaten scene-05'te
-datasheet ile doğrulanmıştı.
-
-**Seri-içi stil tutarlılığı:** Bölüm 08 scene-07 ("Sahada Ne Anlama Gelir?") teal/doğrulama
-rengiyle 4-adımlı bir akış diyagramı kullanmıştı. Bu bölümün kendi "Sahada Ne Anlama Gelir?"
-sahnesi de AYNI teal rengi ve benzer akış-diyagramı yaklaşımını kullanır — bu, bölüm-içi
-"kasıtlı farklılaştırma" kuralının kapsamı DIŞINDA: o kural aynı bölüm içindeki iki farklı
-sahne için, bu ise serinin farklı günlerinde TEKRARLANAN aynı bölüm-türü (kapanış/doğrulama
-sahnesi) için tutarlılık — bkz. footer/branding gibi seri-geneli sabit kalan unsurlar.
-
-Üretim (henüz ÇALIŞTIRILMADI): `tools/generate-slide.py 09-gpio-ve-alternate-function/prompts/08-sahada-ne-anlama-gelir.md 09-gpio-ve-alternate-function/slides/08-sahada-ne-anlama-gelir.png`
+Üretim: `tools/generate-slide.py 09-gpio-ve-alternate-function/prompts/08-sahada-ne-anlama-gelir.md 09-gpio-ve-alternate-function/slides/08-sahada-ne-anlama-gelir.png --mode generate`
 
 ```text
 SCENE:
-Day label: "GÜN 09" — render with correct Turkish characters.
-Main title: "SAHADA NE ANLAMA GELİR?"
-Subtitle: "Devreye bak, modu çıkar"
+Day label: "GÜN 09"
+Main title: "SAHADA AKTİF FONKSİYONU BUL"
+Subtitle: "Pin adını, bağlı devreyi ve yazılımı birlikte oku"
 
-Central graphic: a clean vertical flow diagram (NOT a photo, NOT a schematic symbol — simple
-stacked boxes connected by downward arrows), using the exact real PB6 example: box 1 "Pin:
-PB6/I2C1_SCL/USART1_TX" (small icon of a chip pin with two branching labels), arrow down, box
-2 "Bağlı devreye bak" (small icon of a magnifying glass over a circuit trace), arrow down,
-splitting into TWO parallel boxes side by side: box 3a "EEPROM bağlıysa" → "I2C modu
-kullanılıyor" (small EEPROM chip icon) and box 3b "Seri modül bağlıysa" → "USART modu
-kullanılıyor" (small module/antenna icon). Each box plain white background, thin navy border,
-technical monospace-adjacent font for the pin/component values. No colored border/frame around
-the overall central content beyond each individual box's own thin border.
+Use case: scientific-educational. Create a teal-accented diagnostic decision flow, readable
+as the final video frame of the lesson.
 
-Four NUMBERED panels (large colored number badge 1,2,3,4 top-left of each panel) placed beside
-the flow, each connected with a thin matching-color line to its corresponding part of the
-flow, each panel exactly one cohesive icon plus a caption of AT LEAST TWO concrete information
-lines. Use ONLY the exact values given here, do not invent any additional component:
+At the top center place the exact pin-pair label:
+"PB6 / PB7"
+Below it show two possible label pairs:
+"I2C1_SCL / I2C1_SDA" and "USART1_TX / USART1_RX".
 
-IMPORTANT — badge color: all four number badges (1,2,3,4) and all four connector lines and all
-four panel borders MUST be the exact same solid teal color (the "ölçüm/doğrulama" function
-color, matching Bölüm 08's own closing "Sahada Ne Anlama Gelir?" scene). Do NOT vary the badge
-color per panel.
+Flow step 1: box titled "1 · Şemadaki Bağlantıyı İzle" with a magnifying glass following two
+traces from PB6 and PB7. Exact caption: "Tek pine değil, sinyal çiftine bak."
 
-IMPORTANT — each panel MUST use a clearly DIFFERENT icon matching its own specific content:
-1 (teal, icon: a chip pin with two small branching labels): "Pinin Birden Fazla İsmi Var" —
-"PB6/I2C1_SCL/USART1_TX" / "Yazılımı okumadan bile devreden anlaşılır"
-2 (teal, icon: a magnifying glass over a circuit trace): "Bağlı Devreye Bak" — "Hangi bileşen
-bağlı olduğuna dikkat et" / "EEPROM mu, seri modül mü?"
-3 (teal, icon: a small EEPROM/memory chip icon): "EEPROM Bağlıysa" — "I2C modu kullanılıyor
-demektir" / "SDA/SCL hattı olarak çalışıyor"
-4 (teal, icon: a small module/antenna icon): "Seri Modül Bağlıysa" — "USART modu kullanılıyor
-demektir" / "TX/RX hattı olarak çalışıyor"
+Then split into exactly two diagnostic branches:
+- Left branch: a small EEPROM with both lines connected. Labels "SCL + SDA" and
+  "EEPROM bağlıysa → I2C kullanılıyor".
+- Right branch: a serial module with both lines connected. Labels "TX + RX" and
+  "Seri modül bağlıysa → USART kullanılıyor".
 
-Do not render any pin number beyond PB6, and do not invent additional alternate-function names.
+Merge the branches into flow step 2 titled "2 · Yazılımla Doğrula" with exact caption:
+"GPIO ayarı ve AFIO remap seçimi son kanıttır."
 
-Bottom section: use the mandatory bottom layout — 4 cards mirroring the panels: "İki İsim",
-"Devreye Bak", "EEPROM → I2C", "Modül → USART", each with a simple icon and short Turkish
-title. Then the same single mandatory footer row: bottom-left "Akademi Usta", bottom-center
-"Usta tahmin etmez, ölçer.", bottom-right "akademiusta.com" — same bold navy font, same
-baseline, text only, no logo/emblem.
+Finish with a large conclusion box:
+"Şema güçlü ipucu verir; kesin aktif modu yazılım doğrular."
+This wording is important: do not claim that one PB6 wire alone proves the mode.
+
+Bottom band content: exactly three unnumbered field-method cards:
+"Pin Çiftini Bul" / "Bağlı Bileşeni Tanı" / "Yazılımla Doğrula".
+No additional pin names, no antenna unless the serial module truly needs one, no four numbered
+callout panels, no claim that hardware alone is always conclusive.
 ```
