@@ -2,3 +2,12 @@
 **/.DS_Store
 .DS_Store?
 Thumbs.db
+
+# Motion Canvas pilot — bağımlılıklar ve derlenmiş çıktı yeniden kurulabilir/üretilebilir
+01-neden-bu-kart/video/motion-canvas/node_modules/
+01-neden-bu-kart/video/motion-canvas/dist/
+01-neden-bu-kart/video/motion-canvas/.playwright-cli/
+
+# Yerel render denemeleri (ffmpeg script çıktıları) — reprodüklenebilir, repoyu şişirmesin
+render-cinematic/
+render-deneme/

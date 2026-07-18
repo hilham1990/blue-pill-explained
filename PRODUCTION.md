@@ -25,6 +25,8 @@ Bu dosya, seri için üretilen slayt/video/altyazı çıktılarını ve üretim 
 
 ## Üretim Yaklaşımı
 
+Profesyonel video üretimi, hata hafızası ve kalite kapıları için [`video-system/`](video-system/) ortak standardı kullanılır. Mevcut renderer yayın motoru değil, zamanlama/ses/altyazı ön izlemesi olarak kabul edilir.
+
 Slaytlar her bölüm için elle tasarlanmıyor — o bölümün metni (README.md) okunarak dinamik olarak görsele/slayta dönüştürülüyor. Bu yüzden slayt/video çıktıları müfredat metninden **sonra** üretiliyor ve metin değiştikçe yeniden üretilebilir.
 
 - Ses: macOS yerel `Yelda` Türkçe sesi

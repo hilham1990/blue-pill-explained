@@ -48,6 +48,8 @@ const height = Math.max(640, Number(manifest.height) || 1080);
 const fps = Math.max(24, Number(manifest.fps) || 30);
 const voice = String(manifest.voice || "Yelda");
 const rate = String(Number(manifest.rate) || 165);
+const burnSubtitles = manifest.burnSubtitles !== false;
+const motionStyle = String(manifest.motionStyle || "none");
 const outDir = outIndex >= 0 && args[outIndex + 1] ? path.resolve(args[outIndex + 1]) : path.resolve("out/lessons");
 mkdirSync(outDir, { recursive: true });
 
@@ -88,12 +90,15 @@ for (let i = 0; i < scenes.length; i += 1) {
   const sceneDuration = duration(audio) + 0.45;
   const part = path.join(work, `scene-${String(i + 1).padStart(2,"0")}.mp4`);
 
-  // Aynı görseli iki katmanda kullan: arkada doldurulmuş blur, önde kırpılmadan tam slayt.
-  const filter = [
-    `[0:v]scale=${width}:${height}:force_original_aspect_ratio=increase,crop=${width}:${height},boxblur=28:2,eq=brightness=-0.18:saturation=0.65[bg]`,
-    `[0:v]scale=${width}:${height}:force_original_aspect_ratio=decrease[fg]`,
-    `[bg][fg]overlay=(W-w)/2:(H-h)/2,format=yuv420p[v]`
-  ].join(";");
+  // Ön izlemelerde durağan slayt hissini azaltmak için çok hafif, kenarları
+  // tehlikeye atmayan merkez zoom kullanılabilir. Varsayılan davranış geriye uyumludur.
+  const filter = motionStyle === "subtleZoom"
+    ? `[0:v]scale=${Math.ceil(width * 1.02)}:${Math.ceil(height * 1.02)}:force_original_aspect_ratio=increase,crop=iw:ih,zoompan=z='min(zoom+0.00001,1.018)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=${width}x${height}:fps=${fps},format=yuv420p[v]`
+    : [
+        `[0:v]scale=${width}:${height}:force_original_aspect_ratio=increase,crop=${width}:${height},boxblur=28:2,eq=brightness=-0.18:saturation=0.65[bg]`,
+        `[0:v]scale=${width}:${height}:force_original_aspect_ratio=decrease[fg]`,
+        `[bg][fg]overlay=(W-w)/2:(H-h)/2,format=yuv420p[v]`
+      ].join(";");
 
   sh("ffmpeg", [
     "-y", "-loglevel", "error", "-loop", "1", "-i", image, "-i", audio,
@@ -126,17 +131,23 @@ sh("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", li
 const srtPath = path.join(outDir, `${key}.srt`);
 writeFileSync(srtPath, subtitleRows.join("\n"), "utf8");
 const finalVideo = path.join(outDir, `${key}.mp4`);
-const escapedSrt = srtPath.replaceAll("\\", "\\\\").replaceAll(":", "\\:").replaceAll("'", "\\'");
-const fontSize = Number(manifest.subtitleFontSize) || (height > width ? 12 : 14);
-const marginV = height > width ? 72 : 42;
-const subtitleFilter = `subtitles='${escapedSrt}':original_size=${width}x${height}:force_style='FontName=Arial,FontSize=${fontSize},PrimaryColour=&H00FFFFFF,OutlineColour=&HAA000000,BorderStyle=3,BackColour=&H72000000,Outline=1,Shadow=0,MarginV=${marginV},Alignment=2'`;
-sh("ffmpeg", [
-  "-y", "-loglevel", "error", "-i", cleanVideo, "-vf", subtitleFilter,
-  "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-c:a", "copy", "-movflags", "+faststart", finalVideo
-]);
+if (burnSubtitles) {
+  const escapedSrt = srtPath.replaceAll("\\", "\\\\").replaceAll(":", "\\:").replaceAll("'", "\\'");
+  const fontSize = Number(manifest.subtitleFontSize) || (height > width ? 12 : 14);
+  const marginV = height > width ? 72 : 42;
+  const subtitleFilter = `subtitles='${escapedSrt}':original_size=${width}x${height}:force_style='FontName=Arial,FontSize=${fontSize},PrimaryColour=&H00FFFFFF,OutlineColour=&HAA000000,BorderStyle=3,BackColour=&H72000000,Outline=1,Shadow=0,MarginV=${marginV},Alignment=2'`;
+  sh("ffmpeg", [
+    "-y", "-loglevel", "error", "-i", cleanVideo, "-vf", subtitleFilter,
+    "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-c:a", "copy", "-movflags", "+faststart", finalVideo
+  ]);
+} else {
+  // Metin yoğun eğitim slaytlarında master videoyu temiz tut; SRT yine yan dosya olarak üretilir.
+  sh("ffmpeg", ["-y", "-loglevel", "error", "-i", cleanVideo, "-c", "copy", "-movflags", "+faststart", finalVideo]);
+}
 
 const meta = {
   key, title: manifest.title || "", voice, rate: Number(rate), width, height, fps,
+  burnSubtitles, motionStyle,
   durationSec: Number(duration(finalVideo).toFixed(3)), scenes: scenes.length,
   video: finalVideo, subtitles: srtPath
 };

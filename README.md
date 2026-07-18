@@ -1,5 +1,7 @@
 # Blue Pill Explained
 
+Video, Shorts ve sosyal medya üretiminde değerlendireceğimiz araçlar için [Video Üretim Araçları](VIDEO-TOOLS.md) notuna bakın.
+
 [![Lisans: MIT](https://img.shields.io/badge/Lisans-MIT-green.svg)](LICENSE)
 [![Dil: Türkçe](https://img.shields.io/badge/Dil-T%C3%BCrk%C3%A7e-blue.svg)](#)
 [![Bölümler: 12](https://img.shields.io/badge/B%C3%B6l%C3%BCmler-12-orange.svg)](#bölümler)
