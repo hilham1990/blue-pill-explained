@@ -2,6 +2,8 @@
 
 > *UART, SPI, I2C — üçü de veri taşır. Ama üçü çok farklı çalışır.*
 
+![İletişim Protokolleri — Aynı veri, üç farklı bağlantı mantığı](hero.png)
+
 ---
 
 > **Bu bölümde öğrendiğin şey şurada da geçerli:**
@@ -70,6 +72,8 @@ PB11 → USART3_RX
 | Sadece 2 kablo | Sadece 2 cihaz arası |
 | Debug/modül bağlantısı için yaygın | Uzun mesafe için RS-232/RS-485 gibi uygun bir hat sürücüsü gerekir |
 
+![UART — TX karşı tarafın RX'ine gider](slides/02-uart.png)
+
 ---
 
 ## SPI — Serial Peripheral Interface
@@ -119,6 +123,8 @@ PB15 → SPI2_MOSI
 | Full duplex | Uzun mesafede gürültüye hassas |
 | Basit donanım | |
 
+![SPI — Ortak veri hatları, her cihaz için ayrı seçim](slides/03-spi.png)
+
 ---
 
 ## I2C — Inter-Integrated Circuit
@@ -164,6 +170,8 @@ PB11 → I2C2_SDA
 | Aynı bus üzerinde çok sayıda cihaz | Half duplex |
 | Adres sistemi | Pull-up dirençleri gerekli |
 
+![I2C — İki ortak hat, adresle seçilen cihazlar](slides/04-i2c.png)
+
 ---
 
 ## Karşılaştırma Tablosu
@@ -175,6 +183,8 @@ PB11 → I2C2_SDA
 | Cihaz yapısı | Tipik olarak iki cihaz arası | Birden fazla cihaz; çoğunlukla her biri için CS | Adres alanı üzerinden çok sayıda cihaz |
 | Senkronizasyon | Asenkron | Senkron | Senkron |
 | Kullanım kolaylığı | En kolay | Orta | Orta |
+
+![UART · SPI · I2C Karşılaştırması — Hat sayısı değil, ihtiyacın karar versin](slides/05-karsilastirma-tablosu.png)
 
 ---
 
@@ -189,6 +199,8 @@ Dört hat: MOSI, MISO, SCK, CS → SPI
 ```
 
 Asıl kanıt pin isimleridir; hat sayısı yalnızca destekleyici bir ipucudur.
+
+![Şemada Protokolü Tanımak — En güçlü kanıt sinyal adıdır](slides/06-semada-protokol-tespiti.png)
 
 ---
 
@@ -210,6 +222,8 @@ Adım 3: Hâlâ emin değilsen, hattın çektiği pull-up direncine bak —
 MOSI/MISO/SCK/CS isimlerini birlikte görürsen SPI olduğunu anlarsın. Dört hat görmek tek
 başına kanıt değildir. Kesin doğrulama için modül datasheet'ini, yazılım yapılandırmasını veya
 ölçümü kontrol et.
+
+![Sahada Protokolü Doğrula — İpucunu kanıt sanma](slides/07-sahada-ne-anlama-gelir.png)
 
 ---
 

@@ -2,6 +2,8 @@
 
 > *Firmware bu pinlerden giriyor. Sorun da buradan tespit ediliyor.*
 
+![Debug — SWD — Firmware yükle, işlemciyi durdur, içeriyi gör](hero.png)
+
 ---
 
 > **Bu bölümün kapsamı:**
@@ -53,6 +55,8 @@ PA14 → JTCK/SWCLK (pin 37)
 Bu iki pin reset sonrasında otomatik olarak SWD modunda başlar.
 Yani özel bir yapılandırma gerektirmiyor — ST-Link bağla, hazır.
 
+![Şemada SWD Nerede? — CN4, şemada A2](slides/02-semada-swd-nerede.png)
+
 ---
 
 ## JTAG ile Farkı Nedir?
@@ -65,6 +69,8 @@ Yani özel bir yapılandırma gerektirmiyor — ST-Link bağla, hazır.
 | Yaygınlık | Modern ARM'lerde standart | Eski, çok çipli sistemler |
 
 STM32'de her ikisi de destekleniyor. Blue Pill'de SWD daha pratik — daha az pin, CN4 konnektörü zaten var.
+
+![SWD ve JTAG Arasındaki Fark — İki sinyal, dört temel JTAG sinyali](slides/03-jtag-ile-farki.png)
 
 ---
 
@@ -83,6 +89,8 @@ GND   ────────────── Pin 4 (GND)
 ```
 
 Alternatif: J-Link, OpenOCD destekli adaptörler.
+
+![ST-Link → CN4 Bağlantısı — Dört hattı doğru sırayla bağla](slides/04-st-link.png)
 
 ---
 
@@ -116,6 +124,8 @@ STM32F103x8'in dahili system-memory bootloader'ı USART1 kullanır. Kart yalnız
 elimizdeki şema/fotoğraflarda doğrulanamadı — "3.3V tarafı" / "GND tarafı" diye anılıyor,
 kesin pozisyon için kartındaki BOOT0 yazısının yanındaki pinlere multimetreyle bak.
 
+![Firmware Yüklemenin İki Yolu — SWD · USART1 System Bootloader](slides/05-firmware-yukleme.png)
+
 ---
 
 ## Canlı Debug Nedir?
@@ -128,6 +138,12 @@ Firmware yükledikten sonra kart çalışırken:
 - Adım adım ilerleyebilirsin
 
 Bu SWD üzerinden gerçek zamanlı yapılıyor.
+
+![Canlı Debug Nasıl Çalışır? — SWD üzerinden gerçek zamanlı](slides/06-canli-debug.png)
+
+**Not:** Görseldeki kablo lejantı NRST sinyalini de listeliyor — Blue Pill'in CN4'ünde NRST
+yok (CN4 sadece 4 pin: 3.3V/DIO/DCLK/GND), ama bazı diğer kartların/probe'ların standart
+10-pinli SWD konnektöründe bulunabilir.
 
 ---
 
@@ -163,6 +179,8 @@ Muhtemel sebep:
 PA13 veya PA14 yazılımda GPIO olarak yapılandırılmış.
 Bu pinler SWD için ayrılmalı — yazılımda serbest bırakılmamalı.
 ```
+
+![SWD Bağlantısı Kurulmuyorsa — En basit elektriksel kontrolden başla](slides/07-sahada-ne-anlama-gelir.png)
 
 ---
 

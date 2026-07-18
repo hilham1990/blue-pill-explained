@@ -2,7 +2,7 @@
 
 **Durum:** v2 — gerçek CN4 crop ve pin-pin iz sürme.
 
-Üretim: `tools/generate-slide.py 11-debug-swd/prompts/02-semada-swd-nerede.md 11-debug-swd/slides/02-semada-swd-nerede-v2.png --mode edit --ref visual-system/references/real-cn4-connector-crop.png`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/02-semada-swd-nerede.md 11-debug-swd/slides/02-semada-swd-nerede.png --mode edit --ref visual-system/references/real-cn4-connector-crop.png`
 
 ```text
 SCENE:

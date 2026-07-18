@@ -203,3 +203,57 @@ basit iki parçalı öğretim kompozisyonuna bölünür. İlk çıktı kusurluys
 toplu bölüm üretiminde de aynen geçerlidir.
 
 **Durum:** Kalıcı kural `CLAUDE.md`ye eklendi. Bundan sonraki sahnelerde otomatik retry yok.
+
+---
+
+### [Bölüm 10 / Hero] Yazım hatası, önceki topoloji düzeltmelerinden sonra fark edilmedi (2026-07-17)
+
+**Ne oldu:** Hero v4'te (SPI sinyal dağılımı/MISO yönü hataları v2→v3→v4 arasında düzeltildikten sonra) alt başlıkta "Aynıı veri" yazıyor — fazladan bir "ı", doğrusu "Aynı veri". Görsel topoloji/teknik değerler odaklı QA turları bu satırı kontrol etmemiş.
+**Neden oldu:** Ardışık düzeltme turlarında dikkat hep önceki hatanın (topoloji) tekrar oluşup oluşmadığına odaklanmış; başlık/alt başlık gibi kısa, "zaten doğru olması gereken" metin alanları her yeni sürümde tekrar okunmamış.
+**Önleme kuralı:** Bir sahne birden fazla düzeltme turundan geçtiğinde, SADECE düzeltilen kusur değil, day-label/başlık/alt başlık gibi kısa sabit metin alanları da her yeni sürümde yeniden okunur — "bu zaten sabitti, değişmez" diye atlanmaz.
+**Durum:** çözüldü — kullanıcı kararıyla (2026-07-18) teaching-critical olmayan kozmetik kusur olarak KABUL EDİLDİ, yeniden üretilmedi (Bölüm 01/04/05'teki "dekoratif ikincil metin" maddesiyle aynı muamele).
+
+---
+
+### [Bölüm 10 / scene-06] Cihaz etiketleri hem bozuk yazılmış hem gerçek parça numarasından farklı (2026-07-17)
+
+**Ne oldu:** "Şemada Protokol Tespiti" sahnesinde I2C örnek cihazlarının etiketleri "24LC2S6 EEPROM" ve "BME2BO SENSÖR" olarak çıktı — hem tipografik olarak bozuk (gerçek okunabilir bir parça numarası değil, "24LC256" ve "BME280"e benzeyen ama harf/rakam karışmış hali) hem de bölümün kendi README'sindeki gerçek örneklerden (AT24C256, BMP280) farklı bir parça ailesine ait. GPS (u-blox NEO-6M) ve Flash (W25Q64JV) etiketleri aynı sahnede doğru çıktı.
+**Neden oldu:** Prompt, gerçek örnek modülleri (EEPROM/sensör) görsel olarak temsil etmesini istedi ama README'nin kullandığı TAM parça numaralarını (AT24C256, BMP280) harfiyen kopyalamasını istemedi — model kendi başına benzer ama farklı bir parça ailesi seçti, sonra o metni render ederken de bozdu.
+**Önleme kuralı:** Bir sahne README'de zaten adı geçen belirli bir parçayı (chip/modül) temsil ediyorsa, prompt o parçanın TAM adını harfiyen verir ("EEPROM örneği, tam olarak 'AT24C256' yazsın — 24LC256, 24LC512 gibi başka bir parça numarası YAZMA") — genel kategoriyi ("bir EEPROM") modelin kendi örneğini seçmesine bırakmaz.
+**Durum:** çözüldü — prompt'a tam parça adı zorunluluğu ("AT24C256"/"BMP280", yanlış render edilirse etiketsiz ikon tercih edilsin) eklenip v3 üretildi (2026-07-18), her iki etiket piksel-piksel doğru ve okunaklı çıktı.
+
+---
+
+### [Bölüm 11 / scene-06] Prompt'ta istenmeyen bir ek şema, var olmayan bir sinyali gerçek donanıma ekledi (2026-07-17)
+
+**Ne oldu:** "Canlı Debug Nedir?" sahnesinin prompt'u sadece bir debug-döngüsü kompozisyonu istiyordu (breakpoint→halt→incele→step→continue), CN4 pin numaralarını AÇIKÇA yasaklıyordu ("Do not add CN4 pin numbers"). Model kendiliğinden bir "BAĞLANTI: SWD" kablo-rengi lejantı ekledi ve bu lejantta SWDIO/SWCLK/GND/3.3V'nin yanına var olmayan bir "NRST" sinyali daha ekleyip bunu SWD konnektörünün bir parçası gibi gösterdi; ayrıca 5 renkli kablo görsel olarak 4 pinli bir konnektöre bağlanıyormuş gibi çizildi (fiziksel olarak tutarsız). Bölümün kendi CN4'ü (scene-02/04'te doğrulanmış) sadece 4 pin: 3.3V/DIO/DCLK/GND — NRST yok.
+**Neden oldu:** Prompt modele "CN4 pin numarası ekleme" dedi ama "bu bölümün SWD konnektörüne yeni bir sinyal/pin ekleme" demedi — model, "SWD" kelimesinden genel/jenerik bir 10-pinli ARM debug header şablonunu (NRST dahil) çağırıp bunu bu bölümün özel 4-pinli CN4'üyle karıştırdı.
+**Önleme kuralı:** Bir bölümün donanımı (burada CN4) önceki sahnelerde belirli bir pin sayısı/isim setiyle sabitlenmişse, o donanımı farklı bir amaçla (burada: genel debug-döngüsü sahnesi) tekrar gösteren her sahnenin prompt'una şu satır eklenir: "If you show the SWD connector/wiring again in this scene, it has EXACTLY these N signals: [liste] — do not add any other signal (e.g. NRST/reset) even if it's common on generic SWD headers elsewhere." Ayrıca: "do not add X" yasakları modelin İLGİSİZ bir bloğu tamamen eklemesini önlemez — istenmeyen tüm ek bloklar ("bunun dışında hiçbir ek panel/lejant/şema ekleme") ayrıca yasaklanmalı.
+**Durum:** kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ, yeniden üretilmedi — NRST gerçekten var olan, birçok standart SWD probe'unda bulunan bir sinyal, sadece bizim CN4'ümüzde yok; teknik olarak yanlış bir iddia değil (bizim donanımımızla eksik eşleşme). README'ye görselin altına bunu netleştiren kısa bir not eklendi. Önleme kuralı yine de kalıcı — gelecekte CN4/SWD çizilen sahnelerde bu karışıklık tekrar önlenmeli.
+
+---
+
+### [Bölüm 11 / scene-07] CN4'ün DIO/DCLK pinleri, aynı bölümün kendi önceki sahnelerinde doğru kurulmuş olmasına rağmen yeniden ters çizildi (2026-07-17)
+
+**Ne oldu:** "Sahada Ne Anlama Gelir?" sahnesinin CN4 mini-diyagramında pin sırası (soldan sağa) "GND · DIO/SWDIO · DCLK/SWCLK · 3.3V" olarak çıktı — ama aynı bölümün scene-02 ve scene-04'ü (ve README'nin kendisi) doğru sırayı "GND · DCLK · DIO · +3.3V" olarak zaten kurmuştu. DIO ve DCLK pozisyonları yer değiştirmiş.
+**Neden oldu:** Bu bölümün scenes.json'ı zaten "Bölüm 11'de CN4 Pin2/Pin3 DIO/DCLK ters yazılmıştı, düzeltildi" diye bir METİN düzeltmesinden bahsediyordu (README seviyesinde) — ama bu düzeltmenin GÖRSEL üretiminde de her sahnede tekrar doğrulanması gerektiği atlanmış; "bir bölümde bir kez düzeltildi" bilgisi o bölümün SONRAKİ her CN4 çizimine otomatik yayılmadı.
+**Önleme kuralı:** Bir bölüm içinde aynı konnektör/bileşen birden fazla sahnede yeniden çiziliyorsa (burada CN4: scene-02, scene-04, scene-07), HER sahnenin prompt'unda pin sırası harfiyen (aynı kelimelerle) tekrar yazılır — "bu bölümde zaten bir kez doğru kuruldu" diye sonraki sahnelerde kısaltılıp atlanmaz. Bu, Bölüm 09 CLAUDE.md'sindeki "bir gerçeğin önceki bölümde doğru kurulmuş olması, sonraki bölümde onu tekrar ettiğinde otomatik doğru olacağı anlamına gelmiyor" dersinin AYNI BÖLÜM İÇİNDEKİ sahneler için de geçerli olduğunu gösteriyor.
+**Durum:** kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ, yeniden üretilmedi — her pinin kendi etiketi (DIO→SWDIO, DCLK→SWCLK) tek başına yine doğru, sadece iki sahne arasında görsel SIRA tutarsız; yanlış bir teknik iddia değil. Önleme kuralı yine de kalıcı — gelecekte CN4 çizilen sahnelerde bu tutarsızlık tekrar önlenmeli.
+
+---
+
+### [Bölüm 12 / Hero] CN4/SWD paneli 3 pine düşürülmüş, GND kaybolmuş, DIO/DCLK ikisi de aynı bozuk etikete dönüşmüş (2026-07-18)
+
+**Ne oldu:** Hero'nun "SWD Debug" panelinde CN4/SRP4 konnektörü 4 pin değil 3 pin ("1 2 3") olarak çizildi, GND sinyali tamamen kayboldu, ve kalan iki pin de "DCIO" diye AYNI (bozuk) etiketle işaretlendi — muhtemelen "DIO" ve "DCLK" render sırasında birbirine karışıp tek bir yanlış kelimeye dönüştü. Bu, bölümün kendi scene-06'sının (ve Bölüm 08/09/11'in) doğru kurduğu 4-pinli CN4 gerçeğiyle doğrudan çelişiyor.
+**Neden oldu:** Hero, tüm bölümü tek bir sistem haritasında özetleyen yoğun bir kompozisyon — CN4 burada küçük, ikincil bir detay olarak çiziliyor ve prompt bu küçük paneldeki pin sayısını/etiketlerini muhtemelen scene-06'daki kadar açık/zorlayıcı belirtmemiş, model küçük alanda sıkışan 4 etiketi 3'e indirip ikisini birleştirmiş.
+**Önleme kuralı:** Bir hero/özet sahnesi, bölümün başka bir sahnesinde zaten tam olarak doğrulanmış bir konnektörü (burada CN4) KÜÇÜK/ikincil bir panel olarak tekrar çiziyorsa, "küçük olduğu için sadeleştirilebilir" varsayılmaz — o panelin prompt'u da tam pin sayısını ve her pinin ayrı, doğru etiketini AÇIKÇA sayar ("exactly 4 pins, labeled +3.3V/DIO/DCLK/GND, never fewer, never a merged/duplicate label").
+**Durum:** kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ, yeniden üretilmedi — README'ye doğru CN4 çizimine (Bölüm 12 scene-06, Bölüm 11) yönlendiren bir not eklendi. Önleme kuralı yine de kalıcı.
+
+---
+
+### [Bölüm 12 / scene-07] Bölüm 11 scene-06'daki "uydurma NRST" hatası, farklı bir bölümde birebir tekrarlandı (2026-07-18)
+
+**Ne oldu:** "Şema Okuma Özeti" sahnesinin son adımındaki "SWD debug hazır" ikonu, genel/jenerik bir 10-pinli ARM Cortex debug header çizip SWDIO/SWCLK/GND/3.3V'nin yanına var olmayan bir "NRST" sinyali daha ekledi — Bölüm 11 scene-06'da zaten bir kez tespit edilip lessons-learned'e kaydedilen HATANIN TIPATIP AYNISI, bu sefer Bölüm 12'de. Bu bölümün kendi scene-06'sı (GPIO ve Debug Dışarı Çıkar) CN4'ü doğru (4 pin, NRST yok) çiziyor — yani aynı bölüm içinde bile bir sahne doğru, diğeri yanlış çıkabiliyor.
+**Neden oldu:** Önceki maddenin (Bölüm 11 scene-06) önleme kuralı yalnızca O bölümün prompt'larına işlendi — dosyanın kendi "Kullanım kuralı" bölümünde yazan "yeni bir bölümün prompt'larını yazmadan önce bu dosyayı BAŞTAN SONA oku" adımı bu sahnenin prompt'u yazılırken uygulanmamış (ya da uygulanmış ama "SWD debug hazır" gibi küçük bir ikon, CN4'ün "yeniden çizimi" olarak tanınmamış).
+**Önleme kuralı:** "SWD/debug hazır" veya "CN4" gibi anahtar kelimeler içeren HER ikon/panel — ne kadar küçük veya dekoratif görünse de — bu dosyanın CN4/SWD ile ilgili tüm maddeleri (bu ve önceki madde) açısından kontrol edilir. Genel kural: bir bileşen/konnektör hakkında bir kez bulunan bir hata deseni (burada "genel ARM debug header şablonuna kayıp NRST eklemek"), SADECE o bölüme değil, PROJENİN TÜMÜNE uygulanan bir kural olarak yazılır — "CN4'ü herhangi bir sahnede/bölümde göstereceksen, EXACTLY 4 signals (+3.3V/DIO/DCLK/GND), never NRST, never a generic 10-pin layout" cümlesi artık her yeni bölümün ilgili prompt'una otomatik eklenmelidir.
+**Durum:** kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ (Bölüm 11 scene-06 ile aynı muamele — NRST teknik olarak yanlış bir iddia değil, sadece bizim CN4'ümüzde yok), yeniden üretilmedi; README'ye açıklayıcı not eklendi. Önleme kuralı yine de kalıcı — bu artık 2 bölümde tekrarlanmış bir desen, sonraki bölümlerde (varsa) tekrarlanmamalı.

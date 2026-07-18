@@ -2,7 +2,7 @@
 
 **Durum:** v2 — SWD ve USART1 system bootloader yolları.
 
-Üretim: `tools/generate-slide.py 11-debug-swd/prompts/05-firmware-yukleme.md 11-debug-swd/slides/05-firmware-yukleme-v2.png --mode generate`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/05-firmware-yukleme.md 11-debug-swd/slides/05-firmware-yukleme.png --mode generate`
 
 ```text
 SCENE:

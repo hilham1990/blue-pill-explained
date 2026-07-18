@@ -10,7 +10,7 @@
     "Besleme zinciri: 5V girişi (CN3 USB veya CN2'nin 5V pini — QA'de düzeltildi, önceki taslak yanlışlıkla CN1 diyordu) → RT8183-B → 3.3V → işlemci besleme pinleri (VDD x3, VDDA, VBAT)",
     "Clock: X1(8MHz)→PLL×9→72MHz SYSCLK, X2(32.768kHz)→LSE→RTC",
     "Reset: R2(10k)+C2(100nF)+S1 butonu, NRST=HIGH çalışır/LOW resetler",
-    "Boot: BOOT0/BOOT1 ikisi de R3/R4 (100kΩ) ÜZERİNDEN CN5 jumper'ın ortak ucuna bağlı, sabit pull-down DEĞİL — QA'de düzeltildi (önceki taslak 'R3→GND sabit' diyordu, Bölüm 05/07/08'de zaten düzeltilen aynı hatanın Gün 12'de yeniden ortaya çıkmış hali)",
+    "Boot: BOOT0/BOOT1 ikisi de R3/R4 (100kΩ) ÜZERİNDEN CN5 jumper'ın ortak ucuna bağlı, sabit pull-down DEĞİL; tam seçim tablosu BOOT0=0/BOOT1=X→Ana Flash, BOOT0=1/BOOT1=0→System Memory, BOOT0=1/BOOT1=1→SRAM",
     "USB: USBDM→R9(22Ω), USBDP→R11(22Ω), R10(10kΩ) pull-up — QA'de düzeltildi (önceki taslakta üç direnç etiketi de birbirine karışmıştı, Bölüm 08'in kendi doğru açıklamasıyla çelişiyordu)",
     "LED'ler: D1(kırmızı,R1)/D2(mavi,R5) gerçek sıra +3.3V→diyot→direnç→(GND/PC13) — QA'de düzeltildi (sıra ters yazılmıştı, Bölüm 09'daki aynı düzeltmeyle tutarlı)",
     "GPIO çıkışları: CN1/CN2'nin gerçek (ve iç içe geçmiş) pin dağılımı — QA'de düzeltildi, önceki taslak 'CN1=PA0-15, CN2=PB3-15' gibi basit ama YANLIŞ bir bölünme iddia ediyordu; gerçekte CN1=PA0-7+PB0/1/10/11, CN2=PA8-12/15+PB3-9/12-15, PA13/14 ve PB2 hiçbirinde yok",
@@ -19,7 +19,8 @@
   "technical_risks": [
     "Bu bölüm 11 ayrı adımı tek derste birleştiriyor — her adımı ayrı bir sahne yapmak aşırı parçalanmaya yol açar (11+ sahne, çoğu tek cümlelik). Bunun yerine adımlar doğal temaya göre gruplandı: Besleme(1-3), Clock+Reset(4-5), Boot(6), Çalışma+USB+LED(7-9), GPIO+Debug(10-11) — her biri kendi sahnesi, artı özet ve kapanış sahneleri.",
     "Bu bölümdeki HER iddia, önceki 11 bölümde ZATEN doğrulanmış/düzeltilmiş gerçeklerin bir tekrarı — ama curriculum-qa'da 6 yerde bu tekrar sırasında YENİ transkripsiyon hataları bulundu (CN1/CN2 5V karışıklığı, BOOT0/1 topolojisi, USB R9/R10/R11 karışıklığı, LED sırası, CN1/CN2 GPIO dağılımı, CN4 pin2/3). Bu, 'tekrar = güvenli' varsayımının yanlış olduğunu gösteriyor — sahne prompt'ları yazılırken her sayı/etiket YENİDEN o bölümün kendi (artık düzeltilmiş) README'sinden alınacak, hafızadan veya 'zaten doğrulanmıştı' varsayımından DEĞİL.",
-    "scene-08 (Bu Serinin Sonu), serinin son sahnesi — görsel olarak bir 'kapanış/kutlama' hissi taşımalı (7 kazanılmış beceri + evrensel bakış açısı: ESP32/Raspberry Pi/Apple M1), ama yine de aynı sabit master-style-prompt/footer kurallarına uyacak, özel bir 'final' tasarımı icat edilmeyecek."
+    "scene-08 (Bu Serinin Sonu), serinin son sahnesi — görsel olarak bir 'kapanış/kutlama' hissi taşımalı (7 kazanılmış beceri + evrensel bakış açısı: ESP32/Raspberry Pi/Apple M1), ama yine de aynı sabit master-style-prompt/footer kurallarına uyacak.",
+    "Eski dört numaralı panel + aynı dört başlığı tekrarlayan alt kart şablonu kaldırıldı. Her sahne içeriğine özgü bir anlatım topolojisi kullanır; alt bant ana içeriği tekrar etmez."
   ],
   "note": "Sahne sayısı (8: hero + 7) bu bölümün kendi 11 adımından, doğal tema gruplamasıyla türetildi (bkz. technical_risks). Bu dosya ve scenes.json SADECE PLANLAMA amaçlıdır — kullanıcı onayı olmadan görsel üretilmez."
 }

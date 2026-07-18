@@ -2,7 +2,7 @@
 
 **Durum:** v2 — breakpoint'ten single-step'e gerçek debug döngüsü.
 
-Üretim: `tools/generate-slide.py 11-debug-swd/prompts/06-canli-debug.md 11-debug-swd/slides/06-canli-debug-v2.png --mode generate`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/06-canli-debug.md 11-debug-swd/slides/06-canli-debug.png --mode generate`
 
 ```text
 SCENE:

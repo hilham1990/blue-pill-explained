@@ -2,7 +2,7 @@
 
 **Durum:** v2 — Gün 10 açılışı, yeni ayrıntılı görsel standardı.
 
-Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/01-hero.md 10-iletisim-protokolleri/hero-v4.png --mode generate`
+Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/01-hero.md 10-iletisim-protokolleri/hero.png --mode generate`
 
 ```text
 SCENE:

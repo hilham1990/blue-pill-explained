@@ -2,7 +2,7 @@
 
 **Durum:** v2 — gerçek sinyal topolojileriyle karşılaştırma.
 
-Üretim: `tools/generate-slide.py 11-debug-swd/prompts/03-jtag-ile-farki.md 11-debug-swd/slides/03-jtag-ile-farki-v2.png --mode generate`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/03-jtag-ile-farki.md 11-debug-swd/slides/03-jtag-ile-farki.png --mode generate`
 
 ```text
 SCENE:

@@ -2,7 +2,7 @@
 
 **Durum:** v3 — gerçek bağlantı bağlamı, zaman diyagramı ve kesin yön talimatları.
 
-Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/02-uart.md 10-iletisim-protokolleri/slides/02-uart-v3.png --mode generate`
+Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/02-uart.md 10-iletisim-protokolleri/slides/02-uart.png --mode generate`
 
 ```text
 SCENE:

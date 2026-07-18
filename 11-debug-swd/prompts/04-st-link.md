@@ -2,7 +2,7 @@
 
 **Durum:** v2 — probe-CN4 kablolaması ve target reference ayrımı.
 
-Üretim: `tools/generate-slide.py 11-debug-swd/prompts/04-st-link.md 11-debug-swd/slides/04-st-link-v2.png --mode edit --ref visual-system/references/real-cn4-connector-crop.png`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/04-st-link.md 11-debug-swd/slides/04-st-link.png --mode edit --ref visual-system/references/real-cn4-connector-crop.png`
 
 ```text
 SCENE:

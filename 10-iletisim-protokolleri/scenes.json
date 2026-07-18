@@ -1,6 +1,6 @@
 {
   "day": 10,
-  "note": "Kaynak, sahne planı ve 7/7 prompt 2026-07-17'de yeniden denetlendi. USART1 4.5 Mbit/s, diğer USART'lar 2.25 Mbit/s, SPI 18 Mbit/s ve I2C 400 kbit/s üst sınırları STM32F103 datasheet'iyle eşleştirildi. Eski numaralı-panel/tekrar-bandı şablonu kaldırıldı. Henüz görsel üretilmedi.",
+  "note": "Kaynak, sahne planı ve 7/7 prompt 2026-07-17'de yeniden denetlendi. USART1 4.5 Mbit/s, diğer USART'lar 2.25 Mbit/s, SPI 18 Mbit/s ve I2C 400 kbit/s üst sınırları STM32F103 datasheet'iyle eşleştirildi. Eski numaralı-panel/tekrar-bandı şablonu kaldırıldı. 7/7 görsel üretildi, bağımsız QA yapıldı (2026-07-17): 5 sahne ilk turda onaylandı, 2 sahne kusurlu bulundu. Kullanıcı kararıyla (2026-07-18) hero'daki kozmetik yazım hatası KABUL EDİLDİ (düzeltilmedi), scene-06'nın I2C etiket hatası ise düzeltilip yeniden üretildi. MÜHÜRLENDİ (2026-07-18) — 7/7 sahne onaylı ve README'ye gömülü.",
   "scenes": [
     {
       "id": "scene-01-hero",
@@ -14,10 +14,10 @@
         "Üçü de veri taşır, ama farklı çalışır"
       ],
       "duration_seconds": 18,
-      "status": "v4 üretildi, onay bekliyor",
-      "asset": "hero-v4.png",
+      "status": "approved",
+      "asset": "hero.png",
       "source_section": "README.md — üst bilgi kutusu + \"Neden Birden Fazla Protokol Var?\"",
-      "note": "fal.ai openai/gpt-image-2 medium, --mode generate. v2'de SPI sinyalleri dört ayrı cihaza yanlış dağıtıldı; v3'te topoloji düzeldi fakat MISO yönü yanlıştı. v4'te SCK/MOSI/CS master→slave, yalnız MISO slave→master; I2C'de her cihaz hem SCL hem SDA ortak bus'una bağlı. Kullanıcı onayı bekliyor."
+      "note": "fal.ai openai/gpt-image-2 medium, --mode generate. v2'de SPI sinyalleri dört ayrı cihaza yanlış dağıtıldı; v3'te topoloji düzeldi fakat MISO yönü yanlıştı. v4'te topoloji/yön hataları düzeldi. Bağımsız QA'da (2026-07-17) alt başlıkta bir yazım hatası bulundu (\"Aynıı veri\", fazladan \"ı\") — kullanıcı kararıyla (2026-07-18) teaching-critical olmayan kozmetik kusur olarak KABUL EDİLDİ, yeniden üretilmedi."
     },
     {
       "id": "scene-02",
@@ -30,9 +30,10 @@
         "2 kablo, asenkron"
       ],
       "duration_seconds": 21,
-      "status": "v3 üretildi, onay bekliyor",
-      "asset": "slides/02-uart-v3.png",
-      "source_section": "README.md — \"UART — Universal Asynchronous Receiver/Transmitter\""
+      "status": "approved",
+      "asset": "slides/02-uart.png",
+      "source_section": "README.md — \"UART — Universal Asynchronous Receiver/Transmitter\"",
+      "note": "Bağımsız QA'da (2026-07-17) onaylandı — Blue Pill/UART modülü çapraz TX-RX bağlantısı, baud-rate uyumu, gerçek USART1/2/3 hız değerleri README ile birebir doğru."
     },
     {
       "id": "scene-03",
@@ -45,9 +46,10 @@
         "4 kablo, senkron"
       ],
       "duration_seconds": 21,
-      "status": "v6 üretildi, onay bekliyor",
-      "asset": "slides/03-spi-v6.png",
-      "source_section": "README.md — \"SPI — Serial Peripheral Interface\""
+      "status": "approved",
+      "asset": "slides/03-spi.png",
+      "source_section": "README.md — \"SPI — Serial Peripheral Interface\"",
+      "note": "Bağımsız QA'da (2026-07-17) onaylandı — sinyal yönleri (MOSI/SCK/CS master→slave, MISO slave→master) doğru, SPI1/SPI2 pinleri ve 18 Mbit/s doğru, MPU-6000 (MPU6050 değil) kullanılmış."
     },
     {
       "id": "scene-04",
@@ -60,9 +62,10 @@
         "2 kablo, adresli"
       ],
       "duration_seconds": 21,
-      "status": "v4 üretildi, onay bekliyor",
-      "asset": "slides/04-i2c-v4.png",
-      "source_section": "README.md — \"I2C — Inter-Integrated Circuit\""
+      "status": "approved",
+      "asset": "slides/04-i2c.png",
+      "source_section": "README.md — \"I2C — Inter-Integrated Circuit\"",
+      "note": "Bağımsız QA'da (2026-07-17) onaylandı — ortak SDA/SCL bus + 2 pull-up doğru, örnek adresler (0x50/0x48/0x68) gerçek/temsili olarak işaretli, I2C1/I2C2 pinleri ve 100/400 kHz doğru."
     },
     {
       "id": "scene-05",
@@ -75,9 +78,10 @@
         "UART · SPI · I2C"
       ],
       "duration_seconds": 18,
-      "status": "v2 üretildi, onay bekliyor",
-      "asset": "slides/05-karsilastirma-tablosu-v2.png",
-      "source_section": "README.md — \"Karşılaştırma Tablosu\""
+      "status": "approved",
+      "asset": "slides/05-karsilastirma-tablosu.png",
+      "source_section": "README.md — \"Karşılaştırma Tablosu\"",
+      "note": "Bağımsız QA'da (2026-07-17) onaylandı — tüm hız değerleri doğru, '127 slave'/'sınırsız'/'~1-50 Mbps' gibi yasaklı ifadeler yok."
     },
     {
       "id": "scene-06",
@@ -90,9 +94,10 @@
         "Pin isminden doğrudan anlarsın"
       ],
       "duration_seconds": 15,
-      "status": "v2 üretildi, onay bekliyor",
-      "asset": "slides/06-semada-protokol-tespiti-v2.png",
-      "source_section": "README.md — \"Şemada Protokol Tespiti\""
+      "status": "approved",
+      "asset": "slides/06-semada-protokol-tespiti.png",
+      "source_section": "README.md — \"Şemada Protokol Tespiti\"",
+      "note": "v2'de I2C cihaz etiketleri bozuk yazılmış VE README'deki gerçek parça numaralarından farklıydı ('24LC2S6'/AT24C256 olmalı, 'BME2BO'/BMP280 olmalı). v3'te prompt'a tam parça adlarını harfiyen zorunlu kılan bir kural eklendi (bkz. lessons-learned.md); AT24C256 ve BMP280 artık piksel-piksel doğru ve okunaklı. Kullanıcı onayıyla (2026-07-18) düzeltildi."
     },
     {
       "id": "scene-07",
@@ -105,9 +110,10 @@
         "İsim yoksa modüle, pull-up'a bak"
       ],
       "duration_seconds": 16,
-      "status": "v2 üretildi, onay bekliyor",
-      "asset": "slides/07-sahada-ne-anlama-gelir-v2.png",
-      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\""
+      "status": "approved",
+      "asset": "slides/07-sahada-ne-anlama-gelir.png",
+      "source_section": "README.md — \"Sahada Ne Anlama Gelir?\"",
+      "note": "Bağımsız QA'da (2026-07-17) onaylandı — kanıt merdiveni (ipucu→güçlü kanıt→kesin doğrulama) ayrımı doğru, pull-up konum uyarısı doğru. Kod/osiloskop görselindeki mikro-metin dekoratif, teaching-critical değil."
     }
   ]
 }

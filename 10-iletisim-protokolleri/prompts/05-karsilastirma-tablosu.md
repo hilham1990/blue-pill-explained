@@ -2,7 +2,7 @@
 
 **Durum:** v2 — STM32F103'e özgü doğrulanmış karar matrisi.
 
-Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/05-karsilastirma-tablosu.md 10-iletisim-protokolleri/slides/05-karsilastirma-tablosu-v2.png --mode generate`
+Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/05-karsilastirma-tablosu.md 10-iletisim-protokolleri/slides/05-karsilastirma-tablosu.png --mode generate`
 
 ```text
 SCENE:

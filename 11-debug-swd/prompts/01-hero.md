@@ -2,7 +2,7 @@
 
 **Durum:** v2 — sinyal zinciri merkezli yeni görsel standardı.
 
-Üretim: `tools/generate-slide.py 11-debug-swd/prompts/01-hero.md 11-debug-swd/hero-v2.png --mode generate`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/01-hero.md 11-debug-swd/hero.png --mode generate`
 
 ```text
 SCENE:

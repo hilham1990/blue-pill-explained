@@ -1,97 +1,103 @@
 {
   "day": 12,
-  "note": "PLAN ONAYLANDI, PROMPT'LAR YAZILDI (2026-07-16). 8/8 prompt dosyası hazır. curriculum-qa'da 6 gerçek hata bulundu ve düzeltildi — hepsi önceki bölümlerde zaten doğru kurulmuş gerçeklerin bu bölümde YANLIŞ tekrarlanmasıydı: (1) CN1/CN2 5V karışıklığı, (2) BOOT0/BOOT1 R3/R4 'sabit pull-down' yanlış topolojisi (Bölüm 05/07/08'de zaten düzeltilen hatanın tekrarı), (3) USB R9/R10/R11 etiketleri tamamen karışmıştı, (4) LED devre sırası ters yazılmıştı, (5) CN1/CN2 GPIO dağılımı hem eksik hem yanlıştı, (6) CN4 Pin2/Pin3 ters yazılmıştı (Gün 11'deki aynı hata). Bu, 'daha önce doğrulandı' bilgisinin bile her tekrarda yeniden kontrol edilmesi gerektiğini gösteren güçlü bir örnek. Henüz HİÇBİR görsel üretilmedi. Bu, serinin SON bölümü.",
+  "note": "Kaynak, gerçek şema ve 8/8 prompt 2026-07-17'de yeniden denetlendi. BOOT seçim anlatımı tam tabloyla düzeltildi: 0/X=Ana Flash, 1/0=System Memory, 1/1=SRAM. Eski dört numaralı panel ve tekrar eden alt kart şablonu kaldırıldı. Sekiz görsel üretildi; ilk Scene-07/08 çıktılarındaki ciddi teknik etiket hataları kullanıcı onayıyla yeniden üretilerek düzeltilmişti. Bağımsız QA'da (2026-07-18) hero ve scene-07'de CN4/SWD ile ilgili 2 yeni kusur bulundu — kullanıcı kararıyla ikisi de KABUL EDİLDİ (Bölüm 11 scene-06/07 ile aynı muamele), README'ye açıklayıcı notlar eklendi. MÜHÜRLENDİ (2026-07-18) — 8/8 sahne onaylı ve README'ye gömülü.",
   "scenes": [
     {
       "id": "scene-01-hero",
       "order": 1,
       "title": "Artık Her Bloğu Biliyoruz",
       "purpose": "Bölümü açmak: serinin tamamının bir araya geldiği son sentez dersi olduğunu göstermek.",
-      "visual_focus": "4 panel: Besleme, Clock/Reset/Boot, Peripheral'lar (USB/GPIO/LED), Debug — serinin 4 büyük teması, gerçek şemanın küçük bir genel görünümü merkezde",
+      "visual_focus": "Gerçek şemanın genel görünümü etrafında Besleme, Clock/Reset/Boot, Peripheral ve Debug bölgelerini birbirine bağlayan tek sistem haritası",
       "screen_text": [
         "GÜN 12",
         "ŞEMA BAŞTAN SONA",
         "Artık her bloğu biliyoruz"
       ],
       "duration_seconds": 17,
-      "status": "planned",
+      "status": "approved",
       "asset": "hero.png",
-      "source_section": "README.md — üst bilgi kutusu + \"Blue Pill Şeması\""
+      "source_section": "README.md — üst bilgi kutusu + \"Blue Pill Şeması\"",
+      "note": "Bağımsız QA'da (2026-07-18) hata bulundu: sağ altta CN4/SWD Debug paneli sadece 3 pin çiziyor (\"1 2 3\"), GND pini hiç yok, ve iki pin de \"DCIO\" diye (DIO/DCLK karışmış/bozuk) etiketlenmiş — gerçek CN4 4 pinli (3.3V/DIO/DCLK/GND). Kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ, yeniden üretilmedi; README'ye doğru CN4 şemasına (scene-06/Bölüm 11) yönlendiren bir not eklendi."
     },
     {
       "id": "scene-02",
       "order": 2,
       "title": "Besleme Zinciri",
       "purpose": "5V girişinden işlemci besleme pinlerine kadar tüm zinciri göstermek (adım 1-2-3 birleşik).",
-      "visual_focus": "4 panel: 5V Girişi (CN3 USB veya CN2'nin 5V pini — QA'de düzeltildi), RT8183-B Dönüşümü (VIN 5V→VOUT 3.3V), 3.3V Filtreleme (C6/C10), İşlemci Besleme (VDD x3, VDDA, VBAT)",
+      "visual_focus": "CN3/CN2 girişinden RT8183-B ve filtrelere, oradan MCU besleme pinlerine uzanan kesintisiz enerji yolu",
       "screen_text": [
         "BESLEME ZİNCİRİ",
         "5V → 3.3V → İşlemci"
       ],
       "duration_seconds": 20,
-      "status": "planned",
+      "status": "approved",
       "asset": "slides/02-besleme-zinciri.png",
-      "source_section": "README.md — \"1. Kartı Besle\" + \"2. Gerilim 3.3V'a Dönüşür\" + \"3. İşlemci Besleme Alır\""
+      "source_section": "README.md — \"1. Kartı Besle\" + \"2. Gerilim 3.3V'a Dönüşür\" + \"3. İşlemci Besleme Alır\"",
+      "note": "Bağımsız QA'da (2026-07-18) onaylandı — filtre kapasitör değerleri (C7/C5, C6/C10), RT8183-B ve VDD/VDDA/VBAT pin numaraları README ile birebir doğru."
     },
     {
       "id": "scene-03",
       "order": 3,
       "title": "Clock ve Reset Hazır",
       "purpose": "İşlemcinin çalışması için gereken iki destek devresini (clock, reset) özetlemek (adım 4-5 birleşik).",
-      "visual_focus": "4 panel: X1 8MHz→PLL×9→72MHz SYSCLK, X2 32.768kHz→LSE→RTC, Reset Devresi (R2/C2/S1), NRST HIGH=çalışır/LOW=resetlenir",
+      "visual_focus": "MCU etrafında iki clock yolu ve R2/C2/S1 reset devresinin zamanlama ilişkisi",
       "screen_text": [
         "CLOCK VE RESET HAZIR",
         "72 MHz + RTC + NRST"
       ],
       "duration_seconds": 19,
-      "status": "planned",
+      "status": "approved",
       "asset": "slides/03-clock-ve-reset.png",
-      "source_section": "README.md — \"4. Clock Gelir\" + \"5. Reset Devresi Hazır\""
+      "source_section": "README.md — \"4. Clock Gelir\" + \"5. Reset Devresi Hazır\"",
+      "note": "Bağımsız QA'da (2026-07-18) onaylandı — X1/X2 pin ve kapasitör değerleri, PLL×9/72MHz, R2/C2/S1 reset devresi README ile birebir doğru."
     },
     {
       "id": "scene-04",
       "order": 4,
       "title": "Boot Modu Belirlenir",
       "purpose": "BOOT0/BOOT1'in gerçek (seri direnç + jumper) topolojisini göstermek.",
-      "visual_focus": "BOOT0 (R3→CN5 ortak uç, jumper GND=Flash/3.3V=Bootloader) ve BOOT1 (R4→CN5 ortak uç, aynı mantık) — sabit pull-down OLMADIĞI vurgulanır (QA'de düzeltilen kritik nokta)",
+      "visual_focus": "R3/R4 üzerinden CN5 ortak uçlarına giden gerçek jumper topolojisi ve 0/X, 1/0, 1/1 seçim matrisi",
       "screen_text": [
         "BOOT MODU BELİRLENİR",
         "R3/R4 sabit değil, jumper seçer"
       ],
       "duration_seconds": 18,
-      "status": "planned",
+      "status": "approved",
       "asset": "slides/04-boot-modu.png",
-      "source_section": "README.md — \"6. Boot Modu Belirlenir\""
+      "source_section": "README.md — \"6. Boot Modu Belirlenir\"",
+      "note": "Bağımsız QA'da (2026-07-18) onaylandı — R3/R4 seri-direnç + jumper topolojisi (sabit pull-down DEĞİL) ve BOOT0/BOOT1 seçim matrisi README ile birebir doğru."
     },
     {
       "id": "scene-05",
       "order": 5,
       "title": "Çalışma Başlar — USB ve LED'ler",
       "purpose": "İşlemci çalışmaya başladıktan sonra aktif olan USB ve LED devrelerini göstermek (adım 7-8-9 birleşik).",
-      "visual_focus": "4 panel: İşlemci Çalışıyor (Flash'tan kod), USB (USBDM→R9, USBDP→R11, R10 pull-up — QA'de düzeltilen doğru etiketlerle), Power LED (D1/R1, +3.3V→D1→R1→GND), Kullanıcı LED'i (D2/R5, PC13 kontrolü — QA'de düzeltilen sırayla)",
+      "visual_focus": "Çalışan MCU'dan USB hatlarına ve iki LED dalına ayrılan canlı çıkış ağacı",
       "screen_text": [
         "ÇALIŞMA BAŞLAR",
         "USB + LED'ler aktif"
       ],
       "duration_seconds": 20,
-      "status": "planned",
+      "status": "approved",
       "asset": "slides/05-calisma-baslar.png",
-      "source_section": "README.md — \"7. İşlemci Çalışmaya Başlar\" + \"8. USB Aktif Olur\" + \"9. LED'ler Çalışır\""
+      "source_section": "README.md — \"7. İşlemci Çalışmaya Başlar\" + \"8. USB Aktif Olur\" + \"9. LED'ler Çalışır\"",
+      "note": "Bağımsız QA'da (2026-07-18) onaylandı — USB R9/R10/R11 rolleri ve D1/D2 LED devreleri (R1/R5 510Ω) README ile birebir doğru."
     },
     {
       "id": "scene-06",
       "order": 6,
       "title": "GPIO ve Debug Dışarı Çıkar",
       "purpose": "CN1/CN2 GPIO konnektörlerinin gerçek pin dağılımını ve CN4 debug konnektörünü göstermek (adım 10-11 birleşik).",
-      "visual_focus": "CN1 (PA0-7, PB0/1/10/11, PC13-15) ve CN2 (PA8-12/15, PB3-9/12-15) — QA'de düzeltilen doğru dağılımla, PA13/14+PB2'nin hiçbirinde olmadığı notuyla; CN4 (Pin2=DIO, Pin3=DCLK — QA'de düzeltilen sırayla)",
+      "visual_focus": "Merkez Blue Pill çevresinde CN1, CN2, CN4 ve CN5'e ayrılan gerçek pin grupları",
       "screen_text": [
         "GPIO VE DEBUG DIŞARI ÇIKAR",
         "CN1 · CN2 · CN4"
       ],
       "duration_seconds": 19,
-      "status": "planned",
+      "status": "approved",
       "asset": "slides/06-gpio-ve-debug.png",
-      "source_section": "README.md — \"10. GPIO Pinleri Dışarıya Çıkar\" + \"11. Debug / Programlama Hazır\""
+      "source_section": "README.md — \"10. GPIO Pinleri Dışarıya Çıkar\" + \"11. Debug / Programlama Hazır\"",
+      "note": "Bağımsız QA'da (2026-07-18) onaylandı — CN1/CN2 pin listeleri ve CN4 (4 pin, GND·DCLK·DIO·+3.3V, doğru sırayla) README ile birebir doğru. Bu sahnenin CN4 çizimi doğru — hero ve scene-07'deki CN4/SWD hatalarıyla karıştırılmamalı."
     },
     {
       "id": "scene-07",
@@ -104,9 +110,10 @@
         "Bu sıra her kartta aynı"
       ],
       "duration_seconds": 20,
-      "status": "planned",
+      "status": "approved",
       "asset": "slides/07-sema-okuma-ozeti.png",
-      "source_section": "README.md — \"Şema Okuma Özeti\""
+      "source_section": "README.md — \"Şema Okuma Özeti\"",
+      "note": "Önceki bir hata (ciddi teknik etiket hatası) zaten düzeltilmişti, ama bağımsız QA'da (2026-07-18) YENİ bir hata bulundu: son adımdaki 'SWD debug hazır' ikonu genel bir 10-pinli ARM debug header çiziyor ve SWDIO/SWCLK/GND/3.3V'nin yanına var olmayan bir 'NRST' sinyali daha ekliyor — Bölüm 11 scene-06'daki hatanın AYNISI, farklı bölümde tekrarı. Kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ (Bölüm 11 scene-06 ile aynı muamele — NRST teknik olarak var olan bir sinyal, sadece bizim CN4'ümüzde yok), yeniden üretilmedi; README'ye açıklayıcı not eklendi."
     },
     {
       "id": "scene-08",
@@ -119,9 +126,10 @@
         "İşlemci değişir, sorular değişmez"
       ],
       "duration_seconds": 19,
-      "status": "planned",
+      "status": "approved",
       "asset": "slides/08-serinin-sonu.png",
-      "source_section": "README.md — \"Bu Serinin Sonu — Ve Başlangıcı\""
+      "source_section": "README.md — \"Bu Serinin Sonu — Ve Başlangıcı\"",
+      "note": "Bağımsız QA'da (2026-07-18) onaylandı — 7 kazanılmış beceri ve ESP32/Raspberry Pi/Apple M1 isimleri README ile birebir doğru."
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 **Durum:** v3 — gerçek bileşen ikonları, kesin sinyal yönleri ve CS seçimi.
 
-Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/03-spi.md 10-iletisim-protokolleri/slides/03-spi-v6.png --mode generate`
+Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/03-spi.md 10-iletisim-protokolleri/slides/03-spi.png --mode generate`
 
 ```text
 SCENE:

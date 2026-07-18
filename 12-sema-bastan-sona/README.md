@@ -2,6 +2,12 @@
 
 > *Artık her bloğu biliyoruz. Şimdi hepsini birlikte okuyalım.*
 
+![Şema Baştan Sona — Artık her bloğu biliyoruz](hero.png)
+
+**Not:** Görseldeki "SWD Debug" panelinde CN4 sadeleştirilmiş biçimde 3 pinle gösterilir; Blue
+Pill'in gerçek CN4'ü 4 pindir (3.3V/DIO/DCLK/GND) — tam ve doğru pin şeması için aşağıdaki
+"11. Debug / Programlama Hazır" bölümüne ve o bölümün görseline bakın.
+
 ---
 
 ## Blue Pill Şeması
@@ -57,6 +63,8 @@ VIN = +5V → VOUT = +3.3V
 GND   → VSS_1, VSS_2, VSS_3, VSSA
 ```
 
+![Besleme Zinciri — 5V → 3.3V → İşlemci](slides/02-besleme-zinciri.png)
+
 ---
 
 ## 4. Clock Gelir
@@ -96,6 +104,8 @@ X2 (32.768 kHz crystal)
 İşlemci NRST = HIGH → çalışıyor.
 S1'e basınca NRST = LOW → reset.
 
+![Clock ve Reset Hazır — 72 MHz + RTC + NRST](slides/03-clock-ve-reset.png)
+
 ---
 
 ## 6. Boot Modu Belirlenir
@@ -104,13 +114,19 @@ S1'e basınca NRST = LOW → reset.
 BOOT0 (pin 44):
   R3 (100kΩ) üzerinden CN5 jumper'ın ortak ucuna bağlı — R3 sabit bir pull-down DEĞİL.
   GND ve +3.3V, jumper'a doğrudan bağlı (jumper'ın 2 seçilebilir tarafı).
-  Jumper GND tarafındaysa → Flash'tan başla (varsayılan).
-  Jumper 3.3V tarafındaysa → Bootloader.
+  Jumper GND tarafındaysa → Ana Flash'tan başla (BOOT1 dikkate alınmaz).
 
 BOOT1 (PB2, pin 20):
   Aynı mantık — R4 (100kΩ) üzerinden CN5'in kendi ortak ucuna bağlı, sabit bir
-  pull-down DEĞİL. Jumper GND tarafında kalırsa System Memory/SRAM dışında kalınır.
+  pull-down DEĞİL.
+
+Seçim tablosu:
+  BOOT0=0, BOOT1=X → Ana Flash
+  BOOT0=1, BOOT1=0 → System Memory (dahili bootloader)
+  BOOT0=1, BOOT1=1 → SRAM
 ```
+
+![Boot Modu Belirlenir — İki jumper, üç başlangıç yolu](slides/04-boot-modu.png)
 
 ---
 
@@ -146,6 +162,8 @@ PC13 = LOW → LED yanar
 PC13 = HIGH → LED söner
 ```
 
+![Çalışma Başlar — USB + LED'ler aktif](slides/05-calisma-baslar.png)
+
 ---
 
 ## 10. GPIO Pinleri Dışarıya Çıkar
@@ -177,6 +195,8 @@ Pin 4 → GND
 ```
 
 ST-Link bu 4 pine bağlanır. Firmware yüklenir.
+
+![GPIO ve Debug Dışarı Çıkar — CN1 · CN2 · CN4](slides/06-gpio-ve-debug.png)
 
 ---
 
@@ -214,6 +234,12 @@ Ama soru hep aynı:
 5. Peripheral'lar nereye bağlı?
 6. Debug nasıl yapılıyor?
 
+![Şema Okuma Özeti — Bu sıra her kartta aynı](slides/07-sema-okuma-ozeti.png)
+
+**Not:** Görseldeki son adımın SWD ikonu, standart 10-pinli ARM debug header'da bulunan bir
+NRST sinyalini de gösterir — Blue Pill'in kendi CN4'ünde NRST yok (4 pin: 3.3V/DIO/DCLK/GND),
+bazı diğer kartların/probe'ların konnektöründe bulunabilir.
+
 ---
 
 ## Bu Serinin Sonu — Ve Başlangıcı
@@ -235,6 +261,8 @@ Bu noktaya gelen biri artık:
 - Apple M1 tabanlı bir karta bak → aynı sorular
 
 İşlemci değişir. Sorular değişmez.
+
+![Bu Serinin Sonu — Ve Başlangıcı — İşlemci değişir, sorular değişmez](slides/08-serinin-sonu.png)
 
 > *Usta tahmin etmez, ölçer.*
 

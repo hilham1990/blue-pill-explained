@@ -2,7 +2,7 @@
 
 **Durum:** v2 — ipucundan kesin doğrulamaya kanıt merdiveni.
 
-Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/07-sahada-ne-anlama-gelir.md 10-iletisim-protokolleri/slides/07-sahada-ne-anlama-gelir-v2.png --mode generate`
+Üretim: `tools/generate-slide.py 10-iletisim-protokolleri/prompts/07-sahada-ne-anlama-gelir.md 10-iletisim-protokolleri/slides/07-sahada-ne-anlama-gelir.png --mode generate`
 
 ```text
 SCENE:

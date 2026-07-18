@@ -2,7 +2,7 @@
 
 **Durum:** v2 — en basit elektriksel kontrolden recovery bağlantısına kanıt sırası.
 
-Üretim: `tools/generate-slide.py 11-debug-swd/prompts/07-sahada-ne-anlama-gelir.md 11-debug-swd/slides/07-sahada-ne-anlama-gelir-v2.png --mode generate`
+Üretim: `tools/generate-slide.py 11-debug-swd/prompts/07-sahada-ne-anlama-gelir.md 11-debug-swd/slides/07-sahada-ne-anlama-gelir.png --mode generate`
 
 ```text
 SCENE:
