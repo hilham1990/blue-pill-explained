@@ -1,6 +1,6 @@
 {
   "day": 4,
-  "note": "TÜM 5 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-15). Sahne sayısı (5) bu bölümün kendi içeriğinden türetildi, bkz. brief.json — 'Her Bloğun Görevi' 6 blok içerdiği için layout-rules.md'nin 4-panel sınırını aşıp 2 sahneye bölündü (scene-02, scene-03). BİLİNEN KÜÇÜK KUSUR (kabul edildi, yeniden üretilmedi): scene-02 ve scene-03'te 3 panel rozeti hepsi 'donanım yakın çekim' olduğu için mavi olmalıydı, ama model badge 2'yi teal, badge 3'ü turuncu render etti (renk-fonksiyon eşlemesi hafifçe bozuldu). Küçük bir görsel-stil sapması olduğu ve düzeltmek için görsel yeniden üretimi (maliyetli) gerektirdiği için kullanıcı talimatıyla olduğu gibi bırakıldı — ileride bu iki sahne başka bir sebeple yeniden üretilirse, prompt dosyalarına eklenen 'IMPORTANT — badge color' talimatıyla düzeltilmiş olacak. MÜHÜRLENDİ (2026-07-15).",
+  "note": "MÜHÜRLENDİ (2026-07-15) — 5/5 sahne onaylı ve README'ye gömülü. Kabul edilmiş kozmetik kusur (badge rengi, scene-02/03): CHANGELOG.md 2026-07-15.",
   "scenes": [
     {
       "id": "scene-00-hero",

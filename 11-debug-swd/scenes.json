@@ -1,6 +1,6 @@
 {
   "day": 11,
-  "note": "Kaynak, plan ve 7/7 prompt 2026-07-17'de yeniden denetlendi. CN4 doğru sırası korundu. İki kritik hata düzeltildi: STM32F103x8 dahili bootloader yolu USB DFU değil USART1'dir; BOOT0=GND SWD erişiminin zorunlu koşulu değildir. Eski numaralı-panel/tekrar-bandı şablonu kaldırıldı. Yedi görselin tamamı üretildi; bağımsız QA'da (2026-07-17) scene-06/scene-07'de 2 küçük kusur bulundu (uydurma NRST sinyali, DIO/DCLK sıra tutarsızlığı) — kullanıcı kararıyla (2026-07-18) ikisi de teaching-critical olmayan kabul edilebilir kusur sayıldı, düzeltilmeden kabul edildi (scene-06'ya README'de açıklayıcı bir not eklendi). MÜHÜRLENDİ (2026-07-18) — 7/7 sahne onaylı ve README'ye gömülü.",
+  "note": "MÜHÜRLENDİ (2026-07-18) — 7/7 sahne onaylı ve README'ye gömülü. Kabul edilmiş CN4/SWD kusurları (scene-06 uydurma NRST, scene-07 DIO/DCLK sıra tutarsızlığı — ikisi de düzeltilmedi, README'de açıklayıcı not var): CHANGELOG.md 2026-07-17/18, lessons-learned.md.",
   "scenes": [
     {
       "id": "scene-01-hero",
@@ -17,7 +17,7 @@
       "status": "approved",
       "asset": "hero.png",
       "source_section": "README.md — üst bilgi kutusu + \"SWD Nedir?\"",
-      "note": "Bağımsız QA'da (2026-07-17) onaylandı — PC→probe→CN4→PA13/PA14→CPU zinciri, SWDIO çift yönlü/SWCLK tek yönlü doğru, evrensel debug standardı kutusu README ile birebir."
+      "note": "approved."
     },
     {
       "id": "scene-02",
@@ -33,7 +33,7 @@
       "status": "approved",
       "asset": "slides/02-semada-swd-nerede.png",
       "source_section": "README.md — \"Şemada SWD — CN4\" + \"SWD Pinleri İşlemcide Nerede?\"",
-      "note": "Bağımsız QA'da (2026-07-17) onaylandı — CN4 pin sırası (4·3·2·1 = GND·DCLK·DIO·+3.3V) ve PA13/pin34, PA14/pin37 doğru, A2 koordinatı doğru (bkz. CLAUDE.md bilinen risk maddesi)."
+      "note": "approved — CN4 pin sırası (GND·DCLK·DIO·+3.3V) doğru referans."
     },
     {
       "id": "scene-03",
@@ -49,7 +49,7 @@
       "status": "approved",
       "asset": "slides/03-jtag-ile-farki.png",
       "source_section": "README.md — \"JTAG ile Farkı Nedir?\"",
-      "note": "Bağımsız QA'da (2026-07-17) onaylandı — JTAG scan-chain topolojisi (TMS/TCK ortak, TDI/TDO zincirleme) doğru, nTRST opsiyonel olarak doğru işaretli, SWJ-DP terminolojisi doğru."
+      "note": "approved."
     },
     {
       "id": "scene-04",
@@ -65,7 +65,7 @@
       "status": "approved",
       "asset": "slides/04-st-link.png",
       "source_section": "README.md — \"Programlama Aracı — ST-Link\"",
-      "note": "Bağımsız QA'da (2026-07-17) onaylandı — 4 hat (VTref/SWDIO/SWCLK/GND) ve yönleri README ile birebir, Pin 1'in probe modeline göre değişen davranışı doğru şekilde temkinli anlatılmış."
+      "note": "approved."
     },
     {
       "id": "scene-05",
@@ -81,7 +81,7 @@
       "status": "approved",
       "asset": "slides/05-firmware-yukleme.png",
       "source_section": "README.md — \"Firmware Yükleme Süreci\"",
-      "note": "Bağımsız QA'da (2026-07-17) onaylandı — kritik düzeltme (USB DFU değil, USART1 system bootloader) doğru şekilde ana uyarı olarak öne çıkarılmış; PA9/PA10 çapraz UART bağlantısı doğru."
+      "note": "approved."
     },
     {
       "id": "scene-06",
@@ -97,7 +97,7 @@
       "status": "approved",
       "asset": "slides/06-canli-debug.png",
       "source_section": "README.md — \"Canlı Debug Nedir?\"",
-      "note": "Bağımsız QA'da (2026-07-17) bulundu: prompt'ta istenmeyen bir 'BAĞLANTI: SWD' kablo şeması var olmayan bir 'NRST' sinyalini CN4'ün pini gibi gösteriyor (gerçek CN4 4 pin: 3.3V/DIO/DCLK/GND, NRST yok). Kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ — görsel kendi başına makul (NRST birçok standart SWD probe'unda gerçekten var olan bir sinyal, sadece bizim CN4'ümüzde yok), yeniden üretilmedi; README'ye görselin altına bunu netleştiren kısa bir not eklendi."
+      "note": "Kabul edilmiş kusur (uydurma NRST sinyali) — düzeltilmedi, README'de açıklayıcı not var. Detay: CHANGELOG.md 2026-07-17/18, lessons-learned.md."
     },
     {
       "id": "scene-07",
@@ -113,7 +113,7 @@
       "status": "approved",
       "asset": "slides/07-sahada-ne-anlama-gelir.png",
       "source_section": "README.md — \"Sahada Ne Anlama Gelir?\"",
-      "note": "Bağımsız QA'da (2026-07-17) bulundu: panel 2'deki CN4 çiziminde DIO ve DCLK'nin soldan-sağa POZİSYONU scene-02/04'e göre yer değiştirmiş (GND·DIO·DCLK·3.3V, tutarlı sıra GND·DCLK·DIO·3.3V olmalıydı). Kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ — her pinin kendi etiketi (DIO→SWDIO, DCLK→SWCLK) tek başına yine doğru, sadece iki sahne arasında görsel sıra tutarsız; yanlış bir teknik iddia değil, yeniden üretilmedi."
+      "note": "Kabul edilmiş kusur (DIO/DCLK sırası scene-02/04'e göre ters) — düzeltilmedi. Detay: CHANGELOG.md 2026-07-17/18, lessons-learned.md."
     }
   ]
 }

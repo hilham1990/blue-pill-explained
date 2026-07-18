@@ -1,6 +1,6 @@
 {
   "day": 3,
-  "note": "TÜM 4 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-14) — sahne sırası README'nin gerçek bölüm sırasına göre: İlk Sayfayı Okumak (hero) → Part Number Nasıl Okunur → Paket Seçenekleri → Sahada Ne Anlama Gelir. Hepsi tek denemede sorunsuz çıktı, zoom ile doğrulandı (özellikle hero'nun arka planındaki belgenin bilerek bulanık/metinsiz bırakılması Gün 2 hero'sundaki uydurma tablo hatasını tekrarlamadı; Part Number sahnesinde 'F: Foundation' hatası tekrarlanmadı, 7 gerçek blok — STM32/F/103/C/8/T/6 — birebir doğru render edildi). 'Device Overview Tablosu' bölümü zaten gerçek görsel (assets/source/day03-device-overview-table.png) kullanıyor, ayrı AI sahnesi yok. Sahne sayısı (4) Gün 1/2'nin 5-6 sayısına çapalanmadan bu bölümün kendi içeriğinden türetildi. MÜHÜRLENDİ (2026-07-14).",
+  "note": "MÜHÜRLENDİ (2026-07-14) — 4/4 sahne onaylı ve README'ye gömülü, hepsi tek denemede sorunsuz çıktı.",
   "scenes": [
     {
       "id": "scene-00-hero",

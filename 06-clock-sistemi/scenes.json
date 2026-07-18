@@ -1,6 +1,6 @@
 {
   "day": 6,
-  "note": "TÜM 6 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (6) bu bölümün kendi içeriğinden türetildi, bkz. brief.json. Yeni footer standardı uygulandı: 'Usta tahmin etmez, ölçer.' / 'akademiusta.com'. Gerçek kart fotoğrafından crop'lanan X1/X2 referansları (visual-system/references/real-x1-crystal-crop.png, real-x2-crystal-crop.png) kullanıldı — scene-02/03'te ilk denemede doğru çıktı, scene-06'nın ilk denemesinde X2 yanlışlıkla X1'in oval metal-kan paketiyle çizildi (bu sahneye referans crop verilmemişti), --ref eklenerek düzeltildi. Ders: bir bileşen bölümdeki HER sahnede görünüyorsa, referans crop'u o sahnelerin HEPSİNE ayrı ayrı verilmeli, sadece 'ana' sahnelere değil (bkz. lessons-learned.md). scene-03'te kullanıcı önerisiyle kapasitör fotoğrafının yanına küçük önce/sonra dalga-formu inseti eklendi (component-tanıma + işlev açıklaması bir arada). scene-04'ün katalog kart başlıkları (mavi/teal/turuncu) modelin kendi inisiyatifiyle renklendi — layout-rules'ın sabit renk-fonksiyon eşlemesiyle tam örtüşmüyor ama rozetler/bağlantı çizgileri doğru mavi, küçük bir stil notu olarak kaydedildi, yeniden üretilmedi. MÜHÜRLENDİ (2026-07-16).",
+  "note": "MÜHÜRLENDİ (2026-07-16) — 6/6 sahne onaylı ve README'ye gömülü. Yeni footer standardı ilk burada uygulandı. Geçmiş/karar detayı (scene-06 X2 crop düzeltmesi, scene-04 stil notu): CHANGELOG.md 2026-07-16.",
   "scenes": [
     {
       "id": "scene-01-hero",

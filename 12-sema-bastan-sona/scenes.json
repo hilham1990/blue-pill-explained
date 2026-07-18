@@ -1,6 +1,6 @@
 {
   "day": 12,
-  "note": "Kaynak, gerçek şema ve 8/8 prompt 2026-07-17'de yeniden denetlendi. BOOT seçim anlatımı tam tabloyla düzeltildi: 0/X=Ana Flash, 1/0=System Memory, 1/1=SRAM. Eski dört numaralı panel ve tekrar eden alt kart şablonu kaldırıldı. Sekiz görsel üretildi; ilk Scene-07/08 çıktılarındaki ciddi teknik etiket hataları kullanıcı onayıyla yeniden üretilerek düzeltilmişti. Bağımsız QA'da (2026-07-18) hero ve scene-07'de CN4/SWD ile ilgili 2 yeni kusur bulundu — kullanıcı kararıyla ikisi de KABUL EDİLDİ (Bölüm 11 scene-06/07 ile aynı muamele), README'ye açıklayıcı notlar eklendi. MÜHÜRLENDİ (2026-07-18) — 8/8 sahne onaylı ve README'ye gömülü.",
+  "note": "MÜHÜRLENDİ (2026-07-18) — 8/8 sahne onaylı ve README'ye gömülü. Kabul edilmiş CN4/SWD kusurları (hero 3-pin/GND kaybı, scene-07 uydurma NRST — ikisi de düzeltilmedi, README'de açıklayıcı not var): CHANGELOG.md 2026-07-17/18, lessons-learned.md.",
   "scenes": [
     {
       "id": "scene-01-hero",
@@ -17,7 +17,7 @@
       "status": "approved",
       "asset": "hero.png",
       "source_section": "README.md — üst bilgi kutusu + \"Blue Pill Şeması\"",
-      "note": "Bağımsız QA'da (2026-07-18) hata bulundu: sağ altta CN4/SWD Debug paneli sadece 3 pin çiziyor (\"1 2 3\"), GND pini hiç yok, ve iki pin de \"DCIO\" diye (DIO/DCLK karışmış/bozuk) etiketlenmiş — gerçek CN4 4 pinli (3.3V/DIO/DCLK/GND). Kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ, yeniden üretilmedi; README'ye doğru CN4 şemasına (scene-06/Bölüm 11) yönlendiren bir not eklendi."
+      "note": "Kabul edilmiş kusur (CN4 paneli 3 pine düşmüş, GND kayıp) — düzeltilmedi, README'de doğru CN4'e (scene-06) yönlendiren not var. Detay: CHANGELOG.md 2026-07-18, lessons-learned.md."
     },
     {
       "id": "scene-02",
@@ -33,7 +33,7 @@
       "status": "approved",
       "asset": "slides/02-besleme-zinciri.png",
       "source_section": "README.md — \"1. Kartı Besle\" + \"2. Gerilim 3.3V'a Dönüşür\" + \"3. İşlemci Besleme Alır\"",
-      "note": "Bağımsız QA'da (2026-07-18) onaylandı — filtre kapasitör değerleri (C7/C5, C6/C10), RT8183-B ve VDD/VDDA/VBAT pin numaraları README ile birebir doğru."
+      "note": "approved."
     },
     {
       "id": "scene-03",
@@ -49,7 +49,7 @@
       "status": "approved",
       "asset": "slides/03-clock-ve-reset.png",
       "source_section": "README.md — \"4. Clock Gelir\" + \"5. Reset Devresi Hazır\"",
-      "note": "Bağımsız QA'da (2026-07-18) onaylandı — X1/X2 pin ve kapasitör değerleri, PLL×9/72MHz, R2/C2/S1 reset devresi README ile birebir doğru."
+      "note": "approved."
     },
     {
       "id": "scene-04",
@@ -65,7 +65,7 @@
       "status": "approved",
       "asset": "slides/04-boot-modu.png",
       "source_section": "README.md — \"6. Boot Modu Belirlenir\"",
-      "note": "Bağımsız QA'da (2026-07-18) onaylandı — R3/R4 seri-direnç + jumper topolojisi (sabit pull-down DEĞİL) ve BOOT0/BOOT1 seçim matrisi README ile birebir doğru."
+      "note": "approved."
     },
     {
       "id": "scene-05",
@@ -81,7 +81,7 @@
       "status": "approved",
       "asset": "slides/05-calisma-baslar.png",
       "source_section": "README.md — \"7. İşlemci Çalışmaya Başlar\" + \"8. USB Aktif Olur\" + \"9. LED'ler Çalışır\"",
-      "note": "Bağımsız QA'da (2026-07-18) onaylandı — USB R9/R10/R11 rolleri ve D1/D2 LED devreleri (R1/R5 510Ω) README ile birebir doğru."
+      "note": "approved."
     },
     {
       "id": "scene-06",
@@ -97,7 +97,7 @@
       "status": "approved",
       "asset": "slides/06-gpio-ve-debug.png",
       "source_section": "README.md — \"10. GPIO Pinleri Dışarıya Çıkar\" + \"11. Debug / Programlama Hazır\"",
-      "note": "Bağımsız QA'da (2026-07-18) onaylandı — CN1/CN2 pin listeleri ve CN4 (4 pin, GND·DCLK·DIO·+3.3V, doğru sırayla) README ile birebir doğru. Bu sahnenin CN4 çizimi doğru — hero ve scene-07'deki CN4/SWD hatalarıyla karıştırılmamalı."
+      "note": "approved — bu sahnenin CN4 çizimi doğru (4 pin, GND·DCLK·DIO·+3.3V), hero ve scene-07'deki kabul edilmiş CN4 kusurlarıyla karıştırılmamalı."
     },
     {
       "id": "scene-07",
@@ -113,7 +113,7 @@
       "status": "approved",
       "asset": "slides/07-sema-okuma-ozeti.png",
       "source_section": "README.md — \"Şema Okuma Özeti\"",
-      "note": "Önceki bir hata (ciddi teknik etiket hatası) zaten düzeltilmişti, ama bağımsız QA'da (2026-07-18) YENİ bir hata bulundu: son adımdaki 'SWD debug hazır' ikonu genel bir 10-pinli ARM debug header çiziyor ve SWDIO/SWCLK/GND/3.3V'nin yanına var olmayan bir 'NRST' sinyali daha ekliyor — Bölüm 11 scene-06'daki hatanın AYNISI, farklı bölümde tekrarı. Kullanıcı kararıyla (2026-07-18) KABUL EDİLDİ (Bölüm 11 scene-06 ile aynı muamele — NRST teknik olarak var olan bir sinyal, sadece bizim CN4'ümüzde yok), yeniden üretilmedi; README'ye açıklayıcı not eklendi."
+      "note": "Kabul edilmiş kusur (son adımdaki 'SWD debug hazır' ikonunda uydurma NRST — Bölüm 11 scene-06 ile aynı desen) — düzeltilmedi, README'de açıklayıcı not var. Detay: CHANGELOG.md 2026-07-18, lessons-learned.md."
     },
     {
       "id": "scene-08",
@@ -129,7 +129,7 @@
       "status": "approved",
       "asset": "slides/08-serinin-sonu.png",
       "source_section": "README.md — \"Bu Serinin Sonu — Ve Başlangıcı\"",
-      "note": "Bağımsız QA'da (2026-07-18) onaylandı — 7 kazanılmış beceri ve ESP32/Raspberry Pi/Apple M1 isimleri README ile birebir doğru."
+      "note": "approved."
     }
   ]
 }

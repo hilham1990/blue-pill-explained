@@ -1,6 +1,6 @@
 {
   "day": 9,
-  "note": "TÜM 8 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-17). Sahne 01/02/03 v3-v4'e, sahne 04/05/06/07/08 da düzeltme turlarından geçerek son haline ulaştı — ayrıntılar için her sahnenin kendi `note` alanına ve `visual-system/lessons-learned.md`'ye bakın. Mantıksal/prosedürel sahneler (01,02,03,06,08) `--mode generate` (referanssız, saf metinden üretim) ile, fiziksel doğruluk gerektiren sahneler (04-pinout kartı, 05-şema, 07-LED devresi) `--mode edit` + gerçek kaynak referansıyla üretildi — bkz. `master-style-prompt.md`'nin 2026-07-17 notları (chip-fotoğrafı + numaralı-panel şablonundan MUX/ağaç diyagramı + başlık-çubuklu panel + gerçek tablo/veri standardına geçiş). Bilinen küçük kusur: scene-07'nin alt bilgi kutusunda \"fiziksel\" kelimesi \"fiiziksel\" yazılmış (fazladan bir harf) — kullanıcı tarafından teaching-critical olmayan kozmetik hata olarak kabul edildi, yeniden üretilmedi. MÜHÜRLENDİ (2026-07-17).",
+  "note": "MÜHÜRLENDİ (2026-07-17) — 8/8 sahne onaylı ve README'ye gömülü. Görsel sistem dönüşümü (--mode generate varsayılanı) bu bölümde başladı. Geçmiş/karar detayı: CHANGELOG.md 2026-07-17, sahne bazlı ayrıntı visual-system/lessons-learned.md.",
   "scenes": [
     {
       "id": "scene-01-hero",
@@ -17,7 +17,7 @@
       "status": "approved",
       "asset": "hero.png",
       "source_section": "README.md — üst bilgi kutusu + \"GPIO Nedir?\"",
-      "note": "v4 onaylandı (2026-07-17) — --mode generate, merkezde MUX blok diyagramı (tek aktif rota vurgulu, diğerleri soluk), başlık-çubuklu paneller (numara rozeti yok), gerçek 5-çip evrensellik bandı, 3 kartlık öğrenme-hedefi bandı. v1/v2 (chip fotoğrafı + numaralı panel şablonu) ve v3 (ilk MUX denemesi) kullanıcı tarafından şablonlaşmış/geliştirilebilir bulunmuştu, bkz. lessons-learned.md."
+      "note": "approved (--mode generate). Sürüm geçmişi: CHANGELOG.md 2026-07-17."
     },
     {
       "id": "scene-02",
@@ -33,7 +33,7 @@
       "status": "approved",
       "asset": "slides/02-gpionun-4-modu.png",
       "source_section": "README.md — \"GPIO Modları\"",
-      "note": "v3 onaylandı (2026-07-17) — --mode generate. v1'de Analog'un hem Input alt modu hem ayrı ana mod sayılıp yanlış '4+2+2+1=9' özetine yol açması düzeltildi; STM32F103'te Analog'un bir giriş yapılandırması olduğu açıklandı, bu çipte olmayan DAC hiç gösterilmedi. v1'de ayrıca istenmeyen ekstra bir 'seçim adımları' bandı çıkmıştı (zararsız ama plansız) — v3'te tek, net bir alt bant var. Kök neden (SCENE bloğu alt bant içeriğini belirtmişken modelin kendiliğinden ikinci bant eklemesi) master-style-prompt.md'de düzeltildi."
+      "note": "approved (--mode generate). Sürüm geçmişi: CHANGELOG.md 2026-07-17."
     },
     {
       "id": "scene-03",
@@ -49,7 +49,7 @@
       "status": "approved",
       "asset": "slides/03-alternate-function-nedir.png",
       "source_section": "README.md — \"Alternate Function Nedir?\"",
-      "note": "v2 onaylandı (2026-07-17) — --mode generate. PA9'un gerçek 3 olasılığı (GPIO/USART1_TX/TIM1_CH2) README'deki örnekle birebir, kadran-seçici metaforu scene-02'nin ağaç diyagramından bilinçli olarak farklı bir görsel dil kullanıyor."
+      "note": "approved (--mode generate)."
     },
     {
       "id": "scene-04",
@@ -65,7 +65,7 @@
       "status": "approved",
       "asset": "slides/04-pinoutta-renkler.png",
       "source_section": "README.md — \"Blue Pill Pinout'ta Alternate Function'lar\"",
-      "note": "v3 onaylandı (2026-07-17) — --mode edit, --ref assets/source/blue-pill-pinout-source.webp. Tüm 6 renk-fonksiyon eşleşmesi README ile birebir doğrulandı (önceki bölümlerde bu tür lejantlarda renk karışıklığı yaşanmıştı, bu sahnede yaşanmadı)."
+      "note": "approved (--mode edit, --ref assets/source/blue-pill-pinout-source.webp)."
     },
     {
       "id": "scene-05",
@@ -81,7 +81,7 @@
       "status": "approved",
       "asset": "slides/05-semada-af-okumak.png",
       "source_section": "README.md — \"Şemada Alternate Function Okumak\"",
-      "note": "v2 onaylandı (2026-07-17) — --mode edit, --ref visual-system/references/real-u2-schematic-crop.png. Pin-isim tablosunun 6 satırı da README ile piksel-piksel doğru çıktı."
+      "note": "approved (--mode edit, --ref visual-system/references/real-u2-schematic-crop.png)."
     },
     {
       "id": "scene-06",
@@ -97,7 +97,7 @@
       "status": "approved",
       "asset": "slides/06-remapping.png",
       "source_section": "README.md — \"Remapping (Yeniden Haritalama)\"",
-      "note": "v2 onaylandı (2026-07-17) — --mode generate. Varsayılan/remap eşlemeleri README ile birebir; TX/RX çiftinin birlikte taşındığı (tek tek değil) doğru vurgulanmış."
+      "note": "approved (--mode generate)."
     },
     {
       "id": "scene-07",
@@ -113,7 +113,7 @@
       "status": "approved",
       "asset": "slides/07-led-ornegi-pc13.png",
       "source_section": "README.md — \"LED Örneği — PC13\"",
-      "note": "v2 onaylandı (2026-07-17) — --mode edit, --ref visual-system/references/real-led-pc13-crop.png (gerçek D2/R5 fotoğrafı). Devre ve LOW/HIGH mantığı README ile birebir doğru. Bilinen kozmetik kusur: alt bilgi kutusunda 'fiziksel' kelimesi 'fiiziksel' yazılmış — kullanıcı kararıyla kabul edildi, yeniden üretilmedi."
+      "note": "approved (--mode edit, --ref visual-system/references/real-led-pc13-crop.png). Kabul edilmiş kozmetik yazım hatası ('fiiziksel'): CHANGELOG.md 2026-07-18."
     },
     {
       "id": "scene-08",
@@ -129,7 +129,7 @@
       "status": "approved",
       "asset": "slides/08-sahada-ne-anlama-gelir.png",
       "source_section": "README.md — \"Sahada Ne Anlama Gelir?\"",
-      "note": "v2 onaylandı (2026-07-17) — --mode generate. EEPROM/USART modül örnekleri README'nin PB6/I2C1_SCL/USART1_TX örneğini PB6+PB7 çifti olarak (scene-05 ile tutarlı) doğru genişletiyor."
+      "note": "approved (--mode generate)."
     }
   ]
 }

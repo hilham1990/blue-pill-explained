@@ -1,6 +1,6 @@
 {
   "day": 5,
-  "note": "TÜM 6 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (6) bu bölümün kendi içeriğinden türetildi, bkz. brief.json — '3.3V Nereye Gidiyor?'ın 6 dallı listesi 3 mantıksal gruba toplanarak tek sahnede kaldı (Bölüm 04'teki gibi 2 sahneye bölünmesi gerekmedi). Sahne numaralandırması bu bölümden itibaren scene-01-hero'dan başlayıp boşluksuz devam ediyor (bkz. CLAUDE.md). scene-03'te (Kapasitörler) ilk üretimde RT8183-B yanlış pakette (10 pinli) çıktı; hero'nun regülatör crop'u `tools/generate-slide.py --ref` ile ikincil referans verilerek doğru SOT-23-5 pakette yeniden üretildi — bu, kalıcı 'gerçek görsel analizi + bileşen-tutarlılığı referansı' mekanizmasının ilk uygulaması oldu (bkz. visual-system/lessons-learned.md ve CLAUDE.md madde 4c). MÜHÜRLENDİ (2026-07-16).",
+  "note": "MÜHÜRLENDİ (2026-07-16) — 6/6 sahne onaylı ve README'ye gömülü. Geçmiş/karar detayı (scene-03 RT8183-B paket düzeltmesi): CHANGELOG.md 2026-07-16.",
   "scenes": [
     {
       "id": "scene-01-hero",

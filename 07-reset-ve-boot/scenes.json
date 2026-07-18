@@ -1,6 +1,6 @@
 {
   "day": 7,
-  "note": "TÜM 6 SAHNE ÜRETİLDİ VE ONAYLANDI (2026-07-16). Sahne sayısı (6) bu bölümün kendi içeriğinden türetildi, bkz. brief.json. curriculum-qa 5 gerçek hata buldu (D5-E5 koordinatı, BOOT0/R3 ve BOOT1/R4 diyagramlarının ters topolojisi, gerçek datasheet'te olmayan 'BOR' terimi, doğrulanamayan jumper pin numaraları) — hepsi görsel üretimden önce metinde düzeltildi. Gerçek kart fotoğrafından crop'lanan reset butonu + BOOT jumper'ı (visual-system/references/real-reset-boot-jumper-crop.png) hero ve scene-05'te kullanıldı, ikisi de tek denemede fotoğrafla birebir tutarlı çıktı. scene-03'te R3/R4'ün CN5 jumper'ına SERİ bağlı olduğu (sabit pull-up/pull-down değil) doğru şekilde çizildi — Bölüm 05'teki aynı kavramsal hatanın görsele taşınması önlendi. MÜHÜRLENDİ (2026-07-16).",
+  "note": "MÜHÜRLENDİ (2026-07-16) — 6/6 sahne onaylı ve README'ye gömülü. Geçmiş/karar detayı (görsel-üretim öncesi metin QA'de bulunan 5 hata): CHANGELOG.md 2026-07-16.",
   "scenes": [
     {
       "id": "scene-01-hero",

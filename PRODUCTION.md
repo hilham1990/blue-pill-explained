@@ -33,9 +33,21 @@ Slaytlar her bölüm için elle tasarlanmıyor — o bölümün metni (README.md
 - Video: yerel ffmpeg render + otomatik zamanlanmış SRT
 - Renderer: [`tools/render-lesson-video.mjs`](tools/render-lesson-video.mjs)
 
+## Şu Anki Durum
+
+Serinin 12 bölümü de tamamlandı — metin + görsel + README gömme. Video render hiçbirinde henüz yapılmadı, sıradaki iş bu. Tarihli karar/olay geçmişi için [`CHANGELOG.md`](CHANGELOG.md); bölüm bazlı görsel-üretim hata geçmişi için `visual-system/lessons-learned.md`.
+
+## Uyumluluk Notları
+
+Bölümler arasında iki geriye-dönük-uygulanmamış fark var — eski bölümler okunurken/düzenlenirken bilinmesi gerekir:
+
+| Bölüm aralığı | Görsel üretim sistemi | Footer |
+|---|---|---|
+| 01-08 | Eski şablon: `--mode edit`, sabit referans (`approved-day01.png`) | 01-05: "Önce anlamak, sonra ölçmek." / akademiusta.com/tr · 06-08: yeni footer |
+| 09-12 | Yeni sistem: `--mode generate` varsayılan, fiziksel sahnelerde `--mode edit` + gerçek referans | "Usta tahmin etmez, ölçer." / akademiusta.com |
+
+Gerekçe ve tarihler için `CHANGELOG.md` (2026-07-16 ve 2026-07-17 kayıtları). Sistem detayı: `visual-system/master-style-prompt.md` ve `CLAUDE.md`.
+
 ## Notlar
 
-- **Serinin 12 bölümü de tamamlandı** (2026-07-18) — metin + görsel + README gömme. Video render hiçbirinde henüz yapılmadı. Bölüm bazlı detaylı hata geçmişi (curriculum-qa metin hataları, görsel-üretim kusurları, kullanıcı kararları) `visual-system/lessons-learned.md`'de kronolojik kayıtlı — burada tekrar edilmiyor.
-- Bölüm 09'dan itibaren görsel-üretim sistemi değişti: `tools/generate-slide.py`'ın varsayılanı artık `--mode generate` (referanssız, saf metinden üretim); fiziksel bileşen gerektiren sahnelerde hâlâ `--mode edit` + gerçek kaynak referansı. Bkz. `visual-system/master-style-prompt.md` ve `CLAUDE.md`. Bölüm 01-08 geriye dönük değiştirilmedi.
-- Bölüm 06'dan itibaren footer sloganı/URL'si güncellendi: "Usta tahmin etmez, ölçer." / "akademiusta.com" (eskisi: "Önce anlamak, sonra ölçmek." / "akademiusta.com/tr") — sadece ileriye dönük, Bölüm 01-05 eski haliyle kaldı.
 - Büyük medya dosyaları (MP4, kaynak PDF/webp) repo büyüdükçe Git geçmişini şişirebilir — video render başladığında Git LFS veya harici depolama (Releases, YouTube) değerlendirilebilir.

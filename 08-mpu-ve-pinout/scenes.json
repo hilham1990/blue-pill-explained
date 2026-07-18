@@ -1,6 +1,6 @@
 {
   "day": 8,
-  "note": "2026-07-18 müfredat son QA turunda scene-04, gerçek karttaki R10=10kΩ ile USB Full-Speed uyumlu 1.5kΩ değerini ayırmak için yeniden üretildi. İlk yeni çıktıda model iki pull-up direncini de yanlışlıkla USBDM/D− hattına bağladı; kullanıcı onayıyla hatalı dosya silindi, prompt D+ bağlantısını sert invariant olarak kilitleyecek şekilde güçlendirildi ve yeniden üretildi. Son çıktıda hem R10 10kΩ hem uyumlu 1.5kΩ pull-up yalnız USBDP/D+ hattına bağlıdır; teknik QA tamamlandı. Diğer sahnelerin önceki onay durumu değişmedi.",
+  "note": "MÜHÜRLENDİ (2026-07-18) — 7/7 sahne onaylı ve README'ye gömülü. Geçmiş/karar detayı (scene-04 D+ düzeltmesi, scene-03 Sol/Sağ yerleşim düzeltmesi): CHANGELOG.md 2026-07-18/2026-07-16.",
   "scenes": [
     {
       "id": "scene-01-hero",
@@ -46,7 +46,7 @@
       "duration_seconds": 18,
       "status": "approved",
       "asset": "slides/03-sema-mpu-blogu.png",
-      "source_section": "README.md — \"Şemada MPU Bloğu — U2\" (satır 52-83, 2026-07-16 QA'de Sol/Sağ yerleşimi düzeltildi, 3. üretimde (v3) onaylandı — panel metinleri doğru, merkez pin-listesindeki küçük rakam bozuklukları (pin 20/B2 eksik, B6 etiketi tekrarı) kullanıcı kararıyla dekoratif/teaching-critical-olmayan gürültü sayıldı, bkz. lessons-learned.md)"
+      "source_section": "README.md — \"Şemada MPU Bloğu — U2\" (satır 52-83). Kabul edilmiş kozmetik kusur (merkez pin-listesi): bkz. lessons-learned.md."
     },
     {
       "id": "scene-04",
@@ -59,9 +59,9 @@
         "R9 · R10 · R11"
       ],
       "duration_seconds": 16,
-      "status": "approved — D+ bağlantısı düzeltilerek yeniden üretildi (2026-07-18)",
+      "status": "approved",
       "asset": "slides/04-usb-pinleri.png",
-      "source_section": "README.md — \"USB Pinleri\" (satır 82-97, QA'de R-etiketleri düzeltildikten sonra); görsel 2026-07-16'da 2. kez üretildi — ilk üretim scene-05'in daha sonra bulduğu 'merkez içerik çerçevesiz olmalı' kuralından ÖNCE yapılmıştı, kural geriye dönük uygulanıp tek denemede düzeltildi"
+      "source_section": "README.md — \"USB Pinleri\" (satır 82-97). Geçmiş/karar detayı (D+ bağlantı düzeltmesi): CHANGELOG.md 2026-07-18."
     },
     {
       "id": "scene-05",
