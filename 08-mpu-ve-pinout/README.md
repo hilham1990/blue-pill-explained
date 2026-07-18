@@ -105,6 +105,11 @@ USBDP (PA12, pin 33) ──── R11 (22Ω) ──── USB D+
 **R10 (10kΩ) pull-up direnci neden var?**
 USB host'a (bilgisayar) "ben buradayım, Full Speed cihazıyım" sinyali veriyor. Bu direnç olmadan USB cihazı algılanmaz.
 
+**Ölç, tahmin etme:** USB 2.0 spesifikasyonu bu direnç için 1.5kΩ ister. Blue Pill klonlarının
+çoğunda (bu şema dahil) gerçekte **10kΩ** var — bu, birçok klon kartta bilinen bir sapmadır ve
+bazı host'larda USB'nin güvenilir enumerate olmamasına yol açabilir. Şemadaki değer "doğru
+olması gereken" değer değil, kartın gerçekte ne yaptığıdır — ikisi ayrı şeydir.
+
 **R9 ve R11 (22Ω) neden var?**
 USB hattındaki yansımaları azaltıyor. USB diferansiyel sinyal kullandığından hat empedansı önemli.
 

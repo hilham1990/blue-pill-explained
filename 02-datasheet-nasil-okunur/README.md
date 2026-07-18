@@ -33,6 +33,12 @@ Bu iki belgeyi karıştırmak çok yaygın bir hata.
 | **Datasheet** | Özet özellikler, pin listesi, elektriksel limitler | "Bu işlemci ne yapabilir?" sorusunda |
 | **Reference Manual (RM0008)** | Her peripheral'ın tam açıklaması, register detayları | "Clock nasıl ayarlanır?" sorusunda |
 
+**"Peripheral" ne demek?** Peripheral (Türkçesi: **çevre birimi**), işlemcinin çekirdeği
+(CPU) dışında ama aynı çip üzerinde bulunan, işlemcinin dış dünyayla veya diğer devrelerle
+konuşmasını sağlayan donanım birimidir — USART, SPI, I2C, Timer, ADC gibi örnekler hepsi birer
+peripheral'dır. Bu seride bundan sonra **"peripheral"** veya **"çevre birimi (peripheral)"**
+olarak geçecek — ikisi aynı şeyi ifade eder, seri boyunca bu adlandırma kullanılacaktır.
+
 **Kural:** Genel bilgi → Datasheet. Detay → Reference Manual.
 
 Bu seride ikisini de kullanacağız. Hangi soruyu hangi belgeden cevapladığımızı her bölümde belirteceğiz.

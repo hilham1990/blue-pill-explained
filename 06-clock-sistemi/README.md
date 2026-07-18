@@ -16,12 +16,12 @@
 
 ## Clock Nedir?
 
-İşlemci her işlemi bir clock darbesinde yapar.
+İşlemci her clock darbesinde ilerleyebilir — kaç darbe süreceği komuta göre değişir, çoğu basit komut tek darbede tamamlanır ama her komut için bu garanti değildir.
 
 72 MHz clock = saniyede 72 milyon darbe.
 
 Her darbede:
-- Bir komut çalıştırılabilir
+- Bir adım ilerlenebilir (komuta göre bir veya birden fazla darbe gerekebilir)
 - Bir veri taşınabilir
 - Bir sayaç ilerleyebilir
 
@@ -134,8 +134,8 @@ PLL × 9
     ↓
 AHB Bus → 72 MHz
     ↓
-APB1 Bus → 36 MHz (USART, SPI, I2C, Timer burada)
-APB2 Bus → 72 MHz (GPIO, ADC, SPI1 burada)
+APB1 Bus → 36 MHz (USART2/3, SPI2, I2C1/2, TIM2-4 burada)
+APB2 Bus → 72 MHz (GPIO, ADC, USART1, SPI1, TIM1 burada)
 ```
 
 ---
@@ -152,6 +152,10 @@ Kontrol:
 - X1 kristali yerinde mi?
 - Kristal yanında kapasitörler var mı?
 - OSC_IN ve OSC_OUT pinlerinde osiloskopla dalga var mı?
+
+**Ölçüm notu:** Kristal osilatör devresi yüksek empedanslıdır, standart bir problar onu
+yükleyip osilasyonu durdurabilir veya frekansı kaydırabilir. Düşük kapasitanslı (×10) bir prob
+kullan ve mümkünse devreyi doğrudan değil, tampon çıkışından ölç.
 
 **Durum 2:** Zaman saati (RTC) kayıyor.
 

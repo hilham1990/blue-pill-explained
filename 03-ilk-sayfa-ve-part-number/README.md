@@ -22,7 +22,7 @@ ARM 32-bit Cortex-M3 CPU
 Maksimum 72 MHz
 ```
 
-Bu işlemci 32-bit. Yani her saat darbesiyle 32 bit veri işleyebiliyor. Arduino Uno'daki ATmega328 8-bit. Fark: 4 kat geniş veri yolu.
+Bu işlemci 32-bit — yani register'ları, ALU'su ve doğal veri yolu 32 bit genişliğinde. Arduino Uno'daki ATmega328 8-bit. Bu, "her saat darbesinde 4 kat daha fazla iş" anlamına gelmez (bir komut birden fazla clock çevrimi sürebilir) — anlamı, bir komutun aynı anda işleyebildiği veri genişliğinin daha büyük olması.
 
 ---
 
@@ -48,7 +48,12 @@ Blue Pill'de 64 KB Flash var (C**8** — bunu part number'dan okuyoruz).
 1x USB Full Speed
 ```
 
-9 iletişim arayüzü. Bunların hepsi aynı anda kullanılabilir çünkü her biri ayrı donanım birimi.
+9 iletişim arayüzü, her biri ayrı bir donanım birimi. Ama hepsi aynı anda kullanılamaz — LQFP48
+paketinde yalnızca 37 GPIO var (bkz. yukarısı) ve bazı çevre birimleri aynı fiziksel pini
+paylaşır (örn. I2C2 ile USART3 aynı pinlerde — Bölüm 09/10'da işlenecek). En kesin örnek: **CAN
+ve USB, PA11/PA12 pinlerini birebir paylaşır** (datasheet pin tablosu: PA11 = CANRX/USBDM, PA12
+= CANTX/USBDP) — bu ikisi donanımsal olarak asla aynı anda aktif olamaz. Kaç arayüzün aynı anda
+kullanılabileceğini pin bütçesi ve remap seçimi belirler, birim sayısı değil.
 
 ---
 

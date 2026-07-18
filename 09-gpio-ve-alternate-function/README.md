@@ -29,7 +29,10 @@ STM32F103'te 48 pinin büyük çoğunluğu GPIO olarak kullanılabilir.
 
 ## GPIO Modları
 
-Her GPIO pini 4 farklı modda çalışabilir:
+Her GPIO pini 4 farklı biçimde kullanılabilir (bu dört biçim register düzeyinde tamamen ayrı
+dört "mod" değildir — Alternate Function aslında Output yapılandırmasının bir varyantıdır — ama
+öğretim amacıyla dört ayrı kullanım biçimi olarak ele alınır, bkz. görseldeki "4 Kullanım
+Biçimi"):
 
 ### 1. Input (Giriş)
 Dışarıdan sinyal okuyor.
@@ -38,7 +41,9 @@ Alt modlar:
 - **Floating** → Bağlantısız, belirsiz
 - **Pull-up** → Dahili direnç pin'i HIGH'da tutar
 - **Pull-down** → Dahili direnç pin'i LOW'da tutar
-- **Analog** → ADC için ham sinyal (dijital tampon devre dışı)
+
+(Analog okuma da donanımsal olarak bir giriş yapılandırmasıdır, ama bu derste ayrı bir kullanım
+amacı olduğu için aşağıda 4. mod olarak ayrıca ele alınıyor — bkz. "4. Analog".)
 
 ### 2. Output (Çıkış)
 Dışarıya sinyal gönderiyor.

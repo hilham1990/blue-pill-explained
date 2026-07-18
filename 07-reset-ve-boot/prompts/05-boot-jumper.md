@@ -1,45 +1,35 @@
 # Scene: scene-05 — Blue Pill'de Boot Jumper'ı
 
-**Durum:** Üretiliyor (2026-07-16).
+**Durum:** v2 — STM32F103x8 System Memory yolu USART1 olarak kilitlendi.
 
-**Gerçek görsel analizi (madde 4c):** Aynı `real-reset-boot-jumper-crop.png` kullanılıyor — bu
-fotoğrafta yalnızca 2 pinli, sarı, kilitli bir jumper konnektörü görünüyor (şemanın 6 pinli CN5
-footprint'inin tamamı değil). Prompt bunu icat etmiyor, sadece görüneni tarif ediyor.
-
-Üretim: `tools/generate-slide.py 07-reset-ve-boot/prompts/05-boot-jumper.md 07-reset-ve-boot/slides/05-boot-jumper.png --ref visual-system/references/real-reset-boot-jumper-crop.png`
+Üretim: `tools/generate-slide.py 07-reset-ve-boot/prompts/05-boot-jumper.md 07-reset-ve-boot/slides/05-boot-jumper.png --mode edit --ref visual-system/references/real-reset-boot-jumper-crop.png`
 
 ```text
 SCENE:
-Day label: "GÜN 07" — render with correct Turkish characters.
-Main title: "BLUE PILL'DE BOOT JUMPER'I"
-Subtitle: "Firmware yükleme adımları"
+Day label: "GÜN 07"
+Main title: "SYSTEM MEMORY İLE FIRMWARE YÜKLE"
+Subtitle: "BOOT0 + USART1 · USB DFU değil"
 
-Central hardware: a close-up photo of a small yellow shrouded 2-pin jumper connector on a blue
-PCB fragment, matching the exact real jumper shown in the attached additional reference image —
-copy its real yellow shrouded 2-pin shape exactly, do not invent additional pins or a different
-connector style.
+Use case: scientific-educational. Use the reference for the real yellow BOOT jumper and nearby
+reset button. Build one left-to-right physical procedure, not numbered panels:
 
-Four NUMBERED panels (large colored number badge 1,2,3,4 top-left of each panel), each
-connected with a thin matching-color line to the jumper photo, each panel exactly one cohesive
-image/icon plus caption, representing the 4 upload steps. Use ONLY the exact values given here,
-do not invent any additional spec:
+"BOOT0 → 3.3V tarafı"
+→ "Resetle / yeniden besle"
+→ "USB-UART dönüştürücü"
+→ crossed serial wires:
+"Dönüştürücü TX → PA10 / RX"
+"Dönüştürücü RX ← PA9 / TX"
+"GND ↔ GND"
+→ "STM32CubeProgrammer · UART"
+→ "Yükleme bitince BOOT0 → GND ve reset".
 
-IMPORTANT — badge color: all four number badges (1,2,3,4) and all four connector lines and
-all four panel borders MUST be the exact same solid navy/dark-blue color (the "donanım yakın
-çekim" function color). Do NOT vary the badge color per panel.
+Add a prominent correction note:
+"STM32F103x8 dahili bootloader'ı USART1 kullanır; USB DFU kullanmaz."
+Smaller note:
+"USB'den doğrudan yükleme ancak önceden kurulmuş özel bir USB bootloader ile mümkündür."
 
-1 (blue): "Adım 1" — "Jumper'ı 3.3V tarafına al"
-2 (blue): "Adım 2" — "Kartı resetle veya yeniden besle"
-3 (blue): "Adım 3" — "Firmware yükle (USB veya USART)"
-4 (blue): "Adım 4" — "Jumper'ı GND'ye al, resetle — normal çalışma başlar"
-
-Do not render any specific jumper pin numbers (e.g. "1-2" or "3-4") since the real physical
-silkscreen numbering is not verified — only refer to "3.3V tarafı" and "GND tarafı" as given
-above.
-
-Bottom section: use the mandatory bottom layout — 4 cards mirroring the panels: "3.3V'a Al",
-"Resetle", "Yükle", "GND'ye Al", each with a simple icon and short Turkish title. Then the same
-single mandatory footer row: bottom-left "Akademi Usta", bottom-center "Usta tahmin etmez,
-ölçer.", bottom-right "akademiusta.com" — same bold navy font, same baseline, text only, no
-logo/emblem.
+Bottom band content:
+"System Memory yolu: BOOT0=1 · BOOT1=0 · USART1 / PA9–PA10"
+Do not write "USB veya USART", show a USB cable connected directly to the Blue Pill as ROM
+bootloader, connect TX to TX, invent jumper pin numbers, or repeat the steps as bottom cards.
 ```

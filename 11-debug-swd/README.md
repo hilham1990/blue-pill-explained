@@ -137,7 +137,10 @@ Firmware yükledikten sonra kart çalışırken:
 - Register'ların durumunu okuyabilirsin
 - Adım adım ilerleyebilirsin
 
-Bu SWD üzerinden gerçek zamanlı yapılıyor.
+Bu, SWD üzerinden canlı/doğrudan bir bağlantıyla yapılıyor — ama "gerçek zamanlı" kelimesi
+yanıltıcı olabilir: breakpoint'te CPU durduğu anda timer'lar, iletişim hatları gibi
+çevre birimlerinin gerçek-zamanlı davranışı da etkilenir/durur. Yani gördüğün, çalışan sistemin
+donmuş bir anlık görüntüsüdür, kesintisiz akan bir "gerçek zaman" değil.
 
 ![Canlı Debug Nasıl Çalışır? — SWD üzerinden gerçek zamanlı](slides/06-canli-debug.png)
 

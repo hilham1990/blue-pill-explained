@@ -147,6 +147,9 @@ USBDP (PA12) ── R11(22Ω) ── USB D+
 
 R10 pull-up → Host "Full Speed USB cihazı var" algılar.
 
+**Not (bkz. Bölüm 08):** USB spesifikasyonu bu direnç için 1.5kΩ ister, gerçek değer 10kΩ —
+bilinen bir Blue Pill klon sapması, bazı host'larda enumerate sorunlarına yol açabilir.
+
 ---
 
 ## 9. LED'ler Çalışır
@@ -222,10 +225,10 @@ USB, GPIO, LED aktif
 SWD ile debug/programlama hazır
 ```
 
-**Bu sıra her kartın şemasında aynı.**
+**Bu akışın mantığı her kartta aynı — ama fiziksel sıra/yerleşim karttan karta değişebilir.**
 
-İşlemci farklı olabilir. Üretici farklı olabilir.
-Ama soru hep aynı:
+İşlemci farklı olabilir. Üretici farklı olabilir. Şemadaki yerleşim farklı olabilir.
+Değişmeyen, sorduğun sorulardır:
 
 1. Besleme nerede?
 2. Clock nerede?

@@ -8,7 +8,7 @@
 | Saat sinyali | **Clock** | Türkçeye çevrilmiyor, teknik terim olarak kalıyor |
 | Sıfırlama devresi | **Reset** | — |
 | Açılış modu | **Boot** / **Boot Modu** | BOOT0/BOOT1 pin adları değişmez |
-| Çevre birimleri | **Peripheral'lar** veya **Çevre birimleri (peripheral'lar)** | Ana README'de bu ikili biçim kullanıldı |
+| Çevre birimleri | **Peripheral'lar** veya **Çevre birimleri (peripheral'lar)** | Ana README'de bu ikili biçim kullanıldı. Terim ilk kez Bölüm 02'de geçiyor ve orada (Datasheet/Reference Manual tablosunun altında) gerçek bir tanım cümlesiyle açıklanıyor — sonraki bölümler bu tanıma güvenip terimi bare kullanabilir. |
 | Hata ayıklama | **Debug** | Türkçeye çevrilmiyor |
 | Pin yerleşimi | **Pinout** | Türkçeye çevrilmiyor |
 | Alternatif işlev | **Alternate Function** | İngilizce teknik terim korunuyor |

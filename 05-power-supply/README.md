@@ -133,7 +133,7 @@ Kart açılmıyor. Nereden başlarsın?
 
 ```
 Adım 1: +5V girişi var mı?
-  → CN1 üzerindeki 5V pinini ölç.
+  → CN2 üzerindeki 5V pinini ölç (CN1'de +5V yok, sadece +3.3V/GND).
 
 Adım 2: RT8183-B çıkışı 3.3V veriyor mu?
   → VOUT pinini ölç.

@@ -120,7 +120,10 @@ Aynı mantık: R4 de sabit bir pull-down değil, pin 20 ile jumper'ın ortak ucu
 | 1 (3.3V) | 1 (3.3V) | SRAM | Test, geliştirme |
 
 **System Memory nedir?**
-STM32'nin içinde fabrikadan gelen bir bootloader var. Bu mod seçildiğinde işlemci USB veya USART üzerinden firmware almaya hazır hale gelir.
+STM32'nin içinde fabrikadan gelen bir bootloader var. Bu mod seçildiğinde işlemci firmware almaya
+hazır hale gelir. STM32F103x8'in dahili bootloader'ı **USART1** kullanır (ST'nin AN2606 uygulama
+notu) — USB DFU değildir; kart BOOT0'ı 3.3V tarafına almakla kendiliğinden bir USB cihazına
+dönüşmez.
 
 ---
 
@@ -141,7 +144,7 @@ Firmware yükleme süreci:
 ```
 1. BOOT0 jumper'ını 3.3V tarafına al
 2. Kartı resetle veya yeniden besle
-3. Firmware yükle (USB veya USART üzerinden)
+3. Firmware yükle (USART1 / PA9-PA10 üzerinden, USB-UART dönüştürücüyle)
 4. BOOT0 jumper'ını GND tarafına al
 5. Kartı resetle — normal çalışma başlar
 ```

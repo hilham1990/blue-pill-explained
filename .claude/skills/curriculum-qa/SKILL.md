@@ -28,7 +28,6 @@ For chapter `0X-name/`, gather what exists (not all chapters have all files):
 0X-name/scenes.json             — scene-by-scene breakdown, narration, duration, status
 0X-name/slides-manifest.json    — video timing draft
 0X-name/slides/*.png            — generated slide images
-0X-name/images/*.png            — real datasheet/schematic crops (older chapters)
 0X-name/hero.png                — chapter cover image, if any
 assets/source/*                 — ground truth: real datasheet PDF, real schematic webp/png
 visual-system/*.md              — style bible: master-style-prompt.md, layout-rules.md, terminology.md
